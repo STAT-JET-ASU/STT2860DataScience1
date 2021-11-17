@@ -1,4 +1,4 @@
-# STT2860 Introduction to Data Management and Visualization
+# STT2860 Intro to Data Management & Visualization
 
 Creative Commons Attribution Share Alike 4.0  
 https://creativecommons.org/licenses/by-sa/4.0/  
