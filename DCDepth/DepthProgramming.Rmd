@@ -1,0 +1,57 @@
+---
+title: "Course Descriptions for Programming Depth Option"
+date: 'Last Updated: `r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+<hr>
+
+&#10132; Click on the course title to more fully explore the course contents on DataCamp.
+
+### **1st Course: [Writing Efficient R Code](https://learn.datacamp.com/courses/writing-efficient-r-code)**
+
+#### **Suggested Prerequisite**
+
+Intermediate R
+
+#### **DC Course Description**
+
+The beauty of R is that it is built for performing data analysis. The downside is that sometimes R can be slow, thereby obstructing our analysis. For this reason, it is essential to become familiar with the main techniques for speeding up your analysis, so you can reduce computational time and get insights as quickly as possible.
+
+### **2nd Course: [Introduction to Writing Functions in R](https://learn.datacamp.com/courses/introduction-to-writing-functions-in-r)**
+
+#### **Suggested Prerequisite**
+
+Introduction to the Tidyverse  
+Intermediate R
+
+#### **DC Course Description**
+
+Being able to write your own functions makes your analyses more readable, with fewer errors, and more reusable from project to project. Function writing will increase your productivity more than any other skill! In this course you'll learn the basics of function writing, focusing on the arguments going into the function and the return values. You'll be writing useful data science functions, and using real-world data on Wyoming tourism, stock price/earnings ratios, and grain yields.
+
+### **3rd Course: [Object-Oriented Programming with S3 and R6 in R](https://learn.datacamp.com/courses/object-oriented-programming-with-s3-and-r6-in-r)**
+
+#### **Suggested Prerequisite**
+
+Introduction to Writing Functions in R
+
+#### **DC Course Description**
+
+Object-oriented programming (OOP) lets you specify relationships between functions and the objects that they can act on, helping you manage complexity in your code. This is an intermediate level course, providing an introduction to OOP, using the S3 and R6 systems. S3 is a great day-to-day R programming tool that simplifies some of the functions that you write. R6 is especially useful for industry-specific analyses, working with web APIs, and building GUIs. The course concludes with an interview with Winston Chang, creator of the R6 package.
+
+<hr>
+
+&#10132; If you find any errors on this page, please contact Dr. Thomley via your Private Forum on AsULearn.
+
+<hr>
