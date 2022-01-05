@@ -7,9 +7,9 @@ output:
 
 ***
 
-* [Course Syllabus](./SyllabusSchedule/STT2860F21Syllabus.html)
+* [Course Syllabus](SyllabusSchedule/STT2860F21Syllabus.html)
 
-* [GitHub Repository](./SyllabusSchedule/STT2860F19Schedule.html)
+* [GitHub Repository](https://github.com/STAT-JET-ASU/STT2860DataScience1)
 
 * [ASU RStudio Server](https://mathr.math.appstate.edu)
 
