@@ -7,7 +7,7 @@ output:
 
 ***
 
-* [Course Syllabus](SyllabusSchedule/STT2860F21Syllabus.html)
+* [Course Syllabus](SyllabusSchedule/STT2860S22Syllabus.html)
 
 * [GitHub Repository](https://github.com/STAT-JET-ASU/STT2860DataScience1)
 
