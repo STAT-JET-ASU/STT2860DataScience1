@@ -32,7 +32,7 @@ This is a 100% web-based class. We will meet via Zoom.
 
 * Tuesday: 3:30pm – 4:45pm (synchronous class in Zoom)
 * Thursday: 3:30pm – 4:45pm (synchronous class in Zoom)
-* Physical classroom space: Walker Hall 303 computer lab (Wed/Thu)
+* Physical classroom space: Walker Hall 307B computer lab
 
 Class will be held via Zoom, but you can use our classroom during class. You will need to bring your own headphones if you exercise this option. I will assess student use of the physical space during the semester to determine whether it continues to be an option (per my department).
 
@@ -131,4 +131,4 @@ As per [AppalachianState University](https://diversity.appstate.edu/) and the [D
 
 <hr>
 
-Updated Monday, January 10, 2022 @ 09:04 PM
+Updated Monday, January 10, 2022 @ 09:08 PM
