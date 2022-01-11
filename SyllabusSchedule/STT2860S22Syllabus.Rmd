@@ -81,7 +81,10 @@ This course will use the standard 10-point +/- grading scale (93--100 = A, 90--9
 
 * Ismay, C. and Kim, A.Y. [_Modern Dive: Statistical Inference via Data Science_](https://moderndive.com/index.html). (free, web-based)
 * Garrett Grolemund & Hadley Wickham. [_R for Data Science_](http://r4ds.had.co.nz/). (free, web-based)
+* Kabacoff, Rob.[_Data Visualization with R_](https://rkabacoff.github.io/datavis/) (free, web-based)
 * Peng, Roger D. [_R Programming for Data Science_](https://bookdown.org/rdpeng/rprogdatascience/) (free, web-based)
+
+We will use small portions of a few other web-based texts, as well as web resources. All readings may be accessed via AsULearn.
 
 **Computers and Software**
 
