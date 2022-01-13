@@ -1,0 +1,352 @@
+---
+title: "DC Introduction to R: Intro and Vectors"
+subtitle: "Course Exercises and Notes"
+author: "YOUR NAME HERE"
+date: 'Last rendered on `r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 3
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+### Course Information
+
+**Course Description**
+
+In Introduction to R, you will master the basics of this widely used open source language, including factors, lists, and data frames. With the knowledge gained in this course, you will be ready to undertake your first very own data analysis. Oracle estimated over 2 million R users worldwide in 2012, cementing R as a leading programming language in statistics and data science. Every year, the number of R users grows by about 40%, and an increasing number of organizations are using it in their day-to-day activities. Begin your journey to learn R with us today!
+
+**Course Link:** [Introduction to R](https://www.datacamp.com/courses/free-introduction-to-r)
+
+**Prerequisites:** None
+
+**Packages Used:** None
+
+**Datasets Used:** None
+
+***
+
+### Intro to Basics
+
+How it works
+
+```{r}
+# Calculate 3 + 4
+3 + 5
+
+# Calculate 
+6 + 12
+```
+
+Arithmetic with R
+
+```{r}
+# An addition
+5 + 5 
+
+# A subtraction
+5 - 5 
+
+# A multiplication
+3 * 5
+
+ # A division
+(5 + 5) / 2 
+
+# Exponentiation
+2^5
+
+# Modulo
+28 %% 6
+```
+
+Variable assignment
+
+Objects we create and store in code chunks will go to the environment.
+
+```{r}
+# Assign the value 42 to x
+
+
+# Print out the value of the variable x
+ 
+```
+
+Variable assignment (2)
+
+```{r}
+# Assign the value 5 to the variable my_apples
+
+
+# Print out the value of the variable my_apples
+
+```
+
+Variable assignment (3)
+
+```{r}
+# Assign a value to the variables my_apples and my_oranges
+
+
+# Add these two variables together
+
+
+# Create the variable my_fruit
+
+```
+
+Apples and oranges
+
+```{r}
+# Assign a value to the variable my_apples
+
+
+# Fix the assignment of my_oranges
+
+
+# Create the variable my_fruit and print it out
+
+```
+
+Basic data types in R
+
+```{r}
+# Change my_numeric to be 42
+
+
+# Change my_character to be "universe"
+
+
+# Change my_logical to be FALSE
+
+```
+
+What's that data type?
+
+```{r}
+# Declare variables of different types
+
+
+# Check class of my_numeric
+
+
+# Check class of my_character
+
+
+# Check class of my_logical
+
+```
+
+### Vectors
+
+Create a vector
+
+```{r}
+# Define the variable vegas
+
+```
+
+Create a vector (2)
+
+```{r}
+numeric_vector <- c(1, 10, 49)
+character_vector <- c("a", "b", "c")
+
+# Complete the code for boolean_vector
+
+```
+
+Create a vector (3)
+
+```{r}
+# Poker winnings from Monday to Friday
+
+
+# Roulette winnings from Monday to Friday
+
+```
+
+Naming a vector
+
+```{r}
+# Poker winnings from Monday to Friday
+
+
+# Roulette winnings from Monday to Friday
+
+
+# Assign days as names of poker_vector
+
+
+# Assign days as names of roulette_vectors
+
+```
+
+Naming a vector (2)
+
+```{r}
+# Poker winnings from Monday to Friday
+
+
+# Roulette winnings from Monday to Friday
+
+
+# The variable days_vector
+
+ 
+# Assign the names of the day to roulette_vector and poker_vector
+
+```
+
+Calculating total winnings
+
+```{r}
+A_vector <- c(1, 2, 3)
+B_vector <- c(4, 5, 6)
+
+# Take the sum of A_vector and B_vector
+
+  
+# Print out total_vector
+
+```
+
+Calculating total winnings (2)
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+
+
+# Assign to total_daily how much you won/lost on each day
+
+```
+
+Calculating total winnings (3)
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+
+
+# Total winnings with poker
+
+
+# Total winnings with roulette
+
+
+# Total winnings overall
+
+
+# Print out total_week
+
+```
+
+Comparing total winnings
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+
+
+# Calculate total gains for poker and roulette
+
+
+# Check if you realized higher total gains in poker than in roulette 
+
+```
+
+Vector selection: the good times
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+
+
+# Define a new variable based on a selection
+
+```
+
+Vector selection: the good times (2)
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+
+
+# Define a new variable based on a selection
+
+```
+
+Vector selection: the good times (3)
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+
+
+# Define a new variable based on a selection
+
+```
+
+Vector selection: the good times (4)
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+
+
+# Select poker results for Monday, Tuesday and Wednesday
+
+  
+# Calculate the average of the elements in poker_start
+
+```
+
+Selection by comparison - Step 1
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+
+
+# Which days did you make money on poker?
+
+  
+# Print out selection_vector
+
+```
+
+Selection by comparison - Step 2
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+
+
+# Which days did you make money on poker?
+
+
+# Select from poker_vector these days
+
+```
+
+Advanced selection
+
+```{r}
+# Poker and roulette winnings from Monday to Friday:
+
+
+# Which days did you make money on roulette?
+
+
+# Select from roulette_vector these days
+
+```
+
+***
+```{r}
+sessionInfo()
+```

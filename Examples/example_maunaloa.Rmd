@@ -1,0 +1,110 @@
+---
+title: "Example Markdown Document"
+subtitle: "STT2860 Intro to Data Management and Vis S22"
+author: "Author: Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+    toc: true
+    toc_depth: 4
+    code_folding: hide
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+<hr>
+
+```{r}
+library(tidyverse)
+library(expss)
+```
+
+
+## Mauna Loa CO2 Data
+
+The National Oceanic & Atmospheric Administration (NOAA) monitors [trends in atmospheric carbon dioxide](https://gml.noaa.gov/ccgg/trends/) and makes its data available to the public. For example, we can look at the [monthly averages](https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt) from the observatory on Mauna Loa in Hawaii. The website offers a downloadable csv file, but we can read the data in directly from the text file on the website using `R`. This enhances reproducibility in our analysis, because NOAA is often updating and/or correcting their values.
+
+### Load & Clean the Data
+
+```{r}
+mlco2 <- read_table("https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  comment = "#",
+  col_names = c(
+    "year",
+    "month",
+    "dec_date",
+    "co2",
+    "co2_adj",
+    "num_days",
+    "sd_days",
+    "uncertainty"
+  )
+) %>%
+  na_if(lt(0)) %>%
+  pivot_longer(cols = co2:co2_adj, names_to = "co2_type", values_to = "ppm")
+glimpse(mlco2)
+```
+
+### Plots of Trends In CO2
+
+#### Since 1958
+
+```{r}
+mlco2 %>%
+  ggplot(aes(x = dec_date, y = ppm, color = co2_type)) +
+  geom_line() +
+  labs(
+    title = expression("Atmospheric Mean CO"[2] * " at Mauna Loa Observatory"),
+    caption = "source: https://gml.noaa.gov/ccgg/trends/",
+    x = "year",
+    y = "parts per million (ppm)",
+    color = "CO2 Measurement"
+  ) +
+  scale_x_continuous(breaks = seq(from = 1960, to = 2020, by = 5)) +
+  scale_y_continuous(breaks = seq(from = 320, to = 420, by = 20)) +
+  scale_color_manual(
+    labels = c("Monthly Avg CO2", "Seasonally Adj CO2"),
+    values = c("red", "black")
+  ) +
+  theme_linedraw()
+```
+
+#### Since 2016
+
+```{r}
+mlco2 %>%
+  filter(year >= 2016) %>% 
+  ggplot(aes(x = dec_date, y = ppm, color = co2_type)) +
+  geom_line() +
+  geom_point(size = 0.5) +
+  labs(
+    title = expression("Recent Monthly Mean CO"[2] * " at Mauna Loa Observatory"),
+    caption = "source: https://gml.noaa.gov/ccgg/trends/",
+    x = "year",
+    y = "parts per million (ppm)",
+    color = "CO2 Measurement"
+  ) +
+  scale_x_continuous(breaks = 2016:2022) +
+  scale_y_continuous(breaks = seq(from = 400, to = 420, by = 5)) +
+  scale_color_manual(
+    labels = c("Monthly Avg CO2", "Seasonally Adj CO2"),
+    values = c("red", "black")
+  ) +
+  theme_linedraw()
+```
+
+Reference:
+
+[Trends in Atmospheric Carbon Dioxide](https://gml.noaa.gov/ccgg/trends/)
+
+<hr>
+```{r}
+sessionInfo()
+```
