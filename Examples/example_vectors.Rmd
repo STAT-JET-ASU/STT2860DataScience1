@@ -1,0 +1,94 @@
+---
+title: "Introduction to Vectors Worksheet"
+subtitle: "STT2860 Intro to Data Management and Vis S22"
+author: "Author: YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+    toc: true
+    toc_depth: 4
+    flaot: true
+    code_folding: hide
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+<hr>
+
+## [Introduction to Vectors Slides](https://stat-jet-asu.github.io/Slides/GeneralR/IntroVectors.html#1)
+
+## The `vector()` Function
+
+### Default mode
+
+```{r}
+
+```
+
+### Changing mode and length
+
+#### Numeric
+
+```{r}
+
+```
+
+#### Logical
+
+```{r}
+
+```
+
+#### Integer
+
+```{r}
+
+```
+
+#### Double
+
+```{r}
+
+```
+
+#### Character
+
+```{r}
+
+```
+
+## The `c()` function
+
+```{r}
+
+```
+
+## The `:` Function
+
+```{r}
+
+```
+
+## The `seq()` Function
+
+```{r}
+
+```
+
+## The `rep()` Function
+
+```{r}
+
+```
+
+<hr>
+```{r}
+sessionInfo()
+```
