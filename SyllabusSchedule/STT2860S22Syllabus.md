@@ -71,7 +71,7 @@ The only way to learn data science is to **DO** data science, which includes sof
 
 **Homework:** I will assign homework periodically throughout the semester to help you develop and practice your emerging skills. This typically will be an online discussion or an assignment that you will complete using R code and submit as a compiled R Markdown document. In some cases we will use the Workshop tool in AsULearn for peer feedback. You are welcome to compare methods and answers with peers; in fact, I encourage it. However, everyone must submit their own assignment. 
 
-**Projects:** Group projects will allow you to integrate and solidify the data science skills you learn in this course by applying them to the analysis and visualization of real-world data. It will also allow you to practice the kind of teamwork skills data scientists need to have. You will work in small groups of 3 or 4 students for each project and submit your work as a group. For at least one project you will be asked to submit an analysis plan that explains each person's duties and commitment to the project, as well as conduct peer evaluations. There will be a total of two group projects. The second will involve a group presentation during our class final exam period.
+**Projects:** Group projects will allow you to integrate and solidify the data science skills you learn in this course by applying them to the analysis and visualization of real-world data. It will also allow you to practice the kind of teamwork skills data scientists need to have. You will work in small groups of 3 or 4 students for each project and submit your work as a group. For at least one project you will be asked to submit an analysis plan that explains each person's duties and commitment to the project, as well as conduct peer evaluations. There will be a total of three group projects. The third will involve a group presentation during our class final exam period. The aim of the projects is to create a portfolio of work for the course to show your data manipulation and visualization skills.
 
 [AsULearn](https://asulearn.appstate.edu/) contains additional information about assignments. 
 
@@ -134,4 +134,4 @@ As per [AppalachianState University](https://diversity.appstate.edu/) and the [D
 
 <hr>
 
-Updated Monday, January 10, 2022 @ 09:15 PM
+Updated Monday, January 17, 2022 @ 01:20 PM
