@@ -9,7 +9,7 @@ output:
     highlight: textmate
     toc: true
     toc_depth: 4
-    flaot: true
+    toc_float: true
     code_folding: hide
 ---
 
