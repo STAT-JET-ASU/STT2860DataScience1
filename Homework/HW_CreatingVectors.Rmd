@@ -93,10 +93,10 @@ str(list1)
 
 Consider the following example of a [factorial experiment](https://en.wikipedia.org/wiki/Factorial_experiment) on Wikipedia: An engineer wants to increase the filtration rate of a process and reduce the amount of formaldehyde used. Four factors were considered: temperature (A), pressure (B), formaldehyde concentration (C), and stirring rate (D). Each of the four factors was tested at two levels. The minus (−) and plus (+) signs in the table indicate whether the factor was run at a low (-) or high (+) level. Create a tibble of the "Design matrix and resulting filtration rate" table showing variables A, B, C, D and the resulting filtration rate. Use "low" and "high" as category values rather than `+` and `-` symbols, since those indicate mathematical operations in `R`. Create each variable vector as efficiently as possible using the vector creation functions you have learned.
 
-```{r}
-library(tidyverse)
-experiment <- 
-```
+<!-- # ```{r} -->
+<!-- # library(tidyverse) -->
+<!-- # experiment <-  -->
+<!-- # ``` -->
 
 ```{r}
 glimpse(experiment)

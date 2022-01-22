@@ -1,0 +1,389 @@
+---
+title: 'Introduction to the Tidyverse'
+subtitle: "Course Exercises and Notes"
+author: 'YOUR NAME HERE'
+date: '`r format(Sys.time(), "%A, %B %d, %Y @ %X")`'
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+### Course Information
+
+**Course Description**
+
+This is an introduction to the programming language R, focused on a powerful set of tools known as the Tidyverse. You'll learn the intertwined processes of data manipulation and visualization using the tools dplyr and ggplot2. You'll learn to manipulate data by filtering, sorting, and summarizing a real dataset of historical country data in order to answer exploratory questions. You'll then learn to turn this processed data into informative line plots, bar plots, histograms, and more with the ggplot2 package. You’ll get a taste of the value of exploratory data analysis and the power of Tidyverse tools. This is a suitable introduction for those who have no previous experience in R and are interested in performing data analysis.
+
+**Course Link:** [Introduction to the Tidyverse](https://app.datacamp.com/learn/courses/introduction-to-the-tidyverse)
+
+**Prerequisites:** None
+
+**Packages Used:**
+
+```{r}
+library(tidyverse)
+library(gapminder)
+```
+
+**Datasets Used:**
+
+```{r}
+glimpse(gapminder)
+```
+
+***
+
+### Data Wrangling
+
+The gapminder dataset
+
+Notes from the video:
+
+```{r}
+# There is no code in this section.
+```
+
+Loading the gapminder and dplyr packages
+
+NOTE: These have been loaded above. You only need to load the gapminder and tidyverse libraries (which includes both dplyr and ggplot2) once. There is no need to reload them each time in subsequent exercises.
+
+Understanding a data frame
+
+```{r}
+# There is no code in this section.
+```
+
+The filter verb
+
+Notes from the video:
+
+```{r}
+
+```
+
+Filtering for one year
+
+```{r}
+
+```
+
+Filtering for one country and one year
+
+```{r}
+
+```
+
+The arrange verb
+
+Notes from the video:
+
+```{r}
+
+```
+
+Arranging observations by life expectancy
+
+```{r}
+
+```
+
+Filtering and arranging
+
+```{r}
+
+```
+
+The mutate verb
+
+Notes from the video:
+
+```{r}
+
+```
+
+Using mutate to change or create a column
+
+```{r}
+
+```
+
+Combining filter, mutate, and arrange
+
+```{r}
+
+```
+
+### Data Visualization
+
+Visualizing with ggplot2
+
+Notes from the video:
+
+```{r}
+
+```
+
+Variable assignment
+
+```{r}
+
+```
+
+Comparing population and GDP per capita
+
+```{r}
+
+```
+
+Comparing population and life expectancy
+
+```{r}
+
+```
+
+Log scales
+
+Notes from the video:
+
+```{r}
+
+```
+
+Putting the x-axis on a log scale
+
+```{r}
+
+```
+
+Putting the x- and y- axes on a log scale
+
+```{r}
+
+```
+
+Additional aesthetics
+
+Notes from the video:
+
+```{r}
+
+```
+
+Adding color to a scatter plot
+
+```{r}
+
+```
+
+Adding size and color to a plot
+
+```{r}
+
+```
+
+Faceting
+
+Notes from the video:
+
+```{r}
+
+```
+
+Creating a subgraph for each continent
+
+```{r}
+
+```
+
+Faceting by year
+
+```{r}
+
+```
+
+### Grouping and Summarizing
+
+The summarize verb
+
+Notes from the video:
+
+```{r}
+
+```
+
+Summarizing the median life expectancy
+
+```{r}
+
+```
+
+Summarizing the median life expectancy in 1957
+
+```{r}
+
+```
+
+Summarizing multiple variables in 1957
+
+```{r}
+
+```
+
+The group_by verb
+
+Notes from the video:
+
+```{r}
+
+```
+
+Summarizing by year
+
+```{r}
+
+```
+
+Summarizing by continent
+
+```{r}
+
+```
+
+Summarizing by continent and year
+
+```{r}
+
+```
+
+Visualizing summarized data
+
+Notes from the video:
+
+```{r}
+
+```
+
+Visualizing median life expectancy over time
+
+```{r}
+
+```
+
+Visualizing median GDP per capita per continent over time
+
+```{r}
+
+```
+
+Comparing median life expectancy and median GDP per continent in 2007
+
+```{r}
+
+```
+
+### Types of Visualizations
+
+Line plots
+
+Notes from the video:
+
+```{r}
+
+```
+
+Visualizing median GDP per capita over time
+
+```{r}
+
+```
+
+Visualizing median GDP per capita by continent over time
+
+```{r}
+
+```
+
+Bar plots
+
+Notes from the video:
+
+```{r}
+
+```
+
+Visualizing median GDP per capita by continent
+
+```{r}
+
+```
+
+Visualizing GDP per capita by country in Oceania
+
+```{r}
+
+```
+
+Histograms
+
+Notes from the video:
+
+```{r}
+
+```
+
+Visualizing population
+
+```{r}
+
+```
+
+Visualizing population with x-axis on a log scale
+
+```{r}
+
+```
+
+Boxplots
+
+Notes from the video:
+
+```{r}
+
+```
+
+Comparing GDP per capita across continents
+
+```{r}
+
+```
+
+Adding a title to your graph
+
+```{r}
+
+```
+
+Conclusion
+
+Notes from the video:
+
+```{r}
+# There is no code in this section.
+```
+
+***
+
+```{r}
+sessionInfo()
+```
