@@ -1,0 +1,134 @@
+---
+title: "Introduction to Vectors Worksheet"
+subtitle: "STT2860 Intro to Data Management and Vis S22"
+author: "Author: YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: hide
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+<hr>
+
+This worksheet is meant to be used with the [Introduction to Vectors](https://stat-jet-asu.github.io/Slides/GeneralR/IntroVectors.html#1) class slides and class lecture.
+
+## Atomic Vectors
+
+*put your own notes about atomic vectors here*
+
+## Creating Vectors
+
+### The `vector()` Function
+
+#### Default mode
+
+    vector(mode = "logical", length = 0)
+
+```{r}
+
+```
+
+#### Changing mode and length
+
+Numeric
+
+```{r}
+
+```
+
+Logical
+
+```{r}
+
+```
+
+Integer
+
+```{r}
+
+```
+
+Double
+
+```{r}
+
+```
+
+Character
+
+```{r}
+
+```
+
+### Related Functions
+
+    logical(length = 0)
+    integer(length = 0)
+    double(length = 0)
+    numeric(length = 0)
+    character(length = 0)
+
+```{r}
+
+```
+
+## Patterned Vectors
+
+### The `c()` Function
+
+```{r}
+
+```
+
+### The `:` Function
+
+```{r}
+
+```
+
+### The `seq()` Function
+
+```{r}
+
+```
+
+### The `rep()` Function
+
+```{r}
+
+```
+
+## Attributes
+
+```{r}
+
+```
+
+## Creating Lists
+
+```{r}
+
+```
+
+## Creating Tibbles
+
+```{r}
+
+```
+
+<hr>
+```{r}
+sessionInfo()
+```
