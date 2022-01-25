@@ -1,0 +1,125 @@
+---
+title: "Intro to Data Wrangling with dplyr Verbs"
+subtitle: "STT2860 Intro to Data Management and Vis S22"
+author: "Author: YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: hide
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+<hr>
+
+This worksheet is meant to be used with:
+
+* [Intro to Data Wrangling with dplyr Verbs, Part 1](https://stat-jet-asu.github.io/Slides/GeneralR/DataWranglingVerbs01.html#1) slides
+* [Intro to Data Wrangling with dplyr Verbs, Part 2](https://stat-jet-asu.github.io/Slides/GeneralR/DataWranglingVerbs02.html#1) slides
+
+## Packages Used
+
+```{r}
+library(tidyverse)
+library(skimr)
+```
+
+## Dataset Used
+
+[Galton Data Description Page](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html)
+
+```{r}
+galtondata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/galtonfamiliesmain.csv")
+glimpse(galtondata)
+```
+
+## Explore Structure
+
+### `attributes()`
+
+    attributes(x)
+    attributes(x) <- value
+
+```{r}
+
+```
+
+### `names()` and `row.names()`
+
+    names(x)
+    names(x) <- value
+    row.names(x)
+    row.names(x) <- value
+
+```{r}
+
+```
+
+### `dim()`, `nrow()`, and `ncol()`
+
+    dim(x)
+    dim(x) <- value
+    nrow(x)
+    ncol(x)
+
+```{r}
+
+```
+
+### `head()` and `tail()`
+
+    head(x, n = 6L)
+    tail(x, n = 6L)
+
+```{r}
+
+```
+
+### `skim()` and `skim_without_charts()`
+
+    skim(data, ...)
+    skim_without_charts(data, ...)
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+## Data Manipulation
+
+### Using `mutate()`
+
+```{r}
+
+```
+
+### Using `transmute()`
+
+```{r}
+
+```
+
+### Extracting Parents
+
+```{r}
+
+```
+
+
+<hr>
+```{r}
+sessionInfo()
+```
