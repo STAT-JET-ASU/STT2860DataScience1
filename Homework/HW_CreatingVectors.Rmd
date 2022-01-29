@@ -104,5 +104,5 @@ glimpse(experiment)
 
 ***
 ```{r}
-Sys.info()
+sessionInfo()
 ```
