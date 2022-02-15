@@ -3,14 +3,9 @@ title: "Column Examples"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 ### Full-Width Section
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a iaculis augue. Sed vitae orci congue, posuere dui et, aliquet ante. Vivamus quis dignissim quam, in scelerisque nulla. Quisque sed risus in dui facilisis gravida non ac dui. Etiam ac augue non metus tempus eleifend. Suspendisse consequat lorem ut purus eleifend, in fringilla massa ultricies. Nullam quis sodales dui. Morbi interdum, lorem dignissim viverra facilisis, eros magna pretium felis, eget rhoncus lectus odio a magna. Suspendisse potenti. Integer egestas placerat erat non semper. Fusce lacinia eu neque et varius. Pellentesque scelerisque scelerisque dignissim.
-
 
 
 :::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 50px;"}

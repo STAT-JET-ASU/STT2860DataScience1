@@ -1,0 +1,56 @@
+---
+title: "Data Manipulation Instructions"
+output: 
+  html_document:
+    theme: yeti
+---
+***
+
+### Galton Families Data
+
+Francis Galton, a cousin of Charles Darwin, studied the relationship between parent heights and the heights of their offspring. His pioneering [1886 article](https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf) is the first appearance of regression analysis in print. He originated many statistical terms and concepts, including regression, correlation, deviate, quartile, and percentile, plus median for the midpoint of a distribution. His colleague and frequent collaborator Karl Pearson developed the Pearson product-moment correlation coefficient from the work of Galton and Auguste Bravais. The `galtonheightdata` dataset was [created under the direction of Dr. James A. Hanley](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/) using Galton's [original paper notebooks](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/index.html) containing the measurement data. The "female statures" are in their raw (untransmuted) form. You can access the data files from the [description](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html) page, which also contains variable definitions.
+
+As one of his many genetic studies, Galton compared the heights of children to the heights of their parents. Before this analysis, he multiplied all of the female children’s heights by 1.08. Regarding this data manipulation, Galton explained, “In every case I transmuted the female statures to their corresponding male equivalents and used them in their transmuted form, so that no objection grounded on the sexual difference of stature need be raised when I speak of averages.” What he called "transmuted" would now typically be call data transformation, though note the similarity to our functions `mutate()` and `transmute()`.
+
+Your job will be to read, manipulate, and tidy the data so you can join the datasets and create data visualizations in later projects.
+
+**Load the Data**
+
+The file `galtonfamiliesmain.csv` contains most of the family data. Read this dataset from its URL using `read_csv()` and store it as the object `data_main`. Use `glimpse()` to display its contents.
+
+The file `galtonfamiliessub.csv` contains the rest of the family data. Read this dataset from its URL using `read_csv()` and store it as the object `data_sub`. Use `glimpse()` to display its contents.
+
+**Modify the Data**
+
+Do the following to the `data_main` dataset using dplyr tools.
+
+* Change the `FamilyID` of family `136A` to `205`.
+* Convert `FamilyID` into a quantitative variable.
+* Multiply all `Mother` heights by Galton's factor of 1.08.
+* Mutate `Height` to multiply only daughter's heights by 1.08.
+* Create a variable that averages `Mother` and `Father` heights.
+
+The `data_sub` file contains the height observations as they were recorded in the original notebook (in deviations from 60 inches). Do the following to the `data_sub` dataset using dplyr tools.
+
+* Add `60` to variables `Father`, `Mother`, and `Height`.
+* Multiply all `Mother` heights by Galton's factor of 1.08.
+* Mutate `Height` to multiply only daughter's heights by 1.08.
+* Create a variable that averages `Father` and transformed `Mother`.
+
+Perform whatever additional manipulations are necessary so that both datasets contain the following variables (names as shown) in the given order, with the same variable (vector) types.
+
+* `familyID`: family identifier
+* `child_num` : number of children in the family
+* `father`: father’s height in inches
+* `mother`: mother’s height in inches
+* `motherT`: mother's height multiplied by 1.08
+* `midparent` : average of `motherT` and `father`
+* `child_gen`: whether the child was a son or a daughter
+* `height`: child’s height in inches
+* `heightT` : child’s height with daughters multiplied by 1.08
+
+Arrange the observations in both datasets so they resemble the organization seen in Galton's [notebook](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/image-html/1_page_1.html): (1) in ascending order by `FamilyID`; (2) sons before daughters; and (3) heights within families and sons/daughters in decreasing order. (*We might want this if we had to cross-check and verify the manual data entry used to create the digital datafiles.*)
+
+Be as efficient as possible in your coding. It might help to get something that works first, then modify it to clean it up. The function `if_else()` (see [syntax](https://rdrr.io/cran/dplyr/man/if_else.html)) would be useful for the `FamilyID` and `Height` transformations.
+
+***
