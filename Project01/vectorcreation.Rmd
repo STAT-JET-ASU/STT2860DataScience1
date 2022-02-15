@@ -1,0 +1,81 @@
+---
+title: "Vector Creation Instructions"
+output: 
+  html_document:
+    theme: yeti
+---
+***
+
+### Overview
+
+Create original examples of vector creation for each of the following functions and cases. Do not directly duplicate any examples in the [Introduction to Vectors](https://stat-jet-asu.github.io/Slides/GeneralR/IntroVectors.html#1) slides. Include sufficient description so that a reader would know what you are doing (or perhaps your future selves). Include the default syntax for each vector function, which you can find on its help page. Explain what each function parameter shown in the syntax does. You do *not* have to include the syntax for `list()` and `tibble()`.
+
+Indenting text four spaces will produce the blockquote look below. Notice the default of `vector()` is a logical vector of length 0.
+
+Syntax:
+
+    vector(mode = "logical", length = 0)
+    
+* `mode =` type of atomic vector to make
+* `length =` length of the output vector
+    
+### Examples
+
+* `vector()` 
+   * default function output
+   * other modes (`length` > `0`)
+      * `logical`
+      * `integer`
+      * `numeric`
+      * `double`
+      * `complex`
+      * `character`
+      * `raw`
+* `logical()`
+   * default function output
+   * `length` > `0`
+* `integer()`
+   * default function output
+   * `length` > `0`
+* `double()`
+   * default function output
+   * `length` > `0`
+* `numeric()`
+   * default function output
+   * `length` > `0`
+* `character()`
+   * default function output
+   * `length` > `0`
+* `c()`
+   * default function output
+   * make a logical vector
+   * make an integer vector
+   * make a numeric/double vector
+   * make a character vector
+* `:`
+   * make an increasing vector
+   * make a decreasing vector
+   * make a vector of non-integers
+* `seq()`
+   * default function output
+   * using `by =`
+      * increasing with a step size > `1`
+      * increasing with a step size < `1`
+      * decreasing with a step size > `1`
+      * decreasing with a step size < `1`
+   * using `length.out =`
+   * using `along.with =`
+* `rep()`
+   * default function output
+   * using `times =`
+   * using `each =`
+   * usinf `times =` and `each =`
+   * using `length.out =`
+* use `names()` to create a named vector
+* use some vectors to create a `list()`
+* recreate the `tibble()` from the homework
+   * include an R Markdown table of the data
+   * include a link to the Wikipedia data source 
+   * add comments to explanation the creation
+   
+***
