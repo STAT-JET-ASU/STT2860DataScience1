@@ -1,0 +1,39 @@
+---
+title: "Column Examples"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Full-Width Section
+
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris a iaculis augue. Sed vitae orci congue, posuere dui et, aliquet ante. Vivamus quis dignissim quam, in scelerisque nulla. Quisque sed risus in dui facilisis gravida non ac dui. Etiam ac augue non metus tempus eleifend. Suspendisse consequat lorem ut purus eleifend, in fringilla massa ultricies. Nullam quis sodales dui. Morbi interdum, lorem dignissim viverra facilisis, eros magna pretium felis, eget rhoncus lectus odio a magna. Suspendisse potenti. Integer egestas placerat erat non semper. Fusce lacinia eu neque et varius. Pellentesque scelerisque scelerisque dignissim.
+
+
+
+:::: {style="display: grid; grid-template-columns: 1fr 1fr; grid-column-gap: 50px;"}
+
+::: {}
+
+### Column 1
+
+Praesent turpis urna, tincidunt ut justo nec, porttitor euismod dolor. Suspendisse non nunc magna. Vivamus pulvinar lobortis lacus, eu ullamcorper nulla ultricies rhoncus. Fusce bibendum gravida justo, et semper leo aliquam et. Donec dictum massa ex, ac tristique urna blandit sit amet. Pellentesque bibendum, metus in molestie tincidunt, nisi tortor efficitur dui, nec elementum nunc purus eu lacus. In ornare vel urna finibus tincidunt. Vivamus bibendum massa at lacinia cursus. Nunc augue lectus, hendrerit non volutpat nec, facilisis ac dui. In id suscipit sapien. Sed auctor nibh condimentum orci posuere, a sodales nisl auctor. In iaculis placerat egestas. Vivamus ultricies venenatis tortor, vitae tristique felis condimentum non.
+
+#### My List of Items
+
+* List Item 1
+* List Item 2
+
+:::
+
+::: {}
+
+### Column 2
+
+Praesent vitae metus in orci malesuada sollicitudin. Vivamus porttitor dapibus suscipit. Etiam facilisis quis lorem sed dignissim. Donec venenatis tincidunt fermentum. Maecenas sed fringilla dui, ac pharetra leo. Mauris tincidunt diam sit amet erat dapibus laoreet. Pellentesque sollicitudin diam quis lobortis rhoncus. Vivamus nec tempor lectus. Etiam condimentum arcu sed libero tincidunt, accumsan commodo augue dapibus. Sed tempor id magna ac ultricies. Morbi pulvinar diam sit amet enim ullamcorper, in condimentum nulla sodales. Maecenas gravida ipsum at nulla ultrices pharetra. Mauris aliquet purus et libero viverra auctor.
+
+:::
+
+::::
