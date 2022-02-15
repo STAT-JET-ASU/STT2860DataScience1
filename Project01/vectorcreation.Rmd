@@ -74,8 +74,9 @@ Syntax:
 * use `names()` to create a named vector
 * use some vectors to create a `list()`
 * recreate the `tibble()` from the homework
-   * include an R Markdown table of the data
+   * include a [manual R Markdown data table](https://stackoverflow.com/questions/60414956/r-markdown-table-entering-manually-the-content)
    * include a link to the Wikipedia data source 
-   * add comments to explanation the creation
+   * add `# comments` to explanation the process
+   * be sure to store/print the tibble you made!
    
 ***
