@@ -1,0 +1,56 @@
+---
+title: "Course Descriptions for Big Data Visualization Depth Option"
+date: 'Last Update: `r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+<hr>
+
+&#10132; Click on the course title to more fully explore the course contents on DataCamp.
+
+### **1st Course: [Interactive Data Visualization with plotly in R](https://app.datacamp.com/learn/courses/interactive-data-visualization-with-plotly-in-r)**
+
+#### **Suggested Prerequisite**
+
+Introduction to the Tidyverse
+
+#### **DC Course Description**
+
+Interactive graphics allow you to manipulate plotted data to gain further insight. As an example, an interactive graphic would allow you to zoom in on a subset of your data without the need to create a new plot. In this course, you will learn how to create and customize interactive graphics in plotly using the R programming language. Along the way, you will review data visualization best practices and be introduced to new plot types such as scatterplot matrices and binned scatterplots.
+
+### **2nd Course: [Intermediate Data Visualization with ggplot2](https://learn.datacamp.com/courses/intermediate-data-visualization-with-ggplot2)**
+
+#### **Suggested Prerequisite**
+
+Introduction to Data Visualization with ggplot2
+
+#### **DC Course Description**
+
+This ggplot2 course builds on your knowledge from the introductory course to produce meaningful explanatory plots. Statistics will be calculated on the fly and you’ll see how Coordinates and Facets aid in communication. You’ll also explore details of data visualization best practices with ggplot2 to help make sure you have a sound understanding of what works and why. By the end of the course, you’ll have all the tools needed to make a custom plotting function to explore a large data set, combining statistics and excellent visuals.
+
+### **3rd Course: [Visualizing Big Data with Trelliscope in R](https://app.datacamp.com/learn/courses/visualizing-big-data-with-trelliscope-in-r)**
+
+#### **Suggested Prerequisite**
+
+Introduction to the Tidyverse
+
+#### **DC Course Description**
+
+Having honed your visualization skills by learning ggplot2, it's now time to tackle larger datasets. In this course, you will learn several techniques for visualizing big data, with particular focus on the scalable visualization technique of faceting. You will learn how to put this technique into action using the Trelliscope approach as implemented in the trelliscopejs R package. Trelliscope plugs seamlessly into standard R workflows and produces interactive visualizations that allow you to visually explore your data in detail. By the end of this course, you will be able to easily create interactive exploratory displays of large datasets that will help you and your colleagues gain new insights into your data.
+
+<hr>
+
+&#10132; If you find any errors on this page, please contact Dr. Thomley via your Private Forum on AsULearn.
+
+<hr>

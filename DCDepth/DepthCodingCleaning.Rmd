@@ -1,0 +1,59 @@
+---
+title: "Course Descriptions for Coding & Cleaning Depth Option"
+date: 'Last Update: `r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+<hr>
+
+&#10132; Click on the course title to more fully explore the course contents on DataCamp.
+
+### **1st Course: [Cleaning Data in R](https://app.datacamp.com/learn/courses/cleaning-data-in-r)**
+
+#### **Suggested Prerequisite**
+
+Joining Data with dplyr
+
+#### **DC Course Description**
+
+It's commonly said that data scientists spend 80% of their time cleaning and manipulating data and only 20% of their time analyzing it. The time spent cleaning is vital since analyzing dirty data can lead you to draw inaccurate conclusions.
+
+In this course, you'll learn how to clean dirty data. Using R, you'll learn how to identify values that don't look right and fix dirty data by converting data types, filling in missing values, and using fuzzy string matching. As you learn, you’ll brush up on your skills by working with real-world datasets, including bike-share trips, customer asset portfolios, and restaurant reviews—developing the skills you need to go from raw data to awesome insights as quickly and accurately as possible!
+
+### **2nd Course: [Dealing With Missing Data in R](https://learn.datacamp.com/courses/intermediate-data-visualization-with-ggplot2)**
+
+#### **Suggested Prerequisite**
+
+Introduction to R<br>
+Introduction to the Tidyverse
+
+#### **DC Course Description**
+
+Missing data is part of any real world data analysis. It can crop up in unexpected places, making analyses challenging to understand. In this course, you will learn how to use tidyverse tools and the naniar R package to visualize missing values. You'll tidy missing values so they can be used in analysis and explore missing values to find bias in the data. Lastly, you'll reveal other underlying patterns of missingness. You will also learn how to "fill in the blanks" of missing values with imputation models, and how to visualize, assess, and make decisions based on these imputed datasets.
+
+### **3rd Course: [Reshaping Data with tidyr](https://app.datacamp.com/learn/courses/reshaping-data-with-tidyr)**
+
+#### **Suggested Prerequisite**
+
+Data Manipulation with dplyr
+
+#### **DC Course Description**
+
+Data in the wild can be scary—when confronted with a complicated and messy dataset you may find yourself wondering, where do I even start? The tidyr package allows you to wrangle such beasts into nice and tidy datasets. Inaccessible values stored in column names will be put into rows, JSON files will become data frames, and missing values will never go missing again. You'll practice these techniques on a wide range of messy datasets, learning along the way how many dogs the Soviet Union sent into space and what bird is most popular in New Zealand. With the tidyr package in your tidyverse toolkit, you'll be able to transform almost any dataset in a tidy format which will pay-off during the rest of your analysis.
+
+<hr>
+
+&#10132; If you find any errors on this page, please contact Dr. Thomley via your Private Forum on AsULearn.
+
+<hr>
