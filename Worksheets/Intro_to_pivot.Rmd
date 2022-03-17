@@ -1,0 +1,130 @@
+---
+title: "Intro to Reshaping with Separate/Unite and Pivot"
+subtitle: "STT2860 Intro to Data Management and Vis S22"
+author: "Author: YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+<hr>
+
+This worksheet is meant to be used with:
+
+* [RDS CH12 Tidy data](https://r4ds.had.co.nz/tidy-data.html)
+* [dplyr: separate and unite](https://youtu.be/ztcsf7G4S78) (video)
+* [How to reshape data with tidyr’s new pivot functions](https://youtu.be/gnUgSkKEW5c) (video)
+* [Function reference for tidyr](https://tidyr.tidyverse.org/reference/index.html)
+
+## Packages Used
+
+```{r}
+library(tidyverse)
+library(skimr)
+```
+
+## Datasets Used
+
+Example datasets used in **RDS CH12** from the **tidyr** package.
+
+```{r}
+table1
+table2
+table3
+table4a
+table4b
+```
+
+Example dataset from Dr. Thomley's Class Data Files (linked from AsULearn).
+
+```{r}
+powerball <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/powerballnumbers.csv")
+head(powerball)
+```
+
+Example dataset originally from the Kaggle repo [Netflix Movies and TV Shows](https://www.kaggle.com/shivamb/netflix-shows).
+
+```{r}
+netflix <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Kaggle/netflix_2021_10_01.csv")
+head(netflix)
+```
+
+## Separating and Uniting Columns
+
+### `separate()`
+
+```{r}
+
+```
+
+### `unite()`
+
+```{r}
+
+```
+
+## Pivoting the Data "Rectangle"
+
+### `pivot_longer()`
+
+```{r}
+
+```
+
+### `pivot_wider()`
+
+```{r}
+
+```
+
+## Netflix Example
+
+### `separate()` movie categories
+
+Let's first try four categories...
+
+```{r}
+netflix_4cat <- netflix %>%
+  separate(
+    col = listed_in,
+    into = c("cat1", "cat2", "cat3", "cat4"),
+    sep = ",",
+    remove = FALSE
+  )
+
+netflix_4cat %>% 
+  select(cat1:cat4) %>% 
+  skim()
+```
+
+We can reduce the number of categories...
+
+```{r}
+
+```
+
+Use `pivot_longer()` to put all the categories in the same column.
+
+```{r}
+
+```
+
+Remove any rows that have `NA` values in the new column you created.
+
+```{r}
+
+```
+
+<hr>
+```{r}
+sessionInfo()
+```
