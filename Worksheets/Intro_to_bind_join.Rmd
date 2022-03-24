@@ -1,0 +1,152 @@
+---
+title: "Intro to Binding and Joining in R"
+subtitle: "STT2860 Intro to Data Management and Vis S22"
+author: "Author: YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+<hr>
+
+This worksheet is meant to be used with:
+
+* [RDS CH13 Relational data](https://r4ds.had.co.nz/relational-data.html)
+* [Mutating joins](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+* [Filtering joins](https://dplyr.tidyverse.org/reference/filter-joins.html)
+* [Dr. Thomley's Instructor Datasets](https://github.com/STAT-JET-ASU/Datasets/tree/master/Instructor)
+
+## Packages Used
+
+```{r packagesused}
+library(tidyverse)
+library(skimr)
+```
+
+## Datasets Used
+
+### Myers-Briggs Personality Datasets
+
+Personality types determined using the [Jung Typology Test](https://www.humanmetrics.com/personality).
+
+#### STT1810 Classes
+
+```{r readclass1}
+class1 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/personalitySTT1810.csv")
+glimpse(class)
+```
+
+#### STT3850 Classes
+
+```{r readclass2}
+class2 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/personalitySTT3850.csv")
+glimpse(class)
+```
+
+### Census Population Data
+
+Census data taken from tables found on Wikipedia.
+
+#### 1970 and 1980
+
+```{r readcensus1}
+census1 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/census19701980.csv")
+glimpse(census1)
+```
+
+#### 1990 and 2000
+
+```{r readcensus2}
+census2 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/census19902000.csv")
+glimpse(census2)
+```
+
+#### 2010 and 2020
+
+```{r readcensus3}
+census3 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/census20102020.csv")
+glimpse(census3)
+```
+
+### Electoral Votes
+
+Data from [US Electoral College Votes Per State 1788-2020 | Kaggle](https://www.kaggle.com/datasets/daithibhard/us-electoral-college-votes-per-state-17882020)
+
+```{r readelectoralvotes}
+votes <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/electoralvotes.csv")
+glimpse(votes)
+```
+
+## Examples of Combining
+
+### `bind_rows()`
+
+#### Simple row binding
+
+```{r}
+
+```
+
+#### Binding with an ID #1
+
+```{r}
+
+```
+
+#### Binding with an ID #2
+
+```{r}
+
+```
+
+### `bind_cols()`
+
+#### Simple column binding
+
+```{r}
+
+```
+
+#### Duplicate columns?
+
+```{r}
+
+```
+
+### `left_join()`
+
+```{r}
+
+```
+
+### `right_join()`
+
+```{r}
+
+```
+
+### `semi_join()`
+
+```{r}
+
+```
+
+### `anti_join()`
+
+```{r}
+
+```
+
+<hr>
+```{r}
+sessionInfo()
+```
