@@ -1,0 +1,62 @@
+---
+title: "DC Depth Track: Visualizing Big Data"
+subtitle: "Course Descriptions and Suggested Prerequisites"
+date: 'Last Update: `r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+<hr>
+
+&#10132; Click on the course title to more fully explore the course contents on DataCamp.
+
+### **1st Course: [Interactive Data Visualization with plotly in R](https://app.datacamp.com/learn/courses/interactive-data-visualization-with-plotly-in-r)**
+
+#### **Suggested Prerequisite**
+
+Introduction to the Tidyverse
+
+#### **DC Course Description**
+
+Interactive graphics allow you to manipulate plotted data to gain further insight. As an example, an interactive graphic would allow you to zoom in on a subset of your data without the need to create a new plot. In this course, you will learn how to create and customize interactive graphics in plotly using the R programming language. Along the way, you will review data visualization best practices and be introduced to new plot types such as scatterplot matrices and binned scatterplots.
+
+### **2nd Course: [Visualizing Big Data with Trelliscope in R](https://app.datacamp.com/learn/courses/visualizing-big-data-with-trelliscope-in-r)**
+
+#### **Suggested Prerequisite**
+
+Introduction to the Tidyverse
+
+#### **DC Course Description**
+
+Having honed your visualization skills by learning ggplot2, it's now time to tackle larger datasets. In this course, you will learn several techniques for visualizing big data, with particular focus on the scalable visualization technique of faceting. You will learn how to put this technique into action using the Trelliscope approach as implemented in the trelliscopejs R package. Trelliscope plugs seamlessly into standard R workflows and produces interactive visualizations that allow you to visually explore your data in detail. By the end of this course, you will be able to easily create interactive exploratory displays of large datasets that will help you and your colleagues gain new insights into your data.
+
+### **3rd Course: [Visualizing Geospatial Data in R](https://app.datacamp.com/learn/courses/visualizing-geospatial-data-in-r)**
+
+#### **Suggested Prerequisite**
+
+Introduction to R  
+Introduction to Data Visualization with ggplot2
+
+#### **DC Course Description**
+
+Where should you buy a house to get the most value for your money? Your first step might be to make a map, but spatial analysis in R can be intimidating because of the complicated objects the data often live in.
+
+This course will introduce you to spatial data by starting with objects you already know about, data frames, before introducing you to the special objects from the sp and raster packages used to represent spatial data for analysis in R. You'll learn to read, explore, and manipulate these objects with the big payoff of being able to use the tmap package to make maps.
+
+By the end of the course you will have made maps of property sales in a small town, populations of the countries of the world, the distribution of people in the North East of the USA, and median income in the neighborhoods of New York City.
+
+<hr>
+
+&#10132; If you find any errors on this page, please contact Dr. Thomley via your Private Forum on AsULearn.
+
+<hr>

@@ -1,0 +1,57 @@
+---
+title: "DC Depth Track: Data Science with Python"
+subtitle: "Course Descriptions and Suggested Prerequisites"
+date: 'Last Updated: `r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+<hr>
+
+&#10132; Click on the course title to more fully explore the course contents on DataCamp.
+
+### **1st Course: [Introduction to Python](https://learn.datacamp.com/courses/intro-to-python-for-data-science)**
+
+#### **Suggested Prerequisite**
+
+None
+
+#### **DC Course Description**
+
+Python is a general-purpose programming language that is becoming ever more popular for data science. Companies worldwide are using Python to harvest insights from their data and gain a competitive edge. Unlike other Python tutorials, this course focuses on Python specifically for data science. In our Introduction to Python course, you’ll learn about powerful ways to store and manipulate data, and helpful data science tools to begin conducting your own analyses. Start DataCamp’s online Python curriculum now.
+
+### **2nd Course: [Intermediate Python](https://learn.datacamp.com/courses/intermediate-python)**
+
+#### **Suggested Prerequisite**
+
+Introduction to Python
+
+#### **DC Course Description**
+
+Learning Python is crucial for any aspiring data science practitioner. Learn to visualize real data with Matplotlib's functions and get acquainted with data structures such as the dictionary and the pandas DataFrame. After covering key concepts such as boolean logic, control flow, and loops in Python, you'll be ready to blend together everything you've learned to solve a case study using hacker statistics.
+
+### **3rd Course: [Python Data Science Toolbox (Part 1)](https://learn.datacamp.com/courses/python-data-science-toolbox-part-1)**
+
+#### **Suggested Prerequisite**
+
+Intermediate Python
+
+#### **DC Course Description**
+
+It's time to push forward and develop your Python chops even further. There are tons of fantastic functions in Python and its library ecosystem. However, as a data scientist, you'll constantly need to write your own functions to solve problems that are dictated by your data. You will learn the art of function writing in this first Python Data Science Toolbox course. You'll come out of this course being able to write your very own custom functions, complete with multiple parameters and multiple return values, along with default arguments and variable-length arguments. You'll gain insight into scoping in Python and be able to write lambda functions and handle errors in your function writing practice. And you'll wrap up each chapter by using your new skills to write functions that analyze Twitter DataFrames.
+
+<hr>
+
+&#10132; If you find any errors on this page, please contact Dr. Thomley via your Private Forum on AsULearn.
+
+<hr>

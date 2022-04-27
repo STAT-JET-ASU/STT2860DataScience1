@@ -1,0 +1,60 @@
+---
+title: "DC Depth Track: Data Science with Tableau"
+subtitle: "Course Descriptions and Suggested Prerequisites"
+date: 'Last Updated: `r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+<hr>
+
+&#10132; Click on the course title to more fully explore the course contents on DataCamp.
+
+### **1st Course: [Introduction to Tableau](https://app.datacamp.com/learn/courses/introduction-to-tableau)**
+
+#### **Suggested Prerequisite**
+
+None
+
+#### **DC Course Description**
+
+Tableau is a widely used business intelligence (BI) and analytics software trusted by companies like Amazon, Experian, and Unilever to explore, visualize, and securely share data in the form of Workbooks and Dashboards. With its user-friendly drag-and-drop functionality it can be used by everyone to quickly clean, analyze, and visualize your team’s data. You’ll learn how to navigate Tableau’s interface and connect and present data using easy-to-understand visualizations. By the end of this training, you’ll have the skills you need to confidently explore Tableau and build impactful data dashboards. Let’s dive in.
+
+### **2nd Course: [Analyzing Data in Tableau](https://app.datacamp.com/learn/courses/analyzing-data-in-tableau)**
+
+#### **Suggested Prerequisite**
+
+Introduction to Tableau
+
+#### **DC Course Description**
+
+Take your Tableau skills up a notch with advanced analytics and visualizations. In this course, you’ll learn how to create detail-rich map visualizations, configure date and time fields to show trends over time, and extend your data using Calculated Fields. You’ll also apply your new skills to complete a customer analytics case study. Through hands-on activities, you’ll learn how to create bins, customize filters and interactions, and apply quick table calculations. Finally, you’ll learn power user techniques, including how to slice and dice data and apply dynamic sets and groups—bringing you one step closer to being Tableau Desktop Specialist certification-ready.
+
+### **3rd Course: [Creating Dashboards in Tableau](https://app.datacamp.com/learn/courses/creating-dashboards-in-tableau)**
+
+#### **Suggested Prerequisite**
+
+Introduction to Tableau  
+Analyzing Data in Tableau
+
+#### **DC Course Description**
+
+Dashboards are a must-have tool in today’s data-driven world. By combining curated data visualizations, dashboards allow users to interpret and ask their own questions of data. By reducing the time to insight and empowering business analysts, dashboards can have a big impact on business performance.
+
+Tableau's dashboarding abilities are powerful and easy to use. In this course, you'll learn to apply dashboard-composition best practices, add interactive or explanatory elements, and use dashboard actions to make your dashboard interactive. Additionally, you'll learn to modify an existing dashboard layout for mobile devices to share as an image or a PDF. Finally, you'll learn how to share your data story through Tableau's story functionality.
+
+<hr>
+
+&#10132; If you find any errors on this page, please contact Dr. Thomley via your Private Forum on AsULearn.
+
+<hr>
