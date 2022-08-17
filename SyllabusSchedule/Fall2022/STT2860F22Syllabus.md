@@ -103,6 +103,15 @@ You will do an individual presentation of data visualizations via Zoom during ou
 
 This course will use the standard 10-point +/- grading scale (93--100 = A, 90--92 = A--, 87--89 = B+, etc.) to determine final grades. I do not round up, given all the second-chance opportunities built into the course. Accommodations *may* be made for documented extenuating circumstances that prevent you from completing work early/on time. Grades will be kept on [AsULearn](https://asulearn.appstate.edu/). You should monitor your grades throughout the term to make sure they are complete and accurate. Contact the instructor via your Private Forum or office hours if you have questions.   
 
+##### **▷ Academic Integrity**
+
+Appalachian's [Academic Integrity Code](https://academicintegrity.appstate.edu/) is designed to create an atmosphere of trust, respect, fairness, honesty, and responsibility. All members of the ASU community are responsible for promoting an ethical learning environment. Students attending ASU agree to abide by the following:
+
+* Students will not lie, cheat, or steal to gain academic advantage.
+* Students will oppose every instance of academic dishonesty.
+
+By submitting work under your name, you are attesting that you have abided by the Academic Integrity Code. Violations of Academic Integrity will be treated very seriously. [Penalties](https://academicintegrity.appstate.edu/pagesmith/13) can include a reduced grade for the assignment or course, course, academic probation, or expulsion.
+
 #### **Course Materials**
 
 ##### **▷ Required Textbooks**
@@ -151,8 +160,6 @@ This course conforms to all Appalachian State University policies with respect t
 
 As per [AppalachianState University](https://diversity.appstate.edu/) and the [Department of Mathematical Sciences Statement on Diversity and Inclusiveness](https://mathsci.appstate.edu/diversity), I intend this class is to be a welcoming environment where everyone can learn and explore in order to achieve their full potential. As such, we all need to be respectful to each other in all interactions, regardless of gender, political party, race, religion, sexuality, disability, etc. This includes others' choices about COVID precautions, such as masks and social distancing in our physical classroom space. Activities that distract/disrupt your fellow students or the instructor may result in a lowered grade. First offenses typically will be dealt with by the instructor. Subsequent or serious behavior issues will be referred to the **Office of Student Conduct** (https://studentconduct.appstate.edu/).
 
-
-
 <hr>
 
-Updated Wednesday, August 17, 2022 @ 06:18 PM
+Updated Wednesday, August 17, 2022 @ 07:11 PM
