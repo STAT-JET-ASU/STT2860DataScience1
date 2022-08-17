@@ -9,7 +9,7 @@ output:
     toc_float: true
     theme: cosmo
     highlight: textmate
-    css: "../css/style.css"
+    css: "../../css/style.css"
     keep_md: yes
 ---
 

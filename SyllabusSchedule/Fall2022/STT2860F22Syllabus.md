@@ -7,15 +7,15 @@ output:
     highlight: textmate
     toc: true
     toc_depth: 5
-    css: "../css/style.css"
+    css: "../../css/style.css"
     keep_md: yes
 ---
 
 #### **Bulletin Description**  
 
-An introduction to the tools, methods, and current practices of data management and visualization including reproducible work flow. Topics include introductory concepts of programming and work flow, data manipulation, and data visualization using grammar of graphics. Emphasis will also be placed on the practice of creating reproducible research using a version control system with dynamic document reporting, including technology/tools such as R, R Studio, R Markdown, Git, and Git Hub. 
+STT2860 is an introduction to the tools, methods, and current practices of data management and visualization including reproducible work flow. Topics include introductory concepts of programming and work flow, data manipulation, and data visualization using grammar of graphics. Emphasis will also be placed on the practice of creating reproducible research using a version control system with dynamic document reporting, including technology/tools such as R, R Studio, R Markdown, Git, and Git Hub. 
 
-Prerequisite: demonstrated readiness for college-level math.
+Prerequisite: Demonstrated readiness for college-level math.
 
 *This course does not assume you have previous experience with any of the methods or technologies above.* However, you should be comfortable using a computer and have reasonable access to a computer and internet connection outside of class. All required software and digital textbooks are provided free of charge, so there are no additional costs.
 
@@ -125,7 +125,7 @@ This course will use the RStudio server  (https://mathr.math.appstate.edu/) that
 
 You must have an active internet connection and be registered in the course to access the ASU RStudio server. To access the server, point any web browser to <https://mathr.math.appstate.edu/>. Use your Appstate Username and Password to log in. A screen shot of the RStudio server is shown below. If you have problems with your Appstate Username or Password visit [IT Support Services](http://support.appstate.edu/) or call 262-6266.
 
-<img src="../images/RStudioServerLogin.PNG" width="291" style="display: block; margin: auto;" />
+<img src="../../images/RStudioServerLogin.PNG" width="291" style="display: block; margin: auto;" />
 
 #### **Student Expectations**
 
@@ -149,10 +149,10 @@ It is typically easier to answer well-constructed questions than questions that 
 
 This course conforms to all Appalachian State University policies with respect to academic integrity, disability services, and class attendance. The details of these policies may be found at <http://academicaffairs.appstate.edu/resources/syllabi>.
 
-As per [AppalachianState University](https://diversity.appstate.edu/) and the [Department of Mathematical Sciences Statement on Diversity and Inclusiveness](https://mathsci.appstate.edu/diversity), I intend this class is to be a welcoming environment where everyone can learn and explore in order to achieve their full potential. As such, we all need to be respectful to each other in all interactions, regardless of gender, political party, race, religion, sexuality, disability, etc. This includes others' choices about COVID precautions, such as masks and social distancing the physical classroom space. Activities that distract/disrupt your fellow students or the instructor may result in a lowered grade. First offenses typically will be dealt with by the instructor. Subsequent or serious behavior issues will be referred to the **Office of Student Conduct** (https://studentconduct.appstate.edu/).
+As per [AppalachianState University](https://diversity.appstate.edu/) and the [Department of Mathematical Sciences Statement on Diversity and Inclusiveness](https://mathsci.appstate.edu/diversity), I intend this class is to be a welcoming environment where everyone can learn and explore in order to achieve their full potential. As such, we all need to be respectful to each other in all interactions, regardless of gender, political party, race, religion, sexuality, disability, etc. This includes others' choices about COVID precautions, such as masks and social distancing in our physical classroom space. Activities that distract/disrupt your fellow students or the instructor may result in a lowered grade. First offenses typically will be dealt with by the instructor. Subsequent or serious behavior issues will be referred to the **Office of Student Conduct** (https://studentconduct.appstate.edu/).
 
 
 
 <hr>
 
-Updated Wednesday, August 17, 2022 @ 05:23 PM
+Updated Wednesday, August 17, 2022 @ 06:18 PM

@@ -1,7 +1,7 @@
 ---
 title: "STT2860 Introduction to Data<br>Management & Visualization<br>Course Schedule for Fall 2022"
 author: "Instructor: Jill E. Thomley (thomleyje@appstate.edu)"
-date: "Last Updated: August 17, 2022 @ 05:25 PM"
+date: "Last Updated: August 17, 2022 @ 06:09 PM"
 output: 
   html_document: 
     toc: true
@@ -9,7 +9,7 @@ output:
     toc_float: true
     theme: cosmo
     highlight: textmate
-    css: "../css/style.css"
+    css: "../../css/style.css"
     keep_md: yes
 ---
 
