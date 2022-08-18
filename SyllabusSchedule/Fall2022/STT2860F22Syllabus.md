@@ -34,7 +34,7 @@ Prerequisite: Demonstrated readiness for college-level math.
 
 This is a synchronous hybrid class. Some days we will meet in-person and others via Zoom.
 
-* Class is Tuesday and Thursday from 3:30pm – 4:45pm
+* Class is Tuesday and Thursday from 3:30pm to 4:45pm
 * In-person classroom is Walker Hall 307B computer lab
 * Check AsULearn for which class days will be in-person.
 
@@ -162,4 +162,4 @@ As per [AppalachianState University](https://diversity.appstate.edu/) and the [D
 
 <hr>
 
-Updated Wednesday, August 17, 2022 @ 07:11 PM
+Updated Thursday, August 18, 2022 @ 04:21 PM
