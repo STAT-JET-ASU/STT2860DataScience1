@@ -1,0 +1,42 @@
+---
+title: "Data Science Technology<br>Skills Included/Assessed"
+subtitle: "STT2860 Project 01"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+***
+
+* Creating vectors
+* Creating tibbles
+* Exploring datasets
+* Manipulating data
+    * `arrange()`
+    * `filter()`
+    * `mutate()`
+    * `summarize()`
+* Creating plots
+    * scatterplots
+    * histograms
+    * barplots
+    * attributes
+        * size
+        * shape
+    * facets
+* Reading datafiles
+    * `read_delim()`
+    * `read_csv()`
+    * `readRDS()`
+    * `load()`
+* Writing datafiles
+   * `write_csv()`
+   * `saveRDS()`
+   * `save()`
+* Using R Markdown
+
+Note: We will address reading/writing Excel files in a later project.
+
+***
+
