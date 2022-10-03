@@ -8,7 +8,7 @@ output:
     theme: yeti
     highlight: textmate
 ---
-***
+<hr>
 
 **Work Plan/Assignments**
 
@@ -22,4 +22,4 @@ ERASE THIS TEXT AND OUTLINE/EXPLAIN YOUR PLANNED TIMELINE FOR TASK COMLETION
 
 ERASE THIS TEXT AND OUTLINE/EXPLAIN YOUR PLAN FOR COMMUNICATION OUTSIDE CLASS
 
-***
+<hr>

@@ -1,0 +1,72 @@
+---
+title: "Factorial Experiment Data"
+subtitle: "STT2860 Project 01 Fall 2022"
+author: "YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Packages Used
+
+```{r}
+
+```
+
+### Create the Dataset
+
+Consider the following example of a [factorial experiment](https://en.wikipedia.org/wiki/Factorial_experiment) found on Wikipedia: An engineer wants to increase the filtration rate of a process and reduce the amount of formaldehyde used. Four factors were considered: temperature (A), pressure (B), formaldehyde concentration (C), and stirring rate (D). Each of the four factors was tested at two levels, low and high. All combinations of all levels were explored. The minus (−) and plus (+) signs in the table indicate whether the factor was run at a low (-) or high (+) level. 
+
+Create a tibble of the "Design matrix and resulting filtration rate" table showing variables A, B, C, D and the resulting filtration rate. Give each variable A through D a name that better describes what that variable represents. Use "low" and "high" as category values rather than `+` and `-` symbols. Create each variable as efficiently as possible. Name your tibble (i.e., dataset) `experiment`.
+
+```{r}
+
+```
+
+Use `glimpse()`, `head()`, and `tail()` to show the structure of your dataset.
+
+```{r}
+
+```
+
+### Write the Dataset #1
+
+Use `write_csv()` to save your dataset as a `.csv` file called `experiment.csv`.
+
+```{r}
+
+```
+
+### Write the Dataset #2
+
+Use `writeRDS()` to save your dataset as an .`rds` file called `experiment.rds`.
+
+```{r}
+
+```
+
+### Compare and Contrast
+
+What is the advantage of saving the data in `.csv` format? What is the advantage of saving the data in `.rds` format? Discuss.
+
+**ANSWER:** type your answer here
+
+
+<hr>
+
+```{r}
+sessionInfo()
+```
+
+

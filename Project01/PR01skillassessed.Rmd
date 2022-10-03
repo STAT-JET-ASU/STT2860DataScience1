@@ -7,7 +7,7 @@ output:
     theme: yeti
     highlight: textmate
 ---
-***
+<hr>
 
 * Creating vectors
 * Creating tibbles
@@ -34,9 +34,10 @@ output:
    * `write_csv()`
    * `saveRDS()`
    * `save()`
-* Using R Markdown
+* Working in R Markdown
+* Working in DC Workspace
 
 Note: We will address reading/writing Excel files in a later project.
 
-***
+<hr>
 

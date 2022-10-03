@@ -8,7 +8,7 @@ output:
     theme: yeti
     highlight: textmate
 ---
-***
+<hr>
 
 **Q1: What is the name of the person interviewed?**
 
@@ -46,5 +46,5 @@ ANSWER:
 
 ANSWER:
 
-***
+<hr>
 
