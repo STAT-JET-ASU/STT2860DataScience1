@@ -21,9 +21,10 @@ output:
     * scatterplots
     * histograms
     * barplots
+    * boxplots
     * attributes
+        * color
         * size
-        * shape
     * facets
 * Reading datafiles
     * `read_delim()`

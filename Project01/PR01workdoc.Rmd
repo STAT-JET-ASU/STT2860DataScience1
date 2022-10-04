@@ -1,0 +1,39 @@
+---
+title: "Becoming a Data Scientist"
+subtitle: "STT2860 Project 01 Fall 2022"
+author: "YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+```{r}
+library(tidyverse)
+```
+
+```{r}
+nfl <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/NFLplayers2016.csv")
+```
+
+```{r}
+ggplot(nfl, aes(x = Height)) +
+  geom_histogram() +
+  facet_wrap( ~ Side)
+```
+
+```{r}
+
+```
+
+
+
