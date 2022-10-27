@@ -88,6 +88,8 @@ ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
 
 Basic Histogram with Fill and Formatting
 
+https://r-graph-gallery.com/histogram_several_group.html
+
 ```{r}
 ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
   geom_histogram(bins = 40, position = "identity", color = "black", alpha = 0.25)
@@ -198,10 +200,11 @@ ggplot(MLCO2, aes(x = dec_date, y = co2)) +
   geom_point()
 ```
 
+Formatting the Two Geometries (Some Options)
+
+https://r-graph-gallery.com/273-custom-your-scatterplot-ggplot2.html
 https://blog.albertkuo.me/post/point-shape-options-in-ggplot/
 http://www.cookbook-r.com/Graphs/Shapes_and_line_types/
-
-Formatting the Two Geometries (Some Options)
 
 ```{r}
 ggplot(MLCO2, aes(x = dec_date, y = co2)) +
