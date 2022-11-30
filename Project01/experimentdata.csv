@@ -1,0 +1,17 @@
+A,B,C,D,Rate
+low,low,low,low,45
+high,low,low,low,71
+low,high,low,low,48
+high,high,low,low,65
+low,low,high,low,68
+high,low,high,low,60
+low,high,high,low,80
+high,high,high,low,65
+low,low,low,high,43
+high,low,low,high,100
+low,high,low,high,45
+high,high,low,high,104
+low,low,high,high,75
+high,low,high,high,86
+low,high,high,high,70
+high,high,high,high,96

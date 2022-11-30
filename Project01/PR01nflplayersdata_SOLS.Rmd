@@ -1,0 +1,164 @@
+---
+title: "NFL Players 2016 Data"
+subtitle: "STT2860 Project 01 Fall 2022"
+author: "SOLUTIONS // Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Packages Used
+
+```{r}
+library(tidyverse)
+```
+
+
+### Read the Dataset
+
+Go to the [description](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html) of Dr. Thomley's NFL Players 2016 Dataset and read the brief description and variable definitions. Click on the `NFLplayers2016.csv` link at the top and use the URL to read the data into `R`. Save the dataset as an object named `nfl2016`.
+
+```{r}
+nfl2016 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/NFLplayers2016.csv")
+```
+
+Use `glimpse()` to explore the structure of your dataset.
+
+```{r}
+glimpse(nfl2016)
+```
+
+
+### Plot #1: Histogram of Weight
+
+Create a histogram for the variable `Weight`. Use the `fill` attribute (similar to the `size` and `shape` attributes you learned about in DataCamp) to include information from the variable `Side`. Add an appropriate title.
+
+```{r}
+ggplot(nfl2016, aes(x = Weight, fill = Side)) +
+  geom_histogram() +
+  ggtitle("Weight Distribution of NFL Players in 2016")
+```
+
+Discuss two group comparisons and/or interesting features of this plot.
+
+**ANSWER:** Some possible answers include...
+
+(1) There is a large range of weights, from a light as about 150 pounds to as heavy as over 350 pounds.
+(2) Overall there are three peaks in the plot, centered at roughly  200, 250, and a little over 300 pounds.
+(3) Offense and Defense players both show the three peaks; Offense perhaps has a smaller middle peak.
+(4) Special Teams shows a different pattern; none of the players seem to weigh more than about 250 lbs.
+(5) There seem to be far fewer Special Teams players in thge data than there are Offense or Defense players.
+
+
+### Plot #2: Histogram of BMI
+
+Body mass index (BMI) is a measure of body fat based on height and weight. The formula for calculating BMI is BMI = kg/m^2^ where kg is weight in kilograms and m^2^ is height in meters squared. The "healthy" range for BMI is 18.5 to 24.9. BMI > 25 is "overweight", 30-39 is "obese", and 40+ "morbidly obese". Use `mutate()` to compute BMI for the football players. Save the dataset as an object named `nfl2016BMI`.
+
+```{r}
+# one inch = 0.0254 meters
+# one pound = 0.4536 kilograms
+nfl2016BMI <- nfl2016 %>% 
+  mutate(BMI = (0.4536 * Weight) / (0.0254 * Height)^2)
+```
+
+Create a histogram for `BMI`. Add an appropriate title.
+
+```{r}
+ggplot(nfl2016BMI, aes(x = BMI)) +
+  geom_histogram() +
+  ggtitle("BMI Distribution of NFL Players in 2016")
+```
+
+```{r}
+# adding some formatting for clarity
+ggplot(nfl2016BMI, aes(x = BMI)) +
+  geom_histogram(fill = "orange") +
+  geom_vline(xintercept = c(25, 30, 40), color = "blue", linetype = "dashed") +
+  ggtitle("BMI Distribution of NFL Players in 2016")
+```
+
+Many people suggest that BMI is a poor measure for athletes, who often have a high body weight due to muscle mass versus fat. What does your plot suggest about this?
+
+**ANSWER:** Looking at the histogram, it appears that only a small fraction of 2016 NFL players had a "healthy" BMI of 25 or less The first peak of the plot falls into the "overweight" range and the other two peaks fall within the "obese" range. There are roughly as many "morbidly obese" players as there are "healthy" players, going by standard BMI. Common sense suggests that the majority of NFL players do *not* actually have an unhealthy proportion of body fat, given their conditioning and performance. I would conclude that BMI is not a good measure for these athletes.
+
+
+### Plot 3: Boxplots of Age
+
+Create a boxplot to compare `Age` among the three `Side` groups. Add an appropriate title.
+
+```{r}
+ggplot(nfl2016, aes(x = Age, y = Side)) +
+  geom_boxplot() +
+  ggtitle("Age Distribution of NFL Players in 2016")
+```
+
+Discuss two group comparisons and/or interesting features of this plot.
+
+**ANSWER:** Some possible answers include...
+
+* The youngest player is 20 and plays Defense; the oldest is 43 and plays on Special Teams.
+* Overall, the plots for Offense and Defense look very similar, while Special teams is different.
+* Median age for Offense and Defense players is about 25; for Special Teams it is about 26 or 27.
+* In general, the distribution of ages for Special Teams players skews older than for Offense/Defense.
+* Anyone older than about age 33 is an outlier in the Offense/Defense groups; there are few in each group.
+* Football seems to be a younger man's game; if you want a longer career, then special teams is the place to be.
+
+
+### Plot 4: Scatterplots of Weight vs. Height
+
+Use `Side` to `filter()` the dataset for offense-side players only. Call this new dataset `off2016`. Create a scatterplot of weight (y) versus height (x) and `color` the points according to `PositionGrp`. Add an appropriate title.
+
+```{r}
+off2016 <- nfl2016 %>% 
+  filter(Side == "Offense")
+```
+
+```{r}
+ggplot(off2016, aes(x = Height, y = Weight, color = PositionGrp)) +
+  geom_point() +
+  ggtitle("2016 NFL Offensive Players' Weight Versus Height")
+```
+
+Use `Side` to `filter()` the dataset for defense-side players only. Call this new dataset `def2016`. Create a scatterplot of weight (y) versus height (x) and `color` the points according to `PositionGrp`. Add an appropriate title.
+
+```{r}
+def2016 <- nfl2016 %>% 
+  filter(Side == "Defense")
+```
+
+```{r}
+ggplot(def2016, aes(x = Height, y = Weight, color = PositionGrp)) +
+  geom_point() +
+  ggtitle("2016 NFL Defensive Players' Weight Versus Height")
+```
+
+Does the relationship between weight and height seem to differ based on position grouping? Discuss.
+
+**ANSWER:** In some cases there seems to be a clear relationship. For example, on the Offensive plot, the Offensive Line all seem to be relatively heavier than others players of the same height. You can see a bit of grouping among the other positions as well, such as Wide Receivers tending to be the lightest at any given height. On the Defensive plot, there is almost no overlap between the two position groups. The Front Seven are heavier than almost all of the Defensive Backs, regardless of height. (Oddly, is one very short Front Seven player---a bad data point?)
+
+
+### Save Your Data Files
+
+Save the data files `nfl2016BMI`, `off2016`, and `def2016` into an `.Rdata` file called `nfl2016datafiles.Rdata`.
+
+```{r}
+save(nfl2016BMI, off2016, def2016, file = "nfl2016datafiles.Rdata")
+```
+
+<hr>
+
+```{r}
+sessionInfo()
+```
+

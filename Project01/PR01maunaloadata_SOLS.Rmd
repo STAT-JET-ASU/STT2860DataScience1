@@ -1,0 +1,90 @@
+---
+title: "Mauna Loa CO2 Data"
+subtitle: "STT2860 Project 01 Fall 2022"
+author: "SOLUTIONS // Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Packages Used
+
+```{r}
+library(tidyverse)
+```
+
+
+### Read Datasets
+
+In class we read in monthly carbon dioxide data from NOAA's Mauna Loa observatory. They actually offer several local and global [datasets for download](https://gml.noaa.gov/ccgg/trends/data.html) on their website. 
+
+Read in the **Mauna Loa CO2 annual mean data** from its online (text) page. Give the dataset a sensible name.
+
+```{r}
+CO2mean <- read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_annmean_mlo.txt",
+  comment = "#",
+  col_names = c(
+    "year",
+    "mean",
+    "unc"
+  )
+)
+```
+
+Use `glimpse()` to explore the structure of your dataset.
+
+```{r}
+glimpse(CO2mean)
+```
+
+Download the (CSV) file for the **Mauna Loa CO2 annual mean growth rates** and read it in (you will have to upload it to RStudio). Give the dataset a sensible name.
+
+```{r}
+CO2grow <- read_csv("co2_gr_mlo.csv",
+  skip = 58,
+  col_names = c(
+    "year",
+    "increase",
+    "unc"
+  )
+)
+glimpse(CO2grow)
+```
+
+
+### Highest Years
+
+Use `arrange()` and `head()` to display the ten years with the highest mean CO2.
+
+```{r}
+CO2mean %>% 
+  arrange(desc(mean)) %>% 
+  head(n = 10)
+```
+
+Use `arrange()` and `tail()` to display the ten years with the largest increases.
+
+```{r}
+CO2grow %>% 
+  arrange((increase)) %>% 
+  tail(n = 10)
+```
+
+<hr>
+
+```{r}
+sessionInfo()
+```
+

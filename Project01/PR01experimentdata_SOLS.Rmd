@@ -1,0 +1,96 @@
+---
+title: "Factorial Experiment Data"
+subtitle: "STT2860 Project 01 Fall 2022"
+author: "SOLUTIONS // Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Packages Used
+
+```{r}
+library(tidyverse)
+```
+
+### Create the Dataset
+
+Consider the following example of a [factorial experiment](https://en.wikipedia.org/wiki/Factorial_experiment) found on Wikipedia: An engineer wants to increase the filtration rate of a process and reduce the amount of formaldehyde used. Four factors were considered: temperature (A), pressure (B), formaldehyde concentration (C), and stirring rate (D). Each of the four factors was tested at two levels, low and high. All combinations of all levels were explored. The minus (−) and plus (+) signs in the table indicate whether the factor was run at a low (-) or high (+) level. 
+
+Create a tibble of the "Design matrix and resulting filtration rate" table showing variables A, B, C, D and the resulting filtration rate. Give each variable A through D a name that better describes what that variable represents. Use "low" and "high" as category values rather than `+` and `-` symbols. Create each variable as efficiently as possible. Name your tibble (i.e., dataset) `experiment`.
+
+```{r}
+EXP <- tibble(
+  A = rep(c("low", "high"), times = 8),
+  B = rep(c("low", "high"), each = 2, times = 4),
+  C = rep(c("low", "high"), each = 4, times = 2),
+  D = rep(c("low", "high"), each = 8),
+  Rate = c(45, 71, 48, 65, 68, 60, 80, 65, 43, 100, 45, 104, 75, 86, 70, 96)
+)
+```
+
+Use `glimpse()`, `head()`, and `tail()` to show the structure of your dataset.
+
+```{r}
+glimpse(EXP)
+head(EXP)
+tail(EXP)
+```
+
+### Write the Dataset #1
+
+Use `write_csv()` to save your dataset as a `.csv` file called `experiment.csv`.
+
+```{r}
+write_csv(EXP, "experimentdata.csv")
+```
+
+### Write the Dataset #2
+
+Use `saveRDS()` to save your dataset as an .`rds` file called `experiment.rds`.
+
+```{r}
+saveRDS(EXP, "experimentdata.rds")
+```
+
+### Compare and Contrast
+
+What is the advantage of saving the data in `.csv` format? What is the advantage of saving the data in `.rds` format? Discuss.
+
+**ANSWER:** 
+
+Some advantages of `.csv` format:
+
+* considered by many to be standard format
+* human-readable and easy to manually edit
+* can be read using almost any text editor
+* widely readable/shareable by applications
+* is a relatively small/compact file size
+
+A comparison with some other file types can be found at: https://bytescout.com/blog/csv-format-history-advantages.html
+
+Some advantages of `.rds` format:
+
+* fast/space efficient data storage in `R`
+* saves with `gzip` compression, so small
+* can save without compression for speed
+* preserves `R` formatting, like factors
+
+<hr>
+
+```{r}
+sessionInfo()
+```
+
+
