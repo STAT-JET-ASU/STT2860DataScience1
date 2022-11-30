@@ -1,6 +1,6 @@
 ---
 title: "Personal Final Assessment"
-subtitle: "STT2860 S22 Project 03"
+subtitle: "STT2860 F22 Project 03"
 author: "Authors: YOUR NAME HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
