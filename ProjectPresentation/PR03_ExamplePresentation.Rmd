@@ -1,0 +1,232 @@
+---
+title: "Final Presentation"
+author: "Author: Jill E. Thomley"
+date: "`r format(Sys.time(), '%B %d, %Y @ %I:%M %p')`"
+output: ioslides_presentation
+---
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(
+  echo = FALSE, # hide all the code
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+## Packages Used
+
+I used tidyverse for data manipulation and plotting.
+
+```{r, echo = TRUE}
+library(tidyverse)
+```
+
+I need mapdata to plot on a map of the United States.
+
+```{r, echo = TRUE}
+library(mapdata)
+```
+
+I need scales to format a percentage axis.
+
+```{r, echo = TRUE}
+library(scales)
+```
+
+## Capital Punishment Dataset
+
+I compiled my dataset using several sources found at the web site of the nonprofit [Death Penalty Information Center](https://deathpenaltyinfo.org/). The dataset was last updated January 7, 2022, so some of the values may have changed between that date and now. 
+
+**Variables in the Dataset:**
+
+* `state`: state name (including District of Columbia)
+* `region`: US Census region
+* `division`: US Census regional subdivision
+* `court`: US Court of Appeals regional circuit
+* `dp1`: whether the state legally has the death penalty (yes/no)
+* `dp2`: dp1, but indicates states with a governor’s moratorium  
+
+## 
+
+* `abolished`: year the state abolished capital punishment
+* `post1976`: number of executions after 1976 (state only)
+* `pre1976`: executions before 1976 (may include fed/military)
+* `prisoners`: total number of prisoners currently on death row
+* `women`: number of women on death row (subset of prisoners)
+* `freed`: number of innocent people later freed from death row
+* `clemency`: number of people who were granted clemency
+* `life`: can the state sentence an adult to life without parole?
+* `lifejuvie`: can a juvenile get a life without parole sentence?
+* `felony`: can you get the death penalty as a felony accessory?
+* `sentence`: who makes the decision about whether someone gets the death penalty?
+
+```{r}
+data <- read_csv("data/cappunish20220107.csv")
+```
+
+##
+
+```{r, fig.align = "center", fig.width = 7.5, fig}
+ggplot(data, aes(x = dp2, fill = dp2)) +
+  geom_bar(width = 0.5) +
+  scale_x_discrete(labels = c("no death penalty", "death penalty", "in moratorium*")) +
+  scale_y_continuous(breaks = seq(from = 0, to = 30, by = 4), limits = c(0, 28)) +
+  scale_fill_brewer(palette = "Set2") +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(size = 12),
+    axis.text.y = element_text(size = 10),
+    axis.title.y = element_text(size = 12),
+    panel.grid.major.x = element_blank(),
+    legend.position = "none"
+  ) +
+  labs(
+    title = "How many U.S. states have the death penalty?",
+    subtitle = "Data includes all 50 states and the District of Columbia",
+    caption = "*death penalty is legal but currently under governor's moratorium",
+    x = NULL,
+    y = "number of states"
+  )
+```
+
+This is a serviceable plot, but kind of bland, right?
+
+##
+
+```{r, fig.align = "center", fig.width = 7.5}
+ggplot(data, aes(x = region, fill = dp2)) +
+  geom_bar(position = "fill", width = 0.5) +
+  scale_x_discrete(labels = c(
+    "Midwest\n(12 states)",
+    "Northeast\n(9 states)",
+    "South\n(17 states)",
+    "West\n(13 states)"
+  )) +
+  scale_y_continuous(
+    breaks = seq(from = 0, to = 1, by = 0.1),
+    labels = scales::percent_format(scale = 100)
+  ) +
+  scale_fill_brewer(
+    palette = "Set2",
+    labels = c("no death penalty", "death penalty", "in moratorium*")
+  ) +
+  theme_minimal() +
+  theme(
+    axis.text.x = element_text(size = 12),
+    axis.text.y = element_text(size = 10),
+    axis.title.y = element_text(size = 12),
+    panel.grid.major.x = element_blank()
+  ) +
+  labs(
+    title = "Death Penalty within U.S. Census Regions",
+    subtitle = "Data includes all 50 states and the District of Columbia",
+    caption = "*death penalty is legal but currently under governor's moratorium",
+    x = NULL,
+    y = "percentage of states",
+    fill = NULL
+  )
+```
+
+Do you notice any pattern in regions regarding proportions of states that do and do not have the death penalty?
+
+##
+
+```{r, fig.align = "center", fig.width = 9}
+USstates <- map_data("state")
+data %>%
+  mutate(state = tolower(state)) %>%
+  full_join(USstates, by = c("state" = "region")) %>%
+  ggplot() +
+  geom_polygon(aes(x = long, y = lat, group = group, fill = dp2), color = "black") +
+  coord_map(projection = "mercator") +
+  scale_fill_brewer(
+    palette = "Set2",
+    labels = c("no death penalty", "death penalty", "in moratorium*")
+  ) +
+  theme(
+    axis.title = element_blank(),
+    axis.text = element_blank(),
+    axis.line = element_blank(),
+    axis.ticks = element_blank(),
+    panel.border = element_blank(),
+    panel.grid = element_blank(),
+    panel.background = element_blank(),
+    legend.position = "top"
+  ) +
+  labs(
+    title = "Which states in the U.S. have the death penalty?",
+    subtitle = "Note: Alaska and Hawaii do not have the death penalty.",
+    caption = "*death penalty is legal but currently under governor's moratorium",
+    fill = NULL
+  )
+```
+
+Do you notice any pattern in states that do and do not have the death penalty?
+
+##
+
+```{r, fig.align = "center", fig.width = 7, fig.cap = "Figure Caption: This plot type is known as a Cleveland dot plot."}
+data %>%
+  filter(!is.na(abolished)) %>%
+  ggplot(aes(x = abolished, y = reorder(state, -abolished))) +
+  geom_vline(
+    xintercept = 1976,
+    linetype = "dashed",
+    size = 0.75,
+    color = "darkgray"
+  ) +
+  geom_segment(aes(yend = state), xend = 0, colour = "black") +
+  geom_point(color = "red", size = 3) +
+  geom_label(aes(label = "Furman v. Georgia 1976", x = 1945, y = "Wisconsin")) +
+  scale_x_continuous(breaks = seq(from = 1800, to = 2040, by = 20)) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 16),
+    plot.subtitle = element_text(size = 12.5),
+    axis.text.x = element_text(angle = 45, hjust = 1)
+  ) +
+  labs(
+    title = "How long ago did U.S. states abolish the death penalty?",
+    subtitle = "23 states and D.C. have abolished the death penalty as of April 2022",
+    x = "year the death penalty was abolished",
+    y = NULL
+  )
+```
+
+What is Furman vs. Georgia 1976 and why would I put it on this plot? Do you see any interesting patterns?
+
+##
+
+```{r}
+outlierlabels <- data %>%
+  arrange(desc(post1976)) %>%
+  select(state, post1976) %>%
+  head(n = 1)
+
+ggplot(data, aes(x = post1976, y = 1)) +
+  geom_violin(fill = "skyblue", alpha = 0.5) +
+  geom_boxplot(
+    width = 0.05,
+    fill = "orange",
+    outlier.size = 2
+  ) +
+  geom_text(
+    data = outlierlabels,
+    aes(x = post1976, y = 1.05, label = state)
+  ) +
+  scale_x_continuous(
+    breaks = seq(from = 0, to = 600, by = 50),
+    limits = c(0, 600)
+  ) +
+  scale_y_continuous(breaks = NULL) +
+  theme_minimal() +
+  theme(plot.title = element_text(hjust = 0.5)) +
+  labs(
+    title = "Number of Executions per State Since 1976",
+    x = "total number of executions",
+    y = NULL
+  )
+```
+
+Wow, Texas --- what's up?!? Who are those smaller outlier states?

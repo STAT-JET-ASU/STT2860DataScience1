@@ -1,0 +1,52 @@
+state,region,division,court,dp1,dp2,abolished,post1976,pre1976,prisoners,women,freed,clemency,life,lifejuvie,felony,sentence
+Alabama,South,East Southern Central,Eleventh,yes,yes,,68,708,171,5,7,1,yes,yes,no,jury + judge
+Alaska,West,Pacific,Ninth,no,no,1957,0,12,,,0,0,no,no,,
+Arizona,West,Mountain,Ninth,yes,yes,,37,104,118,3,10,0,yes,yes,yes,jury
+Arkansas,South,West Southern Central,Eighth,yes,yes,,31,478,31,0,1,2,yes,no,yes,jury
+California,West,Pacific,Ninth,yes,"yes, in moratorium",,13,725,699,22,5,0,yes,no,yes,jury
+Colorado,West,Mountain,Tenth,no,no,2020,1,101,,,0,3,yes,yes,,
+Connecticut,Northeast,New England,Second,no,no,2015,1,126,,,0,0,yes,no,,
+Delaware,South,South Atlantic,Third,no,no,2016,16,24,,,1,1,yes,no,,
+District of Columbia,South,South Atlantic,DC,no,no,1981,0,118,,,0,3,yes,no,,
+Florida,South,South Atlantic,Eleventh,yes,yes,,99,347,338,3,30,6,yes,yes,yes,jury
+Georgia,South,South Atlantic,Eleventh,yes,yes,,76,950,45,1,7,9,yes,yes,no,jury
+Hawaii,West,Pacific,Ninth,no,no,1957,0,49,,,0,0,yes,no,,
+Idaho,West,Mountain,Ninth,yes,yes,,3,26,8,1,1,1,yes,yes,yes,jury
+Illinois,Midwest,East North Central,Seventh,no,no,2011,12,348,,,21,188,yes,yes,,
+Indiana,Midwest,East North Central,Seventh,yes,yes,,20,131,8,0,2,3,yes,yes,yes,jury
+Iowa,Midwest,West North Central,Eighth,no,no,1965,0,45,,,0,0,yes,no,,
+Kansas,Midwest,West North Central,Tenth,yes,yes,,0,57,9,0,0,0,yes,no,yes,jury
+Kentucky,South,East Southern Central,Sixth,yes,yes,,3,424,27,1,1,4,yes,no,no,jury
+Louisiana,South,West Southern Central,Fifth,yes,yes,,28,65,65,1,11,2,yes,yes,no,jury
+Maine,Northeast,New England,First,no,no,1887,0,21,,,0,0,yes,yes,,
+Maryland,South,South Atlantic,Fourth,no,no,2013,5,309,,,1,6,yes,no,,
+Massachusetts,Northeast,New England,First,no,no,1984,0,345,,,3,0,yes,no,,
+Michigan,Midwest,East North Central,Sixth,no,no,1847,0,13,,,0,0,yes,yes,,
+Minnesota,Midwest,West North Central,Eighth,no,no,1911,0,66,,,0,0,yes,yes,,
+Mississippi,South,East Southern Central,Fifth,yes,yes,,22,351,40,1,7,0,yes,yes,yes,jury
+Missouri,Midwest,West North Central,Eighth,yes,yes,,91,285,21,0,4,4,yes,yes,no,jury
+Montana,West,Mountain,Ninth,yes,yes,,3,71,2,0,1,1,yes,yes,yes,jury + judge
+Nebraska,Midwest,West North Central,Eighth,yes,yes,,4,34,12,0,1,0,yes,yes,yes,jury + judge
+Nevada,West,Mountain,Ninth,yes,yes,,12,61,66,0,2,1,yes,no,yes,jury
+New Hampshire,Northeast,New England,First,no,no,2019,0,24,1,0,0,0,yes,yes,,
+New Jersey,Northeast,Mid-Atlantic,Third,no,no,2007,0,361,,,0,8,yes,no,,
+New Mexico,West,Mountain,Tenth,no,no,2009,1,73,,,4,5,yes,yes,,
+New York,Northeast,Mid-Atlantic,Second,no,no,2007,0,1130,,,0,0,yes,yes,,
+North Carolina,South,South Atlantic,Fourth,yes,yes,,43,784,139,2,12,5,yes,yes,yes,jury
+North Dakota,Midwest,West North Central,Eighth,no,no,1973,0,8,,,0,0,yes,no,,
+Ohio,Midwest,East North Central,Sixth,yes,yes,,56,438,136,1,11,21,yes,no,yes,jury
+Oklahoma,South,West Southern Central,Tenth,yes,yes,,113,132,43,0,10,4,yes,yes,yes,jury
+Oregon,West,Pacific,Ninth,yes,"yes, in moratorium",,2,122,24,0,0,0,yes,yes,no,jury
+Pennsylvania,Northeast,Mid-Atlantic,Third,yes,"yes, in moratorium",,3,1040,130,1,10,0,yes,yes,no,jury
+Rhode Island,Northeast,New England,First,no,no,1984,0,52,,,0,0,yes,yes,,
+South Carolina,South,South Atlantic,Fourth,yes,yes,,43,641,39,0,2,0,yes,yes,yes,jury
+South Dakota,Midwest,West North Central,Eighth,yes,yes,,5,15,1,0,0,0,yes,no,yes,jury
+Tennessee,South,East Southern Central,Sixth,yes,yes,,13,335,49,1,3,3,yes,yes,yes,jury
+Texas,South,West Southern Central,Fifth,yes,yes,,573,755,198,6,16,3,yes,no,yes,jury
+Utah,West,Mountain,Tenth,yes,yes,,7,43,7,0,0,0,yes,yes,no,jury
+Vermont,Northeast,New England,Second,no,no,1972,0,26,,,0,0,yes,no,,
+Virginia,South,South Atlantic,Fourth,no,no,2021,113,1277,,,1,10,yes,yes,,
+Washington,West,Pacific,Ninth,no,no,2018,5,105,8,0,1,0,yes,yes,,
+West Virginia,South,South Atlantic,Fourth,no,no,1965,0,155,,,0,0,yes,no,,
+Wisconsin,Midwest,East North Central,Seventh,no,no,1853,0,1,,,0,0,yes,yes,,
+Wyoming,West,Mountain,Tenth,yes,yes,,1,22,0,0,0,0,yes,no,yes,jury
