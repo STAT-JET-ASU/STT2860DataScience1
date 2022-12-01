@@ -1,0 +1,221 @@
+---
+title: "Jill E. Thomley's Resume"
+author: "Jill Thomley"
+date: "`r Sys.Date()`"
+output:
+  pagedown::html_resume:
+    # set it to true for a self-contained HTML page but it'll take longer to render
+    self_contained: true
+    # uncomment this line to produce HTML and PDF in RStudio:
+    knit: pagedown::chrome_print
+---
+
+
+Aside
+================================================================================
+
+
+Contact Me {#contact}
+--------------------------------------------------------------------------------
+
+- <i class="fa fa-envelope"></i> thomleyje@appstate.edu
+
+- <i class="fa fa-github"></i> [github.com/jillthomley](https://github.com/jillthomley)
+
+- <i class="fa fa-copy"></i> [jillthomley.github.io/](https://jillthomley.github.io/)
+
+- <i class="fa fa-phone"></i> +1 828-262-2383
+
+- 228 Walker Hall<br>Mathematical Sciences<br>121 Bodenheimer Drive<br>Appalachian State University<br>Boone, NC 28608
+
+
+Data Skills {#skills}
+--------------------------------------------------------------------------------
+
+- Skill 1
+
+- Skill 2
+
+- Skill 3
+
+
+Disclaimer {#disclaimer}
+--------------------------------------------------------------------------------
+
+Created using R package [**pagedown**](https://github.com/rstudio/pagedown)
+
+Last updated `r format(Sys.time(), "%B %d, %Y")`
+
+
+Main
+================================================================================
+
+
+Jill E. Thomley, PhD {#title}
+--------------------------------------------------------------------------------
+
+### Professor of Statistics, Appalachian State University
+
+My primary scholarly and pedagogical interests are:
+
+* election auditing
+* statistics education
+* data science education
+* standards-based grading
+* electronic student engagement
+* history of statistics / data science
+* women and minorities in statistics
+* mathematics / statistics in popular culture
+* Women in Mathematics Patch for Girl Scouts
+
+
+Education {data-icon=graduation-cap data-concise=true}
+--------------------------------------------------------------------------------
+
+### Rensselaer Polytechnic Institute
+
+PhD in Decision Sciences and Engineering Systems
+
+Troy, NY
+
+2000
+
+### Rensselaer Polytechnic Institute
+
+MS in Industrial/Organizational Psychology
+
+Troy, NY
+
+1992
+
+### Harvard University
+
+AB in Psychology
+
+Cambridge, MA
+
+1990
+
+
+Teaching Experience {data-icon=chalkboard-teacher}
+--------------------------------------------------------------------------------
+
+### Adjunct Instructor
+
+Department of Academic Nursing<br>Wake Forest School of Medicine
+
+Winston-Salem, NC
+
+Present - 2019
+
+### Professor
+
+Department of Mathematical Sciences<br>Appalachian State University
+
+Boone, NC
+
+Present - 2012
+
+### Associate Professor
+
+Department of Mathematical Sciences<br>Appalachian State University
+
+Boone, NC
+
+2012 - 2006
+
+### Assistant Professor
+
+Department of Mathematical Sciences<br>Appalachian State University
+
+Boone, NC
+
+2006 - 2000
+
+### Adjunct Instructor
+
+Mathematics Department<br>Russell Sage College
+
+Troy, NY
+
+1999 - 1999
+
+### Senior Teaching Associate
+
+Department of Decision Sciences and<br>Engineering Systems<br>Rensselaer Polytechnic Institute
+
+Troy, NY
+
+2000 - 1997
+
+
+Other Experience {data-icon=laptop}
+--------------------------------------------------------------------------------
+
+### Statistical Consultant
+
+North Carolina State Board of Elections (NCSBE)
+
+Raleigh, NC
+
+Present - 2021
+
+- Description 1.
+- Description 2.
+
+### Project Evaluator
+
+Shodor Education Foundation
+
+Durham, NC
+
+2011 - 2002
+
+- Neurons in Action Version 2: Understanding the Behavior of Normal and Abnormal Neurons (National Science Foundation DUE #0442748)
+- Discrete Mathematics for Prospective K-8 Teachers (National Science Foundation DUE #0443317)
+- CI-Team: Leveraging Cyberinfrastructure to Scale-Up a Computational Science Undergraduate Curriculum (National Science Foundation OCI #0537405)
+- The National Computational Science Institute (National Science Foundation DUE #0127488) 
+
+### Research Health Science Specialist
+
+Samuel S. Stratton VA Medical Center
+
+Albany, NY
+
+1995 - 1992
+
+- Description 1.
+- Description 2.
+
+  
+Select Publications {data-icon=file}
+--------------------------------------------------------------------------------
+
+
+### Raising the Bar with Standards-Based Grading
+
+*PRIMUS*, 30(8-10), 1110-1126.
+
+N/A
+
+2020
+
+Selbach-Allen, Megan E., Greenwald, Sarah J. Ksir, Amy E., and Thomley, Jill E.
+
+### Comparison of Selected Outcomes Associated with Two Post-Operative Analgesia Approaches in the Total Knee Arthroplasty Patient
+
+*AANA Journal*, 87(1), 51-57.
+
+N/A
+
+2019 
+
+Henson, Kevin S., Thomley, Jill E., Lowrie, Lynn J., and Walker, Deborah.
+
+
+Service Activity {data-icon=list}
+--------------------------------------------------------------------------------
+
+
+Service Activity {data-icon=clipboard}
+--------------------------------------------------------------------------------

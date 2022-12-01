@@ -1,0 +1,34 @@
+---
+title: "STT3850 Spring 2022 Binge-Watch Recommendations"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+
+* Arcane (Netflix)
+* Black Mirror (Netflix)
+* Breaking Bad	Netflix
+* Brooklyn Nine-Nine	Hulu, Peacock
+* Castle	Hulu
+* cheer	Netflix
+* Cobra Kai	Netflix
+* Community	Netflix
+* Daredevil	Netflix
+* Emily in Paris 	Netflix
+* Foundation (YOU WOULD LOVE THIS)	Apple TV+
+* King of the Hill	Hulu
+* Lucifer	Netflix
+* Money Heist	Netflix
+* New girl	Netflix
+* Orange is the New Black	Netflix 
+* Schitt's Creek	Netflix
+* Squid Game	Netflix 
+* Survivor	Hulu/Netflix
+* The Expanse	Amazon Prime video
+* The Good Place	Netflix
+* The IT Crowd	Netflix
+* The Office	Peacock
+* The Wire	HBO
+* The Witcher	Netflix
+* Trailer Park Boys	Netflix 
