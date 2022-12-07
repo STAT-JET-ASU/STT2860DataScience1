@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 &#10132; Click on the course title to more fully explore the course contents on DataCamp.
 
-### **1st Course: [Dealing With Missing Data in R](https://learn.datacamp.com/courses/intermediate-data-visualization-with-ggplot2)**
+### **1st Course: [Dealing With Missing Data in R](https://app.datacamp.com/learn/courses/dealing-with-missing-data-in-r)**
 
 #### **Suggested Prerequisite**
 
