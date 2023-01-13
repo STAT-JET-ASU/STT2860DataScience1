@@ -70,11 +70,11 @@ I will be available on Zoom during all posted office hours. You may drop in or [
 
 The only way to learn data science is to **DO** data science, which includes software such as RStudio and GitHub. Reading the textbook, learning the language, and practicing exercises using real data are critical to your learning and success. Class activities and formative/summative assessments have been structured with these principles in mind. It will be easier to participate if you acquire some familiarity with the vocabulary and methods before we start to discuss and use them. You must "speak the language" of data science (grammar of graphics, tidy data, R, RStudio, Git, GitHub, etc.) to effectively demonstrate your knowledge.  
 
-* DataCamp Skill-Building (30%)
+* DataCamp Skill-Building (35%)
 * DataCamp Elective Depth (05%)
 * Homework Assignments (25%)
 * Data Science Project #1 (15%)
-* Data Science Project #2 (20%)
+* Data Science Project #2 (15%)
 * Final Presentation (05%)
 
 ##### **▷ DataCamp Skill-Building** 
@@ -162,4 +162,4 @@ As per [AppalachianState University](https://diversity.appstate.edu/) and the [D
 
 <hr>
 
-Updated Friday, January 13, 2023 @ 02:11 PM
+Updated Friday, January 13, 2023 @ 03:17 PM
