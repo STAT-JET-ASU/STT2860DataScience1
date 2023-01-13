@@ -42,14 +42,14 @@ Personality types determined using the [Jung Typology Test](https://www.humanmet
 
 ```{r readclass1}
 class1 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/personalitySTT1810.csv")
-glimpse(class)
+glimpse(class1)
 ```
 
 #### STT3850 Classes
 
 ```{r readclass2}
 class2 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/personalitySTT3850.csv")
-glimpse(class)
+glimpse(class2)
 ```
 
 ### Census Population Data
@@ -92,40 +92,130 @@ glimpse(votes)
 
 #### Simple row binding
 
-```{r}
+I want to row bind my two classes. They have the same variables, and in each dataset one row represents one student.
 
+The `bind_rows()` function matches on names. Are all the names the same? If not, I need to use `rename()` or some simlar operation.
+
+```{r}
+names(class1) == names(class2)
+```
+
+```{r}
+classes <- bind_rows(class1, class2)
+glimpse(classes)
+```
+
+```{r}
+classes_a <- class1 %>% 
+  bind_rows(class2)
 ```
 
 #### Binding with an ID #1
 
-```{r}
+If I do a simple binding, I don't know which data came from which class. I need an identifying column.
 
+```{r}
+classesID <- bind_rows(class1, class2, .id = "ClassID") # column that numbers the datasets called ClassID
+glimpse(classesID)
 ```
 
 #### Binding with an ID #2
 
-```{r}
+If I want to be able to specify my ID values, I need to enter the datasets I want to bind as a named list. The names become the ID values.
 
+```{r}
+classesID2 <- bind_rows(
+  list(
+    STT1810 = class1,
+    STT3850 = class2
+  ),
+ .id = "ClassID")
+glimpse(classesID2)
 ```
 
 ### `bind_cols()`
 
 #### Simple column binding
 
-```{r}
+What if I don't make sure my columns are in the same orders? Right now, the sorting is by largest to smallest pop.
 
+```{r}
+bind_cols(census1, census2)
 ```
+
+
+
+```{r}
+censusA <- bind_cols(
+  arrange(census1, state),
+  arrange(census2, state)
+)
+
+# move what's in front of the 
+# pipe to the first element inside
+# census1 %>% arrange(state)
+# arrange(census1, state)
+
+glimpse(censusA)
+```
+
+Each dataset has a column called `state`. They both get saved but renamed to unique things.
 
 #### Duplicate columns?
 
 ```{r}
+censusAa <- bind_cols(
+  arrange(census1, state),
+  arrange(census2, state)
+) %>% 
+  select(-state...4) %>% 
+  rename(state = state...1)
+glimpse(censusAa)
+```
 
+What about all 3 datasets?
+
+```{r}
+census_all3 <- bind_cols(
+  arrange(census1, state),
+  arrange(census2, state),
+  arrange(census3, state)
+)
+
+glimpse(census_all3)
+```
+
+```{r}
+census19702020 <- bind_cols(
+  arrange(census1, state),
+  arrange(census2, state),
+  arrange(census3, state)
+) %>% 
+  select(-state...4, -state...7) %>% 
+  rename(state = state...1)
+glimpse(census19702020)
+```
+
+Challenge! How can I put this into a long form dataset with year as a variable? I'd like state, year, and population as variables.
+
+```{r}
+census19702020_long <- census19702020 %>% 
+  pivot_longer(
+  cols = `1970`:`2020`,  # what columns are getting stacked up?
+  names_to = "year",     # where will the column names go to?
+  values_to = "population"    # what is the new name of the stacked data
+  )
+glimpse(census19702020_long)
 ```
 
 ### `left_join()`
 
-```{r}
+I would like to add the electoral votes from the `votes` dataset to the census dataset I just built. I want to keep everything in the census dataset (X) and add to it where there are matches in `votes` (Y).
 
+What are the `key` variables? Both have `state` and `year` that will uniquely identify rows.
+
+```{r}
+left_join(census19702020_long, votes)
 ```
 
 ### `right_join()`

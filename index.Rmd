@@ -7,7 +7,7 @@ output:
 
 <hr>
 
-* [Course Syllabus](SyllabusSchedule/STT2860S22Syllabus.html)
+* [Course Syllabus](SyllabusSchedule/Spring2023/STT2860S23Syllabus.html)
 
 * [GitHub Repository](https://github.com/STAT-JET-ASU/STT2860DataScience1)
 
