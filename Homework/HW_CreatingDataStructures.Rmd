@@ -17,13 +17,23 @@ knitr::opts_chunk$set(
 )
 ```
 
-People you worked with: 
+Names of people you worked with: 
 
 ***
+
+### Packages
+
+```{r}
+library(tidyverse)
+library(dslabs)
+```
+
 
 ### Problem 1
 
 Create vectors to represent the set of possible outcomes for the following scenarios using `:`, `c()`, `seq()`, and/or `rep()`. Save each vector using the provided object name. Print out the results by typing the name to recall the contents. Use `typeof()` and `class()` on each vector to examine some of its properties.
+
+Example:
 
 ```{r}
 example <- c("store", "and", "print", "a", "vector", "like", "this")
@@ -62,7 +72,7 @@ e) A clock counts down from 60 seconds to zero seconds in whole-second increment
 v5 <- # erase this and create the vector
 ```
 
-f) A particular song's chorus contains the following three phrases, sung once in order and then repeated.
+f) A particular song's chorus contains the following three separate phrases, sung once in order and then repeated.
     + I get knocked down
     + But I get up again
     + You're never gonna keep me down
@@ -81,25 +91,12 @@ g) In a group of 100 people, each person has one of four possible blood types: A
 v7 <- # erase this and create the vector
 ```
 
+
 ### Problem 2
 
-Create a list from all the vectors you created in Problem 1. Give each element in the list (i.e., vector) a name of your choice.
+Use the following functions to explore the `murders` dataset from the **dslabs** package. Explain what each is showing you.
 
-```{r}
-list1 <- # erase this and create the list
-```
-
-Use `str()`, `typeof()`, and `class()` to examine the structure of your list.
-
-```{r}
-
-```
-
-### Problem 3
-
-Use the following functions to explore the `mtcars` dataset. explain what each is showing you.
-
-`glimpse()` --- you will need `library(tidyverse)` for this
+`glimpse()`
 
 ```{r}
 
@@ -163,9 +160,10 @@ What the function shows: YOUR ANSWER HERE
 
 What the function shows: YOUR ANSWER HERE
 
-### Problem 4
 
-Consider the following example of a [factorial experiment](https://en.wikipedia.org/wiki/Factorial_experiment) on Wikipedia: An engineer wants to increase the filtration rate of a process and reduce the amount of formaldehyde used. Four factors were considered: temperature (A), pressure (B), formaldehyde concentration (C), and stirring rate (D). Each of the four factors was tested at two levels. The minus (−) and plus (+) signs in the table indicate whether the factor was run at a low (-) or high (+) level. Create a tibble of the "Design matrix and resulting filtration rate" table showing variables A, B, C, D and the resulting filtration rate. Use "low" and "high" as category values rather than `+` and `-` symbols, since those indicate mathematical operations in `R`. Create each variable vector as efficiently as possible using the vector creation functions you have learned. Name your dataset `experiment`.
+### Problem 3
+
+Consider the following example of a [factorial experiment](https://en.wikipedia.org/wiki/Factorial_experiment) on Wikipedia: An engineer wants to increase the filtration rate of a process and reduce the amount of formaldehyde used. Four factors were considered: temperature (A), pressure (B), formaldehyde concentration (C), and stirring rate (D). Each of the four factors was tested at two levels. The minus (−) and plus (+) signs in the table indicate whether the factor was run at a low (-) or high (+) level. Create a tibble of the "Design matrix and resulting filtration rate" table showing variables A, B, C, D and the resulting filtration rate. Use "low" and "high" as category values rather than `+` and `-` symbols, since those indicate mathematical operations in `R`. Create each variable vector as efficiently as possible using the vector creation functions you have learned. Name your dataset `experiment_data`.
 
 ```{r}
 
@@ -188,7 +186,24 @@ Use the following functions to explore the dataset you created.
 
 ```
 
+
+### Problem 4
+
+Create a list from all the vectors and datasets you created and explored in Problems 1 through 3 (i.e., all the vectors from Problem 1, the `murders` dataset, and the `experiment` dataset). Give each element in the list a name of your choice.
+
+```{r}
+my_list <- # erase this and create the list
+```
+
+Use `glimpse()`, `typeof()`, and `class()` to examine the structure of your list.
+
+```{r}
+
+```
+
+
 ***
 ```{r}
 sessionInfo()
 ```
+
