@@ -30,7 +30,7 @@ ANSWER:
 
 ANSWER:
 
-**Q06: What programs/technologies to they use when working in data science?**
+**Q06: What programs/technologies do they use when working in data science?**
 
 ANSWER:
 
