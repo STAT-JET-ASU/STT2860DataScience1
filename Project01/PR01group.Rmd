@@ -1,5 +1,5 @@
 ---
-title: "Project 01 Group Component"
+title: "PR01 NFL 2016 Data Visualizations"
 subtitle: "STT2860 Spring 2023"
 author: "GROUP MEMBER NAMES HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
@@ -76,6 +76,7 @@ Do you think most NFL players should look forward to long careers, based on your
 * Use `fill =` to include information from the variable `Side`. 
 * Add formatting in the geometry so the bars are outlined in black.
 * Use `scale_fill_manual()` to change the colors used in the bars.
+* Alternatively, you can use `scale_fill_brewer()` to change bar colors.
 * Add the built-in `theme_minimal()` from ggplot2 to your histogram.
 * Use `theme()` to move the legend to the bottom and remove its title.
 * Add an informative title and appropriate labels for both axes.

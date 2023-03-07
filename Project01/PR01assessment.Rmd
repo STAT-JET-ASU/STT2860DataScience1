@@ -1,5 +1,5 @@
 ---
-title: "Project 01 Self & Peer Assessment"
+title: "PR01 Self and Peer Assessment"
 subtitle: "STT2860 Spring 2023"
 author: "YOUR NAME HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
