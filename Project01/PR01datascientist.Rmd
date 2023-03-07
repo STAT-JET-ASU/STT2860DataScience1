@@ -1,6 +1,6 @@
 ---
-title: "Becoming a Data Scientist"
-subtitle: "STT2860 Project 01 Spring 2023"
+title: "PR01 Becoming a Data Scientist"
+subtitle: "STT2860 Spring 2023"
 author: "PUT YOUR NAME HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
