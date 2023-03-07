@@ -1,0 +1,189 @@
+---
+title: "Project 01 Group Component"
+subtitle: "STT2860 Spring 2023"
+author: "GROUP MEMBER NAMES HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    code_folding: hide
+---
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Packages Used
+
+```{r}
+
+```
+
+
+### NFL Players 2016 Dataset
+
+You can read description of the dataset [HERE](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html).
+
+```{r nfl2016}
+dataURL <- "https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/NFLplayers2016.csv"
+
+nfldata <- read_csv(dataURL) %>%
+  mutate(Playtime = factor(Playtime, levels = c("Rookie", "1-4 Yrs", "5-8 Yrs", "9-12 Yrs", "13+ Yrs")))
+```
+
+Use `glimpse()` to explore the structure of the `nfldata` dataset.
+
+```{r}
+
+```
+
+Use `head()` to explore the structure of the `nfldata` dataset.
+
+```{r}
+
+```
+
+
+### Plot #1: Bar Plot of Playtime
+
+* Create a bar plot for the variable `Playtime`. 
+* Change the bar colors from gray to some other color/colors.
+* Modify the x-axis so that `Yrs` is not abbreviated in the labels.
+* Scale the y-axis so it has tick marks every 100 units (e.g., 100, 200, etc.).
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Add the built-in `theme_light()` from ggplot2 to your plot.
+* Your final plot should *not* have a legend on it.
+
+```{r}
+
+```
+
+Do you think most NFL players should look forward to long careers, based on your plot?
+
+**ANSWER:** type your answer here
+
+
+### Plot #2: Histogram of Weight
+
+* Create a histogram with 25 bins for the variable `Weight`. 
+* Use `fill =` to include information from the variable `Side`. 
+* Add formatting in the geometry so the bars are outlined in black.
+* Use `scale_fill_manual()` to change the colors used in the bars.
+* Add the built-in `theme_minimal()` from ggplot2 to your histogram.
+* Use `theme()` to move the legend to the bottom and remove its title.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Be sure to include any units of measure in the axis labels.
+
+```{r}
+
+```
+
+Discuss two group comparisons and/or interesting features of this plot.
+
+**ANSWER:** type your answer here
+
+
+### Plot #3: Density Plot of BMI
+
+Body mass index (BMI) is a measure of body fat based on height and weight. The formula for calculating BMI is BMI = kg/m^2^ where kg is weight in kilograms and m^2^ is height in meters squared. The "healthy" range for BMI is 18.5 to 24.9; BMI > 25 is "overweight"; 30-39 is "obese"; and 40+ "morbidly obese". 
+
+* Use `mutate()` to compute BMI for the football players. 
+* Save the dataset containing the new variable as `nfldataBMI`.
+* Create a density (i.e., KDE) plot for `BMI` with a bandwidth of 0.75. 
+* Use `fill =` and `alpha =` in the geometry to add semi-transparent color.
+* Add dashed vertical lines in a contrasting color or colors at 25, 35, and 40.
+* Scale the x-axis so it has tick marks at every whole unit (e.g., 24, 25, 26, etc.).
+* Additionally, use `limits =` so that the x-axis displays values between 18 and 48.
+* Use `annotate()` to label the healthy, overweight, obese, and morbidly obese regions.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+
+```{r}
+
+```
+
+Many people suggest that BMI is a poor measure for athletes, who often have a high body weight due to muscle mass versus fat. What does your plot suggest about this?
+
+**ANSWER:** type your answer here
+
+
+### Plot 4: Violin and Box Plots of Age
+
+* We want to compare `Age` among the three `Side` groups. 
+* Use `geom_violin()` as the first geometry layer of the plot.
+* Add `geom_boxplot()` as the second geometry layer of the plot.
+* Adjust the width of the boxplots so they are completely inside the violins.
+* Fill the boxplots with a color to visually contrast with the violins.
+* Increase the size of the boxplot outliers for enhanced visibility.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Be sure to include any units of measure in the axis labels.
+* Add any other formatting you feel will enhance meaning.
+
+```{r}
+
+```
+
+Discuss two group comparisons and/or interesting features of this plot.
+
+**ANSWER:** type your answer here
+
+
+### Plot 5: Scatterplots of Weight vs. Height
+
+#### Offensive Players
+
+* Use `Side` to `filter()` the dataset to choose `Offense` players only. 
+* Save this new dataset containing the offensive players as `offdata`. 
+* Create a scatterplot of player weight (y) versus player height (x).
+* Use the `color =` aesthetic to add information from `PositionGrp`. 
+* Add an appropriate title and better labels for the x and y axes.
+* Be sure to include any units of measure in the axis labels.
+
+```{r}
+
+```
+
+#### Defensive Players
+
+* Use `Side` to `filter()` the dataset to choose `Defense` players only. 
+* Save this new dataset containing the defensive players as `defdata`. 
+* Create a scatterplot of player weight (y) versus player height (x).
+* Use the `color =` aesthetic to add information from `PositionGrp`. 
+* Add an appropriate title and better labels for the x and y axes.
+* Be sure to include any units of measure in the axis labels.
+
+```{r}
+
+```
+
+Does the relationship between weight and height seem to differ based on position grouping? Discuss.
+
+**ANSWER:** type your answer here
+
+
+### Plot 6: Your Choice!
+
+Create one more plot of your choice using the `nfldata`. Explain what you were intending to show/explore with your plot.
+
+```{r}
+
+```
+
+**EXPLANATION:**
+
+
+<hr>
+
+```{r}
+sessionInfo()
+```
+

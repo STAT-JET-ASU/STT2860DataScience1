@@ -1,0 +1,144 @@
+---
+title: "Project 01 Individual Component"
+subtitle: "STT2860 Spring 2023"
+author: "YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    code_folding: hide
+---
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Packages Used
+
+```{r}
+
+```
+
+
+### Hurricanes Dataset
+
+#### Explore the Data
+
+You can read description of the dataset [HERE](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/atlantichurricanes18512022.html).
+
+```{r nfl2016}
+storms <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/atlantichurricanes18512022.csv")
+```
+
+Use `glimpse()` to explore the structure of the `storms` dataset.
+
+```{r}
+
+```
+
+#### Time Series Plot of Storms
+
+* The x-axis of the plot in all cases will be the time variable `year`.
+* Plot the number of named storms (y) per year (x) using `geom_line()`.
+* Add the trend in the number of named storms (y) using `geom_smooth()`.
+* Choose and set a color for both the line and trend of named storms.
+* Plot the number of major storms (y) per year (x) using `geom_line()`.
+* Add the trend in the number of major storms (y) using `geom_smooth()`.
+* Choose and set a color for both the line and trend of major storms.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Add any other formatting you feel will enhance meaning.
+
+```{r}
+
+```
+
+Do you notice any trend(s) in the number of named storms or major hurricanes? Discuss.
+
+**ANSWER:** type your answer here
+
+
+### Unemployment Dataset
+
+#### Explore the Data
+
+You can read description of the dataset [HERE](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/unemployment.html).
+
+```{r}
+jobless <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/unemployment.csv")
+```
+
+Use `glimpse()` to explore the structure of the `jobless` dataset.
+
+```{r}
+
+```
+
+#### Time Series Plot of Unemployment
+
+* Create a line plot for unemployment `rate` (y) by `date` (x).
+* Add a filled rectangle to highlight the 1973 to 1975 recession.
+* Add a filled rectangle to highlight the 1980 to 1983 recession.
+* Add a filled rectangle to highlight the 2007 to 2010 recession.
+* Add a filled rectangle to highlight the 2020 to 2021 recession.
+* The rectangles should range from 0 to 15 in the y direction.
+* Make sure your rectangles do not obscure any other information.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Be sure to indicate somewhere what the rectangles represent!
+* Also be sure to make clear that unemployment rate is a %.
+* Add any other formatting you feel will enhance meaning.
+
+```{r}
+
+```
+
+Do you notice any trend(s) in the unemployment rate related to the recession periods? Discuss.
+
+**ANSWER:** type your answer here
+
+
+### Inflation Dataset
+
+#### Explore the Data
+
+You can read description of the dataset [HERE](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/annualinflation.html).
+
+```{r}
+inflate <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/annualinflation.csv")
+```
+
+Use `glimpse()` to explore the structure of the `inflate` dataset.
+
+```{r}
+
+```
+
+#### Time Series Plot of Inflation
+
+* Create a time series bar plot for inflation where positive and negative bars are colored differently, as illustrated in Section 3.5 of the [R Graphics Cookbook, 2nd Ed.](https://r-graphics.org/). 
+* Use line segment and/or arrow annotation with appropriate text to indicate the span of the Great Depression (1929 to 1939) and the two years with the highest inflation. 
+* As always, add an informative title and appropriate labels for both axes, as well as any other formatting you feel will enhance the clarity or meaning if your plot. 
+* Be sure a reader can tell from your plot which years are included and which type of inflation value is being displayed (there is more than one way to calculate inflation).
+
+```{r}
+
+```
+
+Discuss two interesting or surprising features of this plot.
+
+**ANSWER:** type your answer here
+
+
+<hr>
+
+```{r}
+sessionInfo()
+```
+
