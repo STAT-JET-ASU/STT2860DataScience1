@@ -1,5 +1,5 @@
 ---
-title: "HW: Data Manipulation"
+title: "HW: Joining and Manipulating Data"
 subtitle: "STT2860 Intro to Data Mgmt and Visualization" 
 author: "PUT YOUR NAME HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
