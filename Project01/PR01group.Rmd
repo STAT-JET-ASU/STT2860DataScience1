@@ -100,7 +100,7 @@ Body mass index (BMI) is a measure of body fat based on height and weight. The f
 * Save the dataset containing the new variable as `nfldataBMI`.
 * Create a density (i.e., KDE) plot for `BMI` with a bandwidth of 0.75. 
 * Use `fill =` and `alpha =` in the geometry to add semi-transparent color.
-* Add dashed vertical lines in a contrasting color or colors at 25, 35, and 40.
+* Add dashed vertical lines in a contrasting color or colors at 25, 30, and 40.
 * Scale the x-axis so it has tick marks at every whole unit (e.g., 24, 25, 26, etc.).
 * Additionally, use `limits =` so that the x-axis displays values between 18 and 48.
 * Use `annotate()` to label the healthy, overweight, obese, and morbidly obese regions.
