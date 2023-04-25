@@ -24,7 +24,7 @@ ANSWER:
 
 ANSWER:
 
-**Question 4:** Consider the "Becoming a Data Scientist" interviews you watched for the first two projects. Do you consider *yourself* a data scientist? Please explain.
+**Question 4:** Consider the "Becoming a Data Scientist" interviews you watched for the two projects. Do you consider *yourself* a data scientist? Please explain.
 
 ANSWER:
 
