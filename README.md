@@ -7,8 +7,6 @@ Prerequisite: demonstrated readiness for college-level math.
 Some additional materials (e.g., projects, exams, solutions) are kept in a private repository. If you are an instructor who is interested in seeing these materials, please contact me at thomleyje@appstate.edu.
 
 ***
-Creative Commons Attribution Share Alike 4.0  
-https://creativecommons.org/licenses/by-sa/4.0/  
-https://creativecommons.org/choose/results-one?license_code=by-sa&amp;jurisdiction=&amp;version=4.0&amp;lang=en  
+This material is released under an [Attribution-NonCommercial-ShareAlike 3.0 United States](https://creativecommons.org/licenses/by-nc-sa/3.0/us/) license. Original author: [Jill E. Thomley](https://jillthomley.github.io/). 
 
 https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/licensing-a-repository
