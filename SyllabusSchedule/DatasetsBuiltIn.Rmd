@@ -1,0 +1,134 @@
+---
+title: "Reference List of Base `R` Datasets"
+subtitle: "STT2860 Introduction to Data Management & Visualization"
+author: "Created by Jill E. Thomley"
+date: "Last rendered on `r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 5
+    code_folding: hide
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+<hr>
+## Packages
+
+```{r loadpackages}
+library(tidyverse)
+library(kableExtra)
+library(DT)
+```
+
+
+## Title TBA
+
+https://rstats101.com/built-in-datasets-in-r/
+
+## Names of Datasets
+
+```{r}
+# create a list object containing dataset information
+dat_list <- data(package = "datasets")
+
+# create a tibble containing dataset names and titles
+dat_tibble <- as_tibble(dat_list$results[, c("Item", "Title")])
+
+# print the tibble in an attractive/easily readable way
+# kable(dat_tibble) %>%
+#   kable_styling(bootstrap_options = c("striped", "hover"))
+```
+
+```{r}
+datatable(dat_tibble)
+```
+
+https://stackoverflow.com/questions/51819549/converting-character-vector-to-unquoted-names-of-objects
+
+x <- "hello"
+y <- "world"
+obj <- c("x", "y")
+do.call(save, c(lapply(obj, as.name), file="./test.rda"))
+
+```{r}
+x <- "hello"
+y <- "world"
+obj <- c("x", "y")
+do.call(save, c(lapply(obj, as.name), file = "../SyllabusSchedule/test.rda"))
+```
+
+```{r}
+# need to fix names somehow?
+obj2 <- pull(dat_tibble, Item)
+do.call(save, c(lapply(obj2, as.name), file = "../SyllabusSchedule/test2.rda"))
+```
+
+```{r}
+obj <- pull(dat_tibble, Item)
+namelist <- lapply(obj, as.name)
+do.call(what = save, args = c(namelist, file = "test.rda"))
+```
+
+
+
+## Dataset Exploration
+
+https://stackoverflow.com/questions/73183083/map-glimpse-to-list-containing-dataframes
+
+```{r}
+# how can I automate glimpse() on all 104 datasets?
+# for (i in 1:104) {
+#   print(pull(DAT02, Item)[i])
+# }
+```
+
+### `BJsales`
+
+```{r}
+DAT1 <- dat_tibble %>% filter(Item == "BJsales")
+DAT <- BJsales
+```
+
+#### Class
+
+```{r}
+class(DAT)
+```
+
+#### Structure
+
+```{r}
+glimpse(DAT)
+```
+
+
+<hr>
+
+https://ropensci.org/packages/data-access/
+
+https://credit.niso.org/ 
+
+https://docs.ropensci.org/skimr/
+
+https://docs.ropensci.org/
+
+https://bookdown.org/csgillespie/efficientR/data-carpentry.html
+
+https://www.r4epi.com/index.html
+
+https://bookdown.org/ybrandvain/Applied-Biostats/#a-book-of-compassion --- look @ preface
+
+https://epirhandbook.com/en/reports-with-r-markdown.html
+
+https://rstudio.github.io/distill/tables.html
+
+https://appsilon.com/top-r-packages-for-table-data/ 

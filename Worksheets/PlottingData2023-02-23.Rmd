@@ -1,0 +1,397 @@
+---
+title: "Color/Fill/Faceting/Saving"
+author: "YOUR NAME HERE"
+date: "Last rendered on `r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Packages Used
+
+```{r}
+library(tidyverse)
+library(ggthemes)
+library(naniar)
+```
+
+### Data Used
+
+The code includes a preview of some skills you will learn later in the course.
+
+#### NFL Player Data
+
+Description: [NFL Players 2016 Dataset](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html)
+
+```{r}
+NFL <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/NFLplayers2016.csv") %>%
+  mutate(Playtime = factor(Playtime, levels = c(
+    "Rookie",
+    "1-4 Yrs",
+    "5-8 Yrs",
+    "9-12 Yrs",
+    "13+ Yrs"
+  )))
+```
+
+```{r}
+glimpse(NFL)
+```
+
+```{r}
+head(NFL)
+```
+
+#### Mauna Loa Data
+
+Source: [NOAA Trends in Atmospheric Carbon Dioxide](https://gml.noaa.gov/ccgg/trends/)
+
+```{r}
+MLCO2 <- read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  comment = "#",
+  col_names = c(
+    "year",
+    "month",
+    "dec_date",
+    "co2",
+    "co2_adj",
+    "num_days",
+    "sd_days",
+    "uncertainty"
+  )
+) %>%
+  replace_with_na(replace = list( 
+    num_days = -1,
+    sd_days = -9.99,
+    uncertainty = -0.99
+  )) %>%
+  filter(year >= 2018)
+
+# replace_with_na() function comes from the naniar package
+# https://cran.r-project.org/web/packages/naniar/vignettes/getting-started-w-naniar.html
+```
+
+```{r}
+glimpse(MLCO2)
+```
+
+```{r}
+head(MLCO2)
+```
+
+
+### Facets
+
+#### Facet Wrap
+
+Basic Histogram
+
+```{r}
+ggplot(NFL, aes(x = Weight)) +
+  geom_histogram(bins = 40, color = "black", fill = "orange")
+```
+
+Basic Histogram with Fill
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
+  geom_histogram(bins = 40, color = "black")
+```
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 40, color = "black")
+```
+
+Basic Histogram with Fill and Formatting
+
+https://r-graph-gallery.com/histogram_several_group.html
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
+  geom_histogram(bins = 40, position = "identity", color = "black", alpha = 0.25)
+```
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 40, position = "identity", color = "black", alpha = 0.25)
+```
+
+Basic Histogram Using Faceting vs. Fill
+
+```{r}
+ggplot(NFL, aes(x = Weight)) +
+  geom_histogram(bins = 20, color = "black", fill = "orange") +
+  facet_wrap(. ~ PositionGrp)
+```
+
+```{r}
+ggplot(NFL, aes(x = Weight)) +
+  geom_histogram(bins = 20, color = "black", fill = "orange") +
+  facet_wrap(. ~ Side)
+```
+
+Basic Histogram Using Faceting and Fill
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
+  geom_histogram(bins = 20, color = "black") +
+  facet_wrap(. ~ PositionGrp)
+```
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 20, color = "black") +
+  facet_wrap(. ~ Side)
+```
+
+Eliminating the Unnecessary Fill Legend
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
+  geom_histogram(bins = 20, color = "black") +
+  facet_wrap(. ~ PositionGrp) +
+  theme(legend.position = "none")
+```
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 20, color = "black") +
+  facet_wrap(. ~ Side) +
+  theme(legend.position = "none")
+```
+
+Setting the Number of Columns for Wrap
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
+  geom_histogram(bins = 20, color = "black") +
+  facet_wrap(. ~ PositionGrp, ncol = 2) +
+  theme(legend.position = "none")
+```
+
+Setting Number of Rows, Different Fill
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 20, color = "black") +
+  facet_wrap(. ~ PositionGrp, nrow = 2)
+```
+
+
+#### Facet Grid
+
+    syntax: facet_grid(rowvar ~ colvar)
+
+Basic Histogram Using Faceting and Fill (Columns)
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 20, color = "black") +
+  facet_grid(. ~ Side) +
+  theme(legend.position = "none")
+```
+
+Basic Histogram Using Faceting and Fill (Rows)
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 20, color = "black") +
+  facet_grid(Side ~ .) +
+  theme(legend.position = "none")
+```
+
+Basic Histogram Using Faceting and Fill (Rows and Columns)
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_boxplot(color = "black") +
+  facet_grid(Playtime ~ Side) +
+  theme(legend.position = "none")
+```
+
+
+### Multiple Aesthetics/Geometries
+
+https://r-graphics.org/chapter-line-graph
+https://r-graphics.org/chapter-scatter
+https://rkabacoff.github.io/datavis/Time.html
+
+Using Two Geometries with the Same Aesthetics
+
+```{r}
+ggplot(MLCO2, aes(x = dec_date, y = co2)) +
+  geom_line() +
+  geom_point()
+```
+
+Formatting the Two Geometries (Some Options)
+
+https://r-graph-gallery.com/273-custom-your-scatterplot-ggplot2.html
+https://blog.albertkuo.me/post/point-shape-options-in-ggplot/
+http://www.cookbook-r.com/Graphs/Shapes_and_line_types/
+
+```{r}
+ggplot(MLCO2, aes(x = dec_date, y = co2)) +
+  geom_line(color = "red", linetype = 2) +
+  geom_point(color = "blue", size = 2, shape = 8)
+```
+
+Using Two Geometries with Different Aesthetics
+
+```{r}
+ggplot(MLCO2, aes(x = dec_date)) +
+  geom_line(aes(y = co2), color = "red") +
+  geom_point(aes(y = co2), color = "red") +
+  geom_line(aes(y = co2_adj)) +
+  geom_point(aes(y = co2_adj), size = 0.75)
+```
+
+Creating a Theme Object
+
+```{r}
+NOAATHEME <- theme_base(base_size = 15) +
+  theme(
+    plot.title = element_text(
+      size = 14,
+      family = "Calibri",
+      hjust = 0.5,
+      margin = unit(c(0, 0, 0, 0), "cm")
+    ),
+    axis.title = element_text(
+      size = 12,
+      family = "Calibri"
+    ),
+    axis.ticks.length = unit(-0.15, "cm"),
+    axis.text = element_text(
+      size = 10,
+      family = "Calibri",
+      margin = unit(c(0.4, 0.4, 0.4, 0.4), "cm")
+    ),
+    plot.background = element_blank()
+  )
+```
+
+Using the Theme Object in a Plot
+
+```{r}
+ggplot(MLCO2, aes(x = dec_date)) +
+  geom_line(aes(y = co2), color = "red") +
+  geom_point(aes(y = co2), color = "red") +
+  geom_line(aes(y = co2_adj)) +
+  geom_point(aes(y = co2_adj), size = 0.75) +
+  scale_y_continuous(breaks = seq(406, 420, 2)) +
+  labs(
+    title = expression("Recent Monthly Atmospheric CO"[2] * " at Mauna Loa Observatory"),
+    x = "Year",
+    y = expression("CO"[2] * " mole fraction (ppm)")
+  ) +
+  NOAATHEME
+```
+
+Using Inventive Formatting to Replicate a Plot
+Also Saving the Plot as an Object in RStudio
+
+```{r}
+NOAAplot <- ggplot(MLCO2, aes(x = dec_date)) +
+  geom_line(aes(y = co2), color = "red") +
+  geom_point(aes(y = co2), color = "red") +
+  geom_line(aes(y = co2_adj)) +
+  geom_point(aes(y = co2_adj), size = 0.75) +
+  scale_x_continuous(
+    breaks = seq(2018, 2022.75, 0.25),
+    labels = c(
+      "2018", rep("", 3),
+      "2019", rep("", 3),
+      "2020", rep("", 3),
+      "2021", rep("", 3),
+      "2022", rep("", 3)
+    ),
+    limits = c(2018, 2022.75),
+    sec.axis = dup_axis(labels = NULL, name = "")
+  ) +
+  scale_y_continuous(
+    breaks = seq(405.5, 421.5, 0.5),
+    labels = c(
+      "",
+      "406", rep("", 3),
+      "408", rep("", 3),
+      "410", rep("", 3),
+      "412", rep("", 3),
+      "414", rep("", 3),
+      "416", rep("", 3),
+      "418", rep("", 3),
+      "420", rep("", 3)
+    ),
+    limits = c(405.5, 421.5),
+    sec.axis = dup_axis(labels = NULL, name = "")
+  ) +
+  labs(
+    title = expression("Recent Monthly Atmospheric CO"[2] * " at Mauna Loa Observatory"),
+    x = "Year",
+    y = expression("CO"[2] * " mple fraction (ppm)")
+  ) +
+  NOAATHEME
+```
+
+```{r}
+NOAAplot
+```
+
+Writing a Plot to a File
+
+https://r-coder.com/save-plot-r/
+
+```{r}
+# open the png device
+png("NOAAPlot.png")
+
+# "create" the plot
+NOAAplot
+
+# turn the device off
+dev.off()
+```
+
+```{r}
+pdf("NOAAplotA.pdf", # file name
+  width = 7, height = 6, # width and height in inches
+  bg = "white", # background color
+  colormodel = "cmyk", # color model (cmyk is required for most publications)
+  paper = "USr"
+) # paper size
+
+ggplot(MLCO2, aes(x = dec_date, y = co2)) +
+  geom_line(color = "red", linetype = 2) +
+  geom_point(color = "blue", size = 2, shape = 8) +
+  theme_classic()
+
+dev.off()
+```
+
+Not a Great Plot, but Very Different Geometries
+
+```{r}
+ggplot(MLCO2, aes(x = dec_date)) +
+  geom_line(aes(y = co2), color = "red") +
+  geom_point(aes(y = co2), color = "red") +
+  geom_col(aes(y = co2_adj), width = 0.02)
+```
+
+
+<hr>
+```{r}
+sessionInfo()
+```

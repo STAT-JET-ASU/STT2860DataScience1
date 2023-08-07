@@ -1,0 +1,141 @@
+---
+title: "Video Playlist Index"
+subtitle: "STT2860 Intro to Data Mgmt and Visualization" 
+author: "Author: Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+## Duke Center for Computational Thinking
+
+List Link: https://youtube.com/playlist?list=PL9qLtkRkGWLeh9UNptt_734t0u1zXz5wy
+
+* Introduction to Data Science (~ 9 min)
+   * https://youtu.be/TnPlET9mk0s
+   * Week 01
+   * Under...READ: What is Data Science?
+   
+* Tools of Data Science (~ 9 min)
+   * https://youtu.be/m27lF4W2Vik
+   * Week 01
+   * Under...READ: What is Data Science?
+   
+* How to Get Started Programming in R (~ 9 min)
+   * https://youtu.be/Ld_JZNNahbQ
+   * Week 01
+   * Under...READ: IDS CH02 — R Basics (Sections 2.1 to 2.3 only)
+   
+* How to install R Packages (~ 7 min)
+   * https://youtu.be/2bjeUV_ySyM
+   * NOT CURRENTLY USED
+   
+* Data Science with the Tidyverse in R (~ 6 min)
+   * https://youtu.be/q0uGggl3RbM 
+   * Week 04
+   * Under...READ: IDS CH04 — The Tidyverse
+   
+* Introducing the Pipe Operator in R (~ 5 min)
+   * https://youtu.be/Stt3qEuIeso
+   * Week 04
+   * Under...READ: IDS CH04 — The Tidyverse
+   
+* What's the Difference Between R and RStudio? (~ 5 min)
+   * https://youtu.be/IJc2J-qewiU
+   * NOT CURRENTLY USED
+   
+* A Tour of R Studio (~ 8 min)
+   * https://youtu.be/QhmPrfleCx4
+   * Week 01
+   * Under...READ: IDS CH01 — Getting started with R and RStudio
+   
+* Introduction to RMarkdown to create reproducible reports (~ 8 min)
+   * https://youtu.be/PvfFr-eY77E
+   * Week 02
+   * Under...RMDG CH02 The Basics
+   
+* Resources and Cheat Sheets for Learning R (~ 4 min)
+   * https://youtu.be/nxA89RJRy78
+   * NOT CURRENTLY USED
+
+* Getting to Know Your Data in R (~ 9 min)
+   * https://youtu.be/W3D-JSPExXo
+   * Week 04
+   * Under...READ: IDS CH04 — The Tidyverse
+   * Week 09
+   * Under...READ: RPDS CH12 Managing data frames with the dplyr package   
+   
+* Selecting Variables Using dplyr in R ()
+   * https://youtu.be/vDgP7J1qMCI
+   * Week 09
+   * Under...READ: RPDS CH12 Managing data frames with the dplyr package
+   
+* Filtering Observations Using dplyr in R ()
+   * https://youtu.be/KWs8VNeWlbE
+   * Week 09
+   * Under...READ: RPDS CH12 Managing data frames with the dplyr package
+   
+* Arranging Your Data Using dplyr in R ()
+   * https://youtu.be/BN9-zPuM-2g
+   * Week 09
+   * Under...READ: RPDS CH12 Managing data frames with the dplyr package
+   
+* Adding New Columns Using dplyr in R ()
+   * https://youtu.be/stNOP4B1aGE
+   * Week 09
+   * Under...READ: RPDS CH12 Managing data frames with the dplyr package
+   
+* Combining Datasets Using dplyr in R ()
+   * TBA
+   
+* Creating Summary Statistics Using dplyr in R ()
+   * https://youtu.be/PAE8oaC0vtk
+   * Week 09
+   * Under...READ: RPDS CH12 Managing data frames with the dplyr package
+   
+* Saving Your Work in R ()
+   * TBA
+   
+* Visualizing Your Data in R (~ 6 min)
+   * https://youtu.be/QUlHs6tGBHg
+   * Week 04
+   * Under...READ: IDS CH08 — ggplot
+   
+* Creating Geometric Objects Using GGPlot in R (~ 5 min)
+   * https://youtu.be/y1NjU_zDfpo
+   * Week 04
+   * Under...READ: IDS CH08 — ggplot
+   
+* Exploring Aesthetics Using GGPlot in R ()
+   * https://youtu.be/hVU6Q4NdoAs
+   * Week 04
+   * Under...READ: IDS CH08 — ggplot
+   
+* Customizing Themes and Labels Using GGPlot in R ()
+   * https://youtu.be/TepcBV8j6eo
+   * Week 05
+   * Under...IDS CH10 — Data Visualization in Practice
+   
+* Manipulating Strings Using StringR in R ()
+   * TBA
+   
+* Working with Regular Expressions Using StringR in R ()
+   * TBA
+   
+* Generating Reproducible Reports Using R Markdown (~ 13 min)
+   * https://youtu.be/25FOT9Fr0C4
+   * Week 07
+   * Under...READ: IDS CH40 Reproducible Projects with RStudio and R Markdown
+   
+* Parameterizing Reports with YAML in R Markdown ()
+   * https://youtu.be/C9HbXfWq87o
+   * Week 07
+   * Under...READ: IDS CH40 Reproducible Projects with RStudio and R Markdown
+   
+
+
+
+
+

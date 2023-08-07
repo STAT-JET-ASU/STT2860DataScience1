@@ -1,0 +1,426 @@
+---
+title: "PR01 NFL 2016 Data Visualizations"
+subtitle: "STT2860 Spring 2023"
+author: "SOLUTIONS // Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    code_folding: hide
+    toc: true
+    toc_depth: 4
+---
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Packages Used
+
+```{r}
+library(tidyverse)
+```
+
+
+### NFL Players 2016 Dataset
+
+You can read description of the dataset [HERE](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html).
+
+```{r nfl2016}
+dataURL <- "https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/NFLplayers2016.csv"
+
+nfldata <- read_csv(dataURL) %>%
+  mutate(Playtime = factor(Playtime, levels = c("Rookie", "1-4 Yrs", "5-8 Yrs", "9-12 Yrs", "13+ Yrs")))
+```
+
+Use `glimpse()` to explore the structure of the `nfldata` dataset.
+
+```{r}
+glimpse(nfldata)
+```
+
+Use `head()` to explore the structure of the `nfldata` dataset.
+
+```{r}
+head(nfldata)
+```
+
+
+### Plot #1: Bar Plot of Playtime
+
+* Create a bar plot for the variable `Playtime`. 
+* Change the bar colors from gray to some other color/colors.
+* Modify the x-axis so that `Yrs` is not abbreviated in the labels.
+* Scale the y-axis so it has tick marks every 100 units (e.g., 100, 200, etc.).
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Add the built-in `theme_light()` from ggplot2 to your plot.
+* Your final plot should *not* have a legend on it.
+
+**Solution #1: All Bars the Same Color (`fill =` in geometry)**
+
+```{r}
+ggplot(nfldata, aes(x = Playtime)) +
+  geom_bar(color = "black", fill = "orange") +
+  scale_x_discrete(labels = c("Rookie", "1-4 Years", "5-8 Years", "9-12 Years", "13+ Years")) +
+  scale_y_continuous(breaks = seq(from = 0, to = 1500, by = 100)) +
+  labs(
+    title = "Number of Years Played by All National Football League Players in 2016",
+    x = "number of years",
+    y = "number of players"
+  ) +
+  theme_light()
+```
+
+**Solution #2: Bars Different Colors (`fill =` in geometry), Narrower Bars**
+
+Note: Uses colorblind-safe colors from [HERE](https://davidmathlogic.com/colorblind/#%23D81B60-%231E88E5-%23FFC107-%23004D40).
+
+```{r}
+ggplot(nfldata, aes(x = Playtime)) +
+  geom_bar(
+    color = "black", 
+    fill = c("#648FFF", "#785EF0", "#DC267F", "#FE6100", "#FFB000"), 
+    width = 0.75) +
+  scale_x_discrete(labels = c("Rookie", "1-4 Years", "5-8 Years", "9-12 Years", "13+ Years")) +
+  scale_y_continuous(breaks = seq(0, 1500, 100)) +
+  labs(
+    title = "Number of Years Played by All National Football League Players in 2016",
+    x = "number of years",
+    y = "number of players"
+  ) +
+  theme_light()
+```
+
+**Solution #3: Bars Different Colors (`fill =` in aesthetics), Narrower Bars**
+
+```{r}
+ggplot(nfldata, aes(x = Playtime, fill = Playtime)) +
+  geom_bar(color = "black", width = 0.55) +
+  scale_x_discrete(labels = c("Rookie", "1-4 Years", "5-8 Years", "9-12 Years", "13+ Years")) +
+  scale_y_continuous(breaks = seq(0, 1500, 100)) +
+  scale_fill_brewer(palette = "Blues") +
+  labs(
+    title = "Number of Years Played by All National Football League Players in 2016",
+    x = "number of years",
+    y = "number of players"
+  ) +
+  theme_light() +
+  theme(legend.position = "none")
+```
+
+Do you think most NFL players should look forward to long careers, based on your plot?
+
+**ANSWER:** The most common category is 1-4 years (about 1300 players). Very few players seem to last longer than 8 years. In fact, there are more rookies than there are players in the 5-8 year category. There are about 200 players total in the 9-12 and 13+ years categories. Most NFL players should not look forward to long careers.
+
+
+### Plot #2: Histogram of Weight
+
+* Create a histogram with 25 bins for the variable `Weight`. 
+* Use `fill =` to include information from the variable `Side`. 
+* Add formatting in the geometry so the bars are outlined in black.
+* Use `scale_fill_manual()` to change the colors used in the bars.
+* Alternatively, you can use `scale_fill_brewer()` to change bar colors.
+* Add the built-in `theme_minimal()` from ggplot2 to your histogram.
+* Use `theme()` to move the legend to the bottom and remove its title.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Be sure to include any units of measure in the axis labels.
+
+```{r}
+ggplot(nfldata, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 25, color = "black") +
+  scale_fill_manual(values = c("#D81B60", "#1E88E5", "#FFC107")) +
+  labs(
+    title = "Weight Distributions for NFL Players in 2016",
+    x = "player weight (lbs)",
+    y = "number of players",
+    caption = "note: weight distributions for the three groups are stacked to show the overall distribution"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "bottom",
+    legend.title = element_blank()
+  )
+```
+
+Discuss two group comparisons and/or interesting features of this plot.
+
+**ANSWER:** There are a few interesting features. Some are given below. Others are possible.
+
+* There seem to be three peaks in the overall data: at around 200 pounds, just under 250 pounds, and just above 300 pounds. 
+* There far fewer Special teams players than Defense/Offense, and they seem to be lighter overall; few are over 250 pounds.
+* The smallest player weight is about 150 pounds and the largest player weight is over 350 pounds, a span of > 200 pounds!
+* Most of the players over 300 pounds seem to be Offense players, but there are a few rather large Defense players too.
+* The largest weight category on the plot is just under 200 (about 190-200) pounds. That represents about 300 players.
+
+
+### Plot #3: Density Plot of BMI
+
+Body mass index (BMI) is a measure of body fat based on height and weight. The formula for calculating BMI is BMI = kg/m^2^ where kg is weight in kilograms and m^2^ is height in meters squared. The "healthy" range for BMI is 18.5 to 24.9; BMI > 25 is "overweight"; 30-39 is "obese"; and 40+ "morbidly obese". 
+
+* Use `mutate()` to compute BMI for the football players. 
+* Save the dataset containing the new variable as `nfldataBMI`.
+* Create a density (i.e., KDE) plot for `BMI` with a bandwidth of 0.75. 
+* Use `fill =` and `alpha =` in the geometry to add semi-transparent color.
+* Add dashed vertical lines in a contrasting color or colors at 25, 30, and 40.
+* Scale the x-axis so it has tick marks at every whole unit (e.g., 24, 25, 26, etc.).
+* Additionally, use `limits =` so that the x-axis displays values between 18 and 48.
+* Use `annotate()` to label the healthy, overweight, obese, and morbidly obese regions.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+
+```{r}
+nfldataBMI <- nfldata %>%
+  mutate(BMI = (0.4536 * Weight) / (0.0254 * Height)^2)
+```
+
+```{r}
+ggplot(nfldataBMI, aes(x = BMI)) +
+  geom_density(bw = 0.75, fill = "orange", alpha = 0.5) +
+  geom_vline(xintercept = c(25, 30, 40), color = "blue", linetype = "dashed") +
+  scale_x_continuous(limits = c(18, 48), breaks = 18:48) +
+  annotate("label",
+    x = c(21, 27.5, 35, 45),
+    y = 0.025,
+    label = c("normal", "overweight", "obese", "morbidly obese")
+  ) +
+  labs(
+    title = "BMI Distribution for NFL Players in 2016",
+    subtitle = "Standard BMI categories are labeled for reference",
+    x = "Player BMI",
+    y = "Density"
+  ) +
+  theme_minimal() +
+  theme(panel.grid.minor = element_blank())
+```
+
+Many people suggest that BMI is a poor measure for athletes, who often have a high body weight due to muscle mass versus fat. What does your plot suggest about this?
+
+**ANSWER:** Only a small fraction of players have a BMI in the "healthy" range. At least as many players are in the "morbidly obese" category. While there may be a few with an unhealthy level of fat, it is unlikely that this is true of most of the NFL. It does seem that BMI is a poor measure for NFL athletes.
+
+
+### Plot 4: Violin and Box Plots of Age
+
+* We want to compare `Age` among the three `Side` groups. 
+* Use `geom_violin()` as the first geometry layer of the plot.
+* Add `geom_boxplot()` as the second geometry layer of the plot.
+* Adjust the width of the boxplots so they are completely inside the violins.
+* Fill the boxplots with a color to visually contrast with the violins.
+* Increase the size of the boxplot outliers for enhanced visibility.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Be sure to include any units of measure in the axis labels.
+* Add any other formatting you feel will enhance meaning.
+
+**Solution #1: Same-Color Plots (`fill =` in geoms), No Extras**
+
+```{r}
+ggplot(nfldata, aes(x = Age, y = Side)) +
+  geom_violin() +
+  geom_boxplot(width = 0.15, fill = "lightblue", outlier.size = 3) +
+  labs(
+    title = "Age Distribution of NFL Players in 2016",
+    x = "age (years)",
+    y = "player grouping"
+  )
+```
+
+**Solution #2: Different-Color Plots (`fill =` in aes), Some Extras**
+
+```{r}
+ggplot(nfldata, aes(x = Age, y = Side, fill = Side)) +
+  geom_violin(alpha = 0.25) +
+  geom_boxplot(width = 0.15, outlier.size = 3) +
+  scale_x_continuous(breaks = 20:50) +
+  labs(
+    title = "Age Distribution of NFL Players in 2016",
+    x = "age (years)",
+    y = "player grouping"
+  ) +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+Discuss two group comparisons and/or interesting features of this plot.
+
+**ANSWER:** There are a few interesting features. Some are given below. Others are possible.
+
+* Offense and Defense have very similar distributions overall.
+* The distribution of Special Teams differs from the other two groups. Players tend to be older.
+* A player who is 34 years or older is considered "unusually old" in the Offense and Defense Groups.
+* A player is not considered to be "unusually old" on Special teams until they get to 43 years old. 
+* The widest part of all three plots are between about 22 years (just out of college) and 26 years old, indicating that there are lots of players at those ages. As a side note, this seems to matche up with with the earlier observation that 1-4 years is the largest career-length category.
+
+
+### Plot 5: Scatterplots of Weight vs. Height
+
+#### Offensive Players
+
+* Use `Side` to `filter()` the dataset to choose `Offense` players only. 
+* Save this new dataset containing the offensive players as `offdata`. 
+* Create a scatterplot of player weight (y) versus player height (x).
+* Use the `color =` aesthetic to add information from `PositionGrp`. 
+* Add an appropriate title and better labels for the x and y axes.
+* Be sure to include any units of measure in the axis labels.
+
+**Solution #1: Just the Basics**
+
+```{r}
+offdata <- nfldata %>%
+  filter(Side == "Offense")
+
+ggplot(offdata, aes(x = Height, y = Weight, color = PositionGrp)) +
+  geom_point() +
+  labs(
+    title = "Weight vs. Height for NFL Offensive Players in 2016",
+    x = "Height (inches)",
+    y = "Weight (pounds)",
+    color = "Position Group"
+  )
+```
+
+**Solution #2: With Some Extras**
+
+```{r}
+ggplot(offdata, aes(x = Height, y = Weight, color = PositionGrp)) +
+  geom_jitter(size = 3, alpha = 0.35) +
+  stat_ellipse() +  # creates ellipses around the data point groups
+  scale_x_continuous(breaks = 65:85) +
+  scale_y_continuous(breaks = seq(from = 150, to = 350, by = 25)) +
+  labs(
+    title = "Weight vs. Height for NFL Offensive Players in 2016",
+    x = "Height (inches)",
+    y = "Weight (pounds)",
+    color = "Position Group"
+  ) +
+  theme_minimal()
+```
+
+#### Defensive Players
+
+* Use `Side` to `filter()` the dataset to choose `Defense` players only. 
+* Save this new dataset containing the defensive players as `defdata`. 
+* Create a scatterplot of player weight (y) versus player height (x).
+* Use the `color =` aesthetic to add information from `PositionGrp`. 
+* Add an appropriate title and better labels for the x and y axes.
+* Be sure to include any units of measure in the axis labels.
+
+```{r}
+defdata <- nfldata %>%
+  filter(Side == "Defense")
+
+ggplot(defdata, aes(x = Height, y = Weight, color = PositionGrp)) +
+  geom_point() +
+  labs(
+    title = "Weight vs. Height for NFL Defensive Players in 2016",
+    x = "Height (inches)",
+    y = "Weight (pounds)",
+    color = "Position Group"
+  )
+```
+
+Does the relationship between weight and height seem to differ based on position grouping? Discuss.
+
+**ANSWER:** There seem to be some clear differences. For example, the offensive line players are all heavier for their height than other offensive players. On the other hand, no matter what their height, wide receivers tend to be the lightest. Other groups overlap more. Among defensive players, there is a fairly clear delineation between the front seven and the defensive back (who weigh less).
+
+
+### Plot 6: Your Choice!
+
+Create one more plot of your choice using the `nfldata`. Explain what you were intending to show/explore with your plot.
+
+**Example #1**
+
+```{r}
+top10colleges <- nfldata %>%
+  count(College) %>%
+  arrange(desc(n)) %>%
+  slice_head(n = 10)
+
+# Note: colors top to bottom are reverse to the order of the plot bars
+# This is because of the coord_flip() used to rotate the plot sideways
+
+ggplot(top10colleges, aes(x = reorder(College, n), y = n, fill = reorder(College, n))) +
+  geom_col(width = 0.5, alpha = 0.90) +
+  scale_y_continuous(
+    limits = c(0, 57),
+    breaks = seq(from = 0, to = 55, by = 5),
+    expand = c(0, 0)
+  ) +
+  scale_fill_manual(values = c(
+    "#F56600",
+    "#0C2340",
+    "#005030",
+    "#782F40",
+    "#BA0C2F",
+    "#990000",
+    "#0021A5",
+    "#E9153B",
+    "#9E1B32",
+    "#461D7C"
+  )) +
+  labs(
+    title = "Top 10 Colleges for NFL Players in 2016",
+    x = "College",
+    y = "Number of Alumni Players in the NFL",
+    caption = "note: each school is shaded in one of its official colors"
+  ) +
+  coord_flip() +
+  theme_minimal() +
+  theme(legend.position = "none")
+```
+
+**Example #2**
+
+```{r}
+ggplot(nfldataBMI, aes(x = BMI, fill = Side)) +
+  geom_density(bw = 0.75, alpha = 0.5) +
+  geom_vline(xintercept = c(25, 30, 40), color = "blue", linetype = "dashed") +
+  scale_x_continuous(limits = c(18, 50), breaks = 18:50) +
+  facet_grid(Side ~ .) +
+  labs(
+    title = "BMI Distribution for NFL Players in 2016",
+    subtitle = "18.5 to 24.9 is healthy, 25 to 29.9 is overweight, 30 to 39.9 is obese, and 40+ is morbidly obese",
+    x = "Player BMI",
+    y = "Density"
+  ) +
+  theme_minimal() +
+  theme(panel.grid.minor = element_blank()) +
+  theme(legend.position = "none")
+```
+
+**Example #3**
+
+```{r}
+ggplot(nfldataBMI, aes(x = BMI, fill = PositionGrp)) +
+  geom_density(bw = 0.75, alpha = 0.5) +
+  geom_vline(xintercept = c(25, 30, 40), color = "blue", linetype = "dashed") +
+  scale_x_continuous(limits = c(20, 44), breaks = seq(20, 44, 2)) +
+  scale_y_continuous(breaks = NULL) + # removes y-axis ticks
+  facet_grid(PositionGrp ~ .) +
+  labs(
+    title = "BMI Distribution for NFL Players in 2016",
+    subtitle = "18.5 to 24.9 is healthy, 25 to 29.9 is overweight, 30 to 39.9 is obese, and 40+ is morbidly obese",
+    x = "Player BMI"
+  ) +
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(),
+    axis.title.y = element_blank(), # removes y-axis label
+    legend.position = "none", # removes 'fill' legend
+    strip.text.y = element_text(angle = 0) # rotates facet labels
+  )
+```
+
+<hr>
+
+```{r}
+sessionInfo()
+```
+

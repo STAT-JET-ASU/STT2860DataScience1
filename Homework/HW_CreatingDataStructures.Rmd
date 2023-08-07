@@ -163,7 +163,7 @@ What the function shows: YOUR ANSWER HERE
 
 ### Problem 3
 
-Consider the following example of a [factorial experiment](https://en.wikipedia.org/wiki/Factorial_experiment) on Wikipedia: An engineer wants to increase the filtration rate of a process and reduce the amount of formaldehyde used. Four factors were considered: temperature (A), pressure (B), formaldehyde concentration (C), and stirring rate (D). Each of the four factors was tested at two levels. The minus (−) and plus (+) signs in the table indicate whether the factor was run at a low (-) or high (+) level. Create a tibble of the "Design matrix and resulting filtration rate" table showing variables A, B, C, D and the resulting filtration rate. Use "low" and "high" as category values rather than `+` and `-` symbols, since those indicate mathematical operations in `R`. Create each variable vector as efficiently as possible using the vector creation functions you have learned. Name your dataset `experiment_data`.
+Consider the following example of a [factorial experiment](https://en.wikipedia.org/wiki/Factorial_experiment) on Wikipedia: An engineer wants to increase the filtration rate of a process and reduce the amount of formaldehyde used. Four factors were considered: temperature (A), pressure (B), formaldehyde concentration (C), and stirring rate (D). Each of the four factors was tested at two levels. The minus (−) and plus (+) signs in the table indicate whether the factor was run at a low (-) or high (+) level. Create a tibble of the "Design matrix and resulting filtration rate" table showing variables A, B, C, D and the resulting filtration rate. Use "low" and "high" as category values rather than `+` and `-` symbols, since those indicate mathematical operations in `R`. Create each variable vector as efficiently as possible using the vector creation functions you have learned. You may rename the variables something that is `R`-friendly. Name your dataset `experiment_data`.
 
 ```{r}
 
@@ -189,7 +189,7 @@ Use the following functions to explore the dataset you created.
 
 ### Problem 4
 
-Create a list from all the vectors and datasets you created and explored in Problems 1 through 3 (i.e., all the vectors from Problem 1, the `murders` dataset, and the `experiment` dataset). Give each element in the list a name of your choice.
+Create a list from all the vectors and datasets you created and explored in Problems 1 through 3 (i.e., all the vectors from Problem 1, the `murders` dataset, and the `experiment_data` dataset). Give each element in the list a name of your choice.
 
 ```{r}
 my_list <- # erase this and create the list

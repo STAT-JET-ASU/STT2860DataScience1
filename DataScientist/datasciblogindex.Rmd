@@ -1,0 +1,86 @@
+---
+title: "&#8220;Becoming a Data Scientist&#8221; Podcast"
+subtitle: "Index of &#8220;[Becoming a Data Scientist](https://www.becomingadatascientist.com/category/podcast/)&#8221; Interviews"
+author: "Compiled / Organized by Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+<hr>
+
+### 00. [Renee Teate](https://www.becomingadatascientist.com/2015/12/14/becoming-a-data-scientist-podcast-episode-0-me/)
+
+**Description:** The creator / host / interviewer of the "Becoming a Data Scientist" podcast talks little about her own background.
+
+### 01. [Will Kurt](https://www.becomingadatascientist.com/2015/12/21/becoming-a-data-scientist-podcast-episode-01-will-kurt/)
+
+**Description:** "In this episode we meet Will Kurt, who talks about his path from English & Literature and Library & Information Science degrees to becoming the Lead Data Scientist at KISSmetrics. He also tells us about his probability blog, Count Bayesie, and I introduce Data Science Learning Club Activity 1. Will has some great advice for people learning data science!"
+
+### 02. [Safia Abdalla](https://www.becomingadatascientist.com/2016/01/04/becoming-a-data-scientist-podcast-episode-02-safia-abdalla/)
+
+**Description:** "In Episode 2 of the Becoming a Data Scientist Podcast, we meet Safia Abdalla, who started programming and even exploring machine learning and natural language processing as a teenager, and is now a student at Northwestern University, a conference speaker and trainer, co-organizer of PyLadies Chicago, and a contributor to Project Jupyter."
+
+### 03. [Shlomo Argamon](https://www.becomingadatascientist.com/2016/01/18/becoming-a-data-scientist-podcast-episode-03-shlomo-argamon/)
+
+**Description:** "In Episode 3 of the Becoming a Data Scientist Podcast, we meet Shlomo Argamon, who is the founding director of the Master of Data Science program at Illinois Institute of Technology. He talks to us about his path to data science, including research in robotic vision and natural language processing, we discuss the traits of a good data science student, and he gives some advice for those of us learning data science."
+
+### 04. [Sherman Distin](https://www.becomingadatascientist.com/2016/02/02/becoming-a-data-scientist-podcast-episode-04-sherman-distin/)
+
+**Description:** "In Episode 4 of the Becoming a Data Scientist Podcast, we meet Sherman Distin, owner of analytics consulting firm QueryBridge. We discuss his primarily self-taught path to learning the data science techniques he uses to find business insights in marketing data, and he also tells us what he thinks is the most important trait he looks for in data scientists."
+
+### 05. [Clare Corthell](https://www.becomingadatascientist.com/2016/02/14/becoming-a-data-scientist-podcast-episode-05-clare-corthell/)
+
+**Description:** "Renee Teate interviews Clare Corthell, founding partner of summer.ai (now Luminant Data) and creator of the Open Source Data Science Masters curriculum, about becoming a data scientist."
+
+### 06. [Erin Shellman](https://www.becomingadatascientist.com/2016/02/29/becoming-a-data-scientist-podcast-episode-06-erin-shellman/)
+
+**Description:** "In this episode, Renee interviews Bioinformatics PhD and Data Scientist Erin Shellman about her path to becoming a data scientist, including jobs at Nordstrom Innovation Lab and zymergen. Erin discusses school, job interviews, teaching, and eventually getting to do data science within her field of scientific expertise."
+
+### 07. [Enda Ridge](https://www.becomingadatascientist.com/2016/03/15/becoming-a-data-scientist-podcast-episode-07-enda-ridge/)
+
+**Description:** "Data Scientist, Author, and manager of data science teams Enda Ridge talks to us about data governance, data provenance, reproducible analysis, work pipelines and products, and people, among other topics covered in his book “Guerrilla Analytics – A practical Approach to Working with Data: The Savvy Manager’s Guide”."
+
+### 08. [Sebastian Raschka](https://www.becomingadatascientist.com/2016/03/28/becoming-a-data-scientist-podcast-episode-08-sebastian-raschka/)
+
+**Description:** "Renee interviews computational biologist, author, data scientist, and Michigan State PhD candidate Sebastian Raschka about how he became a data scientist, his current research, and about his book Python Machine Learning."
+
+### 09. [Justin Kiggins](https://www.becomingadatascientist.com/2016/03/28/becoming-a-data-scientist-podcast-episode-08-sebastian-raschka/)
+
+**Description:** "Justin Kiggins, who calls himself a “full stack neuroscientist” talks to Renee about how he started as a musician majoring in music therapy, switched to mechanical engineering, and eventually made his way via biomedical engineering and neuroscience to study auditory perception and the brains of communicating birds."
+
+### 10. [Trey Causey](https://www.becomingadatascientist.com/2016/05/01/becoming-a-data-scientist-podcast-episode-10-trey-causey/)
+
+**Description:** "Trey Causey is a data scientist with a background in psychology and sociology who, like Renee, is from Virginia. He has worked as a data scientist at a range of companies from zulily to ChefSteps, and has also developed some interesting sports analytics projects, including the New York Times 4th Down bot. Trey also has advice for people wanting to start a career in data science."
+
+### 11. [Stephanie Rivera](https://www.becomingadatascientist.com/2016/05/30/becoming-a-data-scientist-episode-11-stephanie-rivera/)
+
+**Description:** "Stephanie Rivera has worked in machine learning and data science for academic research (at University of Tennessee), for the government (Department of Defense), for a large consulting firm (Booz Allen), and now for a startup (MyStrength). In the interview, she discusses her career path, her experiences with mentorship, and her role in authoring The Field Guide to Data Science and the Explore Data Science online course."
+
+### 12. [Data Science Learning Club Members](https://www.becomingadatascientist.com/2016/06/15/becoming-a-data-scientist-podcast-episode-12-data-science-learning-club-members/)
+
+**Description:** "Verena, David, Kerry, and Anthony are members of the Becoming a Data Scientist Podcast Data Science Learning Club! They appear in the order in which they joined the club, and each discuss their starting points before joining, their participation in the activities, and advice they have for new data science learners."
+
+### 13. [Debbie Berebichez](https://www.becomingadatascientist.com/2016/07/14/becoming-a-data-scientist-podcast-episode-13-debbie-berebichez/)
+
+**Description:** "In this interview, we meet physicist Debbie Berebichez, who you might recognize from her TEDx talks, her appearances in Discovery Channel’s Outrageous Acts of Science and other TV shows! Debbie grew up in Mexico City and was discouraged by her family and teachers from studying science, but later went on to become the first Mexican woman to get a PhD in physics from Stanford, and is now Chief Data Scientist at Metis Data Science Bootcamp in New York."
+
+### 14. [Jasmine Dumas](https://www.becomingadatascientist.com/2017/01/10/becoming-a-data-scientist-podcast-episode-14-jasmine-dumas/)
+
+**Description:** "In this first episode of “Season 2” of Becoming a Data Scientist podcast, we meet Jasmine Dumas, a new data scientist who tells us about going from biomedical engineering into a data science project experience and then finding her first job as a data scientist."
+
+### 15. [David Meza](https://www.becomingadatascientist.com/2017/01/29/becoming-a-data-scientist-podcast-episode-15-david-meza/)
+
+**Description:** "David Meza is Chief Knowledge Architect at NASA, and talks to Renee in this episode about his educational background, his early work at NASA, and examples of his work with multidisciplinary teams. He also describes a project involving a graph database that improved search capabilities so NASA engineers could more easily find “lessons learned”."
+
+### 16. [Randy Olson](https://www.becomingadatascientist.com/2017/03/22/becoming-a-data-scientist-podcast-episode-16-randy-olson/)
+
+**Description:** "Renee interviews Randal S. Olson, Senior Data Scientist in the Institute for Biomedial Informatics at UPenn, about his path to becoming a data scientist, his interesting data science blog posts, and his work with non-data-scientists and students."
+
+### 17. [Andrew Therriault](https://www.becomingadatascientist.com/podcast/becoming-a-data-scientist-podcast-episode-17-andrew-therriault/)
+
+**Description:** "In the first episode of this podcast recorded in front of a live audience, Renee interviews Andrew Therriault –-- formerly the Director of Data Science for the Democratic National Committee & Chief Data Officer for the City of Boston, and currently Data Science Manager at Facebook –-- about how he learned data science, what advice he has for people who want to learn data science and apply for data science jobs, and about his career path as a Data Scientist and leader in the field. Recorded at Tom Tom Fest Applied Machine Learning Conference in Charlottesville, VA on April 11, 2019."
+
+<hr>
+

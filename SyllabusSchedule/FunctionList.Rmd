@@ -1,0 +1,185 @@
+---
+title: "A List of Functions You Should Know"
+subtitle: "STT2860 Introduction to Data Management & Visualization"
+author: "Created by Jill E. Thomley"
+date: "Last rendered on `r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 5
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+<hr>
+## R base code
+
+
+* FUNCTION TO SHOW ALL DATASETS IN A PACKAGE
+
+### create objects
+
+#### *vectors*
+
+* `vector()`
+
+#### *lists & datasets*
+
+* `list()`
+* `data.frame()`
+
+### explore objects
+
+* TBA
+* TBA
+
+<hr>
+## tidyverse: [dplyr](https://dplyr.tidyverse.org/)
+
+### row verbs
+
+* [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html) --- *sort all rows according to values of some variable(s)*
+* [`distinct()`](https://dplyr.tidyverse.org/reference/distinct.html) --- *keep only unique / distinct rows*
+* [`filter()`](https://dplyr.tidyverse.org/reference/filter.html) --- *keep all rows that meet some set of conditions*
+* [`slice()`](https://dplyr.tidyverse.org/reference/slice.html) --- *choose, remove, and / or duplicate rows*
+   * `slice_head()` --- *choose the first / top rows*
+   * `slice_min()` --- *choose rows with the lowest values of a variable*
+   * `slice_max()` --- *choose rows with the highest values of a variable*
+   * `slice_sample()` --- *randomly choose a subset of rows*
+   * `slice_tail()` --- *choose the last / bottom rows*
+
+### row group verbs
+
+* TBA
+* TBA
+
+### column verbs
+
+* `glimpse()`
+* `mutate()`
+* `pull()`
+* `relocate()`
+* `rename()`
+* `select()`
+
+### column group verbs
+
+* `across()` --- *apply the same `mutate()` operation  to multiple columns*
+
+### vector verbs
+
+* `between()` --- *a shortcut to find (`x >= lowerbound & x <= upperbound`)*
+* `case_when()` --- *allows you to vectorize multiple `if_else()` statements*
+* `desc()` --- *sort a vector in descending order, useful inside `arrange()`*
+* `if_else()` --- *binary logical test, useful for `mutate()` transformations*
+
+### combining datasets
+
+#### *binding*
+
+* [`bind_cols()`](https://dplyr.tidyverse.org/reference/bind_cols.html) --- *bind datasets by column, adds variables, wider result*
+* [`bind_rows()`](https://dplyr.tidyverse.org/reference/bind_rows.html) --- *bind datasets by rows, adds observations, longer result*
+
+#### *filtering joins*
+
+* `anti_join()` 
+* `semi_join()`
+
+#### *mutating joins*
+
+* `full_join()`
+* `inner_join()`
+* `left_join()`
+* `right_join()`
+
+<hr>
+## tidyverse: [ggplot2](https://ggplot2.tidyverse.org/)
+
+### aesthetics
+
+* TBA
+* TBA
+
+### geometries
+
+* TBA
+* TBA
+
+### formatting
+
+* TBA
+* TBA
+
+<hr>
+## tidyverse: [readr](https://readr.tidyverse.org/)
+
+* TBA
+* TBA
+
+<hr>
+## tidyverse: [readxl](https://readxl.tidyverse.org/) (and [writexl](https://docs.ropensci.org/writexl/))
+
+* [`readxl_example()`](https://readxl.tidyverse.org/reference/readxl_example.html)
+* [`read_excel()`](https://readxl.tidyverse.org/reference/read_excel.html)
+* [`write_xlsx()`](https://docs.ropensci.org/writexl/reference/write_xlsx.html)
+
+<hr>
+## tidyverse: [tibble](https://tibble.tidyverse.org/)
+
+* `as_tibble()` --- *coerces (converts) an `R` object into a tibble*
+* `is_tibble()` --- *tests whether or not an `R` object is a tibble*
+* `tibble()` --- *builds a dataset / data frame from individual columns*
+   * `data_frame()` --- *superseded function, `tibble()` is preferred*
+
+<hr>
+## tidyverse: [tidyr](https://tidyr.tidyverse.org/)
+
+### pivoting & rectangling
+
+* `pivot_longer()` --- *"lengthens" a dataset (more rows, fewer columns)*
+   * `gather()` --- *superseded function replaced by `pivot_longer()`*
+* `pivot_wider()` --- *"widens" a dataset (fewer rows, more columns)*
+   * `spread()` --- *superseded function replaced by pivot_wider()*
+* `unnest_sider()` 
+
+### character vectors
+
+* `separate()` --- *split a character column into multiple new columns*
+   * *superseded function replaced by the functions below*
+   * `separate_wider_delim()` --- *split using a delimiter*
+   * `separate_wider_position()` --- *split using fixed widths*
+   * `separate_wider_regex()` --- *split using regular expressions*
+* `unite()` --- *combine multiple columns into a single character column*
+
+### missing values
+
+* `drop_na()` --- *drop all rows with missing values in specified variables*
+* `expand_grid()` --- *create a tibble by taking all combinations of inputs*
+* `replace_na()` --- *replace `NA` data values with other specified values*
+* `uncount()` --- *reverse of `count()`, used to expand a set of counts*
+
+<hr>
+
+https://ropensci.org/packages/data-access/
+
+https://credit.niso.org/ 
+
+https://docs.ropensci.org/skimr/
+
+https://docs.ropensci.org/
+
+https://bookdown.org/csgillespie/efficientR/data-carpentry.html
+
+https://www.r4epi.com/index.html
+
+https://bookdown.org/ybrandvain/Applied-Biostats/#a-book-of-compassion
+
+

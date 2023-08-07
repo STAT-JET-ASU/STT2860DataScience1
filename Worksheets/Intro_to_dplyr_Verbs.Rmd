@@ -1,6 +1,6 @@
 ---
 title: "Intro to Data Wrangling with dplyr Verbs"
-subtitle: "STT2860 Intro to Data Management and Vis S22"
+subtitle: "STT2860 Intro to Data Management & Visualization S23"
 author: "Author: YOUR NAME HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
@@ -47,19 +47,11 @@ glimpse(galtondata)
 
 ### `attributes()`
 
-    attributes(x)
-    attributes(x) <- value
-
 ```{r}
 
 ```
 
 ### `names()` and `row.names()`
-
-    names(x)
-    names(x) <- value
-    row.names(x)
-    row.names(x) <- value
 
 ```{r}
 
@@ -67,19 +59,11 @@ glimpse(galtondata)
 
 ### `dim()`, `nrow()`, and `ncol()`
 
-    dim(x)
-    dim(x) <- value
-    nrow(x)
-    ncol(x)
-
 ```{r}
 
 ```
 
 ### `head()` and `tail()`
-
-    head(x, n = 6L)
-    tail(x, n = 6L)
 
 ```{r}
 
@@ -102,6 +86,26 @@ glimpse(galtondata)
 
 ### Using `mutate()`
 
+#### `Mother`
+
+```{r}
+
+```
+
+#### `Child`
+
+```{r}
+
+```
+
+#### `Midparent`
+
+```{r}
+
+```
+
+#### All in One
+
 ```{r}
 
 ```
@@ -112,7 +116,83 @@ glimpse(galtondata)
 
 ```
 
-### Extracting Parents
+### Using `pull()`
+
+```{r}
+
+```
+
+### Using `rename()`
+
+```{r}
+
+```
+
+### Using `relocate()`
+
+```{r}
+
+```
+
+### Using `select()`
+
+```{r}
+
+```
+
+## Challenges!
+
+### Challenge #1 
+
+Remove only the variable `Children` from the dataset.
+
+```{r}
+
+```
+
+### Challenge #2
+
+Extract the `HeightT` column from the dataset into a vector.
+
+```{r}
+
+```
+
+### Challenge #3
+
+Convert all height measurements from inches to centimeters.
+
+```{r}
+
+```
+
+### Challenge #4
+
+Create `MotherT` and move it so that it is located after `Mother.`
+
+```{r}
+
+```
+
+### Challenge #5
+
+Start with the original data and rename all the variables with names of your choice.
+
+```{r}
+
+```
+
+### Challenge #6
+
+Start with the original data and create a dataset that contains the following variables: `FamilyID`, `Father`, `MotherT`, `HeightT`, `Child` (in that order).
+
+```{r}
+
+```
+
+### Challenge #7
+
+Explore another use for one of these functions that we have not yet discussed.
 
 ```{r}
 

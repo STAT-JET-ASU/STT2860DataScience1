@@ -1,0 +1,182 @@
+---
+title: "HW: Joining and Manipulating Data"
+subtitle: "STT2860 Intro to Data Mgmt and Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+    toc: true
+    toc_depth: 4
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+Names of people you worked with: 
+
+***
+
+### Packages
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+library(skimr)
+```
+
+You will use the `nycflights13` datasets discussed in [Section 3.7 of Modern Dive](https://moderndive.com/3-wrangling.html#joins) to complete the problems below.
+
+### Problem 1: Mutating Joins & Data Manipulation
+
+#### Flights from Newark
+
+Filter the `flights` dataset for only those flights originating at Newark Liberty International Airport (EWR). Store this dataset as `flights_ewr`. Remove the `origin` variable, since it is no longer needed. Use `glimpse()` to visualize the structure.
+
+Check: You should have 120,835 observations and 18 variables in `flights_ewr`.
+
+```{r}
+flights_ewr <- flights %>% 
+  filter(origin == "EWR") %>% 
+  select(-origin)
+```
+
+```{r{}}
+glimpse(flights_ewr)
+```
+
+#### Find Top 5 Destinations
+
+Use `count()`, `arrange()`, and `slice_head()` to find and display the five most common destination airports for planes departing from Newark.
+
+```{r}
+flights_ewr %>% 
+  count(dest) %>% 
+  arrange(desc(n)) %>% 
+  slice_head(n = 5)
+```
+
+#### Flights to Top 5 Destinations
+
+Filter your `flights_ewr` dataset so that it contains only flights to the top five destinations. Save this new dataset as `flights_ewr_top5`. Use `glimpse()` to visualize the structure.
+
+Check: You should have 26,602 observations and 18 variables in `flights_ewr_top5`.
+
+```{r}
+flights_ewr_top5 <- flights_ewr %>% 
+  filter(dest %in% c("ORD", "BOS", "SFO", "CLT", "ATL"))
+```
+
+```{r{}}
+glimpse(flights_ewr_top5)
+```
+
+#### Add Destination Names
+
+Choose only the FAA airport code and airport name from the `airports` dataset and then join the result to the `flights_ewr_top5` datset so that we get a dataset that now contains the names of the destination airports (but *only* those names---no names that are not part of the top five).  We want to keep all of the flights. Change the variable name `faa` to `dest_code` and airport `name` to `dest_name`. Do all of these manipulations in a single piped sequence and save the new dataset as the object `flights_ewr_top5_dest`. Use `glimpse()` to visualize the structure.
+
+Check: You should have 26,602 observations and 19 variables in `flights_ewr_top5_dest`.
+
+```{r}
+flights_ewr_top5_dest <- airports %>% 
+  select(faa, name) %>% 
+  right_join(flights_ewr_top5, by = c("faa" = "dest")) %>% 
+  rename(dest_code = faa,
+         dest_name = name)
+```
+
+```{r}
+glimpse(flights_ewr_top5_dest)
+```
+
+#### Add Carrier Codes
+
+Join the `flights_ewr_top5_dest` and `airlines` datasets so that we get a dataset that includes carrier names for the airlines that fly out of Newark to the top five destinations (but *only* those carrier names). Again, we want to keep all the flights, even if the carrier name is not in the `airlines` dataset. Change the new variable `name` to `carrier_name` and `flight` to `flight_num`. Move the carrier code, carrier name, and flight number variables to a position right after the destination name variable. Do all of these manipulations in a single piped sequence and save the new dataset as the object `flights_ewr_top5_dest_carrier`. Use `skim()` to visualize the structure.
+
+Check: You should have 26,602 observations and 20 variables in `flights_ewr_top5_dest_carrier`.
+
+```{r}
+flights_ewr_top5_dest_carrier <- flights_ewr_top5_dest %>% 
+  left_join(airlines, by = "carrier") %>% 
+  rename(carrier_name = name,
+         flight_num = flight) %>% 
+  relocate(c(carrier, carrier_name, flight_num), .after = dest_name)
+```
+
+```{r}
+skim(flights_ewr_top5_dest_carrier)
+```
+
+### Problem 2: Filtering Joins & Data Manipulation
+
+#### Flights That Have Plane Information
+
+Use one of the filtering joins to determine how many cases in `flights_ewr_top5_dest_carrier` have plane information in the `planes` dataset. Save the dataset as `planes_yes` and use `nrow()` to display the number of cases.  
+
+```{r}
+planes_yes <- semi_join(flights_ewr_top5_dest_carrier, planes, by = "tailnum")
+```
+
+```{r}
+nrow(planes_yes)
+```
+
+#### Flights That Do Not Have Plane Info
+
+Use one of the filtering joins to determine how many cases in `flights_ewr_top5_dest_carrier` do not have plane information in the `planes` dataset. Save the dataset as `planes_yes` and use `nrow()` to display the number of cases. 
+
+Hint: The number of observations in `planes_yes` and `planes_no` should add up to 26,602.
+
+```{r}
+planes_no <- anti_join(flights_ewr_top5_dest_carrier, planes, by = "tailnum")
+```
+
+```{r}
+nrow(planes_no)
+```
+
+#### Pull the Tail Numbers (With Info)
+
+Use `distinct()`, `arrange()`, and `pull()` to create a vector `tailnum_yes` that contains all of the the unique tail numbers in the `planes_yes` dataset in alphanumeric order. Use `length()` to show how many values are in the vector.
+
+```{r}
+tailnum_yes <- planes_yes %>% 
+  distinct(tailnum) %>% 
+  arrange(tailnum) %>% 
+  pull(tailnum)
+```
+
+```{r}
+length(tailnum_yes)
+```
+
+#### Pull the Tail Numbers (No Info)
+
+Use `distinct()`, `arrange()`, and `pull()` to create a vector `tailnum_no` that contains all of the the unique tail numbers in the `planes_no` dataset in alphanumeric order. Use `length()` to show how many values are in the vector. Since it is relatively short, also print out the vector to visualize it.
+
+```{r}
+tailnum_no <- planes_no %>% 
+  distinct(tailnum) %>% 
+  arrange(tailnum) %>% 
+  pull(tailnum)
+```
+
+```{r}
+length(tailnum_no)
+```
+
+```{r}
+print(tailnum_no)
+```
+
+***
+```{r}
+sessionInfo()
+```
+

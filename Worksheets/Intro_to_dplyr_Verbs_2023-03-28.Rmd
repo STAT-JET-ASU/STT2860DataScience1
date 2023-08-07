@@ -1,0 +1,291 @@
+---
+title: "Intro to Data Wrangling with dplyr Verbs"
+subtitle: "STT2860 Intro to Data Management & Visualization S23"
+author: "Author: YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: hide
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+<hr>
+
+This worksheet is meant to be used with:
+
+* [Intro to Data Wrangling with dplyr Verbs, Part 1](https://stat-jet-asu.github.io/Slides/GeneralR/DataWranglingVerbs01.html#1) slides
+* [Intro to Data Wrangling with dplyr Verbs, Part 2](https://stat-jet-asu.github.io/Slides/GeneralR/DataWranglingVerbs02.html#1) slides
+
+## Packages Used
+
+```{r}
+library(tidyverse)
+library(skimr)
+```
+
+## Dataset Used
+
+[Galton Data Description Page](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html)
+
+```{r}
+galtondata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/galtonfamiliesmain.csv")
+glimpse(galtondata)
+skim(galtondata)
+```
+
+## Using Filter
+
+Remember, `==` is the logical equals, it's how we check for equality. The single `=` is how we set equality inside functions.
+
+Categorical filtering, remember to put the category in quotes.
+
+```{r}
+galton_daughters <- galtondata %>% 
+  filter(Child == "Daughter")
+head(galton_daughters)
+
+galton_sons <- galtondata %>% 
+  filter(Child == "Son")
+head(galton_sons)
+```
+
+We do not need quotes on quantitative filters.
+
+```{r}
+galton_shortermoms <- galtondata %>% 
+  filter(Mother < 60)
+glimpse(galton_shortermoms)
+```
+
+The logical & (and) is implied by the comma in `filter()`. For or we can use a | between statements.
+
+```{r}
+galton_daughters_with_shorter_moms <- galtondata %>% 
+  filter(Child == "Daughter", Mother < 60)
+glimpse(galton_daughters_with_shorter_moms)
+
+galton_daughters_with_shorter_momsAND <- galtondata %>% 
+  filter(Child == "Daughter" & Mother < 60)
+glimpse(galton_daughters_with_shorter_momsAND)
+
+galton_daughters_with_shorter_moms_and_taller_dads <- galtondata %>% 
+  filter(Child == "Daughter", Mother < 60, Father > 72)
+glimpse(galton_daughters_with_shorter_moms_and_taller_dads)
+```
+
+```{r}
+example_with_OR <- galtondata %>% 
+  filter(Child == "Daughter" | Mother < 60)
+glimpse(example_with_OR)
+```
+
+```{r}
+short_and_tall_moms <- galtondata %>% 
+  filter(Mother < 60 | Mother > 70)
+glimpse(short_and_tall_moms)
+```
+
+```{r}
+middle_size_moms <- galtondata %>% 
+  filter(Mother >= 60 & Mother <= 70)
+glimpse(middle_size_moms)
+```
+
+```{r}
+middle_size_moms_between <- galtondata %>% 
+  filter(between(Mother, 60, 70))
+glimpse(middle_size_moms_between)
+```
+
+I have a vector that contains a set of values, `c("1", "2", "136A")`.
+
+```{r}
+families_1_2_136A_OR <- galtondata %>% 
+  filter(FamilyID == "1" | FamilyID == "2" | FamilyID == "136A")
+glimpse(families_1_2_136A_OR)
+```
+
+We can do multiple "or" | choices using `%in%`.
+
+```{r}
+families_1_2_136A <- galtondata %>% 
+  filter(FamilyID %in% c("1", "2", "136A"))
+glimpse(families_1_2_136A)
+```
+
+## Summarize
+
+When we summarize, the result is another dataset (tibble).
+
+```{r}
+mean_and_sd_HT <- galtondata %>%
+  summarize(
+    mean_ht = mean(Height),
+    sd_ht = sd(Height)
+  )
+mean_and_sd_HT
+```
+
+Remember `pull()`? I can pull out the mean to be just a single value (vector).
+
+```{r}
+meanHT <- mean_and_sd_HT %>% 
+  pull(mean_ht)
+meanHT
+```
+
+Summaries by groups. The variable `Child` has two possible values, so I will get two groups.
+
+```{r}
+skim(galtondata)
+```
+
+This will have two rows, one for each category of `Child`. The first variable will represwent those groups.
+
+```{r}
+galtondata %>% 
+  group_by(Child) %>% 
+  summarize(mean_ht = mean(Height),
+            sd_ht   = sd(Height))
+```
+
+I can use `filter()` to get a subset of the summaries I calculated.
+
+```{r}
+galtondata %>% 
+  group_by(Child) %>% 
+  summarize(mean_ht = mean(Height),
+            sd_ht   = sd(Height)) %>% 
+  filter(Child == "Daughter")
+```
+
+```{r}
+galtondata %>% 
+  filter(Child == "Daughter") %>% 
+  summarize(mean_ht = mean(Height),
+            sd_ht   = sd(Height))
+```
+
+## Count
+
+For a given variable, how may times do different values appear?
+
+Remember, the output is another dataset, so I can do things like plot it.
+
+```{r}
+child_count <- galtondata %>% 
+  count(Child)
+child_count
+
+ggplot(child_count, aes(x = Child, y = n)) +
+  geom_col()
+```
+
+```{r}
+galtondata %>% 
+  count(Mother) %>% 
+  arrange(desc(n))
+```
+
+I can get a descending sort and rename the n column inside `count()`.
+
+```{r}
+galtondata %>% 
+  count(Mother, sort = TRUE, name = "mother_n") 
+```
+
+
+```{r}
+galtondata %>% 
+  count(FamilyID, Child)
+```
+
+## Distinct
+
+```{r}
+skim(galtondata, FamilyID)
+```
+
+The `skim()` says I have 197 unique family ID values.
+
+I am going to have repeat copies of mother and father heights..
+
+```{r}
+galtondata %>% 
+  select(FamilyID, Father, Mother)
+```
+
+```{r}
+galtondata %>% 
+  select(FamilyID, Father, Mother) %>% 
+  distinct()
+```
+
+Oops, erases some variables we want!
+
+```{r}
+galtondata %>% 
+  select(FamilyID, Father, Mother) %>% 
+  distinct(FamilyID)
+```
+
+I can add variables to `distinct()` instead of having to use `select()` and `distinct()` separately.
+
+```{r}
+galtondata %>% 
+  distinct(FamilyID, Father, Mother)
+```
+
+## Slice
+
+Top 10 Rows
+
+```{r}
+galtondata %>% 
+  slice_head(n = 10)
+```
+
+Bottom 10 Rows
+
+```{r}
+galtondata %>% 
+  slice_tail(n = 10)
+```
+
+Random 10 Rows
+
+```{r}
+galtondata %>% 
+  slice_sample(n = 10)
+```
+
+Take a 10% Sample
+
+```{r}
+galtondata %>% 
+  slice_sample(prop = .10)
+```
+
+Tallest 20 Kids
+
+```{r}
+galtondata %>% 
+  slice_max(Height, n = 20) 
+```
+
+
+<hr>
+```{r}
+sessionInfo()
+```

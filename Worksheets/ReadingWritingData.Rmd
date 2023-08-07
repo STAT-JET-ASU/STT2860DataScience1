@@ -1,0 +1,433 @@
+---
+title: "Reading & Writing Data in R"
+author: "YOUR NAME HERE"
+date: "Last rendered on `r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+Packages Used
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(writexl)
+```
+
+
+## "Whitespace" Files
+
+### The `read_table()` Function
+
+    # syntax
+    read_table(
+      file,
+      col_names = TRUE,
+      col_types = NULL,
+      locale = default_locale(),
+      na = "NA",
+      skip = 0,
+      n_max = Inf,
+      guess_max = min(n_max, 1000),
+      progress = show_progress(),
+      comment = "",
+      show_col_types = should_show_types(),
+      skip_empty_rows = TRUE
+    )
+
+#### NOAA Climate Data Examples
+
+```{r}
+mlco2v1 <- read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  comment = "#",
+  col_names = c(
+    "year",
+    "month",
+    "dec_date",
+    "co2",
+    "co2_adj",
+    "num_days",
+    "sd_days",
+    "uncertainty"
+  )
+)
+```
+
+```{r}
+glimpse(mlco2v1)
+head(mlco2v1)
+tail(mlco2v1)
+```
+
+```{r}
+mlco2v2 <- read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  comment = "#",
+  col_names = c(
+    "year",
+    "month",
+    "dec_date",
+    "co2",
+    "co2_adj",
+    "num_days",
+    "sd_days",
+    "uncertainty"
+  ),
+  col_types = "iinnnnnn"
+)
+```
+
+```{r}
+glimpse(mlco2v2)
+head(mlco2v2)
+tail(mlco2v2)
+```
+
+#### Watauga County Schools Example #1
+
+```{r}
+# file: WCSweatherdays2000s.txt
+
+```
+
+
+## Delimited Files
+
+Delimited is generally defined as "having fixed boundaries or limits". A delimited file is a file with columns separated by delimiters (other than white space). Two common delimiters are commas and tabs. Character data may or may not be enclosed in quotes.
+
+### The `read_delim()` Function
+
+    # syntax
+    # general format
+    read_delim(
+      file,
+      delim = NULL,
+      quote = "\"",
+      escape_backslash = FALSE,
+      escape_double = TRUE,
+      col_names = TRUE,
+      col_types = NULL,
+      col_select = NULL,
+      id = NULL,
+      locale = default_locale(),
+      na = c("", "NA"),
+      quoted_na = TRUE,
+      comment = "",
+      trim_ws = FALSE,
+      skip = 0,
+      n_max = Inf,
+      guess_max = min(1000, n_max),
+      name_repair = "unique",
+      num_threads = readr_threads(),
+      progress = show_progress(),
+      show_col_types = should_show_types(),
+      skip_empty_rows = TRUE,
+      lazy = should_read_lazy()
+    )
+
+#### Watauga County Schools Example #2
+
+```{r}
+# file: WCSweatherdays.csv
+
+```
+
+#### Watauga County Schools Example #3
+
+```{r}
+# file: WCSweatherdays.tab
+
+```
+
+### The `read_csv()` Function
+
+    # comma separated values
+    read_csv(
+      file,
+      col_names = TRUE,
+      col_types = NULL,
+      col_select = NULL,
+      id = NULL,
+      locale = default_locale(),
+      na = c("", "NA"),
+      quoted_na = TRUE,
+      quote = "\"",
+      comment = "",
+      trim_ws = TRUE,
+      skip = 0,
+      n_max = Inf,
+      guess_max = min(1000, n_max),
+      name_repair = "unique",
+      num_threads = readr_threads(),
+      progress = show_progress(),
+      show_col_types = should_show_types(),
+      skip_empty_rows = TRUE,
+      lazy = should_read_lazy()
+    )
+
+#### Watauga County Schools Example #4
+
+```{r}
+# file: WCSweatherdays.csv
+
+```
+
+#### US Skyscrapers Example #1
+
+```{r}
+# file: WCSweatherdays.csv
+
+```
+
+#### US Skyscrapers Example #2
+
+```{r}
+# file: WCSweatherdays.csv
+
+```
+
+### The `read_tsv()` Function
+
+    # tab-separated values
+    read_tsv(
+      file,
+      col_names = TRUE,
+      col_types = NULL,
+      col_select = NULL,
+      id = NULL,
+      locale = default_locale(),
+      na = c("", "NA"),
+      quoted_na = TRUE,
+      quote = "\"",
+      comment = "",
+      trim_ws = TRUE,
+      skip = 0,
+      n_max = Inf,
+      guess_max = min(1000, n_max),
+      progress = show_progress(),
+     name_repair = "unique",
+      num_threads = readr_threads(),
+      show_col_types = should_show_types(),
+      skip_empty_rows = TRUE,
+      lazy = should_read_lazy()
+    )
+
+#### Watauga County Schools Example #5
+
+```{r}
+# file: WCSweatherdays.tab
+
+```
+
+
+## RDS and RDATA Files
+
+### Reading and Writing `.rds`
+
+An `.rds` file is an `R`-specific file type that stores a single `R` object, such as a vector, list, dataset, plot, or function. 
+
+Read an object from an `.rds` file using the following general code. You may need to specify a path name. You can also read data directly from a URL.
+
+```{r, readrds, eval = FALSE}
+readRDS(file = "my_data.rds")
+```
+
+    # syntax
+    readRDS(
+      file, 
+      refhook = NULL
+    )
+
+#### Reading `.rds` Examples
+
+```{r}
+
+```
+
+Save a single object to an `.rds` file using the following general code. If the data are being saved to a folder you need to specify the path to the folder.
+
+```{r, saverds, eval = FALSE}
+saveRDS(objectname, file = "my_data.rds")
+```
+
+    # syntax
+    saveRDS(
+      object, 
+      file = "", 
+      ascii = FALSE, 
+      version = NULL,
+      compress = TRUE, 
+      refhook = NULL
+    )
+
+#### Writing `.rds` Examples
+
+```{r}
+
+```
+
+### Reading and Writing `.Rdata`
+
+An `.Rdata` file is an `R`-specific file type that stores multiple `R` objects together in a single file. It is sometimes abbreviated as `.Rda`.
+
+Load an `.Rdata` file using the following general code. You may need to specify a path name. You can also read data directly from a URL.
+
+```{r, loadrata, eval = FALSE}
+load("data.RData")
+```
+
+    # syntax
+    load(
+      file, 
+      envir = parent.frame(), 
+      verbose = FALSE
+    )
+
+#### Reading `.Rdata` Examples
+
+```{r}
+
+```
+
+Save a one or more objects to an `.Rdata` file using the following general code. If the data are being saved to a folder you need to specify the path to the folder.
+
+```{r, saverdata1, eval = FALSE}
+save(objectname, file = "data.RData")
+```
+
+```{r, saverdata2, eval = FALSE}
+save(objectname1, objectname2, file = "data.RData")
+```
+
+    # syntax
+    save(..., 
+      list = character(),
+      file = stop("'file' must be specified"),
+      ascii = FALSE, 
+      version = NULL, 
+      envir = parent.frame(),
+      compress = isTRUE(!ascii), 
+      compression_level,
+      eval.promises = TRUE, 
+      precheck = TRUE
+    )
+
+#### Writing `.Rdata` Examples
+
+```{r}
+
+```
+
+Save your entire workspace (all objects in your Environment) to an `.Rdata` file using the following general code. If the data are being saved to a folder you need to specify the path to the folder. It can be reloaded with the `load()` function.
+
+```{r, savewkspc, eval = FALSE}
+save.image("myworkspace.RData")
+```
+
+    # syntax
+    save.image(
+      file = ".RData", 
+      version = NULL, 
+      ascii = FALSE,
+      compress = !ascii, 
+      safe = TRUE
+    )
+
+#### Workspace Image Example
+
+```{r}
+
+```
+
+## Excel Files
+
+### Workbook Format
+
+    # syntax
+    excel_format(guess = TRUE)
+
+```{r}
+
+```
+
+### Number of Sheets
+
+    # syntax
+    excel_sheets(path)
+    
+```{r}
+
+```
+
+### Read a Workbook Sheet
+
+    # general syntax, guesses file type
+    read_excel(
+      path,
+      sheet = NULL,
+      range = NULL,
+      col_names = TRUE,
+      col_types = NULL,
+      na = "",
+      trim_ws = TRUE,
+      skip = 0,
+      n_max = Inf,
+      guess_max = min(1000, n_max),
+      progress = readxl_progress(),
+      .name_repair = "unique"
+    )
+
+    # if you know it is an .xlsx file
+    read_xlsx(
+      path,
+      sheet = NULL,
+      range = NULL,
+      col_names = TRUE,
+      col_types = NULL,
+      na = "",
+      trim_ws = TRUE,
+      skip = 0,
+      n_max = Inf,
+      guess_max = min(1000, n_max),
+      progress = readxl_progress(),
+      .name_repair = "unique"
+    )
+    
+```{r}
+
+```
+
+### Write to an Excel File
+
+    # syntax
+    write_xlsx(
+      x,
+      path = tempfile(fileext = ".xlsx"),
+      col_names = TRUE,
+      format_headers = TRUE,
+      use_zip64 = FALSE
+    )
+    
+```{r}
+
+```
+
+
+<hr>
+```{r}
+sessionInfo()
+```
+

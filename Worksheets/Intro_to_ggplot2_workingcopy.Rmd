@@ -1,0 +1,305 @@
+---
+title: "Intro to Visualization with ggplot2 & Other Packages"
+subtitle: "STT2860 Intro to Data Management and Vis S22"
+author: "Author: Dr. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4
+    toc_float: true
+    code_folding: hide
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+<hr>
+
+## Packages Used
+
+```{r packageloading}
+library(tidyverse)
+# library(treemapify)
+library(ggridges)
+library(waffle)
+```
+
+## Datasets Used
+
+### Capital Punishment
+
+Make some notes about the dataset here if you want!
+
+```{r}
+cap <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/cappunish20220107.csv")
+glimpse(cap)
+```
+
+### Mauna Loa CO2 Data
+
+```{r}
+mlco2 <- read_table("https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  comment = "#",
+  col_names = c(
+    "year",
+    "month",
+    "dec_date",
+    "co2",
+    "co2_adj",
+    "num_days",
+    "sd_days",
+    "uncertainty"
+  )
+) %>%
+  select(-(num_days:uncertainty)) %>% 
+  pivot_longer(cols = co2:co2_adj, names_to = "co2_type", values_to = "ppm")
+glimpse(mlco2)
+```
+
+### MLB Salaries 1985-2015
+
+```{r}
+mlb <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/MLBsalaries19852015.csv")
+glimpse(mlb)
+```
+
+```{r}
+mlb_yr <- mlb %>%
+  group_by(Year) %>%
+  summarize(avg = mean(Salary),
+            med = median(Salary))
+glimpse(mlb_yr)
+```
+
+```{r}
+mlb_yr_long <- mlb_yr %>%
+  pivot_longer(avg:med, names_to = "stat", values_to = "dollars")
+glimpse(mlb_yr_long)
+```
+
+### NFL Players 2016
+
+```{r}
+nfl <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/NFLplayers2016.csv") %>%
+  mutate(Playtime = factor(Playtime,
+    levels = c(
+      "Rookie",
+      "1-4 Yrs",
+      "5-8 Yrs",
+      "9-12 Yrs",
+      "13+ Yrs"
+    )
+  ))
+glimpse(nfl)
+```
+
+## Barplots
+
+### One Categorical Variable
+
+`ggplot()` = the overall function to create plots
+
+Remember, ggplot2 is the package, `ggplot()` is the function, not `ggplot2()`.
+
+The `aes` is aesthetics.
+
+Basic syntax:
+
+    ggplot(datasetname, aes(x = variablename)) +
+      geom_bar()
+  
+```{r}
+ggplot(nfl, aes(x = Playtime)) +
+  geom_bar(color = "darkgray", fill = "skyblue") +
+  labs(title = "Playing Time of NFL Players in 2016",
+       x = "How many years?",
+       y = "Number of Players")
+```
+
+### Two Categorical Variables
+
+#### Stack (Default)
+
+```{r}
+ggplot(nfl, aes(x = Playtime, fill = Side)) +
+  geom_bar()
+
+ggplot(nfl, aes(x = Playtime, color = Side)) +
+  geom_bar()
+
+ggplot(nfl, aes(x = Playtime, fill = Side)) +
+  geom_bar(color = "black", width = 0.5)
+```
+
+```{r}
+ggplot(nfl, aes(x = Side, fill = Playtime)) +
+  geom_bar(width = 0.75, alpha = 0.5)
+```
+
+#### Dodge (Grouped)
+
+```{r}
+ggplot(nfl, aes(x = Playtime, fill = Side)) +
+  geom_bar(position = "dodge")
+```
+
+```{r}
+ggplot(nfl, aes(x = Playtime, fill = Side)) +
+  geom_bar(position = "dodge")
+
+ggplot(nfl, aes(x = Side, fill = Playtime)) +
+  geom_bar(position = "dodge")
+```
+
+
+#### Fill (Segmented)
+
+```{r}
+ggplot(nfl, aes(x = Playtime, fill = Side)) +
+  geom_bar()
+
+ggplot(nfl, aes(x = Playtime, fill = Side)) +
+  geom_bar(position = "fill") +
+  labs(y = "proportion")
+```
+
+### Aesthetics inside Geometry
+
+```{r}
+ggplot(nfl, aes(x = Playtime)) +
+  geom_bar()
+
+ggplot(nfl) +
+  geom_bar(mapping = aes(x = Playtime))
+
+ggplot() +
+  geom_bar(mapping = aes(x = Playtime), data = nfl)
+
+nfl %>% 
+  ggplot(aes(x = Playtime)) +
+  geom_bar()
+
+nfl %>% 
+  filter(Side == "Special Teams") %>% 
+  ggplot(aes(x = Playtime)) +
+  geom_bar()
+
+
+# nfl %>% 
+#   <<I could filter here before plotting>>
+#   ggplot(aes(x = Playtime)) +
+#   geom_bar()
+```
+
+
+### Summary Statistics
+
+```{r}
+
+```
+
+## Quantitative Plots
+
+### Histogram/Polygon
+
+```{r}
+ggplot(nfl, aes(x = Weight)) +
+  geom_histogram()
+```
+
+### Density/Ridgeline
+
+```{r}
+ggplot(nfl, aes(x = Weight)) +
+  geom_density()
+```
+
+### Boxplots/Violins
+
+#### Boxplot
+
+
+```{r}
+ggplot(nfl, aes(x = Weight)) +
+  geom_boxplot()
+```
+
+#### Violin
+
+```{r}
+ggplot(nfl, aes(x = Weight, y = Side)) +
+  geom_violin()
+```
+
+
+```{r}
+
+```
+```
+
+#### Boxplot & Violin
+
+```{r}
+
+```
+
+## Scatterplots/Lines
+
+### Two Variables
+
+```{r}
+
+```
+
+### Time Series
+
+#### Point
+
+```{r}
+
+```
+
+#### Line
+
+```{r}
+
+```
+
+#### Point & Line
+
+```{r}
+
+```
+
+## Other Plots
+
+### Tree Map
+
+```{r}
+
+```
+
+### Waffle
+
+```{r}
+
+```
+
+### TBA
+
+```{r}
+
+```
+
+
+<hr>
+```{r}
+sessionInfo()
+```

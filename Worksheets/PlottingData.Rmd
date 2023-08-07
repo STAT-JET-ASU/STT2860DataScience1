@@ -28,7 +28,11 @@ library(naniar)
 
 ### Data Used
 
+The code includes a preview of some skills you will learn later in the course.
+
 #### NFL Player Data
+
+Description: [NFL Players 2016 Dataset](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html)
 
 ```{r}
 NFL <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/NFLplayers2016.csv") %>%
@@ -39,10 +43,19 @@ NFL <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/
     "9-12 Yrs",
     "13+ Yrs"
   )))
+```
+
+```{r}
 glimpse(NFL)
 ```
 
+```{r}
+head(NFL)
+```
+
 #### Mauna Loa Data
+
+Source: [NOAA Trends in Atmospheric Carbon Dioxide](https://gml.noaa.gov/ccgg/trends/)
 
 ```{r}
 MLCO2 <- read_table(
@@ -59,14 +72,25 @@ MLCO2 <- read_table(
     "uncertainty"
   )
 ) %>%
-  replace_with_na(replace = list(
+  replace_with_na(replace = list( 
     num_days = -1,
     sd_days = -9.99,
     uncertainty = -0.99
   )) %>%
   filter(year >= 2018)
+
+# replace_with_na() function comes from the naniar package
+# https://cran.r-project.org/web/packages/naniar/vignettes/getting-started-w-naniar.html
+```
+
+```{r}
 glimpse(MLCO2)
 ```
+
+```{r}
+head(MLCO2)
+```
+
 
 ### Facets
 
@@ -86,12 +110,22 @@ ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
   geom_histogram(bins = 40, color = "black")
 ```
 
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 40, color = "black")
+```
+
 Basic Histogram with Fill and Formatting
 
 https://r-graph-gallery.com/histogram_several_group.html
 
 ```{r}
 ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
+  geom_histogram(bins = 40, position = "identity", color = "black", alpha = 0.25)
+```
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
   geom_histogram(bins = 40, position = "identity", color = "black", alpha = 0.25)
 ```
 
@@ -103,6 +137,12 @@ ggplot(NFL, aes(x = Weight)) +
   facet_wrap(. ~ PositionGrp)
 ```
 
+```{r}
+ggplot(NFL, aes(x = Weight)) +
+  geom_histogram(bins = 20, color = "black", fill = "orange") +
+  facet_wrap(. ~ Side)
+```
+
 Basic Histogram Using Faceting and Fill
 
 ```{r}
@@ -111,12 +151,25 @@ ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
   facet_wrap(. ~ PositionGrp)
 ```
 
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 20, color = "black") +
+  facet_wrap(. ~ Side)
+```
+
 Eliminating the Unnecessary Fill Legend
 
 ```{r}
 ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
   geom_histogram(bins = 20, color = "black") +
   facet_wrap(. ~ PositionGrp) +
+  theme(legend.position = "none")
+```
+
+```{r}
+ggplot(NFL, aes(x = Weight, fill = Side)) +
+  geom_histogram(bins = 20, color = "black") +
+  facet_wrap(. ~ Side) +
   theme(legend.position = "none")
 ```
 
@@ -145,27 +198,9 @@ ggplot(NFL, aes(x = Weight, fill = Side)) +
 Basic Histogram Using Faceting and Fill (Columns)
 
 ```{r}
-ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
-  geom_histogram(bins = 20, color = "black") +
-  facet_grid(. ~ PositionGrp) +
-  theme(legend.position = "none")
-```
-
-Basic Histogram Using Faceting and Fill (Columns)
-
-```{r}
 ggplot(NFL, aes(x = Weight, fill = Side)) +
   geom_histogram(bins = 20, color = "black") +
   facet_grid(. ~ Side) +
-  theme(legend.position = "none")
-```
-
-Basic Histogram Using Faceting and Fill (Rows)
- 
-```{r}
-ggplot(NFL, aes(x = Weight, fill = PositionGrp)) +
-  geom_histogram(bins = 20, color = "black") +
-  facet_grid(PositionGrp ~ .) +
   theme(legend.position = "none")
 ```
 
@@ -190,7 +225,9 @@ ggplot(NFL, aes(x = Weight, fill = Side)) +
 
 ### Multiple Aesthetics/Geometries
 
-https://gml.noaa.gov/ccgg/trends/
+https://r-graphics.org/chapter-line-graph
+https://r-graphics.org/chapter-scatter
+https://rkabacoff.github.io/datavis/Time.html
 
 Using Two Geometries with the Same Aesthetics
 
@@ -329,18 +366,19 @@ dev.off()
 ```
 
 ```{r}
-pdf("NOAAplotA.pdf",        # file name
-    width = 7, height = 6,  # width and height in inches
-    bg = "white",           # background color
-    colormodel = "cmyk",    # color model (cmyk is required for most publications)
-    paper = "USr")          # paper size
+pdf("NOAAplotA.pdf", # file name
+  width = 7, height = 6, # width and height in inches
+  bg = "white", # background color
+  colormodel = "cmyk", # color model (cmyk is required for most publications)
+  paper = "USr"
+) # paper size
 
 ggplot(MLCO2, aes(x = dec_date, y = co2)) +
   geom_line(color = "red", linetype = 2) +
   geom_point(color = "blue", size = 2, shape = 8) +
   theme_classic()
 
-dev.off() 
+dev.off()
 ```
 
 Not a Great Plot, but Very Different Geometries

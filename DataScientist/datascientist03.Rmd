@@ -1,0 +1,54 @@
+---
+title: "&#8220;Becoming a Data Scientist&#8221; #3"
+subtitle: "STT2860 Intro Data Management & Visualization"
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+<hr>
+**Instructions:** In &#8220;Becoming a Data Scientist&#8221; #1 and &#8220;Becoming a Data Scientist&#8221; #2, you listened to two different people describe their pathwayS into data science. Now it's your turn! 
+<hr>
+
+**Q1: What is the primary reason you chose to enroll in STT2860?**
+
+ANSWER:
+
+**Q2: Have you taken other classes in statistics, computer science, or data science?**
+
+ANSWER:
+
+**Q3: Do you plan to take more classes in statistics, computer science, or data science?**
+
+ANSWER:
+
+**Q4: TBA**
+
+ANSWER:
+
+**Q05: TBA**
+
+ANSWER:
+
+**Q06: TBA**
+
+ANSWER:
+
+**Q07: TBA**
+
+ANSWER:
+
+**Q08: TBA**
+
+ANSWER:
+
+**Q09: TBA**
+
+ANSWER:
+
+**Q10: At this point, do you consider yourself a data scientist? Why or why not?**
+
+<hr>
+
