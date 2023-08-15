@@ -1,6 +1,5 @@
 ---
 title: "STT2860 Introduction to Data Management<br>& Visualization&mdash;Syllabus for Fall 2023"
-subtitle: "Dr. Jill E. Thomley (she/her/hers)<br>https://jillthomley.github.io/<br>thomleyje@appstate.edu" 
 output: 
   html_document: 
     theme: cosmo
@@ -10,6 +9,14 @@ output:
     css: "../../css/style.css"
     keep_md: yes
 ---
+
+#### **Instructor Information** 
+
+Dr. Jill E. Thomley<br>
+Walker Hall 228<br>
+828-773-3273<br>
+thomleyje@appstate.edu<br>
+<https://jillthomley.github.io/>
 
 #### **Bulletin Description**  
 
@@ -156,4 +163,4 @@ As per [AppalachianState University](https://diversity.appstate.edu/) and the [D
 
 <hr>
 
-Updated Monday, August 14, 2023 @ 11:02 PM
+Updated Tuesday, August 15, 2023 @ 06:48 PM
