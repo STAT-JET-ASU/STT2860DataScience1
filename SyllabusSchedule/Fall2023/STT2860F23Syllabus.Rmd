@@ -10,6 +10,8 @@ output:
     keep_md: yes
 ---
 
+<hr>
+
 #### **Instructor Information** 
 
 Dr. Jill E. Thomley<br>

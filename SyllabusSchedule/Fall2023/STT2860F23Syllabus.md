@@ -10,6 +10,8 @@ output:
     keep_md: yes
 ---
 
+<hr>
+
 #### **Instructor Information** 
 
 Dr. Jill E. Thomley<br>
@@ -163,4 +165,4 @@ As per [AppalachianState University](https://diversity.appstate.edu/) and the [D
 
 <hr>
 
-Updated Tuesday, August 15, 2023 @ 06:48 PM
+Updated Tuesday, August 15, 2023 @ 06:52 PM
