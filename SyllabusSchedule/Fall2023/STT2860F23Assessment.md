@@ -1,6 +1,5 @@
 ---
 title: "STT2860 Introduction to Data<br>Management & Visualization<br>Assessment Map for Fall 2023"
-subtitle: "Dr. Jill E. Thomley (she/her/hers)<br>https://jillthomley.github.io/<br>thomleyje@appstate.edu" 
 output: 
   html_document: 
     theme: cosmo
@@ -8,6 +7,10 @@ output:
     css: "../../css/style.css"
     keep_md: yes
 ---
+
+<hr>
+**This document is a work in progress.**
+<hr>
 
 ## Assessment Map
 
@@ -68,5 +71,5 @@ output:
 
 <hr>
 
-Updated Monday, August 14, 2023 @ 01:28 PM
+Updated Monday, August 21, 2023 @ 08:35 PM
 
