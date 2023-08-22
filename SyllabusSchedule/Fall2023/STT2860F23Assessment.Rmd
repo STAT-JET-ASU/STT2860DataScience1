@@ -36,7 +36,6 @@ output:
 * Week 10: | DC | Data Manipulation with dplyr
 * Week 11: | DC | Reshaping Data with tidyr
 * Week 12: | DC | Joining Data with dplyr
-* Week 13: | DC | Intermediate R
 * Weeks 08/09: Project #1
 * Weeks 15/16: Project #2
 
