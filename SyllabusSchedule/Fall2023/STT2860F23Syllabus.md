@@ -117,11 +117,13 @@ By submitting work under your name, you are attesting that you have abided by th
 
 ##### **Required Textbooks**
 
-Primary Textbooks
+All of the following textbooks are free and web-based.
 
-* [Introduction to Data](http://rafalab.dfci.harvard.edu/dsbook/) Science (IDS) by Rafael A. Irizarry (free, web-based)
-* [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger Peng (free, web-based)
-* [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, and Garrett Grolemund (free, web-based)
+* [Data Visualization with R](https://rkabacoff.github.io/datavis/) by Rob Kabacoff
+* [ggplot2: Elegant Graphics for Data Analysis, 3rd Edition](https://ggplot2-book.org/) by Hadley Wickham 
+* [R for Data Science, 2nd Edition](https://r4ds.hadley.nz/) by Hadley Wickham, Mine Çetinkaya-Rundel, and Garrett Grolemund
+* [R Programming for Data Science](https://bookdown.org/rdpeng/rprogdatascience/) by Roger Peng
+* [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) by Yihui Xie, J. J. Allaire, and Garrett Grolemund
 
 We will use some other web-based texts, as well as a variety of web resources such as blogs, web pages and videos. All materials can be accessed via AsULearn. There is no rental system textbook for this class.
 
@@ -165,4 +167,4 @@ As per [AppalachianState University](https://diversity.appstate.edu/) and the [D
 
 <hr>
 
-Updated Monday, August 21, 2023 @ 08:47 PM
+Updated Monday, August 21, 2023 @ 09:02 PM
