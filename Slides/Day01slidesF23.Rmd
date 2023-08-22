@@ -122,7 +122,7 @@ knitr::include_graphics("images/rstudiologo.png", dpi = 400)
 
 ## Sign on to RStudio Server
 
-Use your ASU Username and Password to log in to the [RStudio server](https://mathr.math.appstate.edu/). Let me know if you have any trouble! Also make sure to complete "Confirm ASU RStudio server login" on AsULearn.
+Use your ASU Username and Password to log in to the [RStudio (Posit) server](https://mathr.appstate.edu/). Let me know if you have any trouble! Also make sure to complete "Login and confirm RStudio server access" on AsULearn.
 
 ```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("../images/PositSignin.png", dpi = 128)
@@ -152,7 +152,7 @@ knitr::include_graphics("images/datacamplogonew.png", dpi = 300)
 
 * Join our DataCamp class. The link for this is on AsULearn.
 
-* Finally, complete "Confirm DataCamp account creation" on AsULearn sometime after class is over.
+* Finally, complete "Join and confirm DataCamp course access" on AsULearn sometime after class is over.
 
 You will have six months of free access to DataCamp, during which you can access all content --- not just courses I assign.
 
