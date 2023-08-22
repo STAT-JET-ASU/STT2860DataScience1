@@ -1,0 +1,243 @@
+---
+title: "Introduction to Vectors"
+subtitle: "STT2860 Intro to Data Mgmt and Visualization"
+author: "Author: Jill E. Thomley // Appalachian State University"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+library(tidyverse)
+library(kableExtra)
+```
+
+
+# Atomic Vectors
+
+## Types of Vectors
+
+Vectors are the basic building blocks of data and programming in `R`. There are two types of vectors: **atomic vectors** and **lists**.
+
+* There are six types of **atomic vectors** in R. 
+* Atomic vectors can only contain elements of the same type. 
+* A **factor** or **date-time** is a special (*augmented*) atomic vector.
+* The **list** structure is sometimes called a recursive vector.
+* Lists can contain different types of data, including other lists.
+* A **data frame** or **tibble** is a special (*augmented*) type of list.
+
+**`NULL`** is the absence of a vector and it essentially behaves like a vector of length 0. We will see this in different contexts.
+
+
+## The Six Types of Atomic Vectors
+
+| typeof (...)                           | mode (...) | storage.mode (...) |
+|:--------------------------------------:|:----------:|:------------------:|
+| logical (`TRUE` = `1` / `FALSE` = `0`) | logical    | logical            |
+| integer                                | numeric    | integer            |
+| double                                 | numeric    | double*            |
+| complex                                | complex    | complex            |
+| character (alphanumeric, string)       | character  | character          |
+| raw (contains raw bytes)               | raw        | raw                |
+
+\* double precision floating point (a method by which computers store decimal numbers; 64 bits or 8 bytes of memory)
+
+
+## Vector Hierarchy
+
+<p style = "text-align: center;">`logical` > `integer` > `double` > `complex` > `character` > `raw`</p>
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/VectorHierarchy.png", dpi = 300)
+```
+
+<div style = "text-align: center; font-size: 18px;">Hierarchy of vectors in `R` (from [R for Data Science: Vectors](https://r4ds.had.co.nz/vectors.html))</div>
+
+## Identify Vector Structure
+
+If there is more than one data type when a vector is created, the function converts all the elements to the lowest possible type.
+
+Several functions can help us identify vector structure. The two below are particularly useful.
+
+`typeof()` --- determines the internal storage mode of an object
+
+`class()` --- determines the `class` attributes of an object, which are related to the way the object is handled when programming (e.g., what `R` functions can be used and what operations can be performed on that object)
+
+*Example:* We can add numeric vectors using the `+` operator, but we cannot add character vectors.
+
+
+# Creating Vectors
+
+## The `vector()` Function
+
+We can create any type of atomic vector or list with the vector function (plus a few other forms). The syntax (*note the default parameter values*) is shown below.
+
+    vector(mode = "logical", length = 0)
+    
+```{r}
+# using default parameter values; "parameters" are function settings
+vector()
+# changing mode and length
+vector(mode = "numeric", length = 10) # vector is filled with zeroes
+```
+
+
+##
+
+```{r}
+vector(mode = "logical", length = 5) # recall that FALSE = 0
+vector(mode = "integer", length = 6) # filled with zeroes
+vector(mode = "double", length = 7) # filled with zeroes
+vector(mode = "character", length = 8) # empty character spaces
+```
+
+
+## 
+
+In addition to the `vector()` function, there are related functions to create each of the different types of atomic vectors. Default is length zero, like `vector()`.
+
+    logical(length = 0)
+    integer(length = 0)
+    double(length = 0)
+    numeric(length = 0)
+    character(length = 0)
+    
+```{r}
+logical(length = 10)
+character(length = 10)
+```
+
+
+## The `c()` Function
+
+The c in the `c()` function is short for *concatenate* or *combine*. It is a general function that structures its arguments---*the values you put inside the parentheses*---into a vector. 
+
+```{r}
+c(TRUE, TRUE, FALSE, TRUE)   # logical vector
+```
+
+```{r}
+c(10, 2, 78, 5, 16)   # numeric vector
+```
+
+```{r}
+c("Alex", "Drew", "Jordan", "Riley")   # character vector
+```
+
+
+## Vector Storage
+
+To store the vector as an object we can use in programming, we need to use the ***assignment operator*** `<-` (shortcut Alt + -).
+
+```{r}
+logicalvector <- c(TRUE, TRUE, FALSE, TRUE)
+```
+
+```{r}
+numericvector <- c(10, 2, 78, 5, 16)
+```
+
+```{r}
+charactervector <- c("Alex", "Drew", "Jordan", "Riley")
+```
+
+Examine the vector objects in your Environment pane! We also can recall the contents by typing its "name" in the Console.
+
+```{r}
+logicalvector
+```
+
+
+# Coercing Vectors
+
+## Mixing Elements in c()
+
+For a mix of element types, vector type (mode) is determined by ***implicit coercion*** to the lowest possible type.
+
+```{r}
+v1 <- c(10, TRUE, 0.5) # integer, logical, and numeric elements
+v1   # notice that TRUE has been expressed as its numeric form 1
+```
+
+```{r}
+typeof(v1)   # the storage mode of the vector
+class(v1)    # the object class of the vector
+```
+
+
+##
+
+```{r}
+v2 <- c("A", 10, TRUE, 0.5) # now add a character element
+v2   # notice the quotation marks around all the elements
+```
+
+```{r}
+typeof(v2)
+class(v2)
+```
+
+<hr>
+
+recall the hierarchical order: 
+
+<div style = "text-align: center;">`logical` > `integer` > `double` > `complex` > `character`</div>
+
+
+## Forcing a Change
+
+We can purposely change or coerce vector types using the `as.*` functions. This is called ***explicit coercion***. 
+
+* `as.logical()`
+* `as.integer()`
+* `as.double()`
+* `as.character()`
+
+We rarely use `complex` vectors (i.e., imaginary numbers) in data science, but there is a function for that as well.
+
+Explicit coercion depends on the specific elements in the vector. We cannot force a character vector to become a numeric vector, for example. As we will see later, `as.Date()` is a useful coercion, too. All these are useful for cleaning messy data.
+
+
+## Some Examples
+
+```{r}
+v3 <- c(0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
+typeof(v3)
+```
+
+```{r}
+v4 <- as.integer(v3)
+typeof(v4)
+```
+
+```{r}
+v5 <- as.character(v3)
+typeof(v5)
+```
+
+
+## What is Happening?
+
+```{r}
+as.numeric(v2)
+```
+
+```{r}
+as.integer(v2)
+```
+
+```{r}
+as.logical(v3)
+```
+
+```{r}
+as.logical(v5)
+```
+
+

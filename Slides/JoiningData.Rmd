@@ -1,0 +1,98 @@
+---
+title: "Binding and Joining<br>Data in R"
+author: "Author: Jill E. Thomley"
+date: '`r format(Sys.time(), "%B %d, %Y @ %I:%M %p")`'
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+## Before We Begin...
+
+These slides are not meant to be standalone information, but rather a guide for hands-on lecture. Be prepared to take notes to flesh out the contents. 
+
+I recommend that you create an R Markdown document where you can include information and code from the slides as well as your own additional notes and explorations.
+
+These slides were produced using R Markdown. See "[4.1 ioslides presentation](https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html)" in [*R Markdown: The Definitive Guide*](https://bookdown.org/yihui/rmarkdown/).
+
+## Basic Binding Functions
+
+Appends rows or columns to an existing data frame or tibble.
+
+* `rbind()` and `cbind()` --- base `R` functions
+* `bind_rows()` and `bind_cols()` --- dplyr versions ([see help](https://dplyr.tidyverse.org/reference/bind.html))
+
+When using `bind_rows()`, columns are matched by name. Any missing columns will be filled with `NA`.
+
+When using `bind_cols()`, rows are matched by position, so the data frames must have the same number of rows in order. 
+
+To match rows by one or more values, use a [mutating join](https://dplyr.tidyverse.org/reference/mutate-joins.html).
+
+## 
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/bind_rows.PNG", dpi = 100)
+```
+
+The columns need to match / align properly for base `R` binding. 
+
+## 
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/bind_cols.PNG", dpi = 100)
+```
+
+Notice that the cases must be ordered properly before binding. There is no matching `key` like we see in dplyr's join functions.
+
+## Merging Data
+
+Combine dataframes or tibbles in ways more complicated than sinple row or column binding.
+
+* `merge()` --- base `R`, superseded by the dplyr join functions
+
+Merge two data frames by common columns or row names, or do other versions of database join operations.
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/joins_venn.jpg", dpi = 75)
+```
+
+How do these align with dplyr's join functions?
+
+## Mutating Joins
+
+[Mutating joins](https://dplyr.tidyverse.org/reference/mutate-joins.html) *combine* variables from two data frames / tibbles. Since they **add** variables, they act like a `mutate()` statement. In all cases you get all columns in both sets.
+
+* `inner_join(x, y, by = )`
+
+returns all rows from x where there are matching values in y
+
+* `left_join(x, y, by = )`
+* `right_join(x, y, by = )`
+
+returns all rows from one of the datasets, left (x) or right (y)
+
+* `full_join(x, y, by = )`
+
+returns all rows from both datasets (may get many `NA` values)
+
+## Filtering Joins
+
+[Filtering joins](https://dplyr.tidyverse.org/reference/filter-joins.html) keep cases from the left-hand data frame / tibble based information in the right-hand dataset. Thus, the join acts like `filter()` on the left-hand dataset. 
+
+* `semi-join(x, y, by = )` 
+
+returns all rows from x where there are matching values in y
+
+* `anti-join(x, y, by = )`
+
+returns all rows from x where there are *not* matching values in y
+
+None of the columns in the right-hand data frame / tibble will be added to the left-hand dataset.

@@ -1,0 +1,257 @@
+---
+title: "Git, GitHub, and RStudio"
+subtitle: "STT2860 Intro to Data Mgmt and Visualization"
+author: "Author: Jill E. Thomley // Appalachian State University"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+    highlight: monochrome
+---
+
+<style>
+/* line 600, ../scss/default.scss */
+.prettyprint .com {
+  /* a comment */
+  color: black;
+  font-style: normal;
+}
+/* line 604, ../scss/default.scss */
+.prettyprint .str {
+  /* a string */
+  color: black;
+}
+</style>
+
+##
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/github-logo.jpg", dpi = 100)
+```
+
+GitHub is a code hosting platform for collaboration and version control. It lets you and others work together on projects---from anywhere. GitHub interfaces with RStudio projects.
+
+
+## Push-Pull Workflow
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/GitHubRStudio.png", dpi = 100)
+```
+
+
+## Funny but true?
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/git_xkcd.png", dpi = 100)
+```
+
+
+## Remember!
+
+If you are a student, you can upgrade your free account to [Pro](https://docs.github.com/en/get-started/learning-about-github/githubs-products#github-pro) by [applying for student benefits](https://education.github.com/discount_requests/student_application), which includes private repos.
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/studentbenefits.PNG", dpi = 140)
+```
+
+
+## Let's Get Started!
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/githubwallpaper.png", dpi = 110)
+```
+
+<p style="text-align: center;">Log into your GitHub account at https://github.com<p style="text-align: center;">
+
+<p style="text-align: center;">Log into the RStudio server at https://mathr.math.appstate.edu<p style="text-align: center;">
+
+
+## Commit Name and Email (Method 1)
+
+In the past, this part needed to be done in a terminal in RStudio. You may refer to [Chapter 7](https://happygitwithr.com/hello-git.html) of *Happy Git and GitHub for the useR* or GitHub [Help](https://help.github.com/). **&rarr; However, we will use Method 2.**
+
+In RStudio, choose `Tools > Terminal > New Terminal`
+
+In the Terminal, type the following lines at the prompt one at a time and hit `[Enter]` after each. 
+
+```{r, eval=FALSE}
+git config --global user.email "who@where"
+git config --global user.name "commitname"
+git config --global --list
+```
+
+These set an **[email](https://help.github.com/articles/setting-your-commit-email-address-in-git/)** and **[name](https://help.github.com/articles/setting-your-username-in-git/)** linked with any commit you make in Git. They do not have to be the same as your primary GitHub email and username. You can change them later.
+
+
+## Commit Name and Email (Method 2)
+
+As happens with so many popular and widely used processes in R and RStudio, there is a package to help us interact with Git and GitHub during setup, which was created by Hadley Wickham and collaborators. The [usethis](https://usethis.r-lib.org/) package has been installed for us on the ASU RStudio server. [See the example script!]
+
+In the RStudio Console pane (or using the Source pane), enter:
+
+```{r, eval=FALSE}
+library(usethis)
+use_git_config(user.name = "commitname", user.email = "who@where")
+```
+
+You still need to enter the code below in a Terminal window to check your configuration.
+
+```{r, eval=FALSE}
+git config --global --list
+```
+
+
+## Cache Those Credentials
+
+Would you prefer not to repeatedly type in your username and personal access token (PAT)? Me too!
+
+In the Terminal, type the following code at the prompt and hit `[Enter]`. The timeout value is 10 million (1 then seven 0's).
+
+```{r, eval=FALSE}
+git config --global credential.helper 'cache --timeout=10000000'
+```
+
+This will store your password for ten million seconds, which is about 16 weeks, enough for a semester. Once it runs out, or if you change your password, just run it again.
+
+The `global` option means the cache should apply to all of your Git projects. You can check with `git config --global --list` as you did with your commit name and email.
+
+
+## Personal Access Token
+
+Enter code below in RStudio's Console pane (or use the Source pane) to go to GitHub's personal access token page. **You must store the token that you'll create, you will not be able see it again once you leave the page.** Treat it like a password!
+
+```{r, eval=FALSE}
+library(usethis)
+create_github_token()
+```
+
+You can add/change a PAT using this function from the gitcreds package. It's a good idea to change your PAT periodically.
+
+```{r, eval=FALSE}
+library(gitcreds)
+gitcreds_set()
+```
+
+[Dr. Arnholt's video about Personal Access Tokens](https://drive.google.com/file/d/1G9G8IeYu9QetYB1nxMmAFLgRtw5YC-c8/view) --- go to 3:00
+
+
+## Coming Out of Your Shell
+
+Appendix A of ***[Happy Git and GitHub for the useR](http://happygitwithr.com/)*** discusses how to use shell commands to clone, commit, push, etc. These tools are also covered in a [DataCamp course](https://learn.datacamp.com/courses/introduction-to-git). 
+
+In this course we will use the point and click Git interface found in Environment pane of RStudio (discussed in [Chapter 12](https://happygitwithr.com/rstudio-git-github.html)).
+
+Review Chapters [15](https://happygitwithr.com/new-github-first.html) and [16](https://happygitwithr.com/existing-github-first.html) for examples of how to create a new project or copy an existing project into a new version-controlled project using GitHub.
+
+You may want to create a subdirectory in your **Home** directory in RStudio for all your version controlled projects. For example, my directory **git_repositories**.
+
+There is a nice discussion about working with R projects **[here](https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)**.
+
+
+## Let's Make a Repository
+
+From your GitHub repo page (see image on next slide)...
+
+* click on the green "New" button
+* create a new repository named __datascience1repo__
+* add a description like "this my practice repository"
+* choose "Public" or "Private" (if you have private access)
+* choose "Add a README file"
+* click the green "Create repository" button (_drum roll..._)
+
+Adding a license is optional. If you want one, the [MIT license](https://opensource.org/licenses/MIT) is a good general purpose license.
+
+Why a license? Public repositories can be copied by anyone else on GitHub, so you want to establish the parameters of use.
+
+##
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/githubrepopage.PNG", dpi = 150)
+```
+
+
+## Clone it !
+
+In your GitHub **datascience1repo** (see image on next slide)... 
+
+* choose the green “Code” button in your repo
+
+    * select "Use HTTPS"
+    * copy the HTTPS clone URL to your clipboard 
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/gitclonecoffee.jpg", dpi = 100)
+```
+
+Note: You can use SSH authentication if you want to. There's a GitHub page **[here](https://help.github.com/articles/which-remote-url-should-i-use/)** that discusses the differences.
+
+
+##
+
+You are going to copy the URL to connect GitHub to a project in RStudio with the same name.
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/githubcodebutton.PNG", dpi = 100)
+```
+
+
+## Let's Make a Project
+
+In RStudio... 
+
+* choose File > New Project > Version Control > Git
+
+* paste in the repository URL from the the clipboard where it says "Repository URL:"
+
+* the project directory name should be filled in automatically if you use CTRL-V to paste, otherwise you will have to type it in under "Project directory name:"
+
+* choose your version control subdirectory, if you made one, where it says "Create project as a subdirectory of:"
+
+* click Create Project!
+
+
+## Create, Commit, Push, Pull
+
+I'm just going to talk here for now, so follow along...
+
+Changes made in RStudio are *pushed* to GitHub. Changes made in GitHub are *pulled* to RStudio. You must *commit* your changes before you push or pull.
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/git_commit.png", dpi = 100)
+```
+
+
+## Commit-iquette
+
+These suggestions for GitHub commit etiquette were adapted from [How to use GitHub like a proper human being](https://stories.devacademy.la/how-to-use-github-like-a-proper-human-being-1a9c895c4e13).
+
+* Keep commits atomic. A commit should revolve around ONE change. If you have to add “and” you’ve committed too much.
+
+* Capitalize the first word your commit message. Sentence case is more professional and easier to read. 
+
+* Keep your commit message under 50 characters.
+
+* Do not end your commit message with a period.
+
+* Use an imperative commit message, like a command.
+
+* Use consistent language in your commit messages.
+
+
+## Forking Repos
+
+Let's go to FiveThirtyEight's [Data repository](https://github.com/fivethirtyeight/data) (also called a repo)...
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/forkingrepos.PNG", dpi = 130)
+```
+
+
+## Basic Web Pages
+
+Go to Dr. Thomley's [Basic Web Page Template repository](https://github.com/STAT-JET-ASU/basicwebpagetemplate)...
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/thomleywebpagerepo.PNG", dpi = 150)
+```
+

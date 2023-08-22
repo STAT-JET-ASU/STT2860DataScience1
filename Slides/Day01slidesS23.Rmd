@@ -1,0 +1,242 @@
+---
+title: "Day 01 Introduction"
+subtitle: "Fall 2023"
+author: "Jill E. Thomley // STT 2860 Data Mgmt & Vis // Appalachian State University"
+date: "`r format(Sys.time(), '%B %d, %Y @ %I:%M %p')`"
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r, global_options, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA,
+  echo = FALSE,
+  fig.align = "center"
+)
+```
+
+
+## Greetings!
+
+Welcome to the first day of STT 2860 Intro to Data Management and Visualization with Dr. Jill Thomley. To prepare for the start of our exciting journey...
+
+* Log on to [AsULearn](https://asulearn.appstate.edu/)!
+
+* Find and open the link "STT 2860 Spring 2023 Syllabus"
+
+* Find and open the link "Day 01 Introduction Slides"
+
+* Begin to familiarize yourself with the course documents and our AsULearn site. AsULearn is the vital hub of our course for assignments and communication.
+
+We will do some activities to make sure we are set up on course technology and familiar with course structure / expectations.
+
+
+## What is my Background?
+
+* Medical research in high school at Medical College of Ohio
+* BA in Psychology from Harvard --- focus in social psychology
+* MS in Industrial / Organizational Psychology from [RPI](https://www.rpi.edu/)
+* Health care research at the [VA hospital](https://www.va.gov/directory/guide/facility.asp?id=1) in Albany, New York
+* PhD in [Decision Sciences and Engineering Systems](https://ise.rpi.edu/programs/phd-decision-sciences-and-engineering-systems) from RPI
+    * **statistics** and operations research
+    * information systems and databases
+* Statistical consulting in a variety of disciplines
+* Grant evaluation, primarily in STEM education
+* Basic, Excel, Fathom, StatCrunch, SPSS, SAS, Minitab, R, Git...
+* Also, I just completely &hearts; data!
+
+## 
+
+<p style="text-align: center;"><img src = "images/developed-a-theory-nerd.jpg" height=525;><br>* not true, I *am* kind of a nerd, sorry-not-sorry</p>
+
+
+## My Teaching Assistant: Miss Teeny
+
+<p style="text-align: center;"><img src = "images/missteeny.jpg" height=400;></p>
+
+<p>Though truthfully, a better name would be Miss Fatty McCatty :)</p>
+
+
+## Motivating Philosophies
+
+From: [ASA Statement on the Role of Statistics in Data Science](http://magazine.amstat.org/blog/2015/10/01/asa-statement-on-the-role-of-statistics-in-data-science/)
+
+The foundations of data science include, but are not limited to: database management, statistics/machine learning, distributed and parallel computing. **/multidisciplinary/**
+
+"Framing questions statistically allows us to leverage data resources to extract knowledge and obtain better answers." **/finding answers and solving problems/**
+
+"Statistical methods aim to focus attention on findings that can be reproduced by other researchers..." **/reproducible research/**
+
+"...next generation of statistical professionals needs a broader skill set and must be more able to engage with database and distributed systems experts." **/beyond point-and-click/**
+
+
+## A New Generation of Coding
+
+“Starting September 1 [2016], JASA ACS will require code and data as a minimum standard for reproducibility of statistical scientific research. New infrastructure is being established to support this initiative … A new editorial role—associate editor for reproducibility (AER)—will be added to ensure we meet a standard of reproducibility.” ([Reproducible Research in JASA](http://magazine.amstat.org/blog/2016/07/01/jasa-reproducible16/))
+
+ASA also released [Recommendations to Funding Agencies for Supporting Reproducible Research](https://www.amstat.org/ASA/News/ASA-Develops-Reproducible-Research-Recommendations.aspx) in January 2017, suggesting more statistician reviewers to assess quality of plans for data management and research reproducibility.
+
+Potential barrier: researchers may lack programming and “best practices” skillsets. Also, some disciplines or organizations may not recognize computer data and code as research products in and of themselves. 
+
+
+## Where I Learned to Code
+
+<p style="text-align: center;"><img src = "images/rpivcc.jpg" width=500;></p>
+
+The Chapel was acquired by RPI in 1958 and transformed into the VCC in 1976. President [Low](https://www.smithsonianmag.com/air-space-magazine/apollo-8-george-low-profile-180970807/) stated it was "the most unique computing center in the world." (There was a definitely a *lot* of invoking of deities, in my experience...)
+
+
+## Multidisciplinary Data Science!
+
+<img src = "http://i.imgur.com/aoz1BJy.jpg" width = 775>
+
+Where are you in this diagram? Let's explore this for ourselves.
+
+
+##
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/rstudiologo.png", dpi = 400)
+```
+
+<p align: "center";>
+<img src = "images/rmarkdown.png" width=100;>
+<img src = "images/tidyverse.png" width=100;>
+<img src = "images/dplyr.png" width=100;>
+<img src = "images/ggplot2.png" width=100;>
+<img src = "images/tidyr.png" width=100;>
+<img src = "images/readxl.png" width=100;>
+</p>
+
+<p>[R](https://cran.r-project.org/) : a free and open-source statistical programming language</p>
+
+<p>[R Studio](https://www.rstudio.com/) : a free and open-source IDE for R, it supports projects and add-ins and has integrated support for Git and GitHub</p>
+
+<p>[tidyverse](https://www.tidyverse.org/) : "an opinionated collection of R packages designed for data science"
+
+
+## Sign on to RStudio Server
+
+Use your ASU Username and Password to log in to the [RStudio server](https://mathr.math.appstate.edu/). Let me know if you have any trouble! Also make sure to complete "Confirm ASU RStudio server login" on AsULearn.
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("../images/PositSignin.png", dpi = 128)
+```
+
+
+##
+
+```{r}
+knitr::include_graphics("images/datacamplogonew.png", dpi = 300)
+```
+
+<p>[DataCamp](https://www.datacamp.com) is an "intuitive learning platform" for data science. Learn concepts and R code via short videos and hands-on-the-keyboard exercises, with feedback on each exercise.</p>
+
+<p>Multiple tracks for people with different interests and needs.</p>
+
+<p>[ASA on Data Science](http://magazine.amstat.org/blog/2015/10/01/asa-statement-on-the-role-of-statistics-in-data-science/): “Statistical education and training must continue to evolve…”</p>
+
+<p>We will use DataCamp extensively for learning and practice. It's how I initially learned many of my data science skills. We'll also explore some of the tracks related to Data Science.
+
+
+## Sign on to DataCamp
+
+* Sign in or create an account on [DataCamp](https://www.datacamp.com/). Use your ASU email address.
+
+* Go into your profile and add your first and last name so it shows up on the class roster.
+
+* Join our DataCamp class. The link for this is on AsULearn.
+
+* Finally, complete "Confirm DataCamp account creation" on AsULearn sometime after class is over.
+
+You will have six months of free access to DataCamp, during which you can access all content --- not just courses I assign.
+
+
+##
+
+```{r}
+knitr::include_graphics("images/github-logo.jpg", dpi = 120)
+```
+
+<p>**Git** : an open-source version control and collaboration system</p>
+
+<p>[GitHub](https://github.com/) : web-based hosting service (hub) for version-controlled projects using Git, with some added features</p>
+
+<p>You will learn more about this resource in upcoming weeks.
+
+
+## Your Private Forum
+
+Except for extreme emergencies, all written communication must be handled through your **Private Forum** on AsULearn. This will be new for most of you. 
+
+I prefer this method because it stores all exchanges in a place where we can easily access them all semester long and it keeps my class communications separate from the rest of my email (which can turn into a black hole).
+
+```{r}
+knitr::include_graphics("images/PrivateForum.PNG", dpi = 75)
+```
+
+<p>&nbsp;</p>
+
+<hr>
+
+<p style = "text-align: center;">Let's go to AsULearn and take a look!</p>
+
+
+## Syllabus and Schedule
+
+Shortly we will switch over to the course syllabus and talk some more about objectives and assessments.
+
+As we review, remember that STT 2860 is a 3 credit hour course. The standard expectation for a college course is that you spend **2 to 3** hours outside of class for every **1** hour spent in class.
+
+<p style="text-align: center;">3 + ((2 to 3) &times; 3) = 9 to 12 hours per week</p>
+
+Weeks where you have a full DataCamp course, that will take up about four hours of time. **In-class time is only 2.5 hours/week.**
+
+Basic mathematics proficiency is the only course prerequisite. You are not expected to have stats or programming experience. If you have one or both, you **might** not require as much time to master course concepts, but do not assume until you try. 
+
+
+##
+
+Explorations
+
+* engage with digital textbooks and other online materials
+* watch assigned videos and participate in other activities 
+* come to class, take organized notes, actively participate
+* use office hours to get individualized attention/feedback
+
+Assignments
+
+* complete assigned DataCamp modules
+* complete assigned homework and projects
+* practice new and existing data science and `R` skills
+* solidify knowledge and make new connections
+* review and understand your misconceptions
+* demonstrate content and skill proficiency
+
+
+## Learning to Code
+
+One of our goals in this class is reproducible research and code; this includes learning to make our code readable to others.
+
+```{r}
+knitr::include_graphics("https://imgs.xkcd.com/comics/code_quality.png")
+```
+
+Coding is often multi-stage: we get something that works first, then we refine it to make it more efficient and readable.
+
+
+## Don't Get Frustrated! You Can Do This
+
+```{r}
+knitr::include_graphics("images/Nope-Space.gif", dpi = 125)
+```
+
+
+## Let's Jump Right In and Get Started
+
+```{r}
+knitr::include_graphics("https://stat-jet-asu.github.io/Moodlepics/admin/swimmingindata.jpg")
+```

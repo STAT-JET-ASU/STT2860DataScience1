@@ -1,0 +1,416 @@
+---
+title: "Reading & Writing Data"
+subtitle: "STT 2860 -- Intro to Data Mgmt and Visualization"
+author: "Author: Jill E. Thomley // Appalachian State University"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+# Flat Files
+
+## What is a Flat File?
+
+A flat file is a two-dimensional table of data. Each row contains the same type of information or observations as the other rows in the flat file; that information is defined by the columns which contain the variables.
+
+Data stored in a flat file is generally alphanumeric (i.e., numbers, letters, common symbols) with little or no additional formatting. The first row often contains variable names.
+
+One very common type of flat file is a comma-separated values (`CSV`) file. A `CSV` file is one in which table data is gathered in lines of American Standard Code for Information Interchange (ASCII) text. Data for columns are separated by commas and each row is represented by a new line. 
+
+Another common structure is a tab-separated values (`TSV`) file.
+
+
+## Why Save Data as `CSV` or `TSV`?
+
+* `CSV`/`TSV` files are plain-text files, simple and human-readable in most text-editors (e.g., Notepad).
+
+* These file types have a long history of use in a wide variety of fields, so they are often familiar to users.
+
+* Many software packages can create and read these types of files, including Excel and commercial data analysis packages such as SAS and SPSS. Thus, they are easily shareable.
+
+* While not necessarily optimally efficient, these files are often more compact than software-specific formats. Unfortunately, the trade-off is loss of specialized variable formatting.
+
+* HOWEVER, many who work in data science advocate the use of [Parquet](https://www.databricks.com/glossary/what-is-parquet) or [JSON](https://www.freecodecamp.org/news/what-is-json-a-json-file-example/) for very large datasets ("big data"). 
+
+
+## `R` Functions for Flat Files
+
+The tidyverse package [**readr**](https://readr.tidyverse.org/) has several functions for reading flat files, which have the shared naming convention `read_*()`.
+
+* `read_delim()`: delimited files (delimiter = data boundary)
+* `read_csv()`: comma-separated values (comma delimited) 
+* `read_tsv()`: tab-separated values (tab delimited)
+* `read_table()`: whitespace-separated data values
+* `read_fwf()`: fixed-width data files
+* `read_log()`: web server log files
+
+CSV and TSV are important special cases of `read_delim()` for comma-delimited and tab-delimited files.
+
+
+## Function: `read_csv()`
+
+Selected syntax, use `?read_csv` in the Console to see more.
+
+In these datasets, column values are separated by commas.
+
+```{r eval = FALSE}
+read_csv(
+  file,                # path to the data file you want to read
+  col_names = TRUE,    # does the first row contain column names?
+  col_types = NULL,    # do you want to specify the column types?
+  col_select = NULL,   # do you want to pick a subset of columns?
+  na = c("", "NA"),    # which symbols represent missing values?
+  comment = "",        # which symbols represent coded comments?
+  trim_ws = FALSE,     # strip extra spaces before or after data
+  skip = 0,            # how many rows on top should be skipped?
+  n_max = Inf,         # how many rows in total should be read?
+)
+```
+
+
+## 
+
+* `col_names = TRUE` means that first row of the dataset being read contains column names; otherwise use `c()` to provide a vector of names for all columns.
+
+* `col_types = NULL` means that `R` will determine vector type for all dataset columns; otherwise indicate all of the column types using a string of symbols. Some symbols include...
+
+     c = character  
+     i = integer  
+     d = double  
+     l = logical 
+
+* `na = c("", "NA")` means that any empty location (`""`) in the dataset or a location containing `NA` will be considered missing data and assigned `R`'s preferred missing value `NA`. You can add other dataset-specific symbols to the `c()` vector.
+
+
+## Function: `read_tsv()`
+
+Selected syntax, use `?read_tsv` in the Console to see more.
+
+In these datasets, column values are separated by tabs.
+
+```{r eval = FALSE}
+read_tsv(
+  file,                # path to the data file you want to read
+  col_names = TRUE,    # does the first row contain column names?
+  col_types = NULL,    # do you want to specify the column types?
+  col_select = NULL,   # do you want to pick a subset of columns?
+  na = c("", "NA"),    # which symbols represent missing values?
+  comment = "",        # which symbols represent coded comments?
+  trim_ws = FALSE,     # strip extra spaces before or after data
+  skip = 0,            # how many rows on top should be skipped?
+  n_max = Inf,         # how many rows in total should be read?
+)
+```
+
+
+## Function: `read_delim()` 
+
+Selected syntax, use `?read_delim` in the Console to see more. Notice how similar it is to `read_csv()` and `read_tsv` functions, but with a parameter to explicitly specify the delimiting symbol (e.g., a comma, a tab, or some other less-common option).
+
+```{r eval = FALSE}
+read_delim(
+  file,                # path to the data file you want to read
+  delim = NULL,        # for example, comma = "," and tab = "\t"
+  col_names = TRUE,    # does the first row contain column names?
+  col_types = NULL,    # do you want to specify the column types?
+  col_select = NULL,   # do you want to pick a subset of columns?
+  na = c("", "NA"),    # which symbols represent missing values?
+  comment = "",        # which symbols represent coded comments?
+  trim_ws = FALSE,     # strip extra spaces before or after data
+  skip = 0,            # how many rows on top should be skipped?
+  n_max = Inf,         # how many rows in total should be read?
+)
+```
+
+
+## Using `read_table()`
+
+Some data files have column values separated only by spaces. For example, Mauna Loa CO2 data that NOAA makes available [here](https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt) on the web --- click the link to inspect the format.
+
+Selected syntax; use `?read_table` in the Console to see more. Notice the similarity to the functions we already examined.
+
+```{r eval = FALSE}
+read_table(
+  file,
+  col_names = TRUE,
+  col_types = NULL,
+  na = "NA",
+  skip = 0,
+  n_max = Inf,
+  comment = "",
+)
+```
+
+
+## Read the First 2 Rows to Start
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+```{r}
+library(tidyverse)
+read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  col_names = TRUE,           # use the first line as names
+  col_types = NULL,           # let R determine column types
+  na = "NA",                  # NA symbolized missing data
+  skip = 0,                   # do not skip any rows of data
+  n_max = 2,                  # stop reading after two rows
+  comment = "#",              # ignore all lines starting # 
+)                             # uh-oh, something is wrong here...
+```
+
+##
+
+Now read all rows, including only parameters we explicitly need, such as file name, comment character, vector of columns names for each column, and the dataset's missing value indicators.
+
+```{r}
+mlco2 <- read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  comment = "#",
+  col_names = c(  # look, we are using vector creation skills here!
+    "year",
+    "month",
+    "dec_date",
+    "co2",
+    "co2_adj",
+    "num_days",
+    "sd_days",
+    "uncertainty"
+  ),
+  na = c("-1", "-9.99", "-0.99")   # missing values in this dataset
+)
+```
+
+
+## Explore the Structure
+
+After you read the data, explore its structure to make sure it is what you expect and to check out how `R` is classifying each of the columns (variable vectors).
+
+```{r}
+glimpse(mlco2)
+```
+
+
+##
+
+```{r}
+head(mlco2, n = 3)
+tail(mlco2, n = 3)
+```
+
+
+##
+
+```{r}
+class(mlco2)
+```
+
+Note: readr functions create datasets that have multiple class attributes: data frame, tibble, and two subclasses of tibble (we do not need to be concerned about these last two for what we will be doing here in STT 2860).
+
+```{r}
+typeof(mlco2)
+```
+
+Datasets are stored as lists in `R`. Recall, a list is an `R` object that can contain elements of different types, such numbers, strings, vectors, other lists or datasets, even functions!  
+
+
+## Using `read_delim()` 
+
+Selected syntax, use `?read_delim` in the Console to see more. Notice how similar it is to `read_csv()`, but with a parameter to specify the delimiting symbol (e.g., a comma).
+
+```{r eval = FALSE}
+read_delim(
+  file,
+  delim = NULL,        # for example, comma = "," and tab = "\t"
+  col_names = TRUE,
+  col_types = NULL,
+  col_select = NULL,
+  na = c("", "NA"), 
+  comment = "",
+  trim_ws = FALSE, 
+  skip = 0,
+  n_max = Inf,
+)
+```
+
+
+## What About Saving Files?
+
+There are `write_*()` functions for most of the file formats we just discussed. For example, `write_delim()`...
+
+```{r eval = FALSE}
+write_delim(
+  x,               # name of object to write in your Environment
+  file,            # name to be given to the output file w/ path
+  delim = " ",     # what symbol will separate or delimit columns 
+  na = "NA",       # symbol for NA or missing values in the file
+  append = FALSE,         # add to an existing file or overwrite
+  col_names = !append,    # TRUE or FALSE to keep column names...
+  quote = c("needed", "all", "none"),  # quote string variables?  
+  escape = c("double", "backslash", "none"),  # identify quotes
+  eol = "\n",                              # end of line symbol
+)
+```
+
+There are also `write_csv()` / `write_tsv()` functions in readr.
+
+# `R` File Formats
+
+## The `saveRDS()` and `readRDS` Functions
+
+You can use the `saveRDS()` function to write a single `R` object to a file. The file extension will be `.rds`. The object can be restored to your workspace using the function `readRDS()`.
+
+These functions preserve any object attributes and formatting; don't lose all your hard work getting your data tidy!
+
+```{r eval = FALSE}
+# Save an object from your Environment
+saveRDS(objectname, file = "filename.rds")
+
+# Restore an object to your Environment
+objectname <- readRDS(file = "filename.rds")
+```
+
+You may need to add path/folder information to the file name.
+
+
+## The `save()` and `load()` Functions
+
+You can write one or more `R` objects to a file using the `save()` function. The file extension will be `.Rdata` or sometimes `.Rda`.
+
+These functions preserve any object attributes and formatting.
+
+```{r eval = FALSE}
+# Saving one object
+save(objectname, file = "filename.RData")
+
+# Save multiple objects
+save(objectname1, objectname2, file = "filename.RData")
+
+# Restore the object(s)
+# <- is not required
+load("filename.RData")
+```
+
+You may need to add path/folder information to the file name.
+
+
+## Your Entire Workspace
+
+Save your entire workspace (all objects in your Environment) to an `.Rdata` file using the following general code. If the data are being saved to a folder you need to specify the path. The file can be reloaded with the `load()` function.
+
+```{r, eval = FALSE}
+save.image("myworkspace.RData")
+```
+
+```{r, eval = FALSE}
+load("myworkspace.RData")
+```
+
+Recall at the beginning of the semester, we turned off an option that would save your workspace to an `.Rdata` file each time you exit `R`. These kinds of files can be *very* large and can impede the server; it is better to selectively save.
+
+
+# Excel File Formats
+
+## Excel Files
+
+Microsoft Excel workbooks are very commonly used in business environments. These workbooks can contain several "sheets" or pages in one file. It is possible to save individual sheets from an Excel file into a CSV or TSV file, but why add extra steps?
+
+The [**readxl**](https://readxl.tidyverse.org/) and [**writexl**](https://cran.r-project.org/web/packages/writexl/index.html) packages contain several functions that let us work directly with Excel files. Excel files have "hidden" bits of information that the Excel program needs for formatting.
+
+Common extensions for Excel files are `.xlsx` (newer versions) and `.xls` (older versions).
+
+* [The Structure of an Excel File](https://dedicatedexcel.com/the-structure-of-an-excel-file/)
+
+* [The Layout of an Excel Workbook](https://dedicatedexcel.com/the-layout-of-an-excel-workbook/)
+
+
+## Some Useful Functions
+
+* `excel_format()`: determine the type of Excel file you have (e.g., `.xlsx`, `.xls`, other)
+
+* `excel_sheets()`: determine the number and names of all the sheets in an Excel file
+
+* `read_excel()`: read a general Excel file; each sheet must be read individually
+
+* `read_xls()`: read the specific case of an `.xls` file; sheets must still be read individually
+
+* `read_xlsx()`: read the specific case of an `.xlsx` file; sheets must still be read individually
+
+* `write_xlsx()`: write an object into Excel `.xlsx` format
+
+
+## Where are the Data?
+
+You may need to inspect your Excel spreadsheet to determine which cells contain the data you want. You can use `range =` to specify a rectangular area of the sheet, or `skip =` and `n_max =` to select only certain rows. 
+
+```{r eval = FALSE}
+read_excel(          # read_xlsx and read_xls are the same
+  path,              # in terms of the function parameters
+  sheet = NULL,
+  range = NULL,      # specify data using a range of cells
+  col_names = TRUE,
+  col_types = NULL,
+  na = "",
+  trim_ws = TRUE,
+  skip = 0,          # skip a selected number of top rows
+  n_max = Inf,       # read only a selected number of rows
+)
+```
+
+
+## Data Versus Other Text
+
+The FBI makes selected Uniform Crime report statistics available on the web, and they can be [downloaded](https://ucr.fbi.gov/crime-in-the-u.s/2019/crime-in-the-u.s.-2019/topic-pages/tables/table-1). The data values are in a rectangle from cell `A5` (upper left) to cell `V24` (lower right).
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/UCRdata.PNG", dpi = 180)
+```
+
+
+## 
+
+The column names in Row 4 of the Excel spreadsheet would be problematic in `R`, so it is better to create your own. The `range =` parameter will override `skip =` and `n_max =` if all are used.
+
+```{r eval = FALSE}
+read_excel(
+  path,
+  sheet = NULL,       # indicate the sheet number if needed
+  range = "A5:V24",   # specify the data using a range of cells
+  col_names = c(...), # need to include a vector of column names
+)
+```
+
+```{r eval = FALSE}
+read_excel(
+  path,
+  sheet = NULL,       # indicate the sheet number if needed
+  col_names = c(...), # need to include a vector of column names
+  skip = 4,           # skip top four non-data rows, start at 5
+  n_max = 20,         # read only the twenty rows that have data
+)
+```
+
+
+## Writing to Excel Format
+
+The writexl package contains a function to save one or more `R` data files to `.xlsx` format.
+
+```{r eval = FALSE}
+write_xlsx(
+  x,                             # file or list of files to be saved
+  path = tempfile(fileext = ".xlsx"),
+  col_names = TRUE,              # save column names in the top row?
+  format_headers = TRUE,         # bold and center the column names?
+  use_zip64 = FALSE
+)
+```
+
+We can create multiple sheets by specifying a named `list()` of datasets that will be sheets in the Excel file.
+

@@ -1,0 +1,192 @@
+---
+title: "Tidyverse Introduction"
+subtitle: "STT2860 Intro to Data Mgmt and Visualization"
+author: "Author: Jill E. Thomley // Appalachian State University"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r, global_options, include = FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  comment = NA
+)
+library(tidyverse)
+```
+
+
+## Base `R`
+
+It is perfectly possible to do dataset manipulation and plotting using base `R`. However...
+
+* data manipulation can require many intermediate steps
+
+* we often have to nest functions inside of other functions
+
+* it can be difficult to "read" the resulting code to determine what is being done to the data
+
+* the functions for plotting in base `R` have different settings / parameters and can be difficult to recall and manipulate
+
+* the quality of the plots is fine for data exploration but less acceptable for professional presentations and publications
+
+
+## What is the Tidyverse?
+
+Developed by [Hadley Wickham](https://hadley.nz/) and others, the [tidyverse](https://www.tidyverse.org/) is "an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures."
+
+<hr>
+
+There are eight core packages in the tidyverse. They all will be loaded when you use `library(tidyverse)`. 
+
+:::::: {style="display: flex;"}
+
+::: {}
+
+* [ggplot2](https://ggplot2.tidyverse.org/) -- plotting data
+* [dplyr](https://dplyr.tidyverse.org/) -- manipulation
+* [readr](https://readr.tidyverse.org/) -- reading data
+* [tidyr](https://tidyr.tidyverse.org/) -- tidying data
+
+:::
+
+::: {}
+
+&nbsp;&nbsp;&nbsp;
+
+:::
+
+::: {}
+
+* [purrr](https://purrr.tidyverse.org/) -- functional programming
+* [tibble](https://tibble.tidyverse.org/) -- creating datasets
+* [stringr](https://stringr.tidyverse.org/) -- working with strings
+* [forcats](https://forcats.tidyverse.org/) -- working with factors
+
+:::
+
+::::
+
+<hr>
+
+
+## ggplot2
+
+According to the online package [documentation](https://ggplot2.tidyverse.org/), "It’s hard to succinctly describe how ggplot2 works because it embodies a deep philosophy of visualisation." 
+
+Overall, ggplot2 represents an advance over base `R` graphics in terms of flexibility and appearance. Once you understand the basics, working with plots depends less on the type of plot you are making and more on the presentation you want.
+
+* all plots use a consistent, underlying "grammar of graphics"
+* possible to use more than one dataset and plot type at once
+* uses a theme system to customize / refine plot appearance
+* has been called a "mature and complete" graphics system
+* it has many many users and user resources on the web
+
+
+## What is "grammar of graphics"?
+
+* `R`'s [ggplot2](https://ggplot2.tidyverse.org/index.html) is a system for creating graphics, based on the concepts introduced in the book [*The Grammar of Graphics*](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl?ie=UTF8&qid=1477928463&sr=8-1&keywords=the+grammar+of+graphics&linkCode=sl1&tag=ggplot2-20&linkId=f0130e557161b83fbe97ba0e9175c431) (2005) --- metastructure and connected visualizations
+
+* ***aesthetics*** (e.g., `x`, `y`, `color`, `size`, `fill`) code data/variables from a dataset onto the plot (*what* you want to plot)
+
+* graphical elements displayed in a plot (such as points, lines, or bars) are ***geometries*** (*how* you want to plot)
+
+* you can include multiple geometries on your plot, using the same aesthetics or different aesthetics for each
+
+* ***facets*** allow us to visualize the same graphical elements for important groupings or subsets in the dataset 
+
+
+## dplyr
+
+The [dplyr](https://dplyr.tidyverse.org/) package contains a "grammar of data manipulation" built on a consistent set of [data manipulation verbs](https://dplyr.tidyverse.org/reference/index.html) to help us accomplish common data manipulation tasks. *For example...*
+
+:::::: {style="display: flex;"}
+
+::: {}
+
+***column manipulation***
+
+* [`glimpse()`](https://dplyr.tidyverse.org/reference/glimpse.html)
+* [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)
+* [`pull()`](https://dplyr.tidyverse.org/reference/pull.html)
+* [`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html)
+* [`rename()`](https://dplyr.tidyverse.org/reference/rename.html)
+* [`select()`](https://dplyr.tidyverse.org/reference/select.html)
+* [`transmute()`](https://dplyr.tidyverse.org/reference/transmute.html)
+
+:::
+
+::: {}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+:::
+
+::: {}
+
+***row manipulation***
+
+* [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)
+* [`count()`](https://dplyr.tidyverse.org/reference/count.html)
+* [`distinct()`](https://dplyr.tidyverse.org/reference/distinct.html)
+* [`filter()`](https://dplyr.tidyverse.org/reference/filter.html)
+* [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
+* [`slice()`](https://dplyr.tidyverse.org/reference/slice.html)
+* [`summarize()`](https://dplyr.tidyverse.org/reference/summarise.html)
+
+:::
+
+::: {}
+
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+:::
+
+::: {}
+
+***joining datasets***
+
+* [`anti_join()`](https://dplyr.tidyverse.org/reference/filter-joins.html)
+* [`full_join()`](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+* `inner_join()`
+* `left_join()`
+* `right_join()`
+* `semi_join()`
+
+:::
+
+::::
+
+
+## other packages
+
+We will use functions such as `read_csv()` from [readr](https://readr.tidyverse.org/) to import data files stored in *comma separated value* and other forms.
+
+The [tidyr](https://tidyr.tidyverse.org/) package adds functions that help us reshape datasets into tidy format --- each column is one variable, each row is one observation, every cell is a single value. *Examples include...*
+
+* [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html)
+* [`pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html)
+* [`replace_na()`](https://tidyr.tidyverse.org/reference/replace_na.html)
+* [`separate`](https://tidyr.tidyverse.org/reference/separate.html)
+* [`unite()`](https://tidyr.tidyverse.org/reference/unite.html)
+
+
+## the pipe
+
+The pipe operator (%>%) from the [magrittr](https://magrittr.tidyverse.org/) package allows us to create sequences or "pipelines" of actions/functions rather than nesting functions. 
+
+It is commonly used with the dplyr package perform a sequence of operations on a dataset.
+
+We can think of the pipe as the phrase "and then" when reading a piped sequence of operations.
+
+The PC shortcut for inserting a pipe in code is `Ctrl` + `Shift` + `M`.
+
+<hr>
+
+As of `R` version 4.1.0, there is now a second pipe, written as `|>`.
+
+The main difference is that we can now use a pipe without the magrittr package (or tidyverse packages that load it). 
+
+

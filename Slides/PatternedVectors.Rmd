@@ -1,0 +1,253 @@
+---
+title: "Patterned Vectors"
+subtitle: "STT2860 Intro to Data Mgmt and Visualization"
+author: "Author: Jill E. Thomley // Appalachian State University"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r global_options, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+library(tidyverse)
+library(kableExtra)
+```
+
+
+# Linear Sequences
+
+## The `:` Function
+
+The `:` function creates a sequence of values that increments in steps of ±1 from the value on the left side of the `:` to the value on the right (or as close as it can get).
+
+```{r}
+1:10   # increasing
+5:0   # decreasing
+1.5:10.5   # non-integer
+```
+
+
+## The `seq()` Function
+
+The `seq()` function generates a linear sequence of values. The syntax is as follows. Type `?seq` at `>` in the RStudio Console pane and hit `Enter` to bring it up in the Help tab of the Files pane.
+
+    seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)), 
+    length.out = NULL, along.with = NULL, ...)
+    
+Depending on our needs, we can specify...
+
+* a fixed step size for increase/decrease
+* a fixed length for the output vector
+* a length to match another vector
+
+## Examples Using (`by =`)
+
+Count up from `0` to `100` by `10`.
+
+```{r}
+s1 <- seq(from = 0, to = 100, by = 10)
+s1
+```
+
+Count down from `10` to `0` by `2`.
+
+```{r}
+seq(from = 10, to = 0, by = -2)
+```
+
+Notice you have to make `by =` negative when counting down.
+
+
+## Examples Using (`length.out =`)
+
+The value you put in for the output length is converted to `by =` using a formula to determine how much to add at each step.
+
+`by = (to - from)/(length.out - 1)`
+
+`by = (51 - 1)/(5 - 1) = 12.5` --- adds 12.5 for each step
+
+```{r}
+seq(from = 1, to = 51, length.out = 5)
+```
+
+```{r}
+length(seq(from = 1, to = 51, length.out = 5))
+```
+
+
+## Examples Using (`along.with =`)
+
+Vector `s1` from the previous example has a total length of `11`.
+
+```{r}
+length(s1)
+```
+
+Now the function acts like `length.out` using the vector length.
+
+`by = (200 - 100)/(11 - 1) = 10` --- adds 10 for each step
+
+```{r}
+seq(from = 100, to = 200, along.with = s1)
+```
+
+
+# Repeating Patterns
+
+## The `rep()` Function
+
+The `rep()` function replicates a single value or vector of values a specific number of times. The options are...
+
+* `times =` how many times to repeat the entire vector
+* `each =` how many times to repeat each vector element
+* `length.out =` length of the output vector
+
+Some text to repeat---a character vector with three elements.
+
+```{r}
+text <- c("Boom", "Shaka", "Laka")
+```
+
+We don't have to pre-create the vector for this two work, but it makes the presentation a bit simpler.
+
+
+## Example (`times =`)
+
+Repeat the entire `text` vector twice.
+
+```{r}
+rep(text, times = 2)
+```
+
+The above example is really doing this.
+
+```{r}
+rep(c("Boom", "Shaka", "Laka"), times = 2)
+```
+
+The entire vector is repeated as a unit, appearing twice in order.
+
+
+## Example (`each =`)
+
+Repeat each element of the `text` vector twice.
+
+```{r}
+rep(text, each = 2)
+```
+
+Again, the above example is really doing this.
+
+```{r}
+rep(c("Boom", "Shaka", "Laka"), each = 2)
+```
+
+Each element is repeated twice before moving on to the next element in the vector. The contents are the same as the prior example (two copies of each word), but in a different order.
+
+
+## Both (`times =`) and (`each =`)
+
+We can create more complex patterns using both specifications.
+
+```{r}
+rep(text, times = 3, each = 2)
+```
+
+```{r}
+rep(text, each = 2, times = 3)
+```
+
+If we use both `each =` and `times =`, then `each =` is always done first. After, the resulting sequence is repeated `times =` *times.*
+
+
+## Other Options
+
+```{r}
+rep(text, times = c(1, 2, 5))
+```
+
+If we set `times =` *a vector of integers the same length as the vector we are repeating*, it acts similar to using `each =`, but repeats each element the number of times indicated. 
+
+```{r}
+rep(text, length.out = 4)
+```
+
+This option cycles through the elements of the repeated vector until the desired length is obtained. Partial replications happen if the vector length is not evenly divisible by `length.out =`.
+
+
+# Combining Functions
+
+## Nesting Functions
+
+For more complicated patterns, we can nest function inside one another, as we have already seen in the `rep()` examples.
+
+<hr>
+
+Here, we use `c()` to combine three smaller vectors created with `:`, `seq()`, and `rep()`.
+
+```{r}
+c(1:2, seq(from = 3, to = 17, by = 2), rep(19, times = 2))
+```
+
+Remember that `R` works from the inside out, the same way we start with the innermost `()` when doing a math problem.
+
+##
+
+Shorten some quantitative sequences using the `:` operator.
+
+```{r}
+rep(c("A", "B", "C", "D"), times = c(4, 3, 2, 1))
+```
+
+```{r}
+rep(c("A", "B", "C", "D"), times = 4:1)
+```
+
+A complicated repeating sequence using `rep()` inside `rep()`.
+
+```{r}
+rep(rep(text, times = 1:3), times = 2)
+```
+
+
+# Augmented Vectors
+
+## Overview
+
+Atomic vectors (and lists) are the building blocks for other vector types. We sometimes call these *augmented vectors* because they have additional *attributes* that are useful to us.
+
+Four important types of augmented vectors include...
+
+* **factors** --- structured categorical data
+* **dates** ---  numeric vectors that represent the number of days since 1 January 1970
+* **date-times** ---  numeric vectors that represent the number of seconds since 1 January 1970
+* **tibbles** --- a special type of list; an upgrade from the *tidyverse* to the base `R` data frame
+
+## Attributes
+
+Any vector can contain additional metadata through attributes. For example...
+
+* **names** --- used to name the individual elements of a vector
+* **dimensions** --- (or dims) make a vector behave like a matrix
+* **class** --- used for object-oriented programming, controls how generic functions in `R` work on different objects
+
+Factor vectors are categorical data and have a `levels` attribute. Date-time vectors have a class `POSIXct` with an attribute called `tzone` for time zone. 
+
+You can use the `attributes()` function on an object to see its attributes and their information.
+
+
+## 
+
+Use the `names()` function to apply an attribute to vector `text`.
+
+```{r}
+text
+names(text) <- c("Word1", "Word2", "Word3")   # assign <- names
+text
+attributes(text)
+```
