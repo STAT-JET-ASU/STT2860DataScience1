@@ -12,7 +12,7 @@ output:
 **This document is a work in progress.**
 <hr>
 
-## Assessment Map
+## Assessment Map for Course Goals
 
 **1. Students will learn to use a reproducible research workflow.**
 
@@ -71,5 +71,5 @@ output:
 
 <hr>
 
-Updated Monday, August 21, 2023 @ 08:35 PM
+Updated Monday, August 21, 2023 @ 08:42 PM
 
