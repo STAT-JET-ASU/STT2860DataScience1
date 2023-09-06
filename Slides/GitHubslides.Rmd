@@ -26,7 +26,7 @@ output:
 ##
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/github-logo.jpg", dpi = 100)
+knitr::include_graphics("images/github-logo.jpg", dpi = 100)
 ```
 
 GitHub is a code hosting platform for collaboration and version control. It lets you and others work together on projects---from anywhere. GitHub interfaces with RStudio projects.
@@ -35,14 +35,14 @@ GitHub is a code hosting platform for collaboration and version control. It lets
 ## Push-Pull Workflow
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/GitHubRStudio.png", dpi = 100)
+knitr::include_graphics("images/GitHubRStudio.png", dpi = 100)
 ```
 
 
 ## Funny but true?
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/git_xkcd.png", dpi = 100)
+knitr::include_graphics("images/git_xkcd.png", dpi = 100)
 ```
 
 
@@ -51,19 +51,19 @@ knitr::include_graphics("../images/git_xkcd.png", dpi = 100)
 If you are a student, you can upgrade your free account to [Pro](https://docs.github.com/en/get-started/learning-about-github/githubs-products#github-pro) by [applying for student benefits](https://education.github.com/discount_requests/student_application), which includes private repos.
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/studentbenefits.PNG", dpi = 140)
+knitr::include_graphics("images/studentbenefits.PNG", dpi = 140)
 ```
 
 
 ## Let's Get Started!
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/githubwallpaper.png", dpi = 110)
+knitr::include_graphics("images/githubwallpaper.png", dpi = 110)
 ```
 
 <p style="text-align: center;">Log into your GitHub account at https://github.com<p style="text-align: center;">
 
-<p style="text-align: center;">Log into the RStudio server at https://mathr.math.appstate.edu<p style="text-align: center;">
+<p style="text-align: center;">Log into the RStudio/Posix server at https://mathr.appstate.edu<p style="text-align: center;">
 
 
 ## Commit Name and Email (Method 1)
@@ -166,7 +166,7 @@ Why a license? Public repositories can be copied by anyone else on GitHub, so yo
 ##
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/githubrepopage.PNG", dpi = 150)
+knitr::include_graphics("images/githubrepopage.PNG", dpi = 150)
 ```
 
 
@@ -180,7 +180,7 @@ In your GitHub **datascience1repo** (see image on next slide)...
     * copy the HTTPS clone URL to your clipboard 
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/gitclonecoffee.jpg", dpi = 100)
+knitr::include_graphics("images/gitclonecoffee.jpg", dpi = 100)
 ```
 
 Note: You can use SSH authentication if you want to. There's a GitHub page **[here](https://help.github.com/articles/which-remote-url-should-i-use/)** that discusses the differences.
@@ -191,7 +191,7 @@ Note: You can use SSH authentication if you want to. There's a GitHub page **[he
 You are going to copy the URL to connect GitHub to a project in RStudio with the same name.
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/githubcodebutton.PNG", dpi = 100)
+knitr::include_graphics("images/githubcodebutton.PNG", dpi = 100)
 ```
 
 
@@ -217,13 +217,13 @@ I'm just going to talk here for now, so follow along...
 Changes made in RStudio are *pushed* to GitHub. Changes made in GitHub are *pulled* to RStudio. You must *commit* your changes before you push or pull.
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/git_commit.png", dpi = 100)
+knitr::include_graphics("images/git_commit.png", dpi = 100)
 ```
 
 
 ## Commit-iquette
 
-These suggestions for GitHub commit etiquette were adapted from [How to use GitHub like a proper human being](https://stories.devacademy.la/how-to-use-github-like-a-proper-human-being-1a9c895c4e13).
+These suggestions for GitHub commit etiquette were adapted from [How to use GitHub like a proper human being](https://medium.com/@takouhai/how-to-use-github-like-a-proper-human-being-1a9c895c4e13).
 
 * Keep commits atomic. A commit should revolve around ONE change. If you have to add “and” you’ve committed too much.
 
@@ -243,15 +243,14 @@ These suggestions for GitHub commit etiquette were adapted from [How to use GitH
 Let's go to FiveThirtyEight's [Data repository](https://github.com/fivethirtyeight/data) (also called a repo)...
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/forkingrepos.PNG", dpi = 130)
+knitr::include_graphics("images/forkingrepos.PNG", dpi = 130)
 ```
 
 
 ## Basic Web Pages
 
-Go to Dr. Thomley's [Basic Web Page Template repository](https://github.com/STAT-JET-ASU/basicwebpagetemplate)...
+Go to Dr. Thomley's [Basic Web Page Template repository] ...
 
 ```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("../images/thomleywebpagerepo.PNG", dpi = 150)
+knitr::include_graphics("images/thomleywebpagerepo.PNG", dpi = 150)
 ```
-
