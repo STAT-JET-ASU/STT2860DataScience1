@@ -86,7 +86,7 @@ The core installation of `R` (i.e., `{base} R`) includes many built-in datasets.
 
 Entering `data()` in the Console pane of RStudio will open a new tab/window listing the names of all the built-in datasets. 
 
-We can get a list of the datasets found in other packages using `data(package = "datasetname")`. For example, all the data in ggplot2 can be found using `data(package = "ggplot2")`.
+We can get a list of the datasets found in other packages using `data(package = "packagename")`. For example, all the data in ggplot2 can be found using `data(package = "ggplot2")`.
 
 Try `data(package = .packages(all.available = TRUE))` .
 
