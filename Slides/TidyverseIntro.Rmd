@@ -166,11 +166,12 @@ We will use functions such as `read_csv()` from [readr](https://readr.tidyverse.
 
 The [tidyr](https://tidyr.tidyverse.org/) package adds functions that help us reshape datasets into tidy format --- each column is one variable, each row is one observation, every cell is a single value. *Examples include...*
 
-* [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html)
-* [`pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html)
+* [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) and
+[`pivot_wider()`](https://tidyr.tidyverse.org/reference/pivot_wider.html)
+* [`separate()`](https://tidyr.tidyverse.org/reference/separate.html) and [`separate_wider_*()`](https://tidyr.tidyverse.org/reference/separate_wider_delim.html)
+* [`unite()`](https://tidyr.tidyverse.org/reference/unite.html) (*i.e., the opposite of separate*)
+* [`expand_grid()`](https://tidyr.tidyverse.org/reference/expand_grid.html)
 * [`replace_na()`](https://tidyr.tidyverse.org/reference/replace_na.html)
-* [`separate`](https://tidyr.tidyverse.org/reference/separate.html)
-* [`unite()`](https://tidyr.tidyverse.org/reference/unite.html)
 
 
 ## the pipe
