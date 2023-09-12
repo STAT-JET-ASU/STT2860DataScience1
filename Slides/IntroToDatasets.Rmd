@@ -288,19 +288,17 @@ A data frame or tibble is a special case of an object type called a list. A list
 
 ```{r}
 list1 <- list(
-  a = 2,                # constant/vector of length 1
-  b = 1:3,              # integer vector of length 3
-  d = c("Fred", "Joe")  # character vector of length 2
+  a = 2,                # constant/vector of length 1, named a
+  b = 1:3,              # integer vector of length 3, named b
+  d = c("Fred", "Joe")  # character vector of length 2, named d
 )
 ```
 
 ```{r}
 list2 <- list(
-  dataA = dataset1,   # dataset we made earlier
-  dataB = dataset2,   # dataset we made earlier
-  dataC = mtcars      # dataset included in R
+  dataA = dataset1,   # dataset we made earlier, named dataA
+  dataB = dataset2,   # dataset we made earlier, named dataB
+  dataC = mtcars      # dataset included in R, named dataC
 )
 ```
-
-
 
