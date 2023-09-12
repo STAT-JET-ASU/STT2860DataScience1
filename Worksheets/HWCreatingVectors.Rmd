@@ -1,0 +1,276 @@
+---
+title: "Homework: Creating & Exploring Vectors"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+**DOCUMENT NAME**: Please save your document using the name format `HWCreatingVectorsLastnameFirstname`.
+
+***
+
+### Problem 1: Using the `vector()` function
+
+* Use the `vector()` function to create each indicated vector type.
+* Choose a length between three and ten (inclusive) for each vector.
+* Use the assignment operator `<-` to store each vector as an object.
+* Print out each vector by typing the object name to call its contents. 
+* Use the `typeof()` function on each vector to verify the vector type.
+* Use the `length()` function on each vector to verify the vector length.
+
+#### (a) `logical` 
+
+```{r}
+# create the vector
+
+
+# print the vector
+
+
+# type of vector
+
+
+# length of vector
+
+```
+
+#### (b) `integer` 
+
+```{r}
+# create the vector
+
+
+# print the vector
+
+
+# type of vector
+
+
+# length of vector
+
+```
+
+#### (c) `double` 
+
+```{r}
+# create the vector
+
+
+# print the vector
+
+
+# type of vector
+
+
+# length of vector
+
+```
+
+#### (d) `complex` 
+
+```{r}
+# create the vector
+
+
+# print the vector
+
+
+# type of vector
+
+
+# length of vector
+
+```
+
+#### (e) `character` 
+
+```{r}
+# create the vector
+
+
+# print the vector
+
+
+# type of vector
+
+
+# length of vector
+
+```
+
+#### (f) `raw` 
+
+```{r}
+# create the vector
+
+
+# print the vector
+
+
+# type of vector
+
+
+# length of vector
+
+```
+
+
+### Problem 2: Using `:`, `c()`, `seq()`, and `rep()`
+
+Use the `:`, `c()`, `seq()`, and/or `rep()` function to create a vector appropriate to each statement. Store each vector and print out the results. Use `class()` on each vector to examine some of its properties.
+
+#### (a) sample space
+
+The sample space of a random variable X is {0, 1, 2, ..., 10}.
+
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+#### (b) test scores
+
+Scores on a test can be 0 or any positive, even integer up to 100.
+
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+#### (c) solution pH
+
+A machine reads the pH of a solution to one decimal place of precision.
+ 
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+#### (d) rock-paper-etc
+
+A player in a particular game can choose rock, paper, scissors, lizard, or Spock.
+
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+#### (e) countdown clock
+
+A clock counts down from 60 seconds to zero seconds in whole-second increments.
+
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+#### (f) song chorus
+
+A particular song's chorus contains the following three separate phrases, sung once in order and then repeated.
+    + I get knocked down
+    + But I get up again
+    + You're never gonna keep me down
+    
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+#### (g) blood types
+
+In a group of 100 people, each person has one of four possible blood types: A, B, AB, or O. (Use the `rep` function.)
+    + A = 40% of the people
+    + B = 11% of the people
+    + AB = 4% of the people
+    + O = 45% of the people
+    
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+
+### Problem 3: winnings from *Introduction to R*
+
+In the second chapter of DataCamp's *Introduction to R* course, you created and manipulated vectors representing winnings for one week in poker and roulette. In some cases you performed operations more than once using different methods, to learn how to be more compact/efficient. You will adapt some of that work here. Be as neat and efficient as you can in your coding.
+
+#### (a) winnings vectors
+
+A person plays poker and roulette on weekdays for two weeks. Winnings (in US dollars) are tabulated below. Negative values are, of course, actually losses. Create named vectors of winnings for each game where the names are the days of the week. 
+
+| Day Number | Day of the Week | Poker Winnings | Roulette Winnings |
+|:----------:|:---------------:|:--------------:|:-----------------:|
+|      1     |       Mon       |       140      |        -25        | 
+|      2     |       Tue       |       -50      |        -50        |
+|      3     |       Wed       |        20      |        100        |
+|      4     |       Thu       |      -120      |       -350        |
+|      5     |       Fri       |       240      |        105        |
+|      6     |       Mon       |       100      |          5        |
+|      7     |       Tue       |       -30      |        -85        |
+|      8     |       Wed       |       305      |        210        |
+|      9     |       Thu       |       -90      |        175        |
+|     10     |       Fri       |      1000      |       -105        |
+
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+#### (b) daily totals
+
+Combine your vectors from (a) to create a vector that contains the total win/loss amount for each of the 10 days.
+
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+#### (c) overall totals
+
+Use your vectors from (a) to find (i) total poker winnings, (ii) total roulette winnings, and (iii) total overall winningss.
+
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+#### (d) winning days
+
+On which days did the person make money playing poker? On which days did they make money playing roulette? What about each day overall? In each of the three cases, select only those days and print them out.
+
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+#### (e) one weekday
+
+Choose one weekday (Monday through Friday). Create a vector that contains only those two days from the poker winnings vector. Do the same for roulette winnings vector and your vector of daily totals from (b).
+
+```{r}
+# erase this and input your code
+# feel free to include comments
+```
+
+
+***
+```{r}
+sessionInfo()
+```
+

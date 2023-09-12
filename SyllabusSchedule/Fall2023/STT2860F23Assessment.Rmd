@@ -10,12 +10,17 @@ output:
 
 <hr>
 **This document is a work in progress.**
+
+HW = homework, either programming or AsULearn "quiz"
+
+DC = [DataCamp](https://www.datacamp.com/) course (we have free educational access)
 <hr>
 
 ## Assessment Map for Course Goals
 
 **1. Students will learn to use a reproducible research workflow.**
 
+* Week 04: | HW | Components of the Tidyverse
 * Week 07: | DC | Reporting with R Markdown
 * Weeks 08/09: Project #1
 * Weeks 15/16: Project #2
@@ -27,11 +32,12 @@ output:
 
 **3. Students will develop their expertise with data science technology.**
 
-* Most course assignments
+* Most course assignments address this goal
 
 **4. Students will develop skills in programming, iteration, and sequencing.**
 
 * Week 02: | DC | Introduction to R
+* Week 03: | HW | Creating & Exploring Vectors
 * Week 04: | DC | Introduction to the Tidyverse
 * Week 10: | DC | Data Manipulation with dplyr
 * Week 11: | DC | Reshaping Data with tidyr

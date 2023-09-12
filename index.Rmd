@@ -7,11 +7,13 @@ output:
 
 <hr>
 
-* [Course Syllabus](SyllabusSchedule/Spring2023/STT2860S23Syllabus.html)
+* [Course Syllabus](SyllabusSchedule/Fall2023/STT2860F23Syllabus.html)
+
+* [Assessment Map](SyllabusSchedule/Fall2023/STT2860F23Assessment.html)
 
 * [GitHub Repository](https://github.com/STAT-JET-ASU/STT2860DataScience1)
 
-* [ASU RStudio Server](https://mathr.math.appstate.edu)
+* [ASU RStudio Server](https://mathr.appstate.edu)
 
 * Additional course information/resources can be found on [AsULearn](https://asulearn.appstate.edu/).
 
