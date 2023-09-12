@@ -214,18 +214,18 @@ In the second chapter of DataCamp's *Introduction to R* course, you created and 
 
 A person plays poker and roulette on weekdays for two weeks. Winnings (in US dollars) are tabulated below. Negative values are, of course, actually losses. Create named vectors of winnings for each game where the names are the days of the week. 
 
-| Day of the Week | Poker Winnings | Roulette Winnings |
-|:---------------:|:--------------:|:-----------------:|
-|       Mon       |       140      |        -25        | 
-|       Tue       |       -50      |        -50        |
-|       Wed       |        20      |        100        |
-|       Thu       |      -120      |       -350        |
-|       Fri       |       240      |        105        |
-|       Mon       |       100      |          5        |
-|       Tue       |       -30      |        -85        |
-|       Wed       |       305      |        210        |
-|       Thu       |       -90      |        175        |
-|       Fri       |      1000      |       -105        |
+| Day Number | Day of the Week | Poker Winnings | Roulette Winnings |
+|:----------:|:---------------:|:--------------:|:-----------------:|
+|      1     |       Mon       |       140      |        -25        | 
+|      2     |       Tue       |       -50      |        -50        |
+|      3     |       Wed       |        20      |        100        |
+|      4     |       Thu       |      -120      |       -350        |
+|      5     |       Fri       |       240      |        105        |
+|      6     |       Mon       |       100      |          5        |
+|      7     |       Tue       |       -30      |        -85        |
+|      8     |       Wed       |       305      |        210        |
+|      9     |       Thu       |       -90      |        175        |
+|     10     |       Fri       |      1000      |       -105        |
 
 ```{r}
 # erase this and input your code
@@ -234,15 +234,16 @@ A person plays poker and roulette on weekdays for two weeks. Winnings (in US dol
 
 #### (b) daily totals
 
-Combine your two vectors to create a vector that contains the total win/loss amount for each day.
+Combine your vectors from (a) to create a vector that contains the total win/loss amount for each of the 10 days.
 
 ```{r}
-
+# erase this and input your code
+# feel free to include comments
 ```
 
 #### (c) overall totals
 
-Use your vectors to find (i) total poker winnings, (ii) total roulette winnings, and (iii) total overall winnings.
+Use your vectors from (a) to find (i) total poker winnings, (ii) total roulette winnings, and (iii) total overall winningss.
 
 ```{r}
 # erase this and input your code
@@ -260,7 +261,7 @@ On which days did the person make money playing poker? On which days did they ma
 
 #### (e) one weekday
 
-Choose one day of the week (Monday through Friday). Create a vector that contains only that day from poker winnings vector. Do the same for roulette winnings and your vector of daily totals.
+Choose one weekday (Monday through Friday). Create a vector that contains only those two days from the poker winnings vector. Do the same for roulette winnings vector and your vector of daily totals from (b).
 
 ```{r}
 # erase this and input your code
