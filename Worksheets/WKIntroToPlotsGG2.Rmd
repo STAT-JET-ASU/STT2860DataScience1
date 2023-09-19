@@ -1,0 +1,91 @@
+---
+title: "Worksheet: Introduction to Plotting with ggplot2"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+### Packages Used
+
+```{r}
+# load all packages used here
+library(tidyverse)
+```
+
+
+### Datasets Used
+
+#### Popular Kids
+
+The dataset `popular.csv` is from [Dr. Thomley's Data Files](https://stat-jet-asu.github.io/Datasets/DatasetList.html). You can read about it [HERE](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/popular.html).
+
+```{r}
+# import the dataset from the web URL
+kids <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/popular.csv")
+```
+
+```{r}
+# explore the dataset
+```
+
+#### Semmelweis Data
+
+The dataset `semmelweisannualbyclinic.csv` is from [Dr. Thomley's Data Files](https://stat-jet-asu.github.io/Datasets/DatasetList.html). You can read about Dr. Ignaz Semmelweis [HERE](https://www.pbs.org/newshour/health/ignaz-semmelweis-doctor-prescribed-hand-washing). This dataset contains annual observations for two different clinics that led him to implement his handwashing experiment.
+
+```{r}
+semm <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/semmelweisannualbyclinic.csv")
+```
+
+```{r}
+# explore the dataset
+```
+
+#### Flights Data
+
+The `flights` dataset is from the nycflights13 package, which is installed on the RStudio server.
+
+```{r}
+# save the dataset to your Environment
+```
+
+```{r}
+# explore the dataset
+```
+
+
+### Using `geom_bar()`
+
+#### Basic Bar Plot
+
+```{r}
+
+```
+
+
+### Using `geom_col()`
+
+#### Subheader Here!
+
+
+
+***
+```{r}
+sessionInfo()
+```
+
