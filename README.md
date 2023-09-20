@@ -5,8 +5,6 @@
 
 Prerequisite: demonstrated readiness for college-level math. 
 
-The repository [STT2860F23ClassShare](https://github.com/STAT-JET-ASU/STT2860F23ClassShare) is used to to share materials with students and teach them about using GitHub for collaboration. 
-
 Some materials (e.g., projects, solutions) are in a private repository. If you are an instructor who is interested in these materials, please contact me at thomleyje@appstate.edu.
 
 ***
