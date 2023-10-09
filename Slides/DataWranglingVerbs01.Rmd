@@ -1,0 +1,248 @@
+---
+title: "Intro to Data Wrangling<br>with dplyr Verbs, Part 1"
+author: "Author: Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+## Before We Begin...
+
+These slides are not meant to be standalone information. You should take notes to flesh out the contents. I recommend that you create an R Markdown document where you can combine information and code from the slides and your own additional notes and explorations to make connections.
+
+**Related Materials**
+
+* Modern Dive [Chapter 3: Data Wrangling](https://moderndive.com/3-wrangling.html)
+* Modern Dive [Chapter 4: Data Importing and “Tidy” Data](https://moderndive.com/4-tidy.html)
+* DataCamp [Introduction to the Tidyverse](https://learn.datacamp.com/courses/introduction-to-the-tidyverse)
+* DataCamp [Data Manipulation with dplyr](https://learn.datacamp.com/courses/data-manipulation-with-dplyr)
+* Intro to Data Wrangling with dplyr Verbs, Part 2 [slides](https://stat-jet-asu.github.io/STT2860DataScience1/Slides/DataWranglingVerbs02.html)
+* [dplyr Reference](https://dplyr.tidyverse.org/reference/index.html)
+
+## Index
+
+* Review: Datasets
+    * 05 --- Dataset Structure
+    * 08 --- Example Dataset
+
+* Verbs for Variables
+    * 12 --- The Functions
+        * `mutate()` / `transmute()`
+        * `pull()`
+        * `rename()` / `relocate()` / 
+        * `select()`
+    * 13 --- Examples
+    * 20 --- Challenges!
+
+# Review: Datasets
+
+## Dataset Structure
+
+* A ***variable*** is some characteristic of interest that can differ between individuals in a population.
+
+* An observational unit (or ***observation***) is a single individual, object, or entity about which collect data, regarding one or more of its characteristics (variables).
+
+* An observation may be called a case, subject, or participant.
+
+* Ideally, each observational unit has a value for each variable.
+
+A ***dataset*** is a collection of data values for the observations and variables in a study (e.g., survey or experiment). A common way to arrange data is to put variables in columns and observations in rows. This is what we call ***tidy*** data. 
+
+## Tidy Data
+
+<p style="text-align:center; font-size: 18px;"><img src="https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png" width = 775><br>
+Tidy data graphic from [R for Data Science: Tidy Data](http://r4ds.had.co.nz/tidy-data.html)</p>
+
+<p>Many datasets are already in tidy format, though there may be missing data and other issues we have to address before doing data analysis and visualization.</p>
+
+<p>Real life data is usually far messier and can require a great deal of tidying. The dplyr verbs help us to get data into tidy format and to modify it in other ways, such as creating new variables.</p>
+
+## Exploring Structure
+
+A few functions for exploring dataset structure are given below. 
+
+* `glimpse()` # requires tidyverse
+* `attributes()`
+* `dim()` # dimensions, rows &times; columns
+* `names()`
+* `nrow()`
+* `ncol()`
+* `head()`
+* `tail()`
+* `sum(complete.cases())` # this is two nested functions
+* `sum(!complete.cases())` # what does the ! do?
+
+## Example Dataset
+
+* Statistician Francis Galton (1822-1911), a cousin of Charles Darwin, studied the relationship between parents' heights and the heights of their offspring. His pioneering [1886 article](https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf) is the first appearance of regression analysis in print. 
+
+* The `galtonfamiliesmain` dataset we will be working with was [reconstructed by Dr. James A. Hanley](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/) and students using Galton's [original paper notebooks](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/index.html) containing handwritten measurement data for 205 families. 
+
+* You can access the data file from the [description](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html) page, which also contains more context and variable definitions.
+
+* Note Galton's comments about how he "transmuted" some of the data for analysis. As with most historical data, gender is a binary variable for both parents and children.
+
+## Read in the Data
+
+`library(tidyverse)`   
+`galtondata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/galtonfamiliesmain.csv")`
+
+```{r, echo = FALSE}
+library(tidyverse)
+galtondata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/galtonfamiliesmain.csv")
+```
+
+```{r}
+glimpse(galtondata)
+```
+
+##
+
+What are the variable names?
+
+```{r}
+names(galtondata)
+```
+
+How many observations are there?
+
+```{r}
+nrow(galtondata)
+```
+
+Are there any cases with `NA` values?
+
+```{r}
+sum(!complete.cases(galtondata))
+```
+
+# Verbs for Variables<br>(Manipulating Columns)
+
+## 
+
+* [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html) / [`transmute()`](https://dplyr.tidyverse.org/reference/mutate.html)
+
+Create, modify, and/or delete columns (variables).
+
+* [`pull()`](https://dplyr.tidyverse.org/reference/pull.html)
+
+Extract a single column (variable) into a vector.
+
+* [`rename()`](https://dplyr.tidyverse.org/reference/rename.html)
+
+Rename columns (variables).
+
+* [`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html)
+
+Change the order of columns.
+
+* [`select()`](https://dplyr.tidyverse.org/reference/select.html)
+
+Subset columns; can also change order and rename columns.
+
+## Mutating Mother Height
+
+Galton "transmuted the female statures to their corresponding male equivalents" by multiplying them by `1.08`. We can do this for the variable `Mother` by using `mutate()` to create `MotherT`. 
+
+```{r}
+galtondataA <- galtondata %>% 
+  mutate(MotherT = 1.08 * Mother)
+head(galtondataA)
+```
+
+## Mutating Daughter Height
+
+Both daughters' and sons' heights are stored in `Height`. We can `mutate()` conditionally for daughters using [`if_else()`](https://dplyr.tidyverse.org/reference/if_else.html).
+
+```{r}
+galtondataA <- galtondataA %>% 
+  mutate(HeightT = if_else(Child == "Daughter", 1.08 * Height, Height))
+head(galtondataA)
+```
+
+## Computing Midparent Height
+
+Galton also calculated the midpoint of the parents' heights. 
+
+```{r}
+galtondataA <- galtondataA %>% 
+  mutate(Midparent = (Father + MotherT) / 2)
+head(galtondataA)
+```
+
+## All Variables in One `mutate()`
+
+You can create all three variables in one `mutate()` statement. This is the preferred way to do it. 
+
+```{r}
+galtondataA <- galtondata %>% 
+  mutate(MotherT = 1.08 * Mother,
+         HeightT = if_else(Child == "Daughter", 1.08 * Height, Height),
+         Midparent = (Father + MotherT) / 2)
+```
+
+Next you could pipe (`%>%`) this into a `select()` step to reduce the number of variables in the dataset, or perform some other other operation.
+
+In general, our data manipulations may contain several steps, depending on the format of the original data and our goals in terms of any research questions and data analyses.
+
+## What if we use `transmute()`?
+
+The `transmute()` function deletes all columns (variables) *except* those that are included in the `transmute()`.
+
+```{r}
+galtondataB <- galtondata %>% 
+  transmute(Father,
+            MotherT = 1.08 * Mother,
+            Midparent = (Father + MotherT) / 2,
+            HeightT = if_else(Child == "Daughter", 1.08 * Height, Height))
+glimpse(galtondataB)
+```
+
+## Multipurpose `select()`
+
+The `select()` function can be used to select columns, but also to reorder and rename columns. The order in which columns are selected will be their order in the new dataset. We rename them by assigning `newname = oldname`.
+
+```{r}
+galtondataC <- galtondataA %>% 
+  select(family_id = FamilyID,
+         ht_parent = Midparent,
+         ht_child  = HeightT)
+glimpse(galtondataC)
+```
+
+##
+
+Note: All the datasets include the same number of rows (898).
+
+```{r}
+dim(galtondata) # original data, 6 variables total
+dim(galtondataA) # using mutate to make new variables
+dim(galtondataB) # using transmute to make new variables
+dim(galtondataC) # using select to reduce number of columns
+```
+
+## Challenges!
+
+* Remove only the variable `Children` from the dataset.
+
+* Extract the `HeightT` column from the dataset into a vector.
+
+* Convert all height measurements from inches to centimeters.
+
+* Create `MotherT` and move it so that it is located after `Mother`.
+
+* Start with the original data and create a dataset that contains the following variables: `FamilyID`, `Father`, `MotherT`, `HeightT`, `Child` (in that order).
+
+* Start with the original data and rename all the variables with names of your choice.
+
+* Explore another use for one of these functions that we have not yet discussed.
+

@@ -1,0 +1,243 @@
+---
+title: "Intro to Data Wrangling<br>with dplyr Verbs, Part 2"
+author: "Author: Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+## Before We Begin...
+
+These slides are not meant to be standalone information. You should take notes to flesh out the contents. I recommend that you create an R Markdown document where you can combine information and code from the slides and your own additional notes and explorations to make connections.
+
+**Related Materials**
+
+* Modern Dive [Chapter 3: Data Wrangling](https://moderndive.com/3-wrangling.html)
+* Modern Dive [Chapter 4: Data Importing and “Tidy” Data](https://moderndive.com/4-tidy.html)
+* DataCamp [Introduction to the Tidyverse](https://learn.datacamp.com/courses/introduction-to-the-tidyverse)
+* DataCamp [Data Manipulation with dplyr](https://learn.datacamp.com/courses/data-manipulation-with-dplyr)
+* Intro to Data Wrangling with dplyr Verbs, Part 1 [slides](https://stat-jet-asu.github.io/STT2860DataScience1/Slides//DataWranglingVerbs01.html)
+* [dplyr Reference](https://dplyr.tidyverse.org/reference/index.html)
+
+## Index
+
+* Review: Datasets
+    * 05 --- Dataset Structure
+    * 08 --- Example Dataset
+
+* Verbs for Observations
+    * 22 --- The Functions 
+        * `arrange()`
+        * `filter()` / `slice()` / `distinct()`
+        * `count()` / `summarize()`
+        * `group_by()`
+    * 24 --- Examples
+    * 30 --- Challenges!
+    
+# Review: Datasets
+
+## Dataset Structure
+
+* A ***variable*** is some characteristic of interest that can differ between individuals in a population.
+
+* An observational unit (or ***observation***) is a single individual, object, or entity about which collect data, regarding one or more of its characteristics (variables).
+
+* An observation may be called a case, subject, or participant.
+
+* Ideally, each observational unit has a value for each variable.
+
+A ***dataset*** is a collection of data values for the observations and variables in a study (e.g., survey or experiment). A common way to arrange data is to put variables in columns and observations in rows. This is what we call ***tidy*** data. 
+
+## Tidy Data
+
+<p style="text-align:center; font-size: 18px;"><img src="https://d33wubrfki0l68.cloudfront.net/6f1ddb544fc5c69a2478e444ab8112fb0eea23f8/91adc/images/tidy-1.png" width = 775><br>
+Tidy data graphic from [R for Data Science: Tidy Data](http://r4ds.had.co.nz/tidy-data.html)</p>
+
+<p>Many datasets are already in tidy format, though there may be missing data and other issues we have to address before doing data analysis and visualization.</p>
+
+<p>Real life data is usually far messier and can require a great deal of tidying. The dplyr verbs help us to get data into tidy format and to modify it in other ways, such as creating new variables.</p>
+
+## Exploring Structure
+
+A few functions for exploring dataset structure are given below. 
+
+* `glimpse()` # requires tidyverse
+* `attributes()`
+* `dim()` # dimensions, rows &times; columns
+* `names()`
+* `nrow()`
+* `ncol()`
+* `head()`
+* `tail()`
+* `sum(complete.cases())` # this is two nested functions
+* `sum(!complete.cases())` # what does the ! do?
+
+## Example Dataset
+
+* Statistician Francis Galton (1822-1911), a cousin of Charles Darwin, studied the relationship between parents' heights and the heights of their offspring. His pioneering [1886 article](https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf) is the first appearance of regression analysis in print. 
+
+* The `galtonfamiliesmain` dataset we will be working with was [reconstructed by Dr. James A. Hanley](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/) and students using Galton's [original paper notebooks](http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/index.html) containing handwritten measurement data for 205 families. 
+
+* You can access the data file from the [description](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html) page, which also contains more context and variable definitions.
+
+* Note Galton's comments about how he "transmuted" some of the data for analysis. As with most historical data, gender is a binary variable for both parents and children.
+
+## Read in the Data
+
+`library(tidyverse)`   
+`galtondata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/galtonfamiliesmain.csv")`
+
+```{r, echo = FALSE}
+library(tidyverse)
+galtondata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/galtonfamiliesmain.csv")
+```
+
+```{r}
+glimpse(galtondata)
+```
+
+##
+
+What are the variable names?
+
+```{r}
+names(galtondata)
+```
+
+How many observations are there?
+
+```{r}
+nrow(galtondata)
+```
+
+Are there any cases with `NA` values?
+
+```{r}
+sum(!complete.cases(galtondata))
+```
+
+# Verbs for Observations<br>(Manipulating Rows)
+
+## 
+
+These functions act on the rows (observations) of a dataset, but they generally use the values of one or more variables to select or manipulate the rows.
+
+* [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html)
+
+Sort the rows (observations) according to one or more variables.
+
+* [`count()`](https://dplyr.tidyverse.org/reference/count.html)
+
+Count the number of rows (observations) that fall in categories created by one or more variables.
+
+* [`distinct()`](https://dplyr.tidyverse.org/reference/distinct.html)
+
+Subset all unique rows (observations) based on values of one or more variables / remove duplicate observations.
+
+##
+
+* [`filter()`](https://dplyr.tidyverse.org/reference/filter.html)
+
+Subset rows (observations) to reduce the number of rows.
+
+* [`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)
+
+Group rows (observations), often prior to summarizing. Does not typically reduce the size of the dataset.
+
+* [`slice()`](https://dplyr.tidyverse.org/reference/slice.html)
+
+Subset rows (observations) using their positions in the dataset. Often used with `arrange()`.
+
+* [`summarize()`](https://dplyr.tidyverse.org/reference/summarise.html)
+
+Summarize rows (observations) into a smaller number of rows. Often used with `group_by()`.
+
+## Categorical `filter()`
+
+Reduce the dataset's rows so it only contains observations for daughters. Note the use of the logical equals `==` and category name in quotes.
+
+```{r}
+galton_daughters <- galtondata %>% 
+  filter(Child == "Daughter")
+glimpse(galton_daughters)
+```
+
+## Quantitative `filter()`
+
+Reduce the dataset so it contains only observations for mothers less than 5 feet tall (60 inches). Numbers do not need quotes.
+
+```{r}
+galton_shortermoms <- galtondata %>% 
+  filter(Mother < 60)
+glimpse(galton_shortermoms)
+```
+
+## Using Two Filters
+
+Reduce the dataset so it contains only daughters with mothers less than 5 feet tall. The logical `&` (and) is implied by the comma in `filter()`. For *or* we can use a `|` between statements.
+
+```{r}
+galton_daughters_with_shorter_moms <- galtondata %>% 
+  filter(Child == "Daughter", Mother < 60)
+glimpse(galton_daughters_with_shorter_moms)
+```
+
+## The `%in%` Operator
+
+We can filter based on set membership using `%in%` (multiple *or*). Recall that `FamilyID` is a categorical variable in this dataset.
+
+```{r}
+families_1_2_136A <- galtondata %>% 
+  filter(FamilyID %in% c("1", "2", "136A"))
+glimpse(families_1_2_136A)
+```
+
+## Variable Summaries
+
+We use `summarize()` to compute different kinds of quantitative summaries of variables, such as `mean()`. The output is a smaller dataset, which can be further operated on by dplyr verbs. 
+
+Each summary is a column in the output dataset, and there is only a single row---we have summarized *all* observations in the original dataset into one set of informative values.
+
+```{r}
+galtondata %>% 
+  summarize(mean_ht = mean(Height),
+            sd_ht   = sd(Height))
+```
+
+## Grouped Variable Summaries
+
+If we use `group_by()` before `summarize()`, the summaries will be calculated separately for different sub-groupings (groups of rows) in the dataset. Here we have separate summaries for the observations (rows) representing daughters versus sons. Each of the subgroups becomes a row in the output dataset.
+
+```{r}
+galtondata %>% 
+  group_by(Child) %>% 
+  summarize(mean_ht = mean(Height),
+            sd_ht   = sd(Height))
+```
+
+## Challenges!
+
+* Create a subset of families with only one child.
+
+* Extract all the unique `FamilyID`s in the dataset.
+
+* Sort the dataset from the shortest to the tallest child.
+
+* Sort the dataset from the tallest to the shortest child.
+
+* Choose a random sample of observations from the dataset.
+
+* Find all observations where sons are taller than their fathers.
+
+* Subset the data to *include* all observations where the heights of the parents are different by more than 6 inches.
+
+* Subset the data to *exclude* all observations where the heights of the parents are different by more than 6 inches.
