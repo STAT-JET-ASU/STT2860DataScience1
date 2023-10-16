@@ -1,6 +1,6 @@
 ---
 title: "&#8220;Becoming a Data Scientist&#8221; #2"
-subtitle: "STT2860 Intro Data Management & Visualization"
+subtitle: "STT 2860 Intro to Data Management & Visualization"
 author: "PUT YOUR NAME HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 

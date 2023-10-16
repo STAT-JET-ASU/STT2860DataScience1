@@ -1,7 +1,7 @@
 ---
 title: "&#8220;Becoming a Data Scientist&#8221; Podcast"
 subtitle: "Index of &#8220;[Becoming a Data Scientist](https://www.becomingadatascientist.com/category/podcast/)&#8221; Interviews"
-author: "Compiled / Organized by Jill E. Thomley"
+author: "Compiled and organized by Jill E. Thomley"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
   html_document: 
