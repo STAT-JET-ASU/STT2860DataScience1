@@ -9,7 +9,7 @@ output:
     highlight: textmate
 ---
 <hr>
-**Instructions:** Go to Dr. Thomley's [Index of "Becoming a Data Scientist" Interviews](https://stat-jet-asu.github.io/STT2860DataScience1/DataScientistBlog/datasciblogindex.html).
+**Instructions:** Go to Dr. Thomley's [Index of "Becoming a Data Scientist" Interviews](https://stat-jet-asu.github.io/STT2860DataScience1/DataScientist/datasciblogindex.html).
 Listen to ONE of the seventeen interviews and answer the following questions. *Explain so a reader could get a general idea of what the person said without listening to the interview.* The first sixteen interviews are also collected in a [YouTube playlist](https://www.youtube.com/playlist?list=PLTnOXzOljuWZJo1IlaBcGM74P9vE0Uauc). 
 <hr>
 

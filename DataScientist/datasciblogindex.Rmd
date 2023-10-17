@@ -1,6 +1,6 @@
 ---
-title: "&#8220;Becoming a Data Scientist&#8221; Podcast"
-subtitle: "Index of &#8220;[Becoming a Data Scientist](https://www.becomingadatascientist.com/category/podcast/)&#8221; Interviews"
+title: "Index of &#8220;[Becoming a Data Scientist](https://www.becomingadatascientist.com/category/podcast/)&#8221; Interviews"
+subtitle: "&#8220;Becoming a Data Scientist&#8221; Podcast"
 author: "Compiled and organized by Jill E. Thomley"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
