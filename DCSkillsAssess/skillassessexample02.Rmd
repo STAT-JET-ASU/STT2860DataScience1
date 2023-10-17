@@ -1,0 +1,37 @@
+---
+title: "DataCamp Skills Assessment Example 2"
+subtitle: "STT 2860 Intro to Data Management & Visualization"
+author: "Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+
+<hr>
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/ResultsExample02.PNG", dpi = 100)
+```
+
+<hr>
+
+#### Take the DataCamp assessment [Data Manipulation with R](https://assessment-v2.datacamp.com/exploratory-analysis-r). 
+
+**What score did you achieve on Data Manipulation with R?**
+
+ANSWER: 127
+
+**You performed better than what percent of other people?**
+
+ANSWER: 81%
+
+**What courses did DataCamp recommend for you to improve?**
+
+ANSWER: DataCamp recommended that I complete the course Introduction to Data Analysis with ggplot2 and Intermediate Data Visualization with ggplot2. However, looking at my wrong answers, I can see that some were due to sloppy coding (e.g., a missing parenthesis) rather than not knowing what to do.
+
+<hr>
+
+END!
+

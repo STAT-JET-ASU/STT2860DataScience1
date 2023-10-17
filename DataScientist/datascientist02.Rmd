@@ -1,5 +1,5 @@
 ---
-title: "&#8220;Becoming a Data Scientist&#8221; #2"
+title: "Project 2: &#8220;Becoming a Data Scientist&#8221;"
 subtitle: "STT 2860 Intro to Data Management & Visualization"
 author: "PUT YOUR NAME HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
@@ -8,9 +8,12 @@ output:
     theme: yeti
     highlight: textmate
 ---
+
 <hr>
+
 **Instructions:** Go to Dr. Thomley's [Index of "Becoming a Data Scientist" Interviews](https://stat-jet-asu.github.io/STT2860DataScience1/DataScientistBlog/datasciblogindex.html).
 Listen to ONE of the seventeen interviews and answer the following questions. *Explain so a reader could get a general idea of what the person said without listening to the interview.* Of course, you should choose a different interview than you did for &#8220;Becoming a Data Scientist&#8221; #1. 
+
 <hr>
 
 **Q1: What is the name of the person interviewed?**

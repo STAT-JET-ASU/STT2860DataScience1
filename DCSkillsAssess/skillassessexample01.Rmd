@@ -1,0 +1,37 @@
+---
+title: "DataCamp Skills Assessment Example 1"
+subtitle: "STT 2860 Intro to Data Management & Visualization"
+author: "Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+
+<hr>
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/ResultsExample01.PNG", dpi = 100)
+```
+
+<hr>
+
+#### Take the DataCamp assessment [Data Visualization with R](https://assessment-v2.datacamp.com/data-visualization-r). 
+
+**What score did you achieve on Data Visualization with R?**
+
+ANSWER: 142
+
+**You performed better than what percent of other people?**
+
+ANSWER: 91%
+
+**What courses did DataCamp recommend for you to improve?**
+
+ANSWER: DataCamp recommended that I complete the course Intermediate Data Visualization with ggplot2.
+
+<hr>
+
+END!
+
