@@ -29,7 +29,7 @@ ANSWER: 91%
 
 **What courses did DataCamp recommend for you to improve?**
 
-ANSWER: DataCamp recommended that I complete the course Intermediate Data Visualization with ggplot2.
+ANSWER: DataCamp recommended that I complete the course Intermediate Data Visualization with ggplot2. [*Ugh, facets! Not my strong suit. The new syntax for the faceting functions might help.*]
 
 <hr>
 

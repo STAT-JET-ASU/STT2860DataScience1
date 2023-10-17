@@ -29,7 +29,7 @@ ANSWER: 81%
 
 **What courses did DataCamp recommend for you to improve?**
 
-ANSWER: DataCamp recommended that I complete the course Introduction to Data Analysis with ggplot2 and Intermediate Data Visualization with ggplot2. However, looking at my wrong answers, I can see that some were due to sloppy coding (e.g., a missing parenthesis) rather than not knowing what to do.
+ANSWER: DataCamp recommended that I complete the course Introduction to Data Analysis with ggplot2 and Intermediate Data Visualization with ggplot2. However, looking at my wrong answers, I can see that some were due to sloppy coding (e.g., a missing parenthesis, misspelled word) rather than not knowing what to do.
 
 <hr>
 
