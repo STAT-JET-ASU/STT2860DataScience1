@@ -33,19 +33,22 @@ You can read the dataset descriptions and variable definitions [HERE](https://st
 #### Capital Punishment Dataset
 
 ```{r readcappunish}
-cpdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/cappunish20231018.csv")
+cpdata <- 
+  read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/cappunish20231018.csv")
 ```
 
 #### Size of Death Row Dataset
 
 ```{r readdeathrowsize}
-drdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/deathrowsize.csv")
+drdata <- 
+  read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/deathrowsize.csv")
 ```
 
 #### Death Sentences in NC Dataset
 
 ```{r readsentencesNC}
-ncdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/deathsentencesNC.csv")
+ncdata <- 
+  read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/deathsentencesNC.csv")
 ```
 
 ### Plot #1: How Many States Have Capital Punishment? 
