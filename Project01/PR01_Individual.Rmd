@@ -1,0 +1,118 @@
+---
+title: "Project 1: Group Coding & Analysis"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "PUT EVERYONE'S NAMES HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+***
+
+### Packages Used
+
+```{r}
+# load all packages used here
+
+```
+
+### STT 2860 Class Data
+
+#### Create Vectors for the Variables
+
+Refer to the document [STT2860F23List.pdf](https://drive.google.com/file/d/103Pjig-_anvkBYImOuvSApOT0BnIkHmB/view?usp=sharing). Use it to create the following vectors. You will be combining these individual vectors into a dataset, so be sure you code the vectors in such a way that each person's information is in the correct positions. You may rearrange the rows to help you code things more efficiently, since we can always use the `arrange()` function to sort the data in different ways later on. For example, if you have several students from the College of Arts & Sciences (AS) in a row, you could use the `rep()` function when creating a vector to represent that variable. For the Major / Conc data, the major and concentration are separated by a comma (i.e., major, concentration). Not everyone has a concentration (or a middle initial, for that matter). But, you will have to use something to occupy that space. You also will want to consider appropriate variable names when you create and store (`<--`) your vectors as objects. 
+
+Vector 1: Last Name
+
+```{r}
+
+```
+
+Vector 2: First Name
+
+```{r}
+
+```
+
+Vector 3: Middle Initial
+
+```{r}
+
+```
+
+Vector 4: E-Mail Address
+
+```{r}
+
+```
+
+Vector 5: College
+
+```{r}
+
+```
+
+Vector 6: Class
+
+```{r}
+
+```
+
+Vector 7: Major
+
+```{r}
+
+```
+
+Vector 8: Concentration
+
+```{r}
+
+```
+
+#### Create a Tibble from the Vectors
+
+Use the `tibble()` function to create a class dataset from your vectors. Use the `arrange()` function to sort it alphabetically by last name. Assign your dataset to the object name `students2860F23`. 
+
+```{r}
+
+```
+
+Show the structure of your dataset using the `glimpse()` function.
+
+```{r}
+
+```
+
+Display the first 5 rows of your dataset using the `head()` function.
+
+```{r}
+
+```
+
+#### Bar Plot of Students' Colleges
+
+Create a barplot to show the frequencies of different colleges represented in our class. The labels for the bars should be the name of the college, not just the abbreviation. For example, AS is actually Arts & Sciences. You will have to do research to find the names of the other colleges. Change the bar color to something other than the default, and use a pre-made theme---one from ggplot2 or another package, as long as it is professional-looking. Be sure to add an appropriate title and axis labels! You may use other types of formatting on your plot, if you feel it enhances the presentation.
+
+```{r}
+
+```
+
+
+
+***
+```{r}
+sessionInfo()
+```
+
