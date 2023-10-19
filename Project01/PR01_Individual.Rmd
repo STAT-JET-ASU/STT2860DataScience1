@@ -1,7 +1,7 @@
 ---
-title: "Project 1: Group Coding & Analysis"
+title: "Project 1: Individual Coding & Analysis"
 subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
-author: "PUT EVERYONE'S NAMES HERE"
+author: "PUT YOUR NAME HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
   html_document: 
@@ -23,96 +23,145 @@ knitr::opts_chunk$set(
 ### Packages Used
 
 ```{r}
-# load all packages used here
+library(tidyverse)
+```
+
+### Datasets Used
+
+You can read the dataset descriptions and variable definitions [HERE](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/cappunish.html).
+
+#### Capital Punishment Dataset
+
+```{r readcappunish}
+cpdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/cappunish20231018.csv")
+```
+
+#### Size of Death Row Dataset
+
+```{r readdeathrowsize}
+drdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/deathrowsize.csv")
+```
+
+#### Death Sentences in NC Dataset
+
+```{r readsentencesNC}
+ncdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/deathsentencesNC.csv")
+```
+
+### Plot #1: How Many States Have Capital Punishment? 
+
+This plot uses the **Capital Punishment** dataset.
+
+* Create a barplot for the variable `dp2`. 
+* Use `color =` and `fill =` to format the bars.
+* Use `labs()` to add a title and better axis labels.
+* Apply a built-in theme from **ggplot2** or **ggthemes**.
+* This plot should *not* have a visible legend anywhere on it.
+* You may optionally add other formatting you deem useful.
+
+```{r plot1}
 
 ```
 
-### STT 2860 Class Data
+### Plot #2: Capital Punishment By Region of the U.S.
 
-#### Create Vectors for the Variables
+This plot uses the **Capital Punishment** dataset.
 
-Refer to the document [STT2860F23List.pdf](https://drive.google.com/file/d/103Pjig-_anvkBYImOuvSApOT0BnIkHmB/view?usp=sharing). Use it to create the following vectors. You will be combining these individual vectors into a dataset, so be sure you code the vectors in such a way that each person's information is in the correct positions. You may rearrange the rows to help you code things more efficiently, since we can always use the `arrange()` function to sort the data in different ways later on. For example, if you have several students from the College of Arts & Sciences (AS) in a row, you could use the `rep()` function when creating a vector to represent that variable. For the Major / Conc data, the major and concentration are separated by a comma (i.e., major, concentration). Not everyone has a concentration (or a middle initial, for that matter). But, you will have to use something to occupy that space. You also will want to consider appropriate variable names when you create and store (`<--`) your vectors as objects. 
+* Create a barplot for the variable `region`. 
+* Use `fill =` to shade each bar according to `dp2`.
+* Change the `position =` to set each bar equal to 100%.
+* Use `width =` to make the bars narrower than the default.
+* Use `labs()` to add a title, axis labels, and a better legend label.
+* Use `scale_fill_manual()` to choose a different color scheme for the plot. 
+* Use `theme()` to move the legend to the bottom of the plot instead of the right
+* You may optionally add a subtitle, caption, or ggplot2 built-in theme to the plot.
 
-Vector 1: Last Name
-
-```{r}
-
-```
-
-Vector 2: First Name
-
-```{r}
-
-```
-
-Vector 3: Middle Initial
-
-```{r}
+```{r plot2}
 
 ```
 
-Vector 4: E-Mail Address
+### Plot #3: Number of Prisoners on Death Row
 
-```{r}
+This plot uses the **Size of Death Row** dataset.
 
-```
+* Create a barplot for the total number of prisoners (y) in each year (x).
+* Fill the bars using the variable `decade` and outline them all in black.
+* Set the width of all the bars so there is no visible gap in between them.
+* Scale the x-axis to include a tick mark at each decade (1970, 1980, etc).
+* Scale the y axis so that it is numbered 0, 500, 1000, 1500, 2000, etc.
+* Use `labs()` to add or change the title, axis labels, and legend label. 
+* Use `theme()` to do the following:
+    * center your title
+    * set the plot background to white or blank
+    * set all axis tick marks to transparent or blank
+    * set the major x-axis gridlines to transparent or blank
+    * set the major y-axis gridlines to light gray
+* You may optionally change the color scheme used for the bars in your plot
 
-Vector 5: College
-
-```{r}
-
-```
-
-Vector 6: Class
-
-```{r}
-
-```
-
-Vector 7: Major
-
-```{r}
+```{r plot3}
 
 ```
 
-Vector 8: Concentration
+### Plot #4: Number of Executions Since 1976
 
-```{r}
+This plot uses the **Capital Punishment** dataset.
 
-```
+* Create a violin plot for the variable `post1976` (use `y = 0`).
+* Add a boxplot layer and set `width` to fit inside the violin plot.
+* Fill each plot with a color of your choice (be colorblind-aware!).
+* Scale the x-axis of the plot so that it counts in increments of 25.
+* Remove all y-axis markings/gridlines using `scale_y_continuous()`.
+* Use `annotate()` to identify the large outlier using the state name.
+* Add a title and x-axis label (make sure we know it's all states *and* DC).
+* Add the built-in theme `theme_linedraw()` or `theme_minimal` to the plot.
 
-#### Create a Tibble from the Vectors
+Hint: You can use the `NULL` vector in functions like `scale_y_continuous()`
 
-Use the `tibble()` function to create a class dataset from your vectors. Use the `arrange()` function to sort it alphabetically by last name. Assign your dataset to the object name `students2860F23`. 
-
-```{r}
-
-```
-
-Show the structure of your dataset using the `glimpse()` function.
-
-```{r}
-
-```
-
-Display the first 5 rows of your dataset using the `head()` function.
-
-```{r}
+```{r plot4}
 
 ```
 
-#### Bar Plot of Students' Colleges
+### Plot #5: Death Sentences in NC Since 1976
 
-Create a barplot to show the frequencies of different colleges represented in our class. The labels for the bars should be the name of the college, not just the abbreviation. For example, AS is actually Arts & Sciences. You will have to do research to find the names of the other colleges. Change the bar color to something other than the default, and use a pre-made theme---one from ggplot2 or another package, as long as it is professional-looking. Be sure to add an appropriate title and axis labels! You may use other types of formatting on your plot, if you feel it enhances the presentation.
+This plot uses the **Death Sentences in NC** dataset.
 
-```{r}
+Create a time series plot of death sentences in North Carolina. Use three geometries on this plot: `geom_area()`, `geom_line()` and `geom_point()`. Use `geom_vline()` to add a vertical line for 2001. The significance of this year is that the General Assembly modified the death penalty statute in several ways, including giving prosecutors the discretion to *not* seek the death penalty in cases where it previously would have been mandatory. Title, label, and format your plot in such a way that the information it conveys would be clear to the reader (i.e., the plot is reasonably stand-alone).
+
+```{r plot5}
 
 ```
 
+### Information Conveyed by Your Plots
+
+List two pieces of information you can learn or comparisons you can make from each plot above.
+
+#### Plot #1
+
+* Item 1:
+* Item 2:
+
+#### Plot #2
+
+* Item 1:
+* Item 2:
+
+#### Plot #3
+
+* Item 1:
+* Item 2:
+
+#### Plot #4
+
+* Item 1:
+* Item 2:
+
+#### Plot #5
+
+* Item 1:
+* Item 2:
 
 
 ***
 ```{r}
 sessionInfo()
 ```
-

@@ -84,7 +84,7 @@ knitr::opts_chunk$set(
 
 * Create a violin plot for the variable `post1976` (use `y = 0`)
 * Add a boxplot and set the width so it fits inside the violin plot
-* Fill each plot with a color of your choice (be colorblind-aware)
+* Fill each plot with a color of your choice (be colorblind-aware!)
 * Scale the x-axis of the plot so that it counts in increments of 25
 * Get rid of all y-axis markings/gridlines using `scale_y_continuous()`
 * Add a title, x-axis label, and a caption to identify the large outlier

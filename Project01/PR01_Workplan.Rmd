@@ -10,7 +10,7 @@ output:
     toc: true
     toc_depth: 4 
 ---
-<hr>
+***
 
 **Work Plan & Completion Timeline**
 
@@ -20,9 +20,9 @@ ANSWER:
 
 **Group Communication Mode & Plan**
 
-Determine and explain how your group members will communicate with each other outside of class. Do you have expectations for how quickly someone will reply to group communications, and a plan for what you will do if someone does not respond? Are there any times when you know one or more members will not be available, etc?
+Determine and explain how your group members will communicate with each other outside of class. Do you have expectations for how quickly someone will reply to group communications, and a plan for what you will do if someone does not respond? Are there any times when you know one or more members will not be available, etc.?
 
 ANSWER:
 
-<hr>
+***
 END!
