@@ -1,0 +1,173 @@
+---
+title: "Worksheet/Homework: Reshaping Data #1"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+### Packages Used
+
+```{r}
+# load all packages used here
+library(tidyverse)
+library(HistData)
+```
+
+### Using `pivot_longer()`
+
+Reference: https://tidyr.tidyverse.org/reference/pivot_longer.html
+
+#### Powerball Data
+
+Read the Data
+```{r}
+powdata <- 
+  read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/powerballnumbers.csv") %>% 
+  select(-multiplier)
+```
+
+Explore the Structure
+```{r}
+glimpse(powdata)
+head(powdata)
+```
+
+#### Gather the Numbers
+
+Use `pivot_longer()` to gather the six number columns into the columns `ballrank` and `ballnum`.
+
+```{r}
+
+```
+
+#### Summaries of the Numbers
+
+Unpivoted Data
+```{r}
+powdata %>%
+  summarize(
+    mean_low = mean(low),
+    mean_2nd = mean(second),
+    mean_3rd = mean(third),
+    mean_4th = mean(fourth),
+    mean_hgh = mean(high),
+    mean_pow = mean(powerball)
+  )
+```
+
+Pivoted Data
+```{r}
+
+```
+
+#### Plots of the Numbers
+
+Unpivoted Data
+```{r}
+powdata %>%
+  filter(year == 2017) %>%
+  ggplot(aes(x = as.Date(drawdate, format = "%m/%d/%Y"))) +
+  geom_smooth(mapping = aes(y = low), se = FALSE, color = "red") +
+    geom_point(mapping = aes(y = low), color = "red", alpha = 0.25, size = 2) +
+  geom_smooth(mapping = aes(y = second), se = FALSE, color = "orange") +
+    geom_point(mapping = aes(y = second), color = "orange", alpha = 0.25, size = 2) +
+  geom_smooth(mapping = aes(y = third), se = FALSE, color = "yellow") +
+    geom_point(mapping = aes(y = third), color = "yellow", alpha = 0.25, size = 2) +
+  geom_smooth(mapping = aes(y = fourth), se = FALSE, color = "green") +
+    geom_point(mapping = aes(y = fourth), color = "green", alpha = 0.25, size = 2) +
+  geom_smooth(mapping = aes(y = high), se = FALSE, color = "blue") +
+    geom_point(mapping = aes(y = high), color = "blue", alpha = 0.25, size = 2) +
+  theme_minimal() +
+  labs(
+    title = "Powerball Numbers for Each Drawing in 2017",
+    subtitle = "Each Week's White Ball Numbers, Smallest to Largest",
+    caption = "color code: red = 1st (smallest), orange = 2nd, yellow = third, green = 4th, blue = 5th (largest)",
+    x = "Date",
+    y = "Ball Number"
+  )
+```
+
+Pivoted Data
+```{r}
+
+```
+
+#### Consumer Price Index Data
+
+Read the Data
+```{r}
+cpidata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/cpidata2022.csv")
+```
+
+Explore the Structure
+```{r}
+
+```
+
+#### Gather the Months
+
+Use `pivot_longer()` to gather the twelve month columns into the columns `month` and `cpivalue`.
+
+```{r}
+
+```
+
+### Using `pivot_wider()`
+
+Reference: https://tidyr.tidyverse.org/reference/pivot_wider.html
+
+#### Farr's 1849 Deaths
+
+Read the Data
+```{r}
+choldata <- CholeraDeaths1849
+```
+
+Explore the Structure
+```{r}
+glimpse(choldata)
+head(choldata)
+```
+
+#### Semmelweis Clinics
+
+Read the Data
+```{r}
+semdata <- 
+  read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/semmelweisannualbyclinic.csv")
+```
+
+Explore the Structure
+```{r}
+
+```
+
+#### Spread the Clinics
+
+Spread the data so that the `births` and `deaths` for the two clinics are in different columns.
+
+```{r}
+
+```
+
+***
+```{r}
+sessionInfo()
+```
+
