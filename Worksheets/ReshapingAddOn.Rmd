@@ -1,0 +1,79 @@
+---
+title: "Add-On Doc"
+output: html_document
+---
+
+-------------
+
+NEW SECTION 1
+
+-------------
+
+#### Spread the Causes of Death
+
+Spread the data so that the `births` and `deaths` for the two clinics are in different columns.
+
+```{r}
+
+```
+
+#### Vietnam Draft Data
+
+Read the Data
+```{r}
+draftdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/vietnamdraft.csv")
+```
+
+Explore the Structure
+```{r}
+glimpse(draftdata)
+head(draftdata)
+```
+
+#### Spread Draft Numbers 
+
+Spread the data so that the `draftnumbers` for each `draftyear` are in different columns.
+
+```{r}
+
+```
+
+-------------
+
+NEW SECTION 2
+
+-------------
+
+### Using `separate_wider_*()` and `unite()`
+
+Reference: 
+
+* https://tidyr.tidyverse.org/reference/separate_wider_delim.html
+* https://tidyr.tidyverse.org/reference/unite.html
+
+#### Our Class Data
+
+Read the Data
+```{r}
+classdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/STT2860DataScience1/main/Worksheets/stt2860fall2023.csv")
+```
+
+Explore the Structure
+```{r}
+glimpse(classdata)
+head(classdata)
+```
+
+#### first operation here 
+
+```{r}
+
+```
+
+#### second operation here 
+
+```{r}
+
+```
+
+

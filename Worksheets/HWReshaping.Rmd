@@ -33,6 +33,8 @@ library(HistData)
 
 Reference: https://tidyr.tidyverse.org/reference/pivot_longer.html
 
+This used to be called `gather()`.
+
 #### Powerball Data
 
 Read the Data
@@ -53,7 +55,12 @@ head(powdata)
 Use `pivot_longer()` to gather the six number columns into the columns `ballrank` and `ballnum`.
 
 ```{r}
-
+powerdata_long <- powdata %>% 
+  pivot_longer(
+    cols = low:powerball,
+    names_to = "ballrank", # this is the column that low, second, etc. will go to
+    values_to = "ballnum", # this is the column that the data values will go to
+  )
 ```
 
 #### Summaries of the Numbers
@@ -73,7 +80,10 @@ powdata %>%
 
 Pivoted Data
 ```{r}
-
+powerdata_long %>% 
+  group_by(ballrank) %>% 
+  summarize(ballmean = mean(ballnum),
+            ballsd = sd(ballnum))
 ```
 
 #### Plots of the Numbers
@@ -105,7 +115,20 @@ powdata %>%
 
 Pivoted Data
 ```{r}
-
+powerdata_long %>%
+  filter(year == 2017, ballrank != "powerball") %>%
+  mutate(ballrank = factor(ballrank, levels = c("low", "second", "third", "fourth", "high"))) %>%
+  ggplot(aes(x = as.Date(drawdate, format = "%m/%d/%Y"), y = ballnum, color = ballrank)) +
+  geom_smooth(se = FALSE) +
+  geom_point(alpha = 0.25, size = 2) +
+  scale_color_manual(values = c("red", "orange", "yellow", "green", "blue")) +
+  labs(
+    title = "Powerball Numbers for Each Drawing in 2017",
+    subtitle = "Each Week's White Ball Numbers, Smallest to Largest",
+    x = "Date",
+    y = "Ball Number",
+    color = "Rank of Ball"
+  )
 ```
 
 #### Consumer Price Index Data
@@ -145,6 +168,12 @@ glimpse(choldata)
 head(choldata)
 ```
 
+-----------------------
+
+ADD NEW SECTION 1 HERE!
+
+-----------------------
+
 #### Semmelweis Clinics
 
 Read the Data
@@ -165,6 +194,14 @@ Spread the data so that the `births` and `deaths` for the two clinics are in dif
 ```{r}
 
 ```
+
+-----------------------
+
+ADD NEW SECTION2  HERE!
+
+-----------------------
+
+
 
 ***
 ```{r}
