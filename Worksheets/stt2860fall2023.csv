@@ -1,25 +1,25 @@
-Student Name,Email,College,Class,Major/Conc, 
-"Auger, Sam J.", augersj@appstate.edu,AS,Senior,Anthropology,
-"Brassel, Elizabeth G.", brasseleg@appstate.edu,FA,Senior,Advertising,
-"Cameron, Coble C.", cameroncc1@appstate.edu,CB,Sophomore,Supply Chain Management,
-"Chao, DJ J.", chaodj@appstate.edu,CB,Junior,Finance and Banking,
-"Cole, Josh B.", colejb1@appstate.edu,AS,Senior,"Psychology, Human Services",
-"Cvach, Matthew L.", cvachml@appstate.edu,AS,Junior,"Mathematics, Computation",
-"de Camara, Mike P.", decamaramp@appstate.edu,AS,Senior,"Mathematics, General Mathematics",
-"Eller, Fe S.", elleris@appstate.edu,GC,Junior,Undecided,
-"Fisher, Natalie N.", fishernn@appstate.edu,GC,Freshman,"Mathematics, Statistics",
-"Foote, Lily A.", footela@appstate.edu,AS,Senior,"Mathematics, Statistics",
-"Gantert, Joelle", gantertj@appstate.edu,AS,Junior,"Mathematics, Business",
-"Harvey, Katie S.", harveyks@appstate.edu,AS,Junior,"Mathematics, Physical Sciences",
-"Johnson, Danae E.", johnsonde@appstate.edu,AS,Junior,"Psychology, Human Services",
-"Mair, Matthew C.", mairmc@appstate.edu,AS,Senior,"Political Science, Int'l & Comparative Politics",
-"Mims, Josh", mimsj@appstate.edu,AS,Senior,"Mathematics, Business",
-"Nall, Molly E.", nallme@appstate.edu,GC,Freshman,"Psychology, Health Studies",
-"Nandi, Keya", nandik@appstate.edu,GC,Sophomore,"Chemistry, Biochemistry",
-"Odum, Heather R.", odumhr@appstate.edu,AS,Senior,"Psychology, Health Studies",
-"Pardue, Savannah G.", parduesg@appstate.edu,AS,Senior,"Psychology, Business",
-"Rathje, Trevor A.", rathjeta@appstate.edu,AS,Junior,"Mathematics, Business",
-"Ronk, Damien M.", ronklm@appstate.edu,AS,Junior,Computer Science,
-"Seevers, Joey M.", seeversjm@appstate.edu,AS,Senior,"Mathematics, Statistics",
-"Sheehan, Jackson C.", sheehanjc@appstate.edu,AS,Junior,Actuarial Science,
-"Staples, Evie H.", stapleseh@appstate.edu,HS,Junior,"Recreation Management, Comm Rec & Tourism Mgt",
+Name,Email,College,Class,MajorConc
+"Auger, Sam J.", augersj@appstate.edu,AS,Senior,Anthropology
+"Brassel, Elizabeth G.", brasseleg@appstate.edu,FA,Senior,Advertising
+"Cameron, Coble C.", cameroncc1@appstate.edu,CB,Sophomore,Supply Chain Management
+"Chao, DJ J.", chaodj@appstate.edu,CB,Junior,Finance and Banking
+"Cole, Josh B.", colejb1@appstate.edu,AS,Senior,"Psychology, Human Services"
+"Cvach, Matthew L.", cvachml@appstate.edu,AS,Junior,"Mathematics, Computation"
+"de Camara, Mike P.", decamaramp@appstate.edu,AS,Senior,"Mathematics, General Mathematics"
+"Eller, Fe S.", elleris@appstate.edu,GC,Junior,Undecided
+"Fisher, Natalie N.", fishernn@appstate.edu,GC,Freshman,"Mathematics, Statistics"
+"Foote, Lily A.", footela@appstate.edu,AS,Senior,"Mathematics, Statistics"
+"Gantert, Joelle", gantertj@appstate.edu,AS,Junior,"Mathematics, Business"
+"Harvey, Katie S.", harveyks@appstate.edu,AS,Junior,"Mathematics, Physical Sciences"
+"Johnson, Danae E.", johnsonde@appstate.edu,AS,Junior,"Psychology, Human Services"
+"Mair, Matthew C.", mairmc@appstate.edu,AS,Senior,"Political Science, Int'l & Comparative Politics"
+"Mims, Josh", mimsj@appstate.edu,AS,Senior,"Mathematics, Business"
+"Nall, Molly E.", nallme@appstate.edu,GC,Freshman,"Psychology, Health Studies"
+"Nandi, Keya", nandik@appstate.edu,GC,Sophomore,"Chemistry, Biochemistry"
+"Odum, Heather R.", odumhr@appstate.edu,AS,Senior,"Psychology, Health Studies"
+"Pardue, Savannah G.", parduesg@appstate.edu,AS,Senior,"Psychology, Business"
+"Rathje, Trevor A.", rathjeta@appstate.edu,AS,Junior,"Mathematics, Business"
+"Ronk, Damien M.", ronklm@appstate.edu,AS,Junior,Computer Science
+"Seevers, Joey M.", seeversjm@appstate.edu,AS,Senior,"Mathematics, Statistics"
+"Sheehan, Jackson C.", sheehanjc@appstate.edu,AS,Junior,Actuarial Science
+"Staples, Evie H.", stapleseh@appstate.edu,HS,Junior,"Recreation Management, Comm Rec & Tourism Mgt"
