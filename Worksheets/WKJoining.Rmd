@@ -1,0 +1,259 @@
+---
+title: "Intro to Binding and Joining in R"
+subtitle: "STT2860 Intro to Data Management and Vis S22"
+author: "Author: YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+<hr>
+
+This worksheet is meant to be used with:
+
+* [RDS CH13 Relational data](https://r4ds.had.co.nz/relational-data.html)
+* [Mutating joins](https://dplyr.tidyverse.org/reference/mutate-joins.html)
+* [Filtering joins](https://dplyr.tidyverse.org/reference/filter-joins.html)
+* [Dr. Thomley's Instructor Datasets](https://github.com/STAT-JET-ASU/Datasets/tree/master/Instructor)
+
+## Packages Used
+
+```{r packagesused}
+library(tidyverse)
+library(skimr)
+```
+
+## Datasets Used
+
+### Myers-Briggs Personality Datasets
+
+Personality types determined using the [Jung Typology Test](https://www.humanmetrics.com/personality).
+
+#### STT1810 Class Data
+
+```{r readclass1}
+class1 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/personalitySTT1810.csv")
+glimpse(class1)
+```
+
+#### STT3850 Class Data
+
+```{r readclass2}
+class2 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/personalitySTT3850.csv")
+glimpse(class2)
+```
+
+### Census Population Data
+
+Census data taken from tables found on Wikipedia.
+
+#### 1970 and 1980
+
+```{r readcensus1}
+census1 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/census19701980.csv")
+glimpse(census1)
+```
+
+#### 1990 and 2000
+
+```{r readcensus2}
+census2 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/census19902000.csv")
+glimpse(census2)
+```
+
+#### 2010 and 2020
+
+```{r readcensus3}
+census3 <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/census20102020.csv")
+glimpse(census3)
+```
+
+### Electoral Votes
+
+Data from [US Electoral College Votes Per State 1788-2020 | Kaggle](https://www.kaggle.com/datasets/daithibhard/us-electoral-college-votes-per-state-17882020)
+
+```{r readelectoralvotes}
+votes <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/electoralvotes.csv")
+glimpse(votes)
+```
+
+## Examples of Combining
+
+### `bind_rows()`
+
+#### Simple row binding
+
+I want to row bind my two class. They have the same variables, and in each dataset one row represents one student.
+
+The `bind_rows()` function matches on names. Are all the names the same? If not, I need to use `rename()` or some similar operation.
+
+```{r}
+names(class1) == names(class2)
+```
+
+Bind the two classes together using `bind_rows()` and store it as `mbtidata1`. Can you do it both with and without piping?
+
+```{r}
+
+```
+
+Use `glimpse()` to explore the structure of `mbtidata1`.
+
+```{r}
+
+```
+
+#### Binding with an ID #1
+
+If I do a simple binding, I don't know which data came from which class. Add a variable called `ClassID` as part of the binding process. Store this dataset as `mbtidata2`.
+
+```{r}
+
+```
+
+Use `glimpse()` to explore the structure of `mbtidata2`.
+
+```{r}
+
+```
+
+#### Binding with an ID #2
+
+If I want to be able to specify my ID values, I need to enter the datasets I want to bind as a named list. The assigned names become the ID values.
+
+```{r}
+mbtidata3 <- bind_rows(
+  list(
+    STT1810 = class1,
+    STT3850 = class2
+  ),
+# erase this and replace it with code to create the ClassID column
+```
+
+Use `glimpse()` to explore the structure of `mbtidata3`.
+
+```{r}
+
+```
+
+### `bind_cols()`
+
+#### Using column binding
+
+I want to column bind the first two census datasets. Perform that operation with `bind_cols()` and save as `censusdata1`.
+
+```{r}
+
+```
+
+Use `head()` to show the first ten rows of `censusdata1`. What problem do you see with the result of your binding?
+
+```{r}
+
+```
+
+The data files are sorted in order from largest to smallest population. We need to sort each file by state name to join properly. Perform the sorting (arranging) and binding. Save the result as `censusdata2`.
+
+```{r}
+
+```
+
+Use `head()` to show the first ten rows of `censusdata2`. What problem do you see with the result of your binding?
+
+```{r}
+
+```
+
+Each dataset has a column called `state`. They both get saved but renamed. Perform additional manipulations using dplyr so that you only have one column called `state` containing the state names. Save the result as `censusdata3`.
+
+```{r}
+
+```
+
+Use `head()` to show the first ten rows of `censusdata3`. Is everything good now?
+
+```{r}
+
+```
+
+Now do all three census datasets! The result should have only one `state` column. Save as `censusdata4`.
+
+```{r}
+
+```
+
+Use `head()` to show the first ten rows of `censusdata4`. Does everything look good?
+
+```{r}
+
+```
+
+Challenge! How can I pivot `censusdata4` into a longer dataset that has year as a variable? I'd like the three variables to be `state`, `year`, and `population`.
+
+```{r}
+
+```
+
+### Mutating Joins
+
+#### `left_join()`
+
+I would like to add the electoral votes from the `votes` dataset to `censusdata4`. I want to keep everything in the census dataset (X) and add to it any matches in `votes` (Y).
+
+What are the `key` variables? Both have `state` and `year` that will uniquely identify rows.
+
+```{r}
+
+```
+
+#### `right_join()`
+
+Can you join the datasets using `right_join()` instead of `left_join()`?
+
+```{r}
+
+```
+
+#### `inner_join()`
+
+What happens if we join this way?
+
+```{r}
+
+```
+
+#### `full_join()`
+
+What happens if we join this way?
+
+```{r}
+
+```
+
+### Filtering Joins
+
+#### `semi_join()`
+
+```{r}
+
+```
+
+#### `anti_join()`
+
+```{r}
+
+```
+
+<hr>
+```{r}
+sessionInfo()
+```
