@@ -52,7 +52,15 @@ ANSWER:
 
 ANSWER:
 
-**Q10: How did this person's path differ from the previous interview you watched?**
+**Q10: Google the person whose interview you watched. What are they doing now?**
+
+ANSWER:
+
+**Q11: How did this individual's path differ from the previous interview you watched?**
+
+ANSWER:
+
+**Q12: Reflect on your own path. Do you consider yourself a data scientist? Why or why not?**
 
 ANSWER:
 
