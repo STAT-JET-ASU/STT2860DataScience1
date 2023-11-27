@@ -14,6 +14,18 @@ knitr::opts_chunk$set(
 )
 ```
 
+## Instructions
+
+Delete this slide from your presentation before using!
+
+1) Update the Packages Used slide to show any packages you used to create your plots. 
+2) Describe where you got the dataset you used and define all the variables in the dataset.
+3) Tell us about any data manipulation you needed to perform on the dataset before making your plots.
+4) Create TWO different types of plots from your dataset. Feel free to experiment a bit! (*There are five example plots; you do not have to do that many.*)
+
+A new slide begins with `##`. You can use a title or leave it blank (as you can see on the plot slides).
+
+
 ## Packages Used
 
 I used tidyverse for data manipulation and plotting.
@@ -34,7 +46,8 @@ I need scales to format a percentage axis.
 library(scales)
 ```
 
-## Capital Punishment Dataset
+
+## Dataset Source & Variables
 
 I compiled my dataset using several sources found at the web site of the nonprofit [Death Penalty Information Center](https://deathpenaltyinfo.org/). The dataset was last updated January 7, 2022, so some of the values may have changed between that date and now. 
 
@@ -46,6 +59,7 @@ I compiled my dataset using several sources found at the web site of the nonprof
 * `court`: US Court of Appeals regional circuit
 * `dp1`: whether the state legally has the death penalty (yes/no)
 * `dp2`: dp1, but indicates states with a governor’s moratorium  
+
 
 ## 
 
@@ -64,6 +78,14 @@ I compiled my dataset using several sources found at the web site of the nonprof
 ```{r}
 data <- read_csv("data/cappunish20220107.csv")
 ```
+
+
+## Data Manipulation
+
+This dataset did not require any additional manipulation for me to be able to use it. However, if I were to do this again, it might be interesting to join it to a dataset with state population to look at number of prisoners or executions as function of population.
+
+*Note: Describe any variables you created or reformatted, any joining or pivoting you needed to do, etc.*
+
 
 ##
 
@@ -91,6 +113,7 @@ ggplot(data, aes(x = dp2, fill = dp2)) +
 ```
 
 This is a serviceable plot, but kind of bland, right?
+
 
 ##
 
@@ -130,6 +153,7 @@ ggplot(data, aes(x = region, fill = dp2)) +
 
 Do you notice any pattern in regions regarding proportions of states that do and do not have the death penalty?
 
+
 ##
 
 ```{r, fig.align = "center", fig.width = 9}
@@ -164,6 +188,7 @@ data %>%
 
 Do you notice any pattern in states that do and do not have the death penalty?
 
+
 ##
 
 ```{r, fig.align = "center", fig.width = 7, fig.cap = "Figure Caption: This plot type is known as a Cleveland dot plot."}
@@ -195,6 +220,7 @@ data %>%
 ```
 
 What is Furman vs. Georgia 1976 and why would I put it on this plot? Do you see any interesting patterns?
+
 
 ##
 
