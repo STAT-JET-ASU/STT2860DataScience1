@@ -1,0 +1,182 @@
+---
+title: "Project 2: Individual Coding & Analysis"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "SOLUTIONS"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+***
+
+## Setup
+
+### Packages Used
+
+```{r loadpackages}
+
+```
+
+## Data Manipulations
+
+### NFL 2016 Data
+
+Go to the [description page](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html) for Dr. Thomley's NFL 2016 dataset. You will find a link to the `NFLplayers2016.csv`, which we explored this semester, as well as `NFLpositions.csv`, which contains NFL position abbreviations and their expanded names. You are going to use the positions dataset to add expanded position names to the NFL Players 2016 dataset.
+
+#### Read the Datasets
+
+Read both datasets from the web and use both `glimpse()` and `skim()` to explore their structures and look for missing data.
+
+```{r readNFLplayers2016}
+
+```
+
+```{r glimpseNFLplayers2016}
+
+```
+
+```{r readNFLpositions}
+
+```
+
+```{r glimpseNFLpositions}
+
+```
+
+#### Investigate the Data
+
+Use a join function to determine if there are any players in the NFL Players 2016 dataset whose positions do not have a matching name in the NFL Positions dataset. Be sure to save the results as an object so you can do further analyses.
+
+```{r}
+
+```
+
+How many players do not have a match in the NFL Positions dataset? Determine this using code.
+
+```{r}
+
+```
+
+What are the positions of all the 2016 players who do not have matches? Determine this using code.
+
+```{r}
+
+```
+
+What are the position groupings of all the players who do not have matches? Determine this using code.
+
+```{r}
+
+```
+
+#### Update NFL Positions
+
+Create a small dataset (tibble) that contains the position abbreviation and its matching position name for any positions that do not have matches in NFL Players 2016 (i.e., the positions you found above). It should have the same structure and variable names as NFL Positions dataset, because in the next step you are going to bind it with the NFL Positions dataset. (*Hint: You can use the player's* `PositionGrp` *value as the position name.*)
+
+```{r}
+
+```
+
+Bind the NFL Positions dataset and the dataset you created above. Your dataset should add a row (or rows, depending on how many positions the tibble you made contains) to the NFL Positions dataset. Be sure to save it as an object so you can use it!
+
+```{r}
+
+```
+
+Use a join to check that none of the players in NFL Players 2016 are lacking a match in your updated positions dataset. If any of them are lacking a match, revise your code above! If everyone has a match, go on to the next step. 
+
+```{r}
+
+```
+
+#### Join the Datasets
+
+Join the NFL Players 2016 dataset and your updated positions dataset so that each 2016 player will have an expanded position name, but do not add any position names that have no player match. Rename variables `PositionExp` to `Position_Name` and `PositionGrp` to `Position_Group`. Rearrange the dataset so that the variables are in the following order.
+
+* `Name`
+* `Team`
+* `Position`
+* `Position_Name`
+* `Position_Group`
+* `Side`
+* `Age`
+* `Height`
+* `Weight`
+* `Years`
+* `Playtime`
+* `College`
+* `Jersey`
+
+```{r}
+
+```
+
+Use `glimpse()` and `skim()` to explore your new joined and rearranged dataset.
+
+```{r}
+
+```
+
+#### Position Analyses
+
+What are the top five positions overall (by name) for NFL players in 2016? Determine this using code and display the positions.
+
+```{r}
+
+```
+
+What positions (by name) belong to each `Side`? How many players are in these positions? Determine this using code and display.
+
+```{r}
+
+```
+
+What positions in the positions dataset are not used by any player in 2016? Determine this using code and display the positions.
+
+```{r}
+ 
+```
+
+#### Data Visualizations
+
+Create a visualization to display the top five positions overall (by name) and how many players are classified into those positions. As always, be sure to add an appropriate title, labels, and other customization to enhance the presentation.
+
+```{r}
+
+```
+
+Create a visualization for one of the quantitative variables in the dataset that compares the values of that variable for players according to their `Position`, `PositionGrp`, or `Side` (e.g., use color, fill faceting, or comparative method). As always, be sure to add an appropriate title, labels, and other customization to enhance the presentation.
+
+```{r}
+
+```
+
+#### Save Your Dataset
+
+Write your joined dataset to a `.csv` file.
+
+```{r}
+
+```
+
+Write your joined dataset to an `.rds` file.
+
+```{r}
+
+```
+
+***
+```{r}
+sessionInfo()
+```
