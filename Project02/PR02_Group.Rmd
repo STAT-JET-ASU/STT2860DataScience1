@@ -1,0 +1,202 @@
+---
+title: "Project 2: Group Coding & Analysis"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "PUT EVERYONE'S NAMES HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+***
+
+## Setup
+
+### Packages Used
+
+```{r loadpackages}
+
+```
+
+### Datasets Used
+
+### Background of the Data
+
+Two files containing data about thge content of streaming services were downloaded from Kaggle:  [Disney+ Movies and TV Shows](https://www.kaggle.com/datasets/shivamb/disney-movies-and-tv-shows) and [TV shows on Netflix, Prime Video, Hulu and Disney+](https://www.kaggle.com/datasets/ruchi798/tv-shows-on-netflix-prime-video-hulu-and-disney). You can read about them there, including variable definitions, sources, when they were created, and other information. Read the two datasets from the provided Excel file, then use `skim()` to explore their structures.
+
+#### Disney+ Content Dataset
+
+```{r readdisneydata}
+
+```
+
+```{r skimdisneydata}
+
+```
+
+#### Streaming TV Content Dataset
+
+```{r readstreamingdata}
+
+```
+
+```{r skimstreamingdata}
+
+```
+
+***
+
+## Analyses
+
+### Clean, Tidy, and Save the Data
+
+#### Dataset #1: Disney+ Release Data
+
+The Disney+ dataset contains a variable that gives information about the `rating` for each program offering. Convert that variable into a factor variable that puts the ratings in (roughly) ascending order of age restriction/audience: `TV-Y`, `TV-Y7`, `TV-Y7-FV`, `TV-G`, `G`, `TV-PG`, `PG`, `PG-13`, `TV-14`. Delete the `show_id`, `director`, `cast`, `country`, and `description` variables. You should be able to do this all in one piped sequence.
+
+```{r factor&reduce}
+
+```
+
+```{r glimpse01}
+
+```
+
+#### Dataset #2: Disney+ Genre Data 
+
+Extract the `type`, `title`, and `listed_in` variables from the Disney+ dataset. The `listed_in` variable contains the various genre categories into which the content is classified. Some have only one, others have multiple. Split this variable into several columns to separate the categories. Then pivot the dataset so that you end up with the columns `type`, `title`, and `genre`. Eliminate any rows that have `NA` in `genre`. (*Yes, some content will appear multiple times, one for each of its genres.*) You should be able to do this all in one piped sequence.  
+
+```{r separate&pivot}
+
+```
+
+```{r glimpse02}
+
+```
+
+#### Dataset #3: Streaming TV Data
+
+Tidy the streaming TV data for analysis. You should be able to do this all in one piped sequence.
+
+* Pivot the `Netflix`, `Hulu`, `Prime Video`, and `Disney+` variables into two columns called `Service` (containing the name of the streaming service) and `YesNo` (containing the 0/1 values from the original columns).
+* Filter the dataset to remove any row where `YesNo` is 0 (i.e., a show is *not* on the service).
+* Separate the `IMDb` variable to split each show's actual rating from the maximum possible rating of `10`. 
+* Convert the show's actual IMDB rating into a numerical variable and get rid of the column containing `10`.
+* Separate the `Rotten Tomatoes` variable to split each show's actual rating from the maximum possible rating of `100`. 
+* Convert the show's actual Rotten Tomatoes rating into a numerical variable and get rid of the column containing `100`.
+* Format all variable names so that they are either lowercase or camel case, and are in an `R`-friendly form (e.g., no spaces).
+
+```{r pivot&separate}
+
+```
+
+```{r glimpse03}
+
+```
+
+#### Save the Formatted Data Files
+
+Save all three data files into a single`.RData` file.
+
+```{r savedatafiles}
+
+```
+
+### Analysis 1: Disney Content & Release Years
+
+**This analysis uses Dataset #1.**
+
+#### Release Years by Program Type---Plot #1
+
+Create a violin plot of `release_year` (x axis) grouped by `type` of program (y axis) for programs on Disney+. Add a boxplot inside the violin plot. Re-scale the X axis so that tick marks appear at whole-decade intervals (e.g., 1980, 1990, 2000). Be sure to include an informative title and axis labels. Add at least two other types of formatting to enhance the effectiveness and/or appearance of your plot (e.g., themes, colors, etc).
+
+```{r violinplot}
+
+```
+
+#### Release Years by Program Type---Plot #2
+
+Create a histogram for `release_year` with `type` as a fill variable. Choose a reasonable number of bins or bin width. Re-scale the X axis so that tick marks appear at whole-decade intervals (e.g., 1980, 1990, 2000). Scale the Y axis to have nicely-spaced tick marks. Add vertical lines with annotations to indicate the debuts of Disney Brothers Cartoon Studio (1923), Disney Channel on TV (1983), and Disney+ streaming service (2019). Include a title and axis labels. Remove the legend title. Other formatting is optional.
+
+```{r histogram}
+
+```
+
+### Analysis 2: Disney Content & Ratings
+
+**This analysis uses Dataset #2.**
+
+Create an appropriate plot to show the top five genres of content on Disney+. Add an appropriate title and axis labels, as well as any other necessary formatting to make your plot clear and effective.
+
+```{r ratingsbarplot}
+
+```
+
+### Analysis 3: Content on Different Services
+
+**This analysis uses Dataset #3.**
+
+#### Quantity of Content by Service
+
+Create an appropriate barplot to show the number of TV shows offered by each of the four streaming services. Include a title and axis labels. Add at least two other types of formatting to enhance effectiveness/appearance (e.g., themes, colors, etc).
+
+```{r servicequantity}
+
+```
+
+#### Quality of Content by Service
+
+Create an appropriate plot to compare either IMDB or Rotten Tomatoes ratings (or both) for content on the streaming services. Include a title and axis labels. Add at least two other types of formatting to enhance your plot (e.g., themes, colors, etc).
+
+```{r serviceratings}
+
+```
+
+### Analysis 4: Choose Your Own Plot!
+
+**This plot uses either dataset.**
+
+Create one other plot of your choice using either dataset to explore a question of interest. It should not be too similar to any of the plots you made above. You are welcome to perform additional manipulations on the data, if needed. Add an appropriate title and axis labels, as well as any other necessary formatting to make your plot clear and effective.
+
+```{r choiceplot}
+
+```
+
+***
+
+## Questions
+
+**Question 1:** Based on your plots, make five informational statements or comparisons regarding the Disney+ streaming service.
+
+**ANSWER**
+
+1) ERASE THIS TEXT AND ANSWER QUESTION HERE
+
+2) ERASE THIS TEXT AND ANSWER QUESTION HERE
+
+3) ERASE THIS TEXT AND ANSWER QUESTION HERE
+
+4) ERASE THIS TEXT AND ANSWER QUESTION HERE
+
+5) ERASE THIS TEXT AND ANSWER QUESTION HERE
+
+**Question 2:** What other data would you like to have, or which existing variables would you like to see further transformed, if you were going to do more explorations or visualizations? Give at least two examples.
+
+**ANSWER**
+
+ERASE THIS TEXT AND ANSWER QUESTION HERE
+
+***
+```{r}
+sessionInfo()
+```
