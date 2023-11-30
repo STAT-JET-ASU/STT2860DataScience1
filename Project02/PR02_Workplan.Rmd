@@ -1,0 +1,28 @@
+---
+title: "Project 2: Group Work Plan"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "PUT EVERYONE'S NAMES HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+***
+
+**Work Plan & Completion Timeline**
+
+Create a timeline for completing the group component of the project. What will you do during each of the three class workdays? What will you do outside of class? Will one person be in charge of various aspects of the project (e.g., creating a shared Project in RStudio, or proofreading code)? If so, who has responsibility for what? It is okay if you do not end up exactly meeting the timeline; things happen. However, your group should give it some realistic thought. BE SPECIFIC.
+
+ANSWER:
+
+**Group Communication Mode & Plan**
+
+Determine and explain how your group members will communicate with each other outside of class. Do you have expectations for how quickly someone will reply to group communications, and a plan for what you will do if someone does not respond? Are there any times when you know one or more members will not be available, etc.? BE SPECIFIC.
+
+ANSWER:
+
+***
+END!
