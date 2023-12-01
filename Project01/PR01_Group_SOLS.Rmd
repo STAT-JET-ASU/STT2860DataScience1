@@ -1,0 +1,485 @@
+---
+title: "Project 1: Group Coding & Analysis"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "PUT EVERYONE'S NAMES HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+***
+
+### Packages Used
+
+```{r}
+library(tidyverse)
+```
+
+### STT 2860 Class Data
+
+#### Create Vectors for the Variables
+
+Refer to the document [STT2860F23List.pdf](https://drive.google.com/file/d/103Pjig-_anvkBYImOuvSApOT0BnIkHmB/view?usp=sharing). Use it to create the following vectors. You will be combining these individual vectors into a dataset, so be sure you code the vectors in such a way that each person's information is in the correct positions. You may rearrange the rows to help you code things more efficiently, since we can always use the `arrange()` function to sort the data in different ways later on. For example, if you have several students from the College of Arts & Sciences (AS) in a row, you could use the `rep()` function when creating a vector to represent that variable. For the Major / Conc data, the major and concentration are separated by a comma (i.e., major, concentration). Not everyone has a concentration (or a middle initial, for that matter). But, you will have to use something to occupy that space. You also will want to consider appropriate variable names when you create and store (`<--`) your vectors as objects. 
+
+Vector 1: Last Name
+
+```{r makevector1}
+lastname <- c(
+  "Auger",
+  "Brassel",
+  "Cameron",
+  "Chao",
+  "Cole",
+  "Cvach",
+  "de Camera",
+  "Eller",
+  "Fisher",
+  "Foote",
+  "Gantert",
+  "Harvey",
+  "Johnson",
+  "Mair",
+  "Mims",
+  "Nall",
+  "Nandi",
+  "Odum",
+  "Pardue",
+  "Rathje",
+  "Ronk",
+  "Seevers",
+  "Sheehan",
+  "Staples"
+)
+```
+
+Vector 2: First Name
+
+```{r makevector2}
+firstname <- c(
+  "Sam",
+  "Elizabeth",
+  "Cameron",
+  "DJ",
+  "Josh",
+  "Matthew",
+  "Mike",
+  "Fe",
+  "Natalie",
+  "Lily",
+  "Joelle",
+  "Katie",
+  "Danae",
+  "Matthew",
+  "Josh",
+  "Molly",
+  "Keya",
+  "Heather",
+  "Savannah",
+  "Trevor",
+  "Damien",
+  "Joey",
+  "Jackson",
+  "Evie"
+)
+```
+
+Vector 3: Middle Initial
+
+```{r makevector3}
+midinitial <- c(
+  "J.",
+  "G.",
+  "C.",
+  "J.",
+  "B.",
+  "L.",
+  "P.",
+  "S.",
+  "N.",
+  "A.",
+  NA,
+  "S.",
+  "E.",
+  "C.",
+  NA,
+  "E.",
+  NA,
+  "R.",
+  "G.",
+  "A.",
+  "M.",
+  "M.",
+  "C.",
+  "H."
+)
+```
+
+Vector 4: E-Mail Address
+
+```{r makevector4}
+email <- c(
+  "augersj@appstate.edu",
+  "brasseleg@appstate.edu",
+  "cameroncc1@appstate.edu",
+  "chaodj@appstate.edu",
+  "colejb1@appstate.edu",
+  "cvachml@appstate.edu",
+  "decamaramp@appstate.edu",
+  "elleris@appstate.edu",
+  "fishernn@appstate.edu",
+  "footela@appstate.edu",
+  "gantertj@appstate.edu",
+  "harveyks@appstate.edu",
+  "johnsonde@appstate.edu",
+  "mairmc@appstate.edu",
+  "mimsj@appstate.edu",
+  "nallme@appstate.edu",
+  "nandik@appstate.edu",
+  "odumhr@appstate.edu",
+  "parduesg@appstate.edu",
+  "rathjeta@appstate.edu",
+  "ronklm@appstate.edu",
+  "seeversjm@appstate.edu",
+  "sheehanjc@appstate.edu",
+  "stapleseh@appstate.edu"
+)
+```
+
+Vector 5: College
+
+```{r makevector5}
+college <- c(
+  "AS",
+  "FA",
+  rep("CB", 2),
+  rep("AS", 3),
+  rep("GC", 2),
+  rep("AS", 6),
+  rep("GC", 2),
+  rep("AS", 6),
+  "HS"
+)
+```
+
+Vector 6: Class
+
+```{r makevector6}
+class <- c(
+  rep("Senior", 2),
+  "Sophomore",
+  "Junior",
+  "Senior",
+  "Junior",
+  "Senior",
+  "Junior",
+  "Freshman",
+  "Senior",
+  rep("Junior", 3),
+  rep("Senior", 2),
+  "Freshman",
+  "Sophomore",
+  rep("Senior", 2),
+  rep("Junior", 2),
+  "Senior",
+  rep("Junior", 2)
+)
+```
+
+Vector 7: Major
+
+```{r makevector7}
+major <- c(
+  "Anthropology",
+  "Advertising",
+  "Supply Chain Management",
+  "Finance and Banking",
+  "Psychology",
+  rep("Mathematics", 2),
+  "Undecided",
+  rep("Mathematics", 4),
+  "Psychology",
+  "Political Science",
+  "Mathematics",
+  "Psychology",
+  "Chemistry",
+  rep("Psychology", 2),
+  "Mathematics",
+  "Computer Science",
+  "Mathematics",
+  "Actuarial Science",
+  "Recreation Management"
+)
+```
+
+Vector 8: Concentration
+
+```{r makevector8}
+conc <- c(
+  rep(NA, 4),
+  "Human Services",
+  "Computation",
+  "General Mathematics",
+  NA,
+  rep("Statistics", 2),
+  "Business",
+  "Physical Sciences",
+  "Human Services",
+  "Int'l & Comparative Politics",
+  "Business",
+  "Health Studies",
+  "Biochemistry",
+  "Health Studies",
+  rep("Business", 2),
+  NA,
+  "Statistics",
+  NA,
+  "Comm Rec & Tourism Mgt"
+)
+```
+
+#### Create a Tibble from the Vectors
+
+Use the `tibble()` function to create a class dataset from your vectors. Use the `arrange()` function to sort it alphabetically by last name. Assign your dataset to the object name `students2860F23`. 
+
+```{r maketibble}
+students2860F23 <- tibble(
+  Last = lastname,
+  First = firstname,
+  Middle = midinitial,
+  Email = email,
+  College = college,
+  Class = class,
+  Major = major,
+  Concentration = conc
+)
+```
+
+Show the structure of your dataset using the `glimpse()` function.
+
+```{r glimpsetibble}
+glimpse(students2860F23)
+```
+
+Display the first 5 rows of your dataset using the `head()` function.
+
+```{r headtibble}
+head(students2860F23)
+```
+
+#### Bar Plot of Students' Colleges
+
+Create a barplot to show the frequencies of different colleges represented in our class. The labels for the bars should be the name of the college, not just the abbreviation. For example, AS is actually Arts & Sciences. You will have to do research to find the names of the other colleges. Put the bars in order from most to least number of students. Change the bar color to something other than the default, and use a pre-made theme---one from ggplot2 or another package, as long as it is professional-looking. Be sure to add an appropriate title and axis labels! You may change other formatting on your plot, if you feel it enhances the presentation of the data. Try to be neat and efficient with your code. The goals are clarity, accuracy, and visual appeal. 
+
+Hint: The `factor()` function might come in handy here! You might also want to try `coord_flip()`.
+
+**Solution 01**
+
+```{r makefactor}
+students2860F23 <- students2860F23 %>%
+  mutate(College = factor(College,
+    levels = c(
+      "AS",
+      "GC",
+      "CB",
+      "FA",
+      "HS"
+    ),
+    labels = c(
+      "Arts & Sciences",
+      "General College",
+      "College of Business",
+      "College of Fine & Applied Arts",
+      "College of Health Sciences"
+    )
+  ))
+```
+
+```{r collegeplot1}
+ggplot(students2860F23, aes(x = College, fill = College)) +
+  geom_bar() +
+  scale_y_continuous(breaks = 0:16) +
+  labs(
+    title = "Major Colleges for STT 2860 Students in Fall 2023",
+    x = "Major College",
+    y = "Number of Students"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  coord_flip()
+```
+
+**Solution 02**
+
+```{r makedatatable}
+collegecounts <- students2860F23 %>%
+  count(College)
+
+collegecounts
+```
+
+```{r collegeplot2}
+ggplot(collegecounts, aes(x = reorder(College, n), y = n, fill = College)) +
+  geom_col() +
+  scale_y_continuous(breaks = 0:max(collegecounts$n)) +
+  labs(
+    title = "Major Colleges for STT 2860 Students in Fall 2023",
+    x = "Major College",
+    y = "Number of Students"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "none",
+    panel.grid.major.y = element_blank(),
+    panel.grid.minor.x = element_blank()
+  ) +
+  coord_flip()
+```
+
+
+### Semmelweis Handwashing Data
+
+```{r readsemmdata}
+semmdata <-
+  read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/semmelweismonthly.csv") %>%
+  mutate(handwashing = ifelse(date < as.Date("1847-06-01"), "dirty", "washed"))
+```
+
+Postpartum infections, known puerperal fever or “childbed fever,” are caused by bacteria invading the female reproductive tract. Historically, this has been a major cause of maternal mortality. Data suggest that the long-term rate has been about one maternal death for every 100 births. Vienna General Hospital served a large volume of pregnant women in the early 1800s, so they added a second maternity clinic in 1833. Clinic 1 was staffed by doctors and medical students, while midwives and their students served at Clinic 2. Midwives only tended to birthing women, but medical students also spent time in the autopsy rooms examining cadavers. No one thought to wash their hands when going from the morgue to the delivery room, or between patients. Yikes! 
+
+Dr. Ignaz Semmelweis (1818–1965) developed a theory: the medical students were transferring some kind of “morbid poison” from cadavers to maternity patients. The two clinics used the same techniques and Semmelweis had eliminated most other differences that could contribute to the problem. In June 1847, he introduced a hand washing protocol using chlorinated lime, which we now know is a disinfectant. Louis Pasteur’s formal experiments on the relationship between germs and disease would not be carried out until the early 1860s, so this was a truly novel idea.
+
+The hand washing protocol was a success! But, sadly, Semmelweis was not very good at publishing or sharing his results, so he was ridiculed rather than praised. Eventually he lost his job and died in an asylum. If he had been able to consult with students in STT 2860, he could have had help making a visualization to show the impact of his protocol!
+
+#### Compute Mortality Rates
+
+Each row in the dataset represents one month in Clinic 1. There are different numbers of cases in each month, which makes the raw counts difficult to compare, so we need to create a new variable called `mortalityrate` by dividing `deaths` by `births`. 
+
+```{r ratecalculation}
+semmdata <- semmdata %>%
+  mutate(mortrate = deaths / births)
+```
+
+#### Plot Mortality Rates
+
+Create a line plot of the mortality rates in Clinic 1 over time. Add points so it is clear that the actual data is from each month. Use the `handwashing` variable in some way to help the viewer identify which rates are from before Semmelweis' intervention ("dirty") and which are from after ("washed"). Indicate in some way on the plot the date (June 1847) when the hand washing protocol began. Use `labs()` to add a title and other useful information. Use any other features or formatting you think will help get the message across. Make the data pop!
+
+```{r rateplot}
+ggplot(semmdata, aes(x = date, y = mortrate, color = handwashing)) +
+  geom_line(size = 1.25) +
+  geom_vline(
+    xintercept = as.Date("1847-06-01"),
+    linetype = "dashed",
+    size = 0.75
+  ) +
+  scale_x_date(date_breaks = "1 year", date_labels = "%Y") +
+  scale_y_continuous(
+    limits = c(0, 0.35),
+    breaks = seq(0, 0.35, 0.05),
+    labels = scales::percent
+  ) +
+  labs(
+    title = "Vienna General Hospital --- Maternal Mortality Rates in Clinic 1",
+    subtitle = "Before and During Implementation of Semmelweis's Handwashing Protocol",
+    x = "Years in Which Data Were Collected",
+    y = "Maternal Mortality Rate",
+    color = "Medical Students' Hands"
+  ) +
+  annotate(
+    "label",
+    x = as.Date("1847-06-01"),
+    y = 0.35,
+    label = "Handwashing began in June 1847",
+    fill = "paleturquoise"
+  ) +
+  theme_minimal() +
+  theme(
+    legend.position = "top",
+    panel.grid.minor = element_blank()
+  )
+```
+
+### Fast Food Data
+
+```{r readffdata}
+ffdata <-
+  read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/fastfood2017.csv")
+```
+
+Nutritionists recommend against eating fast food because it is high in sodium, saturated fat, trans fat, and cholesterol. Eating too much over a long period of time can lead to health problems such as high blood pressure, heart disease, and obesity. Many fast-food meals contain more than an entire day's worth of recommended calories! According to the [Cleveland Clinic](https://my.clevelandclinic.org/health/articles/11208-fat-what-you-need-to-know), a person eating the general 2000 calorie diet should have at most 22g of saturated fat per day. 
+
+#### Modify the Dataset
+
+Reduce the observations in the dataset so it contains only "Burger" `type` items. Also create a new variable that indicates whether or not burger has more than 22g of total fat. 
+
+Hint: The `ifelse()` function will be helpful here. Also consider your two category names, since they may be labels in your plots.
+
+```{r modifyffdata}
+burgerdata <- ffdata %>% 
+  filter(type == "Burger") %>% 
+  mutate(over22gfat = ifelse(totalfat > 22, "over 22g fat", "22g fat or less"))
+```
+
+#### Histogram of Total Fat
+
+Create a histogram of `totalfat` with 10 bins. Add a vertical line representing 22g of fat. Use labels, annotations, scaling, themes, colors, and/or other formatting to improve the appearance of your plot. Be sure to include the unit of measure in the x-axis label. Your final plot should be relatively self-explanatory.
+
+```{r totalfathist}
+ggplot(burgerdata, aes(x = totalfat, fill = over22gfat)) +
+  geom_histogram(bins = 10, color = "black") +
+  geom_vline(xintercept = 22, size = 1.5, color = "red") +
+  scale_x_continuous(breaks = seq(0, 100, 10)) +
+  scale_y_continuous(breaks = 0:15, limits = c(0, 15), expand = c(0, 0)) +
+  scale_fill_manual(values = c("lightyellow", "lightgoldenrod")) +
+  labs(
+    title = "Distribution of Total Fat Grams in a Sample of Fast Food Burgers",
+    subtitle = "The majority of burgers exceed the recommended 22 grams of fat per day.",
+    x = "Total Fat (g)",
+    y = "Number of Burgers"
+  ) +
+  annotate("label", x = 29, y = 14, label = "22 grams") +
+  theme_linedraw() +
+  theme(
+    legend.position = "none",
+    panel.grid.minor = element_blank()
+  )
+```
+
+#### Plot of Fat by Calories
+
+Create a scatterplot showing `totalfat` (Y) by `calories` (X). Use the new variable you created color-code (i.e., `color =`) the points to highlight burgers that have more than 22 grams of fat versus those that do not. Use `geom_smooth()` to add trend lines to show the relationship between the variables. You will get two fitted lines, corresponding to your `color` categories. As above, use labels, annotations, scaling, themes, colors, and/or other formatting to improve the appearance of your plot. Be sure to include the unit of measure in the y-axis label. Your final plot should be relatively self-explanatory.
+
+```{r fatbycaloriesplot}
+ggplot(burgerdata, aes(x = calories, y = totalfat, color = over22gfat)) +
+  geom_point(size = 3, alpha = 0.5) +
+  scale_x_continuous(limits = c(100, 1300), breaks = seq(100, 1300, 100)) +
+  scale_y_continuous(limits = c(0, 100), breaks = seq(0, 100, 20)) +
+  labs(
+    title = "The Relationship Between Calories and Total Fat in Fast Food Burgers",
+    subtitle = "Sample of 69 Burgers from 11 Popular Fast Food Restaurants",
+    x = "Total Calories",
+    y = "Total Fat (g)",
+    color = "Amount of Fat"
+  ) +
+  theme_linedraw() +
+  theme(legend.position = "bottom")
+```
+
+***
+```{r}
+sessionInfo()
+```
