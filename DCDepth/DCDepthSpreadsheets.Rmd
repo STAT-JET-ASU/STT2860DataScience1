@@ -20,7 +20,7 @@ knitr::opts_chunk$set(
 
 &#10132; Click on the course title to more fully explore the course contents on DataCamp.
 
-### **1st Course: [Data Analysis in Spreadsheets](https://learn.datacamp.com/courses/data-analysis-in-spreadsheets)**
+### **Prerequisite: [Introduction to Google Sheets](https://learn.datacamp.com/courses/data-analysis-in-spreadsheets)**
 
 #### **Suggested Prerequisite**
 
@@ -28,7 +28,19 @@ None
 
 #### **DC Course Description**
 
-This course will dig deeper into some of the core functionality of Google Sheets. There's a whole bunch of predefined functions we'll cover, like `SUM()` and `AVERAGE()`, and `VLOOKUP()`. We'll apply these techniques to do some analysis on your grades in school, look at performance statistics within a company, track monthly sales, and look at some real geographical information about the countries of the world.
+Google Sheets is one of the most popular and powerful data analytics tools. Millions of people use software such as Google Sheets to acquire meaningful insights from data. In this course, you'll learn the fundamentals of spreadsheets by working with tabular data and performing calculations. You'll also create your own formulas and learn how to use references to connect cells and bring your spreadsheets to life.
+
+**Do this course if you need to learn Google Sheets fundamentals.** 
+
+### **1st Course: [Data Analysis in Spreadsheets](https://learn.datacamp.com/courses/data-analysis-in-spreadsheets)**
+
+#### **Suggested Prerequisite**
+
+Introduction to Google Sheets
+
+#### **DC Course Description**
+
+Learn how to clear and analyze data in Google Sheets, discover how to use built-in functions to sort and filter data, and use the `VLOOKUP` function to combine data from different tables. These Google Sheets skills, functions, and time-saving shortcuts can be applied to any industry, whether you’re looking to move to a career in data analysis, or looking to improve your skills in marketing, finance, HR, logistics, and more.
 
 ### **2nd Course: [Intermediate Spreadsheets](https://learn.datacamp.com/courses/intermediate-spreadsheets)**
 
@@ -40,7 +52,7 @@ Data Analysis in Spreadsheets
 
 This course will expand your Google Sheets vocabulary. You'll dive deeper into data types, practice manipulating numeric and logical data, explore missing data and error types, and calculate some summary statistics. As you go, you'll explore datasets on 100m sprint world records, asteroid close encounters, benefit claims, and butterflies.
 
-### **3rd Course: [Pivot Tables in Spreadsheets](https://learn.datacamp.com/courses/pivot-tables-in-spreadsheets)**
+### **3rd Course (Option 1): [Pivot Tables in Spreadsheets](https://learn.datacamp.com/courses/pivot-tables-in-spreadsheets)**
 
 #### **Suggested Prerequisite**
 
@@ -48,7 +60,21 @@ Intermediate Spreadsheets
 
 #### **DC Course Description**
 
-Working with large quantities of data in spreadsheets can be difficult and time-consuming. Have you ever wished there was a quick and efficient way to organize and evaluate your data within seconds? Pivot Tables are your answer! In this course we will explore the world of Pivot Tables within Google Sheets, and learn how to quickly organize thousands of datapoints with just a few clicks of the mouse. We will analyze the Average rainfall across multiple US cities, the Top 10 of the Fortune Global 500, and a selection of Films released between 2010 and 2016. You will learn techniques such as sorting, subtotaling, and filtering your data using these real world examples. By the end of the course, you will be able to create your own custom pivot tables with datasets of any size!
+Working with large quantities of data in Google Sheets can be difficult and time-consuming. Have you ever wished there was a quick and efficient way to organize and evaluate your data within seconds? Pivot Tables are your answer! In this course we will explore the world of Pivot Tables within Google Sheets, and learn how to quickly organize thousands of datapoints with just a few clicks of the mouse. We will analyze the Average rainfall across multiple US cities, the Top 10 of the Fortune Global 500, and a selection of Films released between 2010 and 2016. You will learn techniques such as sorting, subtotaling, and filtering your data using these real world examples. By the end of the course, you will be able to create your own custom pivot tables with datasets of any size!
+
+**Choose only one of the 3rd Course options.**
+
+### **3rd Course (Option 2): [Data Visualization in Google Sheets](https://app.datacamp.com/learn/courses/data-visualization-in-google-sheets)**
+
+#### **Suggested Prerequisite**
+
+Intermediate Spreadsheets
+
+#### **DC Course Description**
+
+A picture can tell a thousand words - but only if you use the right picture! This course teaches you the fundamentals of data visualization with Google Sheets. You'll learn how to create common chart types like bar charts, histograms, and scatter charts, as well as more advanced types, such as sparkline and candlestick charts. You will look at how to prepare your data and use Data Validation and VLookup formulas to target specific data to chart. You'll learn how to use Conditional Formatting to apply a format to a cell or a range of cells based on certain criteria, and finally, how to create a dashboard showing plots and data together. Along the way, you'll use data from the Olympics, sharks attacks, and Marine Technology from the ASX.
+
+**Choose only one of the 3rd Course options.**
 
 <hr>
 

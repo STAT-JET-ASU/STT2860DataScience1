@@ -44,15 +44,16 @@ This course will introduce you to spatial data by starting with objects you alre
 
 By the end of the course you will have made maps of property sales in a small town, populations of the countries of the world, the distribution of people in the North East of the USA, and median income in the neighborhoods of New York City.
 
-### **3rd Course: [Spatial Analysis with sf and raster in R](https://app.datacamp.com/learn/courses/spatial-analysis-with-sf-and-raster-in-r)**
+### **3rd Course: [Analyzing US Census Data in R](https://app.datacamp.com/learn/courses/analyzing-us-census-data-in-r)**
 
 #### **Suggested Prerequisite**
 
+Introduction to the Tidyverse  
 Visualizing Geospatial Data in R
 
 #### **DC Course Description**
 
-There has never been a better time to use R for spatial analysis! The sf package has made working with vector data in R a breeze and the raster package provides a set of powerful and intuitive tools to work gridded data like satellite imagery. Instead of the painful process of performing your spatial analysis in GIS systems like ArcGIS or QGIS and then shuffling your results into another system for analysis, you can move your entire spatial analysis workflow into R. In this course you will learn why the sf package is rapidly taking over spatial analysis in R. You will read in spatial data, manipulate vectors using the dplyr package and learn how to work with coordinate reference systems. You'll also learn how to perform geoprocessing of vectors including buffering, spatial joins, computing intersections, simplifying and measuring distance. With rasters, you will aggregate, reclassify, crop, mask, and extract. The last chapter of the course is devoted to showing you how to make maps in R with the ggplot2 and tmap packages and performing a fun mini-analysis that brings together all your new skills.
+Analysts across industries rely on data from the United States Census Bureau in their work. In this course, students will learn how to work with Census tabular and spatial data in the R environment. The course focuses on the tidycensus package for acquiring data from the decennial US Census and American Community survey in a tidyverse-friendly format, and the tigris package for accessing Census geographic data within R. By the end of this course, students will be able to rapidly visualize and explore demographic data from the Census Bureau using ggplot2 and other tidyverse tools, and make maps of Census demographic data with only a few lines of R code.
 
 <hr>
 

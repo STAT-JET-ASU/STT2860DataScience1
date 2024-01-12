@@ -1,0 +1,85 @@
+---
+title: "DC Depth Track: Web Applications with Shiny"
+subtitle: "Course Descriptions and Suggested Prerequisites"
+date: 'Last Updated: `r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  html_document: 
+    theme: cosmo
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+<hr>
+
+&#10132; Click on the course title to more fully explore the course contents on DataCamp.
+
+### **1st Course: [Intermediate R](https://app.datacamp.com/learn/courses/intermediate-r)**
+
+#### **Suggested Prerequisite**
+
+Introduction to R
+
+#### **DC Course Description**
+
+Intermediate R is the next stop on your journey in mastering the R programming language. In this R training, you will learn about conditional statements, loops, and functions to power your own R scripts. Next, make your R code more efficient and readable using the apply functions. Finally, the utilities chapter gets you up to speed with regular expressions in R, data structure manipulations, and times and dates. This course will allow you to take the next step in advancing your overall knowledge and capabilities while programming in R.
+
+### **2nd Course: [Building Web Applications with Shiny in R](https://app.datacamp.com/learn/courses/building-web-applications-with-shiny-in-r)**
+
+#### **Suggested Prerequisite**
+
+Introduction to the Tidyverse  
+Intermediate R
+
+#### **DC Course Description**
+
+Shiny is an R package that makes it easy to build highly interactive web apps directly in R. Using Shiny, data scientists can create interactive web apps that allow your team to dive in and explore your data as dashboards or visualizations. If you want to bring your data to life, Shiny is the way to go! Using data about baby names, food ingredients, and UFO sightings, you'll build a variety of different Shiny apps that leverage different inputs and outputs. You’ll also learn the basics of reactive expressions. By the end of this course, you’ll have the Shiny skills you need to build your first app in R.
+
+### **3rd Course (Option 1): [Building Web Applications with Shiny in R (Case Studies)](https://app.datacamp.com/learn/courses/case-studies-building-web-applications-with-shiny-in-r)**
+
+#### **Suggested Prerequisite**
+
+Building Web Applications with Shiny in R
+
+#### **DC Course Description**
+
+After learning the basics of using Shiny to build web applications, this course takes you to the next level by putting your newly acquired skills into practice. You'll get experience developing fun and realistic Shiny apps for different common use cases, such as using Shiny to explore a dataset, generate a customized plot, and even create a word cloud. With all this practice and new knowledge, you will be well-equipped to develop Shiny apps for your own use.
+
+**Choose only one of the 3rd Course options.**
+
+### **3rd Course (Option 2): [Building Dashboards with shinydashboard](https://app.datacamp.com/learn/courses/building-dashboards-with-shinydashboard)**
+
+#### **Suggested Prerequisite**
+
+Introduction to the Tidyverse  
+Intermediate R
+
+#### **DC Course Description**
+
+Learn to create an interactive dashboard using the shinydashboard package in R. This course teaches you how to use shinydashboard in R to create a dynamic and interactive dashboard. You will cover the ins and outs of shinydashboard and learn about good UI/UX practices. You will first build a shinyApp and then graduate to building a shinydashboard. Then, you learn how to include interactive elements with hover-over effects. Finally, you will explore how to tweak your design elements of a shinydashboard using CSS code and more.
+
+**Choose only one of the 3rd Course options.**
+
+### **3rd Course (Option 3): [Building Dashboards with flexdashboard](https://app.datacamp.com/learn/courses/building-dashboards-with-flexdashboard)**
+
+#### **Suggested Prerequisite**
+
+Building Web Applications with Shiny in R
+
+#### **DC Course Description**
+
+Communication is a key part of the data science process. Dashboards are a popular way to present data in a cohesive visual display. In this course you'll learn how to assemble your results into a polished dashboard using the flexdashboard package. This can be as simple as adding a few lines of R Markdown to your existing code, or as rich as a fully interactive Shiny-powered experience. You will learn about the spectrum of dashboard creation tools available in R and complete this course with the ability to produce a professional quality dashboard.
+
+**Choose only one of the 3rd Course options.**
+
+<hr>
+
+&#10132; If you find any errors on this page, please contact Dr. Thomley via your Private Forum on AsULearn.
+
+<hr>
