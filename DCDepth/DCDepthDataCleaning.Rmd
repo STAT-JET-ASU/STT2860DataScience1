@@ -1,5 +1,5 @@
 ---
-title: "DC Depth Track: Data Cleaning & Recoding"
+title: "DC Depth Track: Data Cleaning & Recoding in R"
 subtitle: "Course Descriptions and Suggested Prerequisites"
 date: 'Last Update: `r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
 output: 

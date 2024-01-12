@@ -1,5 +1,5 @@
 ---
-title: "DC Depth Track: Web Applications with Shiny"
+title: "DC Depth Track: Web Applications with Shiny in R"
 subtitle: "Course Descriptions and Suggested Prerequisites"
 date: 'Last Updated: `r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
 output: 
