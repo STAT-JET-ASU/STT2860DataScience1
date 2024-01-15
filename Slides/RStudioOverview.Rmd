@@ -1,7 +1,7 @@
 ---
-title: "RStudio Overview"
+title: "Welcome to RStudio!<br>IDE Overview & Setup"
 subtitle: "STT2860 Intro to Data Mgmt and Visualization"
-author: "Author: Jill E. Thomley // Appalachian State University"
+author: "Author: Jill E. Thomley | Appalachian State University"
 date: "`r format(Sys.time(), '%B %d, %Y @ %I:%M %p')`"
 output: 
   ioslides_presentation:
@@ -17,6 +17,11 @@ knitr::opts_chunk$set(
   fig.align = "center"
 )
 ```
+
+## Welcome Everyone!
+
+<img src="https://stat-jet-asu.github.io/Moodlepics/horstRencourage/youcandoitfriend.png" width = 800">
+
 
 ## A Note on Images
 
@@ -39,7 +44,7 @@ Now let's explore! Log into your [ASU Rstudio server](https://mathr.math.appstat
 <p style="text-align:center; font-size: 18px;"><img src="https://d33wubrfki0l68.cloudfront.net/0b4d0569b2ddf6147da90b110fbb2a17653c8b08/f06f3/images/shutterstock/r_vs_rstudio_1.png" width = 775><br>Analogy of the difference between `R` and RStudio (from [Modern Dive](https://moderndive.com/1-getting-started.html#r-rstudio))</p>
 
 
-## The RStudio IDE
+## The RStudio ([Posit](https://posit.co/)) IDE
 
 An integrated development environment (IDE) is software that combines common tools into a single graphical user interface (GUI). Common components include:
 
@@ -47,40 +52,47 @@ An integrated development environment (IDE) is software that combines common too
 * Utilities that automate simple, repeatable tasks.
 * A program for testing code to find bugs.
 
-RStudio isn't the only IDE for R, but it is one of the most widely used. Like our textbook [Modern Dive](https://moderndive.com/1-getting-started.html) says, R is like the engine and RStudio is the dashboard that lets us drive the car. We can also add packages to "soup up" our engine.
+RStudio isn't the only IDE for R, but it is one of the most widely used. Like the textbook [Modern Dive](https://moderndive.com/1-getting-started.html) says, R is like the engine and RStudio is the dashboard that lets us drive the car. We can also add packages to "soup up" our engine.
 
-You can open [Customizing the RStudio IDE](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-the-RStudio-IDE) another reference.
+
+## The Power of R and RStudio...
+
+<img src="https://stat-jet-asu.github.io/Moodlepics/horstRencourage/knittinghedgehog02.png" width = 800">
+
+The slides you're looking at right now were created in RStudio using R Markdown that was "knitted" into standalone HTML. 
+
+Many of our online textbooks were produced the same way!
+
+
+## When you First Log In...
+
+Your RStudio server will look something like this, except your Console pane (*what is that, you ask?*) will be on the left.
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/RStudioServerDefault.PNG", dpi = 250)
+```
 
 
 ## RStudio's Four Panes
 
 There are four "[panes](https://teacherscollege.screenstepslive.com/a/1426910-panes-in-rstudio)" in the RStudio interface.
 
-* Console pane
+* Console pane (this is the R engine)
 
 * Environment pane
 
 * Files/Plots/Packages/Help pane
 
-* [Source Editor](https://support.rstudio.com/hc/en-us/articles/207126217-Using-Source-Windows-in-the-RStudio-IDE) (Coding/Document) pane
+* [Source Editor](https://support.rstudio.com/hc/en-us/articles/207126217-Using-Source-Windows-in-the-RStudio-IDE) (coding/document) pane
 
 You can rearrange these panes to suit your own preferences. We will talk more about that shortly...
 
-The first time you log into the RStudio server, you will not have a Source Editor. We will talk about how to create new code scripts and R Markdown documents.
+The first time you log into the RStudio server, you will not have a **Source Editor**. We will talk about how to create new code scripts and R Markdown documents for you to code in.
 
 
 ## Pane Functions in Brief
 
 <p style="text-align:center; font-size: 18px;"><img src="https://bookdown.org/ndphillips/YaRrr/images/RStudio_Screenshot_Labels.png" width = 675><br>The four panes of RStudio (from [YaRrr! The Pirate's Guide to R](https://bookdown.org/ndphillips/YaRrr/the-four-rstudio-windows.html))</p>
-
-
-## When you First Log In...
-
-Your RStudio server will look something like this, except your Console pane will be on the left. We can rearrange the panes.
-
-```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("images/RStudioServerDefault.PNG", dpi = 250)
-```
 
 
 ## Where is the Source Pane?
@@ -94,7 +106,7 @@ knitr::include_graphics("images/RStudioPanes.PNG", dpi = 200)
 
 ## Opening a Source File
 
-This menu is very much like any windows program > **New File**.
+This menu is much like any windows program --- **File** > **New File**.
 
 ```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("images/RStudioFileMenu.PNG", dpi = 150)
@@ -103,11 +115,26 @@ knitr::include_graphics("images/RStudioFileMenu.PNG", dpi = 150)
 
 ## Script File
 
-The file extension on an script is .R, but it is just a plain text file. Notice the options in the pane's menu bar.
+The file extension on an **script** is .R, but it is just a plain text file. Notice the set of options in the pane's menu bar.
 
 ```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("images/RStudioScript.PNG", dpi = 125)
 ```
+
+
+## Script File Toolbar Options
+
+* show in new window
+* save
+* Source on Save
+* Find/Replace
+* Code Tools
+* Compile Report
+* Run
+* Rerun previous code region
+* Go to previous section/chunk
+* Go to next section/chunk
+* Source
 
 
 ## R Markdown File
@@ -119,9 +146,52 @@ knitr::include_graphics("images/RStudioMarkdown.PNG", dpi = 125)
 ```
 
 
+## R Markdown Toolbar Options
+
+* show in new window
+* save
+* Knit on Save
+* Check spelling in document
+* Find/Replace
+* Knit
+* Tools (gear icon)
+* Insert a new code chunk
+* Go to previous/next section/chunk
+* Run
+* Publish document
+
+
+## Dr. Thomley's ongoing battle...
+
+<img src="https://stat-jet-asu.github.io/Moodlepics/horstRencourage/coursecontent02.png" width = 800">
+
+
+## Choices, choices, choices...
+
+<img src="https://stat-jet-asu.github.io/Moodlepics/horstRencourage/coursecontent01.png" width = 800">
+
+
+## Quarto File
+
+[Quarto](https://quarto.org/) is a free and open-source scientific / technical publishing system. From its [website](https://quarto.org/docs/computations/r.html)...
+
+*"Quarto is a multi-language, next generation version of R Markdown from RStudio, with many new features and capabilities. Like R Markdown, Quarto uses Knitr to execute R code, and is therefore able to render most existing Rmd files without modification."*
+
+Quarto also integrates with Python (plus other languages) and a popular IDE from [Jupyter](https://jupyter.org/). 
+
+We are primarily going to use **R Markdown** documents in this class. If you learn that, then you'll be equipped to expand your skills later. That's one big fact of data science: you never stop learning because it never stops evolving (and quickly)!
+
+
+## 
+
+**One of our goals in STT 2860 will be to learn *how* to learn...**
+
+<img src="https://stat-jet-asu.github.io/Moodlepics/horstRencourage/contentneweveryday.png" width = 800">
+
+
 ## Customizing the Setup
 
-We will set some options that make RStudio work better for us in our class environment. You will find the menu under **Tools > Global Options**.
+We will set some options that make RStudio work better for us in our class environment. You will find the menu under **Tools > Global Options**. (Also open [Customizing the RStudio IDE](https://support.rstudio.com/hc/en-us/articles/200549016-Customizing-the-RStudio-IDE).)
 
 ```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("images/RStudioGlobalOptions.PNG", dpi = 140)
@@ -184,7 +254,9 @@ Many of the settings are intended to make programming easier.
 
 * Additional styling suggestions for enhancing readability
 
-As your data science skills evolve, you may want to adjust your settings. finding what works best requires some trial and error.
+As your data science skills evolve, you may want to adjust your RStudio settings. 
+
+Finding what works best *for you* requires some trial and error.
 
 
 ## **Tools > Global Options > Code (Editing)**
@@ -230,6 +302,7 @@ knitr::include_graphics("images/RStudioCodeDiagnostics.PNG", dpi = 120)
 knitr::include_graphics("images/RStudioCodeMenu.PNG", dpi = 160)
 ```
 
+
 ## Session Menu
 
 Sometimes when `R` is behaving in an inexplicable way, you may need to save your work and restart your `R` session. Yes...this is basically turn it off and back on again ;)
@@ -238,6 +311,7 @@ Sometimes when `R` is behaving in an inexplicable way, you may need to save your
 knitr::include_graphics("images/RStudioSessionMenu.PNG", dpi = 150)
 ```
 
+
 ## Help Menu
 
 There are several "cheat sheets" available. You can also view all the keyboard shortcuts here, get help with simple R Markdown formatting, or turn on accessibility options.
@@ -245,6 +319,21 @@ There are several "cheat sheets" available. You can also view all the keyboard s
 ```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("images/RStudioHelpMenu.PNG", dpi = 140)
 ```
+
+
+## 
+
+At first, things might feel a little like this...
+
+<img src="https://i.gifer.com/CuQs.gif" width = 800">
+
+
+## 
+
+But I can tell you from past experience that most folks succeed in STT 2860 if they come and engage with an open mind.
+
+<img src="https://stat-jet-asu.github.io/Moodlepics/horstRencourage/webelieveinyou.png" width = 800">
+
 
 ## References
 
@@ -259,4 +348,6 @@ knitr::include_graphics("images/RStudioHelpMenu.PNG", dpi = 140)
 [Panes in RStudio](https://teacherscollege.screenstepslive.com/a/1426910-panes-in-rstudio)
 
 [Working in the Console in the RStudio IDE](https://support.rstudio.com/hc/en-us/articles/200404846-Working-in-the-Console-in-the-RStudio-IDE)
+
+Cartoon illustrations: [Artwork by @allison_horst](https://allisonhorst.com/allison-horst)
 
