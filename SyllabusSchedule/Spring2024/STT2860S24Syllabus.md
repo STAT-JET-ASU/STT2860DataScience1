@@ -82,10 +82,10 @@ The only way to learn data science is to **DO** data science, which includes sof
 
 * DataCamp Skill Building(40%)
 * DataCamp Depth Track (5%)
-* Project 01 (5%)
-* Project 02 (10%)
-* Project 03 (15%)
-* Project 04 (15%)
+* Project 01: Vectors & Datasets (5%)
+* Project 02: Data Visualization (10%)
+* Project 03: Data Manipulation/Visualization (15%)
+* Project 04: Importing/Manipulating/Visualizing (15%)
 * GitHub Repository(5%)
 * Other Engagement (5%)
 
@@ -176,4 +176,4 @@ As per [AppalachianState University](https://diversity.appstate.edu/) and the [D
 
 <hr>
 
-Updated Sunday, January 14, 2024 @ 09:53 PM
+Updated Sunday, January 14, 2024 @ 10:07 PM
