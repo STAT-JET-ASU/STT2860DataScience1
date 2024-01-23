@@ -1,8 +1,8 @@
 ---
 title: "Introduction to Vectors"
-subtitle: "STT2860 Intro to Data Mgmt and Visualization"
-author: "Author: Jill E. Thomley // Appalachian State University"
-date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+subtitle: "STT 2860 Intro to Data Management & Visualization"
+author: "Author: Jill E. Thomley | Appalachian State University"
+date: "`r format(Sys.time(), '%B %d, %Y @ %I:%M %p')`"
 output: 
   ioslides_presentation:
     logo: images/logoASU.jpg
@@ -57,7 +57,7 @@ Vectors are the basic building blocks of data and programming in `R`. There are 
 knitr::include_graphics("images/VectorHierarchy.png", dpi = 300)
 ```
 
-<div style = "text-align: center; font-size: 18px;">Hierarchy of vectors in `R` (from [R for Data Science: Vectors](https://r4ds.had.co.nz/vectors.html))</div>
+<div style = "text-align: center; font-size: 18px;">Hierarchy of Vectors in `R` (from [*R for Data Science*](https://r4ds.had.co.nz/vectors.html))</div>
 
 ## Identify Vector Structure
 
@@ -133,7 +133,7 @@ c("Alex", "Drew", "Jordan", "Riley")   # character vector
 
 ## Vector Storage
 
-To store the vector as an object we can use in programming, we need to use the ***assignment operator*** `<-` (shortcut Alt + -).
+To store the vector as an object we can use in programming, we need to use the ***assignment operator*** `<-`. A shortcut is `Alt` + `-`.
 
 ```{r}
 logicalvector <- c(TRUE, TRUE, FALSE, TRUE)

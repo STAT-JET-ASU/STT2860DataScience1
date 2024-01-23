@@ -20,7 +20,7 @@
       // Slide settings
       settings: {
                 title: 'Tidyverse Introduction',
-                        subtitle: 'STT2860 Intro to Data Mgmt and Visualization',
+                        subtitle: 'STT 2860 Intro to Data Mgmt and Visualization',
                 useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -3070,18 +3070,21 @@ var loadDeck = function(event) {
   });
 };
 
-if (document.readyState !== "loading" &&
-    document.querySelector('slides') === null) { 
-  // if the document is done loading but our element hasn't yet appeared, defer
-  // loading of the deck
-  window.setTimeout(function() {
-    loadDeck(null);
-  }, 0);
-} else {
-  // still loading the DOM, so wait until it's finished
-  document.addEventListener("DOMContentLoaded", loadDeck);
-}
+if (!window.Shiny) {
+  // If Shiny is loaded, the slide deck is initialized in ioslides template
 
+  if (document.readyState !== "loading" &&
+      document.querySelector('slides') === null) {
+    // if the document is done loading but our element hasn't yet appeared, defer
+    // loading of the deck
+    window.setTimeout(function() {
+      loadDeck(null);
+    }, 0);
+  } else {
+    // still loading the DOM, so wait until it's finished
+    document.addEventListener("DOMContentLoaded", loadDeck);
+  }
+}
 
 
 </script>
@@ -3154,25 +3157,25 @@ line-height: 1.9;
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Monday, September 11, 2023 @ 03:35 PM</p>
+            <p style="margin-top: 6px; margin-left: -2px;">Thursday, November 30, 2023 @ 01:03 PM</p>
           </hgroup>
   </slide>
 
 <slide class=""><hgroup><h2>Base <code>R</code></h2></hgroup><article  id="base-r">
 
-<p>It is perfectly possible to do dataset manipulation and plotting using base <code>R</code>. However…</p>
+<p>It is perfectly possible to do dataset manipulation and plotting using base <code>R</code>. However, there are some cons to this approach…</p>
 
 <ul>
 <li><p>data manipulation can require many intermediate steps</p></li>
 <li><p>we often have to nest functions inside of other functions</p></li>
-<li><p>it can be difficult to &ldquo;read&rdquo; the resulting code to determine what is being done to the data</p></li>
-<li><p>the functions for plotting in base <code>R</code> have different settings / parameters and can be difficult to recall and manipulate</p></li>
-<li><p>the quality of the plots is fine for data exploration but less acceptable for professional presentations and publications</p></li>
+<li><p>it can be difficult for you and others to &ldquo;read&rdquo; the resulting code to determine what exactly is being done to the data</p></li>
+<li><p>the functions for plotting in base <code>R</code> have different settings / parameters that can be difficult to recall and manipulate</p></li>
+<li><p>the quality of the plots is fine for data exploration but less acceptable for professional presentations or publications</p></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>What is the Tidyverse?</h2></hgroup><article  id="what-is-the-tidyverse">
 
-<p>Developed by <a href='https://hadley.nz/' title=''>Hadley Wickham</a> and others, the <a href='https://www.tidyverse.org/' title=''>tidyverse</a> is &ldquo;an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.&rdquo;</p>
+<p>Developed by <a href='https://hadley.nz/' title=''>Hadley Wickham</a> and others, the <a href='https://www.tidyverse.org/' title=''>tidyverse</a> is &ldquo;an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures.&rdquo; — <em>they work together in a natural way</em></p>
 
 <hr>
 
@@ -3200,14 +3203,14 @@ line-height: 1.9;
 
 <hr>
 
-</article></slide><slide class=""><hgroup><h2>ggplot2</h2></hgroup><article  id="ggplot2">
+</article></slide><slide class=""><hgroup><h2>Package ggplot2</h2></hgroup><article  id="package-ggplot2">
 
 <p>According to the online package <a href='https://ggplot2.tidyverse.org/' title=''>documentation</a>, &ldquo;It’s hard to succinctly describe how ggplot2 works because it embodies a deep philosophy of visualisation.&rdquo;</p>
 
 <p>Overall, ggplot2 represents an advance over base <code>R</code> graphics in terms of flexibility and appearance. Once you understand the basics, working with plots depends less on the type of plot you are making and more on the presentation you want.</p>
 
 <ul>
-<li>all plots use a consistent, underlying &ldquo;grammar of graphics&rdquo;</li>
+<li>all plots use a consistent, underlying &ldquo;<a href='https://info5940.infosci.cornell.edu/notes/dataviz/grammar-of-graphics/' title=''>grammar of graphics</a>&rdquo;</li>
 <li>possible to use more than one dataset and plot type at once</li>
 <li>uses a theme system to customize / refine plot appearance</li>
 <li>has been called a &ldquo;mature and complete&rdquo; graphics system</li>
@@ -3224,7 +3227,7 @@ line-height: 1.9;
 <li><p><strong><em>facets</em></strong> allow us to visualize the same graphical elements for important groupings or subsets in the dataset</p></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>dplyr</h2></hgroup><article  id="dplyr">
+</article></slide><slide class=""><hgroup><h2>Package dplyr</h2></hgroup><article  id="package-dplyr">
 
 <p>The <a href='https://dplyr.tidyverse.org/' title=''>dplyr</a> package contains a &ldquo;grammar of data manipulation&rdquo; built on a consistent set of <a href='https://dplyr.tidyverse.org/reference/index.html' title=''>data manipulation verbs</a> to help us accomplish common data manipulation tasks. <em>For example…</em></p>
 
@@ -3273,7 +3276,7 @@ line-height: 1.9;
 <li><code>semi_join()</code></li>
 </ul></div></div>
 
-</article></slide><slide class=""><hgroup><h2>other packages</h2></hgroup><article  id="other-packages">
+</article></slide><slide class=""><hgroup><h2>Other examples</h2></hgroup><article  id="other-examples">
 
 <p>We will use functions such as <code>read_csv()</code> from <a href='https://readr.tidyverse.org/' title=''>readr</a> to import data files stored in <em>comma separated value</em> and other forms.</p>
 
@@ -3287,13 +3290,13 @@ line-height: 1.9;
 <li><a href='https://tidyr.tidyverse.org/reference/replace_na.html' title=''><code>replace_na()</code></a></li>
 </ul>
 
-</article></slide><slide class=""><hgroup><h2>the pipe</h2></hgroup><article  id="the-pipe">
+</article></slide><slide class=""><hgroup><h2>The pipe %&gt;%</h2></hgroup><article  id="the-pipe">
 
-<p>The pipe operator (%&gt;%) from the <a href='https://magrittr.tidyverse.org/' title=''>magrittr</a> package allows us to create sequences or &ldquo;pipelines&rdquo; of actions/functions rather than nesting functions.</p>
-
-<p>It is commonly used with the dplyr package perform a sequence of operations on a dataset.</p>
+<p>The pipe operator from <a href='https://magrittr.tidyverse.org/' title=''>magrittr</a> allows us to use sequences or &ldquo;pipelines&rdquo; of actions/functions rather than nesting functions.</p>
 
 <p>We can think of the pipe as the phrase &ldquo;and then&rdquo; when reading a piped sequence of operations.</p>
+
+<p>It is commonly used with the dplyr package perform a sequence of operations on a dataset.</p>
 
 <p>The PC shortcut for inserting a pipe in code is <code>Ctrl</code> + <code>Shift</code> + <code>M</code>.</p>
 
@@ -3301,7 +3304,11 @@ line-height: 1.9;
 
 <p>As of <code>R</code> version 4.1.0, there is now a second pipe, written as <code>|&gt;</code>.</p>
 
-<p>The main difference is that we can now use a pipe without the magrittr package (or tidyverse packages that load it).</p></article></slide>
+<p>The main difference is that we can now use a pipe without the magrittr package (or tidyverse packages that load magrittr).</p>
+
+</article></slide><slide class=""><hgroup><h2>The tibble</h2></hgroup><article  id="the-tibble">
+
+<p>talk about tibbles here…</p></article></slide>
 
 
   <slide class="backdrop"></slide>
@@ -3328,6 +3335,11 @@ line-height: 1.9;
        window.jQuery(document).on('slideenter', function(e) {
          window.jQuery(e.target).trigger('shown');
       });
+    }
+    if (window.Shiny) {
+      // Initialize slides when this script appears on the page, since it
+      // indicates that the <slides> markup has been fully loaded.
+      window.loadDeck();
     }
   })();
 </script>

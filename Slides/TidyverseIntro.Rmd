@@ -1,6 +1,6 @@
 ---
 title: "Tidyverse Introduction"
-subtitle: "STT2860 Intro to Data Mgmt and Visualization"
+subtitle: "STT 2860 Intro to Data Mgmt and Visualization"
 author: "Author: Jill E. Thomley // Appalachian State University"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
@@ -20,22 +20,22 @@ library(tidyverse)
 
 ## Base `R`
 
-It is perfectly possible to do dataset manipulation and plotting using base `R`. However...
+It is perfectly possible to do dataset manipulation and plotting using base `R`. However, there are some cons to this approach...
 
 * data manipulation can require many intermediate steps
 
 * we often have to nest functions inside of other functions
 
-* it can be difficult to "read" the resulting code to determine what is being done to the data
+* it can be difficult for you and others to "read" the resulting code to determine what exactly is being done to the data
 
-* the functions for plotting in base `R` have different settings / parameters and can be difficult to recall and manipulate
+* the functions for plotting in base `R` have different settings / parameters that can be difficult to recall and manipulate
 
-* the quality of the plots is fine for data exploration but less acceptable for professional presentations and publications
+* the quality of the plots is fine for data exploration but less acceptable for professional presentations or publications
 
 
 ## What is the Tidyverse?
 
-Developed by [Hadley Wickham](https://hadley.nz/) and others, the [tidyverse](https://www.tidyverse.org/) is "an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures."
+Developed by [Hadley Wickham](https://hadley.nz/) and others, the [tidyverse](https://www.tidyverse.org/) is "an opinionated collection of R packages designed for data science. All packages share an underlying design philosophy, grammar, and data structures." --- *they work together in a natural way*
 
 <hr>
 
@@ -72,13 +72,13 @@ There are eight core packages in the tidyverse. They all will be loaded when you
 <hr>
 
 
-## ggplot2
+## Package ggplot2
 
 According to the online package [documentation](https://ggplot2.tidyverse.org/), "It’s hard to succinctly describe how ggplot2 works because it embodies a deep philosophy of visualisation." 
 
 Overall, ggplot2 represents an advance over base `R` graphics in terms of flexibility and appearance. Once you understand the basics, working with plots depends less on the type of plot you are making and more on the presentation you want.
 
-* all plots use a consistent, underlying "grammar of graphics"
+* all plots use a consistent, underlying "[grammar of graphics](https://info5940.infosci.cornell.edu/notes/dataviz/grammar-of-graphics/)"
 * possible to use more than one dataset and plot type at once
 * uses a theme system to customize / refine plot appearance
 * has been called a "mature and complete" graphics system
@@ -98,7 +98,7 @@ Overall, ggplot2 represents an advance over base `R` graphics in terms of flexib
 * ***facets*** allow us to visualize the same graphical elements for important groupings or subsets in the dataset 
 
 
-## dplyr
+## Package dplyr
 
 The [dplyr](https://dplyr.tidyverse.org/) package contains a "grammar of data manipulation" built on a consistent set of [data manipulation verbs](https://dplyr.tidyverse.org/reference/index.html) to help us accomplish common data manipulation tasks. *For example...*
 
@@ -160,7 +160,7 @@ The [dplyr](https://dplyr.tidyverse.org/) package contains a "grammar of data ma
 ::::
 
 
-## other packages
+## Other examples
 
 We will use functions such as `read_csv()` from [readr](https://readr.tidyverse.org/) to import data files stored in *comma separated value* and other forms.
 
@@ -174,13 +174,13 @@ The [tidyr](https://tidyr.tidyverse.org/) package adds functions that help us re
 * [`replace_na()`](https://tidyr.tidyverse.org/reference/replace_na.html)
 
 
-## the pipe
+## The pipe %>%
 
-The pipe operator (%>%) from the [magrittr](https://magrittr.tidyverse.org/) package allows us to create sequences or "pipelines" of actions/functions rather than nesting functions. 
-
-It is commonly used with the dplyr package perform a sequence of operations on a dataset.
+The pipe operator from [magrittr](https://magrittr.tidyverse.org/) allows us to use sequences or "pipelines" of actions/functions rather than nesting functions. 
 
 We can think of the pipe as the phrase "and then" when reading a piped sequence of operations.
+
+It is commonly used with the dplyr package perform a sequence of operations on a dataset.
 
 The PC shortcut for inserting a pipe in code is `Ctrl` + `Shift` + `M`.
 
@@ -188,6 +188,8 @@ The PC shortcut for inserting a pipe in code is `Ctrl` + `Shift` + `M`.
 
 As of `R` version 4.1.0, there is now a second pipe, written as `|>`.
 
-The main difference is that we can now use a pipe without the magrittr package (or tidyverse packages that load it). 
+The main difference is that we can now use a pipe without the magrittr package (or tidyverse packages that load magrittr). 
 
+## The tibble
 
+talk about tibbles here...
