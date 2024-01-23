@@ -1,6 +1,6 @@
 ---
 title: "Day 01 Introduction<br>Spring 2024"
-subtitle: "STT2860 Intro to Data Mgmt and Visualization"
+subtitle: "STT 2860 Intro to Data Management & Visualization"
 author: "Author: Jill E. Thomley | Appalachian State University"
 date: "`r format(Sys.time(), '%B %d, %Y @ %I:%M %p')`"
 output: 

@@ -1,8 +1,8 @@
 ---
 title: "Introduction to Datasets"
-subtitle: "STT2860 Intro to Data Mgmt and Visualization"
-author: "Author: Jill E. Thomley // Appalachian State University"
-date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+subtitle: "STT 2860 Intro to Data Management & Visualization"
+author: "Author: Jill E. Thomley | Appalachian State University"
+date: "`r format(Sys.time(), '%B %d, %Y @ %I:%M %p')`"
 output: 
   ioslides_presentation:
     logo: images/logoASU.jpg
@@ -43,7 +43,7 @@ Tidy data graphic from [R for Data Science: Tidy Data](http://r4ds.had.co.nz/tid
 <p>Real life data is often quite messy. We will explore a few ways to make datasets more tidy during this course.</p>
 
 
-## Review: Vectors in `R`
+## Recall: Vectors in `R`
 
 Atomic vectors can contain only one type of data, while ***lists*** can contain more than one type of vector or data. In `R`, a ***data frame*** or ***tibble*** (dataset) is a special type of list.
 
@@ -51,7 +51,7 @@ Atomic vectors can contain only one type of data, while ***lists*** can contain 
 knitr::include_graphics("images/VectorHierarchy.png", dpi = 350)
 ```
 
-<div style = "text-align: center; font-size: 18px;">Hierarchy of vectors in `R` (from [R for Data Science: Vectors](https://r4ds.had.co.nz/vectors.html))</div>
+<div style = "text-align: center; font-size: 18px;">Hierarchy of Vectors in `R` (from [*R for Data Science*](https://r4ds.had.co.nz/vectors.html))</div>
 
 
 ## Vectors & Datasets
@@ -62,7 +62,7 @@ Each variable (column) in a tibble or dataset is a vector. These vectors may be 
 knitr::include_graphics("images/dataframevectors.png", dpi = 140)
 ```
 
-<div style = "text-align: center; font-size: 18px;">Data Frame Columns are Vectors (from [Hands-On Programming with R](https://rstudio-education.github.io/hopr/r-objects.html#data-frames))</div>
+<div style = "text-align: center; font-size: 18px;">Data Frame Columns are Vectors (from [*Hands-On Programming with R*](https://rstudio-education.github.io/hopr/r-objects.html#data-frames))</div>
 
 
 # Exploring Datasets
@@ -180,13 +180,32 @@ attributes(nightingale)
 ```
 
 ```{r}
+names(nightingale)
+```
+
+
+## 
+
+```{r}
+row.names(nightingale)
+```
+
+```{r}
+class(nightingale)
+```
+
+```{r}
 typeof(nightingale)
+```
+
+```{r}
+dim(nightingale)
 ```
 
 
 ## Explore some more datasets!
 
-Try exploring some of the datasets in the HistData package, or those you can find in `R` and the tidyverse packages. You will see some of these pop up in DataCamp modules.
+Try exploring some of the datasets in the HistData package, or those you can find in `R` and the tidyverse packages. You will see some of these pop up in DataCamp courses.
 
 Practice to become proficient in loading data and investigating structure so you can start the important work of transforming raw data into useful information and knowledge.
 
