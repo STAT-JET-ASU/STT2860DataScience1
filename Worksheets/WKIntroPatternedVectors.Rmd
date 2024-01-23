@@ -1,0 +1,127 @@
+---
+title: "Worksheet: Introduction to Vectors"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+* [Dr. Thomley's Introduction to Vectors slides](https://stat-jet-asu.github.io/Slides/STT2860/IntroVectors.html)
+* [Dr. Thomley's Patterned Vectors slides](https://stat-jet-asu.github.io/Slides/STT2860/PatternedVectors.html)
+
+***
+
+### Packages Used
+
+```{r packagesused}
+# load all packages used here
+
+```
+
+
+### Using the `c()` Function
+
+*erase this and add your own notes*
+
+#### logical vector
+
+```{r}
+
+```
+
+#### numeric vector
+
+```{r}
+
+```
+
+#### character vector
+
+```{r}
+
+```
+
+#### mixed vectors
+
+```{r}
+
+```
+
+
+### Using the `:` Function
+
+*erase this and add your own notes*
+
+#### increasing sequence
+
+```{r}
+
+```
+
+#### decreasing sequence
+
+```{r}
+
+```
+
+#### non-integer sequence
+
+```{r}
+
+```
+
+
+### Using the `seq()` Function
+
+*erase this and add your own notes*
+
+#### function syntax
+
+    seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)), length.out = NULL, along.with = NULL, ...)
+
+#### using parameter `by =`
+
+```{r}
+
+```
+
+#### using parameter `length.out =`
+
+```{r}
+
+```
+
+#### using parameter `along.with =`
+
+```{r}
+
+```
+
+
+### Using the `rep`()` Function
+
+*erase this and add your own notes*
+
+*erase this and add your own subsections*
+
+
+***
+```{r}
+sessionInfo()
+```
+
