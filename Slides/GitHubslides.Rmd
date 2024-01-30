@@ -23,6 +23,14 @@ output:
 }
 </style>
 
+
+## Why GitHub?
+
+<img src="https://stat-jet-asu.github.io/Moodlepics/horstRencourage/githubcollaboration.png" width = 775>
+
+<div style = "text-align: center; font-size: 18px;">[artwork by @allison_horst](https://allisonhorst.com/allison-horst)</div>
+
+
 ##
 
 ```{r, echo = FALSE, fig.align="center"}
@@ -36,13 +44,6 @@ GitHub is a code hosting platform for collaboration and version control. It lets
 
 ```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("images/GitHubRStudio.png", dpi = 100)
-```
-
-
-## Funny but true?
-
-```{r, echo = FALSE, fig.align="center"}
-knitr::include_graphics("images/git_xkcd.png", dpi = 100)
 ```
 
 
