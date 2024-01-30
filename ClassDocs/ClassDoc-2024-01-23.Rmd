@@ -1,0 +1,163 @@
+---
+title: "Worksheet: Introduction to Vectors"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
+author: "Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+* [Dr. Thomley's Introduction to Vectors slides](https://stat-jet-asu.github.io/Slides/STT2860/IntroVectors.html)
+* [Dr. Thomley's Patterned Vectors slides](https://stat-jet-asu.github.io/Slides/STT2860/PatternedVectors.html)
+
+***
+
+### Packages Used
+
+```{r packagesused}
+# load all packages used here
+
+```
+
+
+### Using the `c()` Function
+
+*erase this and add your own notes*
+
+#### logical vector
+
+```{r}
+
+```
+
+#### numeric vector
+
+```{r}
+
+```
+
+#### character vector
+
+```{r}
+
+```
+
+#### mixed vectors
+
+```{r}
+
+```
+
+
+### Using the `:` Function
+
+*erase this and add your own notes*
+
+#### increasing sequence
+
+```{r}
+
+```
+
+#### decreasing sequence
+
+```{r}
+
+```
+
+#### non-integer sequence
+
+```{r}
+
+```
+
+
+### Using the `seq()` Function
+
+*erase this and add your own notes*
+
+#### function syntax
+
+    seq(from = 1, to = 1, by = ((to - from)/(length.out - 1)), length.out = NULL, along.with = NULL, ...)
+
+#### using parameter `by =`
+
+```{r}
+
+```
+
+#### using parameter `length.out =`
+
+```{r}
+
+```
+
+#### using parameter `along.with =`
+
+```{r}
+
+```
+
+
+### Using the `rep`()` Function
+
+#### Create a Sample Vector
+
+Make a vector to use in my examples.
+
+```{r}
+text <- c("BOOM", "Shaka", "Laka")
+```
+
+#### Repeat using `times =`
+
+```{r}
+# rep(c("BOOM", "Shaka", "Laka"), times = 2)
+rep(text, times = 2)
+
+repeat1 <- rep(text, times = 2)
+```
+
+#### Repeat using `each =`
+
+```{r}
+rep(text, each = 2)
+```
+
+#### Using both `times =` and `each =`
+
+The function will to each first then times, no matter which comes first in the function.
+
+```{r}
+rep(text, times = 3, each = 2)
+rep(text, each = 2, times = 3)
+```
+
+#### Other Options
+
+We can repeat a non-constant number of times. notice also that we use the `c()` vector to provide input to another function. Here, the c() vector needs to contain as many numbers as the `text` vector has values.
+
+```{r}
+rep(text, times = c(1, 2, 5))
+```
+
+
+
+***
+```{r}
+sessionInfo()
+```

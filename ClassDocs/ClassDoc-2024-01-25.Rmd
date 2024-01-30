@@ -1,0 +1,152 @@
+---
+title: "Worksheet: Introduction to Datasets"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+* [Dr. Thomley's Introduction to Datasets slides](https://stat-jet-asu.github.io/STT2860DataScience1/Slides/IntroDatasets.html#1)
+
+***
+
+### Packages Used
+
+```{r packagesused}
+# load all packages used here
+library(HistData)
+```
+
+
+### The `Nightingale` Dataset
+
+The `Nightingale` dataset is found in **HistData** package.
+
+*erase this and add your own notes*
+
+#### create an object
+
+```{r}
+nightingale <- Nightingale
+```
+
+#### explore with `head()`
+
+```{r}
+head(nightingale)        # default head, 6 rows
+head(nightingale, n = 2) # specify number of rows
+```
+
+#### explore with `tail()`
+
+```{r}
+tail(nightingale)
+```
+
+#### explore with `str()`
+
+```{r}
+str(nightingale)  # this is what we see in Environment tab
+```
+
+#### explore with `glimpse()`
+
+```{r}
+
+```
+
+#### explore with other functions
+
+```{r}
+
+```
+
+
+### The `flights` Dataset
+
+The `flights` dataset is found in **nycflights13** package.
+
+*erase this and add your own notes*
+
+#### What `class()` is the flights dataset?
+
+```{r}
+
+```
+
+#### What `typeof()` is the flights dataset?
+
+```{r}
+
+```
+
+#### How many observations (rows) are there?
+
+```{r}
+
+```
+
+#### What are the names of the variables?
+
+```{r}
+
+```
+
+#### How many complete cases are there? 
+
+Cases is synonymous with observations (or rows) here.
+
+```{r}
+
+```
+
+#### How many incomplete cases are there? 
+
+```{r}
+
+```
+
+
+### Building from Scratch
+
+*erase this and add your own notes*
+
+#### build a data.frame
+
+```{r}
+
+```
+
+#### build a tibble
+
+```{r}
+
+```
+
+#### build a list
+
+```{r}
+
+```
+
+
+***
+```{r}
+sessionInfo()
+```
+
