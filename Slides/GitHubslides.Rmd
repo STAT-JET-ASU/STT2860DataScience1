@@ -100,7 +100,7 @@ git config --global --list
 
 ## Commit Name and Email (Method 2)
 
-As happens with so many popular and widely used processes in R and RStudio, there is a package to help us interact with Git and GitHub during setup, which was created by Hadley Wickham and collaborators. The [usethis](https://usethis.r-lib.org/) package has been installed for us on the ASU RStudio server. [See the example script on AsULearn!]
+As happens with so many popular and widely used processes in R and RStudio, there is a package to help us interact with Git and GitHub during setup, which was created by Hadley Wickham and collaborators. The [usethis](https://usethis.r-lib.org/) package has been installed for us on the ASU RStudio server.
 
 In the RStudio **Console** pane (or using the **Source** pane), enter:
 
