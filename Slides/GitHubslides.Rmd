@@ -68,33 +68,47 @@ knitr::include_graphics("images/githubwallpaper.png", dpi = 110)
 
 ## Commit Name and Email (Method 1)
 
-In the past, this part needed to be done in a terminal in RStudio. You may refer to [Chapter 7](https://happygitwithr.com/hello-git.html) of *Happy Git and GitHub for the useR* or GitHub [Help](https://help.github.com/). **&rarr; However, we will use Method 2.**
+In the past, this part needed to be done in a terminal in RStudio. You may refer to [Chapter 7](https://happygitwithr.com/hello-git.html) of *Happy Git and GitHub for the useR* or GitHub [Help](https://help.github.com/). 
 
 In RStudio, choose `Tools > Terminal > New Terminal`
 
-In the Terminal, type the following lines at the prompt one at a time and hit `[Enter]` after each. 
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/terminalwindow.PNG", dpi = 110)
+```
+
+
+##
+
+We will use the terminal for some processes, such as confirming our settings, but we will use Method 2 to set your commit name and email address.
+
+In the **Terminal**, we would type the following lines at the prompt one at a time and hit `[Enter]` after each. 
 
 ```{r, eval=FALSE}
 git config --global user.email "who@where"
 git config --global user.name "commitname"
-git config --global --list
 ```
 
 These set an **[email](https://help.github.com/articles/setting-your-commit-email-address-in-git/)** and **[name](https://help.github.com/articles/setting-your-username-in-git/)** linked with any commit you make in Git. They do not have to be the same as your primary GitHub email and username. You can change them later.
 
+To confirm, we can type the following. Try this one!
+
+```{r, eval=FALSE}
+git config --global --list
+```
+
 
 ## Commit Name and Email (Method 2)
 
-As happens with so many popular and widely used processes in R and RStudio, there is a package to help us interact with Git and GitHub during setup, which was created by Hadley Wickham and collaborators. The [usethis](https://usethis.r-lib.org/) package has been installed for us on the ASU RStudio server. [See the example script!]
+As happens with so many popular and widely used processes in R and RStudio, there is a package to help us interact with Git and GitHub during setup, which was created by Hadley Wickham and collaborators. The [usethis](https://usethis.r-lib.org/) package has been installed for us on the ASU RStudio server. [See the example script on AsULearn!]
 
-In the RStudio Console pane (or using the Source pane), enter:
+In the RStudio **Console** pane (or using the **Source** pane), enter:
 
 ```{r, eval=FALSE}
 library(usethis)
 use_git_config(user.name = "commitname", user.email = "who@where")
 ```
 
-You still need to enter the code below in a Terminal window to check your configuration.
+Add a name and email for yourself. You still need to enter the code below in a **Terminal** window to check your configuration.
 
 ```{r, eval=FALSE}
 git config --global --list
@@ -150,14 +164,14 @@ There is a nice discussion about working with R projects **[here](https://suppor
 
 ## Let's Make a Repository
 
-From your GitHub repo page (see image on next slide)...
+From your GitHub repository page (see image on next slide) ...
 
 * click on the green "New" button
-* create a new repository named __datascience1repo__
-* add a description like "this my practice repository"
+* create a new repository named **STT2860ClassMaterial**
+* add a description like "STT 2860 notes and worksheets"
 * choose "Public" or "Private" (if you have private access)
 * choose "Add a README file"
-* click the green "Create repository" button (_drum roll..._)
+* click the green "Create repository" button (*drum roll ...*)
 
 Adding a license is optional. If you want one, the [MIT license](https://opensource.org/licenses/MIT) is a good general purpose license.
 
@@ -172,7 +186,7 @@ knitr::include_graphics("images/githubrepopage.PNG", dpi = 150)
 
 ## Clone it !
 
-In your GitHub **datascience1repo** (see image on next slide)... 
+In your **STT2860ClassMaterial** GitHub repo (pic on next slide) ... 
 
 * choose the green “Code” button in your repo
 
@@ -183,7 +197,7 @@ In your GitHub **datascience1repo** (see image on next slide)...
 knitr::include_graphics("images/gitclonecoffee.jpg", dpi = 100)
 ```
 
-Note: You can use SSH authentication if you want to. There's a GitHub page **[here](https://help.github.com/articles/which-remote-url-should-i-use/)** that discusses the differences.
+Note: You can use SSH authentication if you want to. There's a GitHub page **[here](https://help.github.com/articles/which-remote-url-should-i-use/)** that discusses the differences. I usually use HTTPS, since most of my content is open/sharable.
 
 
 ##
@@ -199,7 +213,7 @@ knitr::include_graphics("images/githubcodebutton.PNG", dpi = 100)
 
 In RStudio... 
 
-* choose File > New Project > Version Control > Git
+* choose **File > New Project > Version Control > Git**
 
 * paste in the repository URL from the the clipboard where it says "Repository URL:"
 
@@ -207,14 +221,14 @@ In RStudio...
 
 * choose your version control subdirectory, if you made one, where it says "Create project as a subdirectory of:"
 
-* click Create Project!
+* click **Create Project**!
 
 
 ## Create, Commit, Push, Pull
 
-I'm just going to talk here for now, so follow along...
+I'm just going to talk here for now, so follow along ...
 
-Changes made in RStudio are *pushed* to GitHub. Changes made in GitHub are *pulled* to RStudio. You must *commit* your changes before you push or pull.
+Changes made in RStudio are *pushed* to GitHub. Changes made in GitHub are *pulled* to RStudio. You must *commit* your changes (make them official) before you push or pull.
 
 ```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("images/git_commit.png", dpi = 100)
@@ -240,16 +254,25 @@ These suggestions for GitHub commit etiquette were adapted from [How to use GitH
 
 ## Forking Repos
 
-Let's go to FiveThirtyEight's [Data repository](https://github.com/fivethirtyeight/data) (also called a repo)...
+Let's go to FiveThirtyEight's [Data repo](https://github.com/fivethirtyeight/data) ...
 
 ```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("images/forkingrepos.PNG", dpi = 130)
 ```
 
 
-## Basic Web Pages
+## Creating Web Pages
 
-Go to Dr. Thomley's [Basic Web Page Template repository] ...
+Go to Dr. Thomley's [Basic Web Page Template repository](https://github.com/stt2860/basicwebpagetemplate) ...
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/webpagetemplaterepo.PNG", dpi = 150)
+```
+
+
+##
+
+Go to Dr. Thomley's [Web Page repository](https://github.com/jillthomley/jillthomley.github.io) ...
 
 ```{r, echo = FALSE, fig.align="center"}
 knitr::include_graphics("images/thomleywebpagerepo.PNG", dpi = 150)
