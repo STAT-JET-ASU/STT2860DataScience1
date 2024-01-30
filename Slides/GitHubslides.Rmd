@@ -1,8 +1,8 @@
 ---
 title: "Git, GitHub, and RStudio"
-subtitle: "STT2860 Intro to Data Mgmt and Visualization"
-author: "Author: Jill E. Thomley // Appalachian State University"
-date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+subtitle: "STT 2860 Intro to Data Management & Visualization"
+author: "Author: Jill E. Thomley | Appalachian State University"
+date: "`r format(Sys.time(), '%B %d, %Y @ %I:%M %p')`"
 output: 
   ioslides_presentation:
     logo: images/logoASU.jpg
