@@ -121,8 +121,13 @@ knitr::opts_chunk$set(
 <hr>
 ## tidyverse: [readr](https://readr.tidyverse.org/)
 
-* TBA
-* TBA
+* [`read_csv()`](https://readr.tidyverse.org/reference/read_delim.html) --- *read a comma-separated values (CSV) flat file*
+* [`read_delim()`](https://readr.tidyverse.org/reference/read_delim.html) --- *read a delimited flat file (CSV and TSV are special cases)*
+* [`read_fwf()`](https://readr.tidyverse.org/reference/read_fwf.html) --- *read a fixed-width (sometimes compact) flat file*
+* [`read_table()`](https://readr.tidyverse.org/reference/read_table.html) --- *read a whitespace-separated values flat file*
+* [`read_tsv`](https://readr.tidyverse.org/reference/read_delim.html) --- *read a tab-separated values (CSV) flat file*
+
+Usually, these are files where rows = observations and columns = variables.
 
 <hr>
 ## tidyverse: [readxl](https://readxl.tidyverse.org/) (and [writexl](https://docs.ropensci.org/writexl/))
@@ -144,27 +149,26 @@ knitr::opts_chunk$set(
 
 ### pivoting & rectangling
 
-* `pivot_longer()` --- *"lengthens" a dataset (more rows, fewer columns)*
+* [`pivot_longer()`](https://tidyr.tidyverse.org/reference/pivot_longer.html) --- *"lengthens" a dataset (more rows, fewer columns)*
    * `gather()` --- *superseded function replaced by `pivot_longer()`*
-* `pivot_wider()` --- *"widens" a dataset (fewer rows, more columns)*
+* [`pivot_wider()` ](https://tidyr.tidyverse.org/reference/pivot_wider.html--- *"widens" a dataset (fewer rows, more columns)*
    * `spread()` --- *superseded function replaced by pivot_wider()*
-* `unnest_sider()` 
 
 ### character vectors
 
 * `separate()` --- *split a character column into multiple new columns*
    * *superseded function replaced by the functions below*
-   * `separate_wider_delim()` --- *split using a delimiter*
-   * `separate_wider_position()` --- *split using fixed widths*
-   * `separate_wider_regex()` --- *split using regular expressions*
-* `unite()` --- *combine multiple columns into a single character column*
+   * [`separate_wider_delim()`](https://tidyr.tidyverse.org/reference/separate_wider_delim.html) --- *split using a delimiter*
+   * [`separate_wider_position()`](https://tidyr.tidyverse.org/reference/separate_wider_delim.html) --- *split using fixed widths*
+   * [`separate_wider_regex()`](https://tidyr.tidyverse.org/reference/separate_wider_delim.html) --- *split using regular expressions*
+* [`unite()`](https://tidyr.tidyverse.org/reference/unite.html) --- *combine multiple columns into a single character column*
 
 ### missing values
 
-* `drop_na()` --- *drop all rows with missing values in specified variables*
-* `expand_grid()` --- *create a tibble by taking all combinations of inputs*
-* `replace_na()` --- *replace `NA` data values with other specified values*
-* `uncount()` --- *reverse of `count()`, used to expand a set of counts*
+* [`drop_na()`](https://tidyr.tidyverse.org/reference/drop_na.html) --- *drop all rows with missing values in specified variables*
+* [`expand_grid()`](https://tidyr.tidyverse.org/reference/expand_grid.html) --- *create a tibble by taking all combinations of inputs*
+* [`replace_na()`](https://tidyr.tidyverse.org/reference/replace_na.html) --- *replace `NA` data values with other specified values*
+* [`uncount()`](https://tidyr.tidyverse.org/reference/uncount.html) --- *reverse of `count()`, used to expand a set of counts*
 
 <hr>
 
