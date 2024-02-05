@@ -30,6 +30,8 @@ knitr::opts_chunk$set(
 ```{r packagesused}
 # load all packages used here
 library(HistData)
+library(tidyverse) # this loads 9 different packages
+library(nycflights13)
 ```
 
 
@@ -66,14 +68,44 @@ str(nightingale)  # this is what we see in Environment tab
 
 #### explore with `glimpse()`
 
-```{r}
+This is the tidyverse version of `str()`. It contains mostly the same information, but more neatly arranges to scale to the window.
 
+```{r}
+glimpse(nightingale)
 ```
 
 #### explore with other functions
 
-```{r}
+This function tells us the row names (or numbers) and column names, as well as the class of the object. Class determines how R interacts with the object.
 
+```{r}
+attributes(nightingale)
+```
+
+This tells us the names of the columns / variables.
+
+```{r}
+names(nightingale)
+```
+
+These functions tell us the dimensions of the rectangular dataset, row first and then column for `dim()`.
+
+```{r}
+dim(nightingale)  # always row, column
+nrow(nightingale)
+ncol(nightingale)
+```
+
+This tells us the class of the object, like in `attributes()`.
+
+```{r}
+class(nightingale)
+```
+
+This tells us how R stores the object.
+
+```{r}
+typeof(nightingale)
 ```
 
 
@@ -81,30 +113,36 @@ str(nightingale)  # this is what we see in Environment tab
 
 The `flights` dataset is found in **nycflights13** package.
 
-*erase this and add your own notes*
+The nycflight13 package contains 5 related datasets about flights that flew out of NYC airports in 2013.
 
 #### What `class()` is the flights dataset?
 
-```{r}
+The dataset flights has 3 classes. It is a data.frame, but it is also a tibble. A tibble is an 'upgraded' version of a dataframe. For a lot of what we do, it doesn't make a difference,but it can in more advanced programming.
 
+```{r}
+class(flights)
 ```
 
 #### What `typeof()` is the flights dataset?
 
-```{r}
+The data.frame and tibble classes are special subsets of a structure called a list, so that's how they're stored. This is more important to programmers than to what we'll be doing in this class.
 
+```{r}
+typeof(flights)
 ```
 
 #### How many observations (rows) are there?
 
 ```{r}
-
+dim(flights)
+nrow(flights)
 ```
 
 #### What are the names of the variables?
 
 ```{r}
-
+names(flights)
+head(flights)
 ```
 
 #### How many complete cases are there? 
@@ -112,15 +150,34 @@ The `flights` dataset is found in **nycflights13** package.
 Cases is synonymous with observations (or rows) here.
 
 ```{r}
-
+nrow(flights)
 ```
 
 #### How many incomplete cases are there? 
 
-```{r}
+Input is a data.frame or tibble, output is a logic vector with a true/false for every row. 
 
+```{r}
+flights_complete <- complete.cases(flights)
 ```
 
+We can add a logic vector since TRUE = 1 and FALSE = 0, so this will tell me how many complete cases I have.
+
+```{r}
+sum(complete.cases(flights))
+```
+
+The exclamation point (!) in R means "not". 
+
+```{r}
+!complete.cases(flights)
+```
+
+This tells me how many incomplete cases I have. This means at least one variable is missing data. I need to do further explorations to figure out where the missing values are and if there are some patterns.
+
+```{r}
+sum(!complete.cases(flights))
+```
 
 ### Building from Scratch
 
@@ -128,20 +185,66 @@ Cases is synonymous with observations (or rows) here.
 
 #### build a data.frame
 
-```{r}
+Each row in this code will become one column or variable in my dataset. I am creating 4 vectors and connecting them with the `data.frame()` function. All the vectors have to be the same length.
 
+```{r}
+dataset1 <- data.frame(
+  ID = 1:5,               # variable name = variable contents
+  gender = c("male", "male", "female", "female", "nonbinary"),
+  height = c(71, 73, 64, 64, 66),
+  weight = c(175, 225, 130, 125, 165)
+)
+
+dataset1
+class(dataset1)
 ```
 
 #### build a tibble
 
 ```{r}
+dataset2 <- tibble(
+  ID = 1:5,
+  gender = c("male", "male", "female", "female", "nonbinary"),
+  height = c(71, 73, 64, 64, 66),
+  weight = c(175, 225, 130, 125, 165)
+)
 
+dataset2
 ```
 
 #### build a list
 
 ```{r}
+listex <- list(
+  ID = 1:5,
+  gender = c("male", "male", "female", "female", "nonbinary"),
+  height = c(71, 73, 64, 64, 66),
+  weight = c(175, 225, 130, 125, 165)
+)
 
+listex
+```
+
+```{r}
+list1 <- list(
+  a = 2,                # constant/vector of length 1, named a
+  b = 1:3,              # integer vector of length 3, named b
+  d = c("Fred", "Joe")  # character vector of length 2, named d
+)
+
+list1
+
+list1$a
+```
+
+```{r}
+list2 <- list(
+  dataA = dataset1,   # dataset we made earlier, named dataA
+  dataB = dataset2,   # dataset we made earlier, named dataB
+  dataC = mtcars      # dataset included in R, named dataC
+)
+
+list2
 ```
 
 
