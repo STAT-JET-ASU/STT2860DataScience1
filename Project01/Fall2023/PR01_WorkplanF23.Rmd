@@ -1,6 +1,6 @@
 ---
-title: "Project 1: Group Work Plan"
-subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+title: "Project 01: Group Work Plan"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
 author: "PUT EVERYONE'S NAMES HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
