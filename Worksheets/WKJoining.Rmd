@@ -98,18 +98,26 @@ The `bind_rows()` function matches on names. Are all the names the same? If not,
 
 ```{r}
 names(class1) == names(class2)
+all.equal(class1, class2)
+identical(class1, class2)
 ```
 
 Bind the two classes together using `bind_rows()` and store it as `mbtidata1`. Can you do it both with and without piping?
 
 ```{r}
-
+mbtidata1 <- bind_rows(class1, class2)
 ```
 
 Use `glimpse()` to explore the structure of `mbtidata1`.
 
 ```{r}
+glimpse(mbtidata1)
+```
 
+Let's also look at what `skim()` does.
+
+```{r}
+skim(mbtidata1)
 ```
 
 #### Binding with an ID #1
@@ -117,13 +125,14 @@ Use `glimpse()` to explore the structure of `mbtidata1`.
 If I do a simple binding, I don't know which data came from which class. Add a variable called `ClassID` as part of the binding process. Store this dataset as `mbtidata2`.
 
 ```{r}
-
+mbtidata2 <- bind_rows(class1, class2, .id = "ClassID")
 ```
 
 Use `glimpse()` to explore the structure of `mbtidata2`.
 
 ```{r}
-
+glimpse(mbtidata2)
+skim(mbtidata2$ClassID)
 ```
 
 #### Binding with an ID #2
@@ -136,13 +145,13 @@ mbtidata3 <- bind_rows(
     STT1810 = class1,
     STT3850 = class2
   ),
-# erase this and replace it with code to create the ClassID column
+  .id = "ClassID")
 ```
 
 Use `glimpse()` to explore the structure of `mbtidata3`.
 
 ```{r}
-
+glimpse(mbtidata3)
 ```
 
 ### `bind_cols()`
@@ -152,67 +161,119 @@ Use `glimpse()` to explore the structure of `mbtidata3`.
 I want to column bind the first two census datasets. Perform that operation with `bind_cols()` and save as `censusdata1`.
 
 ```{r}
-
+censusdata1 <- bind_cols(census1, census2)
 ```
 
 Use `head()` to show the first ten rows of `censusdata1`. What problem do you see with the result of your binding?
 
 ```{r}
-
+head(censusdata1)
 ```
 
 The data files are sorted in order from largest to smallest population. We need to sort each file by state name to join properly. Perform the sorting (arranging) and binding. Save the result as `censusdata2`.
 
 ```{r}
-
+censusdata2 <- bind_cols(
+  arrange(census1, state), 
+  arrange(census2, state)
+  )
 ```
 
 Use `head()` to show the first ten rows of `censusdata2`. What problem do you see with the result of your binding?
 
 ```{r}
-
+head(censusdata2)
 ```
 
 Each dataset has a column called `state`. They both get saved but renamed. Perform additional manipulations using dplyr so that you only have one column called `state` containing the state names. Save the result as `censusdata3`.
 
 ```{r}
-
+censusdata3 <- bind_cols(
+  arrange(census1, state), 
+  arrange(census2, state)
+  ) %>% 
+  rename("state" = state...1) %>% 
+  select(-state...4)
 ```
 
 Use `head()` to show the first ten rows of `censusdata3`. Is everything good now?
 
 ```{r}
+head(censusdata3)
+```
 
+```{r}
+skim(censusdata3)
 ```
 
 Now do all three census datasets! The result should have only one `state` column. Save as `censusdata4`.
 
 ```{r}
-
+censusdata4 <- bind_cols(
+  arrange(census1, state),
+  arrange(census2, state),
+  arrange(census3, state)
+) %>%
+  rename("state" = state...1) %>%
+  select(-state...4, -state...7)
 ```
 
 Use `head()` to show the first ten rows of `censusdata4`. Does everything look good?
 
 ```{r}
-
+head(censusdata4, n = 10)
 ```
 
 Challenge! How can I pivot `censusdata4` into a longer dataset that has year as a variable? I'd like the three variables to be `state`, `year`, and `population`.
 
 ```{r}
-
+censusdata4 %>% 
+  pivot_longer(
+  cols = "1970":"2020",
+  names_to = "year",
+  values_to = "population"
+)
 ```
+
+```{r}
+censusdata4long <- censusdata4 %>% 
+  pivot_longer(
+  cols = `1970`:`2020`,
+  names_to = "year",
+  values_to = "population"
+)
+```
+
 
 ### Mutating Joins
 
 #### `left_join()`
 
-I would like to add the electoral votes from the `votes` dataset to `censusdata4`. I want to keep everything in the census dataset (X) and add to it any matches in `votes` (Y).
+I would like to add the electoral votes from the `votes` dataset to `censusdata4long`. I want to keep everything in the census dataset (X) and add to it any matches in `votes` (Y).
+
+```{r}
+glimpse(votes)
+head(votes)
+tail(votes)
+```
 
 What are the `key` variables? Both have `state` and `year` that will uniquely identify rows.
 
 ```{r}
+# left_join(
+#    x = censusdata4long,
+#    y = votes,
+#    by = c("year", "state") 
+# )
+```
 
+```{r}
+censusdata4long %>% 
+  mutate(year = as.numeric(year)) %>% 
+  left_join(
+    y = votes,
+    by = c("year" = "year", "state")
+  )
 ```
 
 #### `right_join()`
@@ -220,7 +281,13 @@ What are the `key` variables? Both have `state` and `year` that will uniquely id
 Can you join the datasets using `right_join()` instead of `left_join()`?
 
 ```{r}
-
+votes %>% 
+  mutate(year = as.character(year),
+         "Bob" = year) %>% 
+  right_join(
+    y = censusdata4long,
+    by = c("Bob" = "year", "state")
+  )
 ```
 
 #### `inner_join()`
@@ -228,7 +295,12 @@ Can you join the datasets using `right_join()` instead of `left_join()`?
 What happens if we join this way?
 
 ```{r}
-
+censusdata4long %>% 
+  mutate(year = as.numeric(year)) %>% 
+  inner_join(
+    y = votes,
+    by = c("year" = "year", "state")
+  )
 ```
 
 #### `full_join()`
@@ -236,7 +308,12 @@ What happens if we join this way?
 What happens if we join this way?
 
 ```{r}
-
+censusdata4long %>% 
+  mutate(year = as.numeric(year)) %>% 
+  full_join(
+    y = votes,
+    by = c("year" = "year", "state")
+  )
 ```
 
 ### Filtering Joins
@@ -244,14 +321,48 @@ What happens if we join this way?
 #### `semi_join()`
 
 ```{r}
+censusdata4long %>% 
+  mutate(year = as.numeric(year)) %>% 
+  semi_join(
+    y = votes,
+    by = c("year", "state")
+  )
+```
 
+```{r}
+votes %>% 
+  mutate(year = as.character(year)) %>% 
+  semi_join(
+    y = censusdata4long,
+    by = c("year", "state")
+  )
 ```
 
 #### `anti_join()`
 
 ```{r}
-
+censusdata4long %>% 
+  mutate(year = as.numeric(year)) %>% 
+  anti_join(
+    y = votes,
+    by = c("year", "state")
+  )
 ```
+
+```{r}
+votes %>% 
+  mutate(year = as.character(year)) %>% 
+  anti_join(
+    y = censusdata4long,
+    by = c("year", "state")
+  )
+```
+
+```{r}
+votes %>% 
+  filter(!is.na(votes))
+```
+
 
 <hr>
 ```{r}

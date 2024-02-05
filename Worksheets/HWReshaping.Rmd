@@ -160,6 +160,7 @@ Reference: https://tidyr.tidyverse.org/reference/pivot_wider.html
 Read the Data
 ```{r}
 choldata <- CholeraDeaths1849
+choldata
 ```
 
 Explore the Structure
@@ -168,11 +169,54 @@ glimpse(choldata)
 head(choldata)
 ```
 
------------------------
+#### Spread the Causes of Death
 
-ADD NEW SECTION 1 HERE!
+Spread the data so that the `deaths` for the two `cause_of_death` are in different columns.
 
------------------------
+```{r}
+choldata_wide <- choldata %>% 
+  pivot_wider(
+    names_from = cause_of_death,
+    values_from = deaths
+  )
+glimpse(choldata_wide)
+```
+
+#### Vietnam Draft Data
+
+Read the Data
+```{r}
+draftdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/vietnamdraft.csv")
+```
+
+Explore the Structure
+```{r}
+glimpse(draftdata)
+head(draftdata)
+```
+
+#### Spread Draft Numbers 
+
+Spread the data so that the `draftnumber` for each `draftyear` are in different columns.
+
+```{r}
+draftdata %>% 
+  count(draftyear)
+
+draftdata %>% 
+  count(drawyear)
+```
+    
+    
+```{r}
+draftdata %>% 
+  pivot_wider(
+    id_cols = c(month, day, halfyear),
+    names_from = c(draftyear),
+    values_from = c(draftnumber, birthyear),
+    names_prefix = "dy"
+  )
+```
 
 #### Semmelweis Clinics
 
@@ -195,11 +239,123 @@ Spread the data so that the `births` and `deaths` for the two clinics are in dif
 
 ```
 
------------------------
+### Using `separate_wider_*()` and `unite()`
 
-ADD NEW SECTION2  HERE!
+Reference: 
 
------------------------
+* https://tidyr.tidyverse.org/reference/separate_wider_delim.html
+* https://tidyr.tidyverse.org/reference/unite.html
+
+#### Our Class Data
+
+Read the Data
+```{r}
+classdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/STT2860DataScience1/main/Worksheets/stt2860fall2023.csv")
+```
+
+Explore the Structure
+```{r}
+glimpse(classdata)
+head(classdata)
+```
+
+#### first operation here 
+
+Separate the names into Last and First-MI.
+
+```{r}
+classdata %>% 
+  separate_wider_delim(
+    cols = Name,
+    delim = ", ",
+    names = c("Last", "First"),
+    cols_remove = FALSE
+  )
+```
+
+```{r}
+classdata %>% 
+  separate_wider_delim(
+    cols = Name,
+    delim = ", ",
+    names = c("Last", "First"),
+    cols_remove = FALSE
+  ) %>% 
+  separate_wider_delim(
+    cols = MajorConc,
+    delim = ", ",
+    names = c("Major", "Concentration"),   
+    too_few = "align_start"
+  )
+```
+
+#### second operation here 
+
+```{r}
+classdata %>%
+  separate_wider_delim(
+    cols = MajorConc,
+    delim = ", ",
+    names = c("Major", "Concentration"),   
+    too_few = "debug"
+  )
+```
+
+```{r}
+classdataA <- classdata %>% 
+  separate_wider_delim(
+    cols = Name,
+    delim = ", ",
+    names = c("Last", "First")
+  )
+
+classdataB <- classdataA %>% 
+  separate_wider_delim(
+    cols = First,
+    delim = " ",
+    names = c("Given", "MI"),
+    too_few = "align_start"
+  )
+classdataB
+```
+
+Separate the `Email` column to obtain loginID, but keep email also.
+
+```{r}
+classdataB %>% 
+  separate_wider_delim(
+    cols = Email,
+    delim = "@",
+    names = c("loginID", "TheRest"),
+    cols_remove = FALSE
+  )
+```
+
+```{r}
+classdataB %>% 
+  separate_wider_delim(
+    cols = Email,
+    delim = "@",
+    names = c("loginID"),
+    too_many = "drop",
+    cols_remove = FALSE
+  ) 
+```
+
+#### Unite!
+
+```{r}
+classdataB %>% 
+  unite(
+    col = "Fullname",
+    c(Given, MI, Last),
+    sep = " ",
+    na.rm = TRUE,
+    remove = FALSE
+  ) %>% 
+  mutate(FullnameLC = tolower(Fullname))
+
+```
 
 
 
