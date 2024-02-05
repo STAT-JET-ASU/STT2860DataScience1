@@ -11,7 +11,7 @@ output:
 
 <hr>
 
-You will be asked to solve a series of timed challenges (60--120 seconds each) to assess your current level of knowledge about data visualization and manipulation. A full assessment usually contains 15 problems and takes about 10 minutes. Afterward, you will be given recommendations to improve and you can review your answers. This activity is intended to be *formative*, to help you identify strengths and weaknesses. You will be graded on completion, not on your assessment scores.
+You will be asked to solve a series of timed challenges (60--120 seconds each) to assess your current level of knowledge about data visualization and manipulation. A full assessment usually contains 15 problems and takes about 10 minutes. Afterward, you will be given recommendations to improve and you can review your answers. This activity is intended to be *formative*, to help you identify your strengths and weaknesses and measure growth as we move through the semester. **You will be graded on completion, not on your assessment scores.**
 
 You can read the DataCamp Assessments FAQ [HERE](https://support.datacamp.com/hc/en-us/articles/360044291373-DataCamp-Assessments-Everything-You-Need-To-Know).
 
@@ -67,13 +67,11 @@ ANSWER:
 
 #### Reflect on Your DataCamp Assessment Results
 
-Recall, STT 2860 Introduction to Data Management & Visualization has no course prerequisites, so we assume no knowledge of R programming for anyone coming into the course (though some students may have some experience). Given where you started at the beginning of the semester, do you feel like the assessments reflect your knowledge here at the halfway point in the semester? Did anything surprise you? Explain. 
+Recall, STT 2860 Introduction to Data Management & Visualization has no course prerequisites, so we assume no knowledge of R programming for anyone coming into the course (though some students may have some experience). Given where you started at the beginning of the semester, do you feel these assessments reflect your knowledge here at Week 4? Did anything surprise you? Explain your answer. 
 
 ANSWER:
 
 <hr>
 
 END!
-
-
 
