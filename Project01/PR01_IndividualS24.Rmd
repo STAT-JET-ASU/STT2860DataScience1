@@ -1,0 +1,90 @@
+---
+title: "Project 01: Individual Coding & Analysis"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: #CHOOSE A THEME YOU LIKE
+    highlight: #CHOOSE A HIGHLIGHT STYLE YOU LIKE
+---
+
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Gambling Winnings from *Introduction to R*
+
+In the second chapter of DataCamp's *Introduction to R* course, you created and manipulated vectors representing winnings for one week in poker and roulette. In some cases you performed operations more than once using different methods, to learn how to be more compact/efficient. You will adapt some of that work here. Be as neat and efficient as you can in your coding.
+
+#### (a) winnings vectors
+
+A person plays poker and roulette on weekdays for two weeks. Winnings (in US dollars) are tabulated below. Negative values are, of course, losses. Create named vectors of winnings for each game where the names are the days of the week. 
+
+| Day Number | Day of the Week | Poker Winnings | Roulette Winnings |
+|:----------:|:---------------:|:--------------:|:-----------------:|
+|      1     |       Mon       |       140      |        -25        | 
+|      2     |       Tue       |       -50      |        -50        |
+|      3     |       Wed       |        20      |        100        |
+|      4     |       Thu       |      -120      |       -350        |
+|      5     |       Fri       |       240      |        105        |
+|      6     |       Mon       |       100      |          5        |
+|      7     |       Tue       |       -30      |        -85        |
+|      8     |       Wed       |       305      |        210        |
+|      9     |       Thu       |       -90      |        175        |
+|     10     |       Fri       |      1000      |       -105        |
+
+```{r}
+
+```
+
+#### (b) daily totals
+
+Combine your vectors from (a) to create one vector that contains the total win/loss amount for each of the 10 days.
+
+```{r}
+
+```
+
+#### (c) overall totals
+
+Use your vectors from (a) and (b) to find (i) total poker winnings, (ii) total roulette winnings, and (iii) total overall winnings.
+
+```{r}
+
+```
+
+#### (d) winning days
+
+On which days did the person lose money playing poker? On which days did they lose money playing roulette? What about each day overall? In each of the three cases, select only those days and print them out.
+
+```{r}
+
+```
+
+#### (e) one weekday
+
+Choose one weekday (Monday through Friday). Create a vector that contains only those two days from the poker winnings vector. Do the same for roulette winnings vector and your vector of daily totals from (b).
+
+```{r}
+
+```
+
+#### (f) wins summary
+
+Does the person tend to make money or lose money playing each game? What about overall? Can you detect any patterns from just the analyses you have done above? What else might help you make sense of these data?
+
+ANSWER:
+
+
+***
+```{r}
+sessionInfo()
+```
+
