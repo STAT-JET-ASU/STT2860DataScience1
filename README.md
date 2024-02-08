@@ -7,6 +7,10 @@ Prerequisite: demonstrated readiness for college-level math.
 
 Some materials (e.g., projects, solutions) are in a private repository. If you are an instructor who is interested in these materials, please contact me at thomleyje@appstate.edu.
 
+### Slides
+
+* TBA
+
 ***
 This material is released under an [Attribution-NonCommercial-ShareAlike 3.0 United States (CC BY-NC-SA 3.0 US)](https://creativecommons.org/licenses/by-nc-sa/3.0/us/) license. Original author: [Jill E. Thomley](https://jillthomley.github.io/). 
 
