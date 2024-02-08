@@ -14,7 +14,7 @@ Some materials (e.g., projects, solutions) are in a private repository. If you a
 * [Patterned Vectors](https://stat-jet-asu.github.io/STT2860DataScience1/Slides/PatternedVectors.html)
 * [Introduction to Datasets](https://stat-jet-asu.github.io/STT2860DataScience1/Slides/IntroDatasets.html)
 * [Git, GitHub, and RStudio](https://stat-jet-asu.github.io/STT2860DataScience1/Slides/GitHubslides.html)
-* [Introduction to the Tidyverse](https://stat-jet-asu.github.io/STT2860DataScience1/Slides/TidyverseIntro.html)
+* [Tidyverse Introduction](https://stat-jet-asu.github.io/STT2860DataScience1/Slides/TidyverseIntro.html)
 
 ***
 This material is released under an [Attribution-NonCommercial-ShareAlike 3.0 United States (CC BY-NC-SA 3.0 US)](https://creativecommons.org/licenses/by-nc-sa/3.0/us/) license. Original author: [Jill E. Thomley](https://jillthomley.github.io/). 
