@@ -1,8 +1,8 @@
 ---
 title: "Tidyverse Introduction"
-subtitle: "STT 2860 Intro to Data Mgmt and Visualization"
-author: "Author: Jill E. Thomley // Appalachian State University"
-date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+subtitle: "STT 2860 Intro to Data Management & Visualization"
+author: "Author: Jill E. Thomley | Appalachian State University"
+date: "`r format(Sys.time(), '%B %d, %Y @ %I:%M %p')`"
 output: 
   ioslides_presentation:
     logo: images/logoASU.jpg
@@ -39,7 +39,7 @@ Developed by [Hadley Wickham](https://hadley.nz/) and others, the [tidyverse](ht
 
 <hr>
 
-There are eight core packages in the tidyverse. They all will be loaded when you use `library(tidyverse)`. 
+There are 8 core packages that cover "everyday data analyses." They will be loaded when you use `library(tidyverse)`. 
 
 :::::: {style="display: flex;"}
 
@@ -190,6 +190,58 @@ As of `R` version 4.1.0, there is now a second pipe, written as `|>`.
 
 The main difference is that we can now use a pipe without the magrittr package (or tidyverse packages that load magrittr). 
 
-## The tibble
+## Data Frame vs. Tibble #1
 
-talk about tibbles here...
+As explained in the 1st edition of [R For Data Science](https://r4ds.had.co.nz/tibbles.html):
+
+*Tibbles are data frames, but they tweak some older behaviours to make life a little easier. R is an old language, and some things that were useful 10 or 20 years ago now get in your way. It's difficult to change base R without breaking existing code, so most innovation occurs in packages.*
+
+There are two main differences between a tibble vs. a classic data.frame: printing and subsetting. 
+
+* when you print tibbles, only the first 10 rows will be shown, and as many columns as will fit on screen. 
+
+* the way you extract columns, rows, or subsets using $ or [ ], especially when using the pipe operator `%>%`
+
+
+## Data Frame vs. Tibble #2
+
+The `data.frame()` function at times imposes (*unwanted*) extra structure on a dataset. For example, it might...
+
+* convert character vectors to factors 
+* change some variable names
+* create row names
+
+However, this means a tibble can have columns with invalid `R` variable names (e.g., the names start with a number or contain a space). To refer to these variables, you have to bracket them with backtick marks, like \`variable name\`.
+
+On the flip side, some older functions do not work on tibbles. This is often because the process produces the wrong output type (e.g., a vector instead of a dataset).
+
+
+## Converting Datasets
+
+We can try to coerce one form into the other with functions. 
+
+* `as_tibble()`
+
+* `as.data.frame()`
+
+Notice the slightly different formats. Functions in base `R` often have periods in their names, while tidyverse uses underscores. For example, two similar functions for reading `.csv` files.
+
+* `read.csv()`
+
+* `read_csv()`
+
+The first creates a data frame and the second creates a tibble.
+
+
+## Atomic vs. Other Vectors
+
+Earlier in the course we learned about atomic vectors in `R`. There are *augmented* vectors that have additional structure, like factors and dates/times. There are five packages designed to work with specific types of data.
+
+* [stringr](https://stringr.tidyverse.org/) : [strings](https://r4ds.hadley.nz/strings.html) (contents of character vectors)
+* [forcats](https://forcats.tidyverse.org/) : [factors](https://r4ds.hadley.nz/factors.html) (ordered categorical variables)
+* [lubridate](https://lubridate.tidyverse.org/) : dates and times
+* [hms](https://hms.tidyverse.org/) : times of day (**h**ours, **m**inutes, **s**econds)
+* [blob](https://blob.tidyverse.org/) : binary data
+
+The first two packages are part of the core 8 that can be loaded with `library(tidyverse)`. The others get loaded separately.
+

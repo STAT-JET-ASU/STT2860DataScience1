@@ -20,7 +20,7 @@
       // Slide settings
       settings: {
                 title: 'Tidyverse Introduction',
-                        subtitle: 'STT 2860 Intro to Data Mgmt and Visualization',
+                        subtitle: 'STT 2860 Intro to Data Management &amp; Visualization',
                 useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -31,7 +31,7 @@
       // Author information
       presenters: [
             {
-        name:  'Author: Jill E. Thomley // Appalachian State University' ,
+        name:  'Author: Jill E. Thomley | Appalachian State University' ,
         company: '',
         gplus: '',
         twitter: '',
@@ -3157,7 +3157,7 @@ line-height: 1.9;
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       <h2 data-config-subtitle><!-- populated from slide_config.json --></h2>
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Thursday, November 30, 2023 @ 01:03 PM</p>
+            <p style="margin-top: 6px; margin-left: -2px;">February 08, 2024 @ 03:37 PM</p>
           </hgroup>
   </slide>
 
@@ -3179,7 +3179,7 @@ line-height: 1.9;
 
 <hr>
 
-<p>There are eight core packages in the tidyverse. They all will be loaded when you use <code>library(tidyverse)</code>.</p>
+<p>There are 8 core packages that cover &ldquo;everyday data analyses.&rdquo; They will be loaded when you use <code>library(tidyverse)</code>.</p>
 
 <div style="display: flex;">
 <div>
@@ -3306,9 +3306,64 @@ line-height: 1.9;
 
 <p>The main difference is that we can now use a pipe without the magrittr package (or tidyverse packages that load magrittr).</p>
 
-</article></slide><slide class=""><hgroup><h2>The tibble</h2></hgroup><article  id="the-tibble">
+</article></slide><slide class=""><hgroup><h2>Data Frame vs. Tibble #1</h2></hgroup><article  id="data-frame-vs.-tibble-1">
 
-<p>talk about tibbles here…</p></article></slide>
+<p>As explained in the 1st edition of <a href='https://r4ds.had.co.nz/tibbles.html' title=''>R For Data Science</a>:</p>
+
+<p><em>Tibbles are data frames, but they tweak some older behaviours to make life a little easier. R is an old language, and some things that were useful 10 or 20 years ago now get in your way. It’s difficult to change base R without breaking existing code, so most innovation occurs in packages.</em></p>
+
+<p>There are two main differences between a tibble vs. a classic data.frame: printing and subsetting.</p>
+
+<ul>
+<li><p>when you print tibbles, only the first 10 rows will be shown, and as many columns as will fit on screen.</p></li>
+<li><p>the way you extract columns, rows, or subsets using $ or [ ], especially when using the pipe operator <code>%&gt;%</code></p></li>
+</ul>
+
+</article></slide><slide class=""><hgroup><h2>Data Frame vs. Tibble #2</h2></hgroup><article  id="data-frame-vs.-tibble-2">
+
+<p>The <code>data.frame()</code> function at times imposes (<em>unwanted</em>) extra structure on a dataset. For example, it might…</p>
+
+<ul>
+<li>convert character vectors to factors</li>
+<li>change some variable names</li>
+<li>create row names</li>
+</ul>
+
+<p>However, this means a tibble can have columns with invalid <code>R</code> variable names (e.g., the names start with a number or contain a space). To refer to these variables, you have to bracket them with backtick marks, like `variable name`.</p>
+
+<p>On the flip side, some older functions do not work on tibbles. This is often because the process produces the wrong output type (e.g., a vector instead of a dataset).</p>
+
+</article></slide><slide class=""><hgroup><h2>Converting Datasets</h2></hgroup><article  id="converting-datasets">
+
+<p>We can try to coerce one form into the other with functions.</p>
+
+<ul>
+<li><p><code>as_tibble()</code></p></li>
+<li><p><code>as.data.frame()</code></p></li>
+</ul>
+
+<p>Notice the slightly different formats. Functions in base <code>R</code> often have periods in their names, while tidyverse uses underscores. For example, two similar functions for reading <code>.csv</code> files.</p>
+
+<ul>
+<li><p><code>read.csv()</code></p></li>
+<li><p><code>read_csv()</code></p></li>
+</ul>
+
+<p>The first creates a data frame and the second creates a tibble.</p>
+
+</article></slide><slide class=""><hgroup><h2>Atomic vs. Other Vectors</h2></hgroup><article  id="atomic-vs.-other-vectors">
+
+<p>Earlier in the course we learned about atomic vectors in <code>R</code>. There are <em>augmented</em> vectors that have additional structure, like factors and dates/times. There are five packages designed to work with specific types of data.</p>
+
+<ul>
+<li><a href='https://stringr.tidyverse.org/' title=''>stringr</a> : <a href='https://r4ds.hadley.nz/strings.html' title=''>strings</a> (contents of character vectors)</li>
+<li><a href='https://forcats.tidyverse.org/' title=''>forcats</a> : <a href='https://r4ds.hadley.nz/factors.html' title=''>factors</a> (ordered categorical variables)</li>
+<li><a href='https://lubridate.tidyverse.org/' title=''>lubridate</a> : dates and times</li>
+<li><a href='https://hms.tidyverse.org/' title=''>hms</a> : times of day (<strong>h</strong>ours, <strong>m</strong>inutes, <strong>s</strong>econds)</li>
+<li><a href='https://blob.tidyverse.org/' title=''>blob</a> : binary data</li>
+</ul>
+
+<p>The first two packages are part of the core 8 that can be loaded with <code>library(tidyverse)</code>. The others get loaded separately.</p></article></slide>
 
 
   <slide class="backdrop"></slide>
