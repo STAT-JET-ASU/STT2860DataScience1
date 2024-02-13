@@ -21,9 +21,9 @@ knitr::opts_chunk$set(
 
 ***
 
-Dr. Thomley's Data Files: https://stat-jet-asu.github.io/Datasets/DatasetList.html
+Dr. Thomley's data files: https://stat-jet-asu.github.io/Datasets/DatasetList.html
 
-The tidyverse ggplot2 page: https://ggplot2.tidyverse.org/
+The tidyverse ggplot2 site: https://ggplot2.tidyverse.org/
 
 ***
 
@@ -38,23 +38,6 @@ The tidyverse ggplot2 page: https://ggplot2.tidyverse.org/
 ### Anthropometric Dataset
 
 Description: https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/anthropometric.html 
-
-#### Load the dataset
-
-```{r}
-
-```
-
-#### Explore the structure
-
-```{r}
-
-```
-
-
-### Atlantic Hurricanes Dataset
-
-Description: https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/atlantichurricanes18512023.html
 
 #### Load the dataset
 
@@ -88,6 +71,8 @@ Description: https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLp
 
 ### Scatterplots
 
+`geom_point()` help page: https://ggplot2.tidyverse.org/reference/geom_point.html
+
 *add some notes here*
 
 #### Minimal Scatterplot
@@ -97,12 +82,6 @@ Description: https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLp
 ```
 
 #### Additional Aesthetics
-
-color
-
-```{r}
-
-```
 
 shape
 
@@ -116,13 +95,51 @@ size
 
 ```
 
-#### Non-Aesthetic Formatting
+color
 
 ```{r}
 
 ```
 
-#### Labeling Your Plots!
+fill
+
+```{r}
+
+```
+
+#### Non-Aesthetic Formatting
+
+shape
+
+```{r}
+
+```
+
+size
+
+```{r}
+
+```
+
+color
+
+```{r}
+
+```
+
+fill
+
+```{r}
+
+```
+
+#### Labeling
+
+```{r}
+
+```
+
+#### Scaling Axes
 
 ```{r}
 
