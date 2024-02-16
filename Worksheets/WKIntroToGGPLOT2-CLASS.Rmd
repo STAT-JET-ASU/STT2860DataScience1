@@ -1,0 +1,154 @@
+---
+title: "Worksheet: Introduction to ggplot2 #1"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "Jill Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+Dr. Thomley's data files: https://stat-jet-asu.github.io/Datasets/DatasetList.html
+
+The tidyverse ggplot2 site: https://ggplot2.tidyverse.org/
+
+***
+
+### Packages Used
+
+```{r}
+library(tidyverse)
+```
+
+
+### Anthropometric Dataset
+
+Description: https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/anthropometric.html 
+
+#### Load the dataset
+
+```{r}
+anthro <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/anthropometric.csv")
+```
+
+#### Explore the structure
+
+```{r}
+
+```
+
+
+### NFL PLayers 2016 Dataset
+
+Description: https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html
+
+#### Load the dataset
+
+```{r}
+
+```
+
+#### Explore the structure
+
+```{r}
+
+```
+
+
+### Scatterplots
+
+`geom_point()` help page: https://ggplot2.tidyverse.org/reference/geom_point.html
+
+*add some notes here*
+
+#### Minimal Scatterplot
+
+```{r}
+
+```
+
+#### Additional Aesthetics
+
+shape
+
+```{r}
+
+```
+
+size
+
+```{r}
+
+```
+
+color
+
+```{r}
+
+```
+
+fill
+
+```{r}
+
+```
+
+#### Non-Aesthetic Formatting
+
+shape
+
+```{r}
+
+```
+
+size
+
+```{r}
+
+```
+
+color
+
+```{r}
+
+```
+
+fill
+
+```{r}
+
+```
+
+#### Labeling
+
+```{r}
+
+```
+
+#### Scaling Axes
+
+```{r}
+
+```
+
+WE WILL ADD MORE HERE AS WE GO ALONG!
+
+
+***
+```{r}
+sessionInfo()
+```
+
