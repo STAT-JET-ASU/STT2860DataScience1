@@ -1,0 +1,236 @@
+---
+title: "EDA &#9654; Categorical Data<br>Introducing Factors"
+author: "Author: Jill E. Thomley"
+date: '`r format(Sys.time(), "%A, %B %d, %Y @ %I:%M %p")`'
+output: 
+  ioslides_presentation:
+    logo: ../images/logoASU.jpg
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, comment = NA)
+library(tidyverse)
+```
+
+
+## Before We Begin...
+
+These slides are not meant to be standalone information. You should take notes to flesh out the contents. I recommend that you create an R Markdown document where you can combine information and code from the slides and your own additional notes and explorations to make connections.
+
+**Related Materials**
+
+* CH14 of [R for Data Science](https://r4ds.had.co.nz/strings.html)
+* CH15 of [R for Data Science](https://r4ds.had.co.nz/factors.html)
+* [Understanding Factors](http://monashbioinformaticsplatform.github.io/2015-09-28-rbioinformatics-intro-r/01-supp-factors.html) from the Software Carpentry R course.
+
+
+## What is a Factor in `R`?
+
+By default, `R` displays the possible values of a character vector in ascending alphabetical order. When we summarize, visualize, or model with categorical variables, we often want their categories to appear in a different order. 
+
+Structurally, factor variables are stored as unique integers with attached labels that are used for display. This is similar to how logical vectors display `TRUE` and `FALSE` but are stored as 0's and 1's "under the hood". 
+
+The set of possible values of a factor are are known as *levels*.
+
+The `factor()` function is used to create and modify factors in base `R` and the tidyverse contains a package called forcats that offers other useful functions.
+
+
+## Revisiting An Example
+
+The [STT3850majors.csv](https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/stt3850majors.csv) dataset contains information regarding students in Dr. Thomley's past STT3850 classes. 
+
+`students <- read_csv(file = url("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/stt3850majors.csv"))`
+
+```{r echo=FALSE}
+students <- read_csv(file = url("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/stt3850majors.csv"))
+```
+
+* College = ASU college the student is in (e.g., Arts & sciences)
+* Year = student's class year (e.g., freshman, sophomore)
+* BannerMajor = student's major as listed in banner
+* CodedMajor = Dr. Thomley's recoded list of majors
+* Semester = the semester when the student took STT3850
+* AY = academic year (e.g., 2018-2019)
+
+
+## Dataset Structure
+
+What are the current vector types of variables in the dataset?
+
+```{r}
+glimpse(students)
+```
+
+All the variables are stored as character (`<chr>`) vectors.
+
+
+## Class Years
+
+Notice the `Year` categories are not in the standard order. We should probably convert the character variable to a factor. Then we can choose an order other than alphabetical.
+
+```{r}
+students %>% 
+  count(Year) %>% 
+  mutate(percents = 100 * prop.table(n))
+```
+
+
+## Converting to a Factor
+
+We know from our previous table that there are five categories or levels. Let's create a vector that puts all of the levels in the order we want them. Then create our factor using `factor()` to replace the original version.
+
+```{r}
+students <- students %>% 
+  mutate(Year = factor(Year, 
+                       levels = c("Freshman", 
+                                  "Sophomore", 
+                                  "Junior", 
+                                  "Senior", 
+                                  "Graduate Certificate Program")))
+glimpse(students$Year)
+```
+
+
+## Dataset Structure
+
+Since we saved the factor using the original dataset and variable names, the original character variable has been replaced.
+
+```{r}
+glimpse(students)
+```
+
+Now year is stored as a factor (`<fct>`) vector.
+
+
+## Converting Several Variables
+
+The advantage of `tidyverse` way is being able to recode many variables at once. Breaking the levels vectors across lines is OK in `R` since the program is looking for the closing `)` as the end-of-function, and is often good for easier reading.
+
+```{r}
+students <- students %>% 
+  mutate(Year = factor(Year, levels = c("Freshman",
+                                        "Sophomore",
+                                        "Junior",
+                                        "Senior",
+                                        "Graduate Certificate Program")),
+         CodedMajor = factor(CodedMajor, 
+                             levels = c("Computer Science",
+                                        "Mathematical Sciences",
+                                        "Other Sciences",
+                                        "Other")))
+```
+
+
+##
+
+```{r}
+# Formatting using Code > Reformat Code in RStudio (Ctrl+Shift+A) 
+students <- students %>%
+  mutate(Year = factor(
+    Year,
+    levels = c(
+      "Freshman",
+      "Sophomore",
+      "Junior",
+      "Senior",
+      "Graduate Certificate Program"
+    )
+  ),
+  CodedMajor = factor(
+    CodedMajor,
+    levels = c(
+      "Computer Science",
+      "Mathematical Sciences",
+      "Other Sciences",
+      "Other"
+    )
+  ))
+```
+
+
+## Now the Years Table Again
+
+The class years are now in the customary order, as determined by the imposed factor structure. 
+
+```{r}
+students %>% 
+  count(Year) %>% 
+  mutate(percents = 100 * prop.table(n))
+```
+
+
+## And the Majors Table
+
+Now the catch-all `Other` category is last, as is typically seen in summaries, because of the imposed structure. There are also *ordered factors* that have additional structure for higher level analyses. We do not need those for EDA.
+
+```{r}
+students %>% 
+  count(CodedMajor) %>% 
+  mutate(percents = 100 * prop.table(n))
+```
+
+
+## Recoding Factors
+
+Sometimes we want to rename or combine some factor levels. The `fct_recode` function from the `forcats` package allows us to do this. The function `fct_collapse()` is another alternative. This time we will create a new variable `Year2`.
+
+```{r}
+library(tidyverse)   # or library(forcats)
+students <- students %>% 
+  mutate(Year2 = fct_recode(Year,
+                            FR = "Freshman",
+                            SO = "Sophomore",
+                            JR = "Junior",
+                            SR = "Senior",
+                            GR = "Graduate Certificate Program"))
+glimpse(students$Year2)
+```
+
+
+## Combining Levels with `fct_recode()`
+
+Assigning more than one level to the same new level name will combine the levels. Here all the majors besides `Mathematical Sciences` become one group.
+
+```{r}
+library(tidyverse)   # or library(forcats)
+students <- students %>% 
+  mutate(CodedMajor2 = fct_recode(CodedMajor,
+                                  "Math" = "Mathematical Sciences",
+                                  "Not Math" = "Computer Science",
+                                  "Not Math" = "Other Sciences",
+                                  "Not Math" = "Other"))
+glimpse(students$CodedMajor2)
+```
+
+
+## Recoded Variable Table
+
+```{r}
+students %>% 
+  count(CodedMajor2) %>% 
+  mutate(proportion = prop.table(n))
+```
+
+Notice that the levels are ordered as they were originally. Since Computer Science was the first category before, now Not Math is first because it contains Computer Science.
+
+How could we fix this so that Math is the first row in the table?
+
+
+## Use a Single `mutate()` Statement
+
+In these examples, you could combine both the `fact_recode()` functions in the same `mutate()` statement you used to create your factors. That is another advantage of the `tidyverse` way. This example has  just `Year` due to limited slide space.
+
+```{r}
+students <- students %>% 
+  mutate(Year = factor(Year, levels = c("Freshman",
+                                        "Sophomore",
+                                        "Junior",
+                                        "Senior",
+                                        "Graduate Certificate Program")),
+         Year2 = fct_recode(Year,
+                            FR = "Freshman",
+                            SO = "Sophomore",
+                            JR = "Junior",
+                            SR = "Senior",
+                            GR = "Graduate Certificate Program"))
+```

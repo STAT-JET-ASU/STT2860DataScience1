@@ -1,0 +1,55 @@
+---
+title: "Basics of Barplots in ggplot2"
+subtitle: "STT 2860 Intro to Data Management & Visualization"
+author: "Author: Jill E. Thomley | Appalachian State University"
+date: "`r format(Sys.time(), '%B %d, %Y @ %I:%M %p')`"
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r, global_options, include = FALSE}
+knitr::opts_chunk$set(
+  warning = FALSE,
+  message = FALSE,
+  comment = NA
+)
+library(tidyverse)
+```
+
+
+## Recall: Package ggplot2
+
+According to the online package [documentation](https://ggplot2.tidyverse.org/), "It’s hard to succinctly describe how ggplot2 works because it embodies a deep philosophy of visualisation." 
+
+Overall, ggplot2 represents an advance over base `R` graphics in terms of flexibility and appearance. Once you understand the basics, working with plots depends less on the type of plot you are making and more on the presentation you want.
+
+* all plots use a consistent, underlying "[grammar of graphics](https://info5940.infosci.cornell.edu/notes/dataviz/grammar-of-graphics/)"
+* possible to use more than one dataset and plot type at once
+* uses a theme system to customize / refine plot appearance
+* has been called a "mature and complete" graphics system
+* it has many many users and user resources on the web
+
+
+## What is "grammar of graphics"?
+
+* `R`'s [ggplot2](https://ggplot2.tidyverse.org/index.html) is a system for creating graphics, based on the concepts introduced in the book [*The Grammar of Graphics*](https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl?ie=UTF8&qid=1477928463&sr=8-1&keywords=the+grammar+of+graphics&linkCode=sl1&tag=ggplot2-20&linkId=f0130e557161b83fbe97ba0e9175c431) (2005) --- metastructure and connected visualizations
+
+* ***aesthetics*** (e.g., `x`, `y`, `color`, `size`, `fill`) code data/variables from a dataset onto the plot (*what* you want to plot)
+
+* graphical elements displayed in a plot (such as points, lines, or bars) are ***geometries*** (*how* you want to plot)
+
+* you can include multiple geometries on your plot, using the same aesthetics or different aesthetics for each
+
+* ***facets*** allow us to visualize the same graphical elements for important groupings or subsets in the dataset 
+
+
+## DATASET HERE?
+
+```{r echo=FALSE}
+capp <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/cappunish20231018.csv")
+```
+
+
+
+

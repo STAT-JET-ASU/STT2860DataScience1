@@ -1,0 +1,337 @@
+---
+title: "EDA &#9654; Numerical Data<br>Boxplots"
+author: "Author: Jill E. Thomley"
+date: '`r format(Sys.time(), "%B %d, %Y @ %I:%M %p")`'
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(comment = "", message = FALSE, warning = FALSE)
+library(tidyverse)
+library(moments)
+library(knitr)
+```
+
+
+## Before We Begin...
+
+These slides are not meant to be standalone information. You should take notes to flesh out the contents. I recommend that you create an R Markdown document where you can combine information and code from the slides and your own additional notes and explorations to make connections.
+
+**Related Materials**
+
+* Ch 2 of *Mathematical Statistics with Resampling and R, 2^nd^ Ed.*
+* Ch 2 of [*Modern Dive*](https://moderndive.com/2-viz.html)
+* Ch 3 of [*Modern Dive*](https://moderndive.com/3-wrangling.html)
+* Ch 4 of [*Modern Dive*](https://moderndive.com/4-tidy.html)
+* DataCamp [Introduction to the Tidyverse](https://www.datacamp.com/courses/introduction-to-the-tidyverse)
+
+
+## How We Describe Distributions
+
+**Categorical Variables**
+
+* frequency / relative frequency
+
+*Summaries based on counting how many times categories occur.*
+
+**Quantitative Variables**
+
+* shape
+* center
+* spread
+* outliers
+
+*Shape, center, and spread characterize the pattern of numerical observations. Outliers are deviations from the pattern.*
+
+
+## Recall: Five-Number Summary
+
+Recall that the five-number summary is found by counting the ordered data values so that 25% are grouped into each of the four resulting intervals.
+
+* five-number-summary
+    * minimum
+    * first quartile (Q<sub>1</sub>)
+    * median ("center")
+    * third quartile (Q<sub>3</sub>)
+    * maximum
+    
+* interquartile range (IQR) = Q<sub>3</sub> - Q<sub>1</sub> (range of middle 50%)
+
+
+## Count-Based Summaries in R
+
+* `fivenum()`
+* `min()`
+* `median()`
+* `max()`
+* `IQR()`
+* `range()`
+* `diff(range())`
+* `quantile()`
+
+Again, you should explore the syntax, parameters, and output of each function to understand how it works.
+
+
+## Visualizing with Boxplots
+
+One of the most common rules for determining outliers is based on the five-number summary. We can visualize the five-number summary and outliers in a boxplot. 
+
+<p style="text-align: center"><img src="https://stat-jet-asu.github.io/Moodlepics/glossary/boxplot.png" width = 350></p>
+
+The mean is not a typical part of a boxplot, but some programs provide it for comparison to the median.
+
+
+## Determining Outliers
+
+The lower and upper fences determine the limits for potential outliers. The fences are based on the IQR, which is the middle 50% of the data enclosed by the box. 
+
+Any point that is more than 1.5 $\times$ IQR from the edges of the box is considered to be an outlier. On a bell curve, the area between fences would enclose the middle 95% of the data. For other data distributions, this percentage will vary.
+
+lower fence = LF = Q<sub>1</sub> -- 1.5 $\times$ IQR 
+
+upper fence = UF = Q<sub>3</sub> + 1.5 $\times$ IQR 
+
+Some people designate any point more than 3 $\times$ IQR from the edges of the box as an *extreme outlier*.
+
+
+## Drawing the Whiskers
+
+Boxplots are also known as box-and-whisker plots. The whiskers are the lines that extend from the box.
+
+* Any value less than the lower fence is a low outlier
+
+* Any value greater than the upper fence is a high outlier
+
+* Outliers are individually indicated by asterisks, circles, etc.
+
+* The lower whisker extends to the smallest data point that is not an outlier (*not* the LF)
+
+* The upper whisker extends to the largest data point that is not an outlier (*not* the UF)
+
+Overall, outliers are determined by the variability of the dataset.
+
+
+## Some Data to Summarize
+
+* [geyser](https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/oldfaithful.csv): eruption data for Old Faithful geyser in Yellowstone National Park, including duration in minutes and number of minutes until the next eruption.
+
+* [happyf](https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/happyface.csv): results for an experiment where some servers drew happy faces on the back of  customer's restaurant checks and others did not, with the tip percentage they received
+
+* [mileage](https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/gasmileage.csv): results of 100 EPA gas mileage tests for a particular model of car, in miles per gallon (mpg)
+
+* [wells](https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Chihara/Bangladesh.csv): concentration of three contaminants for a sample of wells, in ppb or ppm 
+
+In `happyf` the sex of the server is recorded as a binary variable `male` or `female`, since it is an older dataset ([published in 1996](https://onlinelibrary.wiley.com/doi/abs/10.1111/j.1559-1816.1996.tb01847.x)).
+
+
+##
+
+```{r, echo = FALSE}
+geyser  <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/oldfaithful.csv")
+happyf <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/happyface.csv")
+mileage <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/gasmileage.csv")
+wells   <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Chihara/Bangladesh.csv")
+```
+
+```{r}
+glimpse(geyser)
+glimpse(wells)
+```
+
+You should also `glimpse()` the `happyf` and `mileage` datasets to visualize the structure and variables.
+
+
+## Calculating the Fences
+
+Lower and upper fences determine the cutoff boundaries for small and large outliers as a function of spread.
+
+```{r}
+(LF <- fivenum(mileage$mpg)[2] - 1.5 * IQR(mileage$mpg))
+(UF <- fivenum(mileage$mpg)[4] + 1.5 * IQR(mileage$mpg))
+sort(boxplot.stats(mileage$mpg)$out)
+```
+
+
+## Calculating the Fences in dplyr
+
+```{r}
+mileage %>% 
+  summarize(LF = fivenum(mpg)[2] - 1.5 * IQR(mpg),
+            UF = fivenum(mpg)[4] + 1.5 * IQR(mpg))
+```
+
+Use `group_by()` before `summarize()` if you want the fences for separate subgroups in your dataset, or any grouped summaries.
+
+<hr>
+
+You can also `filter()` the dataset for cases containing outliers using the fences, rather than simply using `boxplot.stats()` to print outlier values. Why might this be more beneficial?
+
+
+## Boxplot for One Variable
+
+Boxplots may be drawn vertically or horizontally. How does this plot show symmetry? How many outliers are there?
+
+```{r, fig.height = 3.4}
+ggplot(mileage, aes(x = mpg)) + geom_boxplot()
+```
+
+
+## Some Simple Formatting
+
+```{r, fig.height = 2.6}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_boxplot() +
+  scale_y_continuous(breaks = NULL) +
+  labs(title = "Fuel efficiency for 100 vehicle road tests",
+       x = "miles per gallon",
+       y = NULL,
+       caption = "source: gasmileage.csv dataset")
+```
+
+
+## Are these data symmetric?
+
+```{r, fig.height = 2.6}
+ggplot(wells, aes(x = Arsenic)) + 
+  geom_boxplot() +
+  scale_y_continuous(breaks = NULL) +
+  labs(title = "Arsenic levels in 271 sampled wells in Bangladesh",
+       x = "parts per billion",
+       y = NULL,
+       caption = "source: Bangladesh.csv dataset")
+```
+
+
+## Upper and Lower Fences
+
+```{r}
+arsenicfences <- wells %>% 
+  summarize(LF = fivenum(Arsenic)[2] - 1.5 * IQR(Arsenic),
+            UF = fivenum(Arsenic)[4] + 1.5 * IQR(Arsenic))
+print.data.frame(arsenicfences) # another option besides kable()
+```
+
+Arsenic (measured in parts per billion) cannot be negative, but we can have a negative fence because the mathematics do not take shape or units into account.
+
+* How many outliers are there in the Arsenic variable?
+* What are the values of the outliers shown in the boxplot?
+* Can you filter the dataset to remove or extract the outliers?
+
+
+## Are these data symmetric?
+
+```{r, fig.height = 2.6}
+ggplot(geyser, aes(x = wait_time)) + 
+  geom_boxplot() +
+  scale_y_continuous(breaks = NULL) +
+  labs(title = "Wait time between Old Faithful eruptions",
+       x = "time in minutes",
+       y = NULL,
+       caption = "source: oldfaithful.csv dataset")
+```
+
+
+## Caution!
+
+We have to be cautious about trying to determine shape with boxplots. They "flatten" the data (there is only one quantitative axis) so we can not see several important features.
+
+Other plots we can use to help determine distribution shape (symmetry versus skew, kurtosis, number of modes) include:
+
+* dotplots
+* histograms
+* density plots
+* ECDF plots
+
+However, none of these plots have a related rule for outliers. This is the strength of boxplots, as well as comparisons.
+
+
+## Comparing Groups, Tips by Message
+
+Does drawing a smiley face on a restaurant check increase tips?
+
+```{r, fig.height = 2.6}
+ggplot(happyf, aes(x = TipPct, y = Message)) + 
+  geom_boxplot() +
+  labs(title = "Comparison of Tip Percentages",
+       x = "tip as a percentage of the check",
+       y = "drawing on back of check")
+```
+
+
+## Adding a Second Variable with Facets
+
+The experiment had two independent variables, sex of server and whether or not they drew happy faces on the backs of the checks. We can add another variable to the plot using facets.
+
+The `facet_grid()` function creates separate plots for a given variable or variables and arranges them in a grid or matrix, as specified by (`rowvariable` ~ `columnvariable`). When you use only one variable, substitute a `.` for the other one.
+
+```{r eval = FALSE}
+ggplot(happyf, aes(x = TipPct, y = Message)) + 
+  geom_boxplot() +
+  labs(title = "Comparison of Tip Percentages",
+       x = "tip as a percentage of the check",
+       y = "drawing on back of check") +
+  facet_grid(Sex ~ .)
+```
+
+
+## Faceted Plot with Two Rows
+
+Now we can compare all four of the experimental groups.
+
+```{r echo = FALSE}
+ggplot(happyf, aes(x = TipPct, y = Message)) + 
+  geom_boxplot() +
+  labs(title = "Comparison of Tip Percentages",
+       x = "tip as a percentage of the check",
+       y = "drawing on back of check") +
+  facet_grid(Sex ~ .)
+```
+
+
+## Fences for Each Group
+
+As mentioned earlier, we use `group_by()` before `summarize()` to calculate fences for each group. 
+
+```{r}
+happyf %>% 
+  group_by(Sex, Message) %>%  # group by Sex and Message
+  summarize(LF = fivenum(TipPct)[2] - 1.5 * IQR(TipPct),
+            UF = fivenum(TipPct)[4] + 1.5 * IQR(TipPct))
+```
+
+
+## Vertical vs. Horizontal Boxplots
+
+You can make the plots vertically instead by switching `x` and `y` variables in the aesthetics so that the categorical variable is `x` and the quantitative variable is `y`. Also switch the order of the facet to make columns instead of rows if you are using facets.
+
+```{r eval = FALSE}
+ggplot(happyf, aes(x = Message, y = TipPct)) + 
+  geom_boxplot() +
+  labs(title = "Comparison of Tip Percentages",
+       y = "tip as a percentage of the check",
+       x = "drawing on back of check") +
+  facet_grid(. ~ Sex)
+```
+
+Choice of vertical or horizontal boxplots is more a matter of personal preference and what helps *you* visualize your data.
+
+
+## Faceted Plot with Two Columns
+
+```{r echo = FALSE}
+ggplot(happyf, aes(x = Message, y = TipPct)) + 
+  geom_boxplot() +
+  labs(title = "Comparison of Tip Percentages",
+       y = "tip as a percentage of the check",
+       x = "drawing on back of check") +
+  facet_grid(. ~ Sex)
+```
+
+
+## A Little Boxplot Humor ;)
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/xkcd_boyfriend.png", dpi = 100)
+```

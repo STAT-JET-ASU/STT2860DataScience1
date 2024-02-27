@@ -190,13 +190,13 @@ Use `glimpse()` to explore the structure of both datasets.
 
 ```
 
-Use `class()` and `type_of()` to to explore both datasets.
+Use `class()` and `typeof()` to to explore both datasets.
 
-```{r head_01}
+```{r data_class}
 
 ```
 
-```{r head_02}
+```{r data_typeof}
 
 ```
 

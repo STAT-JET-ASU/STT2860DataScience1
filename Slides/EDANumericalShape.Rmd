@@ -1,0 +1,400 @@
+---
+title: "EDA &#9654; Numerical Data<br>Distribution Shape"
+author: "Author: Jill E. Thomley"
+date: '`r format(Sys.time(), "%B %d, %Y @ %I:%M %p")`'
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(comment = NULL, message = FALSE, warning = FALSE)
+library(tidyverse)
+```
+
+
+## Before We Begin...
+
+These slides are not meant to be standalone information. You should take notes to flesh out the contents. I recommend that you create an R Markdown document where you can combine information and code from the slides and your own additional notes and explorations to make connections.
+
+**Related Materials**
+
+* Ch 2 of *Mathematical Statistics with Resampling and R, 2^nd^ Ed.*
+* Ch 2 of [*Modern Dive*](https://moderndive.com/2-viz.html)
+* Ch 3 of [*Modern Dive*](https://moderndive.com/3-wrangling.html)
+* Ch 4 of [*Modern Dive*](https://moderndive.com/4-tidy.html)
+* DataCamp [Introduction to the Tidyverse](https://www.datacamp.com/courses/introduction-to-the-tidyverse)
+
+
+## 
+
+<p>John Tukey (1915--2000), noted mathematician, statistician, and computer scientist, author of _Exploratory Data Analysis_ (1977)<p>
+
+<p style="text-align:center;"><img src="images/tukeyquotesEDA.jpg" width = 450></p>
+
+<p>Tukey also advocated for development of computerized tools to facilitate EDA, so people could focus on ***interpreting results***.</p> 
+
+
+## How We Describe Distributions
+
+**Categorical Variables**
+
+* frequency / relative frequency
+
+*Summaries based on counting how many times categories occur.*
+
+**Quantitative Variables**
+
+* shape
+* center
+* spread
+* outliers
+
+*Shape, center, and spread characterize the pattern of numerical observations. Outliers are deviations from the pattern.*
+
+
+## Shape
+
+* Visual assessment: how many peaks does it have?
+    * unimodal, bimodal, or multimodal
+
+* Visual assessment: is it approximately symmetric?
+    * symmetric, right skewed, or left skewed
+
+* Skewness statistic 
+    * numerical quantification of the degree of asymmetry
+
+* Kurtosis statistic
+    * numerical quantification of peak and tails conformation
+
+We rely heavily on plots to assess the shape of a distribution. A determination of skewness can be difficult with a small sample or more than one mode. Summary measures like skewness and kurtosis should be interpreted ***along with plots***.
+
+
+## Plots for Assessing Shape
+
+* histogram and frequency polygon
+    * [`geom_histogram()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html)
+* density plot
+    * [`geom_density()`](https://ggplot2.tidyverse.org/reference/geom_density.html)
+* empirical cumulative distribution plot
+    * [`stat_ecdf()`](https://ggplot2.tidyverse.org/reference/stat_ecdf.html)
+* boxplot (discussed on other slides)
+    * [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)
+* normal quantile-quantile plot (discussed in other slides) 
+    * [`geom_qq()`](https://ggplot2.tidyverse.org/reference/geom_qq.html)
+
+You can preview syntax and plotting options at the links above.
+
+
+## What is a Histogram?
+
+A ***histogram*** is a type of bar plot for displaying the distribution of a numerical variable.
+
+* The number line in the data's range is divided into intervals known as "bins"
+* These bins are of equal width and continuous (i.e., no gaps between them) 
+* The frequency for each bin is the number (count) of data points that fall into that bin 
+* Every data point must be included in exactly one bin, with no data points left out
+
+There are many possible ways to create a histogram for a given dataset, depending on our choice of bins. Usually we have to try more than one possibility.
+
+
+## What is a Density Plot?
+
+A ***frequency polygon*** connects the midpoints of histogram bins to display a very rough estimate of a continuous distribution.
+
+A ***density plot*** is a variation on a histogram that uses a statistical technique called *kernel smoothing* to plot a smoothed estimate of a variable's distribution over some continuous interval of the number line. It "averages" multiple bars, roughly speaking.
+
+Density plots are often better at displaying the shape of a true continuous distribution than a histogram because they're not affected by the number of bins we choose the way histograms can be. However, differences in the algorithm (e.g., "bandwidth" used) can over- or under-smooth the distribution.
+
+The specifics of kernel smoothing are beyond the scope of this class. We will use the default settings in `R` and ggplot2.
+
+
+## Some Data to Explore
+
+Read [gasmileage.csv](https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/gasmileage.csv), [oldfaithful.csv](https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/oldfaithful.csv), and [Bangladesh.csv](https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Chihara/Bangladesh.csv) into RStudio. Remember you need `library(tidyverse)` for many of the functions we will use, including `read_csv()`. In coming slides the datasets will be referred to by the following names.
+
+* `mileage`: results of 100 EPA gas mileage tests for a particular model of car, in miles per gallon (mpg)
+
+* `geyser`: eruption data for Old Faithful geyser in Yellowstone National Park, including duration in minutes and number of minutes until the next eruption.
+
+* `wells`: concentration of three contaminants for a sample of wells in Bangladesh, in ppb or ppm 
+
+
+##
+
+```{r, echo = FALSE}
+mileage <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/gasmileage.csv")
+geyser  <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/oldfaithful.csv")
+wells   <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Chihara/Bangladesh.csv")
+```
+
+```{r}
+glimpse(geyser)
+glimpse(wells)
+```
+
+You should also `glimpse()` the `mileage` dataset, which has only one variable: `mpg`.
+
+
+## Basic Histogram for `mpg`
+
+How many modes? Is the distribution symmetric or skewed?
+
+```{r, fig.height = 3.4}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_histogram() # default bins = 30
+```
+
+
+## Basic Frequency Polygon for `mpg`
+
+How many modes? Is the distribution symmetric or skewed?
+
+```{r, fig.height = 3.4}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_freqpoly() # default bins = 30
+```
+
+
+## Polygon Over Histogram for `mpg`
+
+Notice how the two plots correspond with one another. We can plot multiple geometries for a single variable (aesthetic).
+
+```{r, fig.height = 2.8}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_histogram(fill = "orange", color = "white") +
+  geom_freqpoly(color = "blue")
+```
+
+
+## Basic Histogram for `erupt_time`
+
+How many modes? Is the distribution symmetric or skewed?
+
+```{r, fig.height = 3.4}
+ggplot(geyser, aes(x = erupt_time)) + 
+  geom_histogram(fill = "orange", color = "white")
+```
+
+## One Variable, Two Groups?
+
+How many modes? Is each distribution symmetric or skewed?
+
+```{r, fig.height = 2.8}
+geyser <- geyser %>% 
+  mutate(group = ifelse(erupt_time < 3.1, "short", "long"))
+ggplot(geyser, aes(x = erupt_time, fill = group)) + 
+  geom_histogram(color = "white")
+```
+
+## Finite Lower Bound, Infinite Upper?
+
+How many modes? Is the distribution symmetric or skewed?
+
+```{r, fig.height = 3.4}
+ggplot(wells, aes(x = Arsenic)) + 
+  geom_histogram(fill = "orange", color = "white")
+```
+
+
+## Rules of Thumb for Number of Bins
+
+* some sources say between 5 and 15 bins
+* other sources say between 5 and 20 bins
+* Freedman-Diaconis rule, about $2 \times IQR × n^{−1/3}$ bins
+* Sturge’s rule, number of bins around $1 + 3.322 \times log(n)$
+* **a good rule is to start with a number of bins near** $\sqrt{n}$
+
+Recall, $n$ is the number of data points in the plotted sample.
+
+Finding an appropriate number of bins is an interative process. In `R` you can set an (approximate) number of bins, *or* choose a specific bin width, *or* specify the exact boundaries you want for the bins. Overall, we want to strike a balance between detail and "smoothness".
+
+
+## Mileage Revisited #1
+
+Mileage with $\sqrt{n}$ bins. Approximately how wide is each bin?
+
+```{r, fig.height = 3.4}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_histogram(bins = 10,  fill = "orange", color = "white")
+```
+
+
+## Mileage Revisited #2
+
+Mileage with 15 bins.  Approximately how wide is each bin?
+
+```{r, fig.height = 3.4}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_histogram(bins = 15,  fill = "orange", color = "white")
+```
+
+
+## Mileage Revisited #3
+
+Mileage with bins 1 units wide. How many bins are there?
+
+```{r, fig.height = 3.4}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_histogram(binwidth = 1, fill = "orange", color = "white")
+```
+
+
+## Basic Density Plot
+
+For a continuous variable, we can estimate a smooth function.
+
+```{r, fig.height = 3.4}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_density()
+```
+
+
+## *Probability* Density Function (pdf)
+
+Area under an estimated density curve is 1. Notice the y axis.
+
+```{r, fig.height = 3.4}
+ggplot(geyser, aes(x = erupt_time)) + 
+  geom_density()
+```
+
+
+## Another Density Plot
+
+```{r, fig.height = 4.0}
+ggplot(wells, aes(x = Arsenic)) + 
+  geom_density()
+```
+
+
+## Density Over Histogram
+
+We have a smooth estimation based on the discrete data.
+
+```{r, fig.height = 3.1}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_histogram(aes(y = ..density..)) + # rescales the y-axis
+  geom_density()
+```
+
+
+## Density Over Histogram
+
+```{r, fig.height = 3.7}
+ggplot(geyser, aes(x = erupt_time)) + 
+  geom_histogram(aes(y = ..density..), fill = "orange") + 
+  geom_density(color = "blue")
+```
+
+
+## Density Over Histogram
+
+```{r, fig.height = 3.7}
+ggplot(wells, aes(x = Arsenic)) + 
+  geom_histogram(aes(y = ..density..), fill = "orange") + 
+  geom_density(color = "blue")
+```
+
+
+## Refine the Presentation
+
+```{r, fig.height = 3.4}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_histogram(aes(y = ..density..), bins = 15, color = "white") + 
+  geom_density(fill = "lightblue", color = "blue", alpha = 0.50) +
+  labs(title = "Distribution of Gas Mileage Test Values, n = 100")
+```
+
+
+## Empirical Cumulative Distribution
+
+The integral of a density function is the cumulative distribution. Here we estimate it discretely using a step function. 
+
+```{r, fig.height = 3.4}
+ggplot(mileage, aes(x = mpg)) + stat_ecdf()
+```
+
+
+## Density and ECDF
+
+The vertical line shows the 50th percentile---the halfway point.
+
+```{r, fig.height = 2.9}
+ggplot(mileage, aes(x = mpg)) + 
+  geom_density(color = "lightblue", fill = "lightblue") + 
+  stat_ecdf(color = "blue") + 
+  geom_vline(xintercept = quantile(mileage$mpg, .5)) # median
+```
+
+
+## More About Plots and Shape
+
+You will learn more about assessing distribution shape in later slides, including quantitative measures skewness and kurtosis, boxplots, and quantile-quantile plots.
+
+Many modeling and statistical inference procedures have as an assumption that one or more variables is *approximately normal* in distribution. Determining whether this assumption is valid in a specific analysis is often necessary.
+
+We can add labels and other customizations to these plots the same way we did when making barplots. 
+
+Practice your plotting skills on other datasets! For example, try the datasets found in Chapter 1 of MSRR, or the other variables in the datasets we explored here. What shapes do you see in the different kinds of plots? How do they connect?
+
+
+## Multiple Plots with `grid.arrange()`
+
+The `grid.arrange()` function allows us to group multiple plots into a useful or pleasing display of our choice. For several more options, refer to  http://www.sthda.com/english/wiki/wiki.php?id_contents=7930.
+
+We need the following libraries.
+
+```{r}
+library("gridExtra") # to organize the plots
+library(grid)        # to have one top title
+```
+
+The create multiple plots and save them as objects (see next slide). Then we can arrange them in various ways.
+
+
+## Create Five Plot Objects
+
+```{r}
+plotA <- ggplot(mileage, aes(x = mpg)) +
+  geom_histogram(bins = 15)
+
+plotB <- ggplot(mileage, aes(x = mpg)) +
+  geom_density()
+
+plotC <- ggplot(mileage, aes(x = mpg)) +
+  geom_boxplot() +
+  labs(y = "")# helps with spacing here
+
+plotD <- ggplot(mileage, aes(x = mpg)) +
+  stat_ecdf()
+
+plotE <- ggplot(mileage, aes(y = mpg)) +
+  geom_boxplot()
+```
+
+
+## 
+
+```{r}
+grid.arrange(plotA, plotB, plotC, plotD, nrow = 2, ncol = 2,
+             top = textGrob("Graphical Analysis of Miles per Gallon"))
+```
+
+
+## 
+
+```{r}
+grid.arrange(plotA, plotB, plotC, plotD, nrow = 4,
+             top = textGrob("Graphical Analysis of Miles per Gallon"))
+```
+
+
+## 
+
+```{r}
+grid.arrange(plotE, arrangeGrob(plotA, plotB, plotD), ncol = 2,
+             top = textGrob("Graphical Analysis of Miles per Gallon"))
+```
+
+

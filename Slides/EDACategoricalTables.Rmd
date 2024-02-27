@@ -1,0 +1,398 @@
+---
+title: "EDA &#9654; Categorical Data<br>Tabulating Data"
+author: "Author: Jill E. Thomley"
+date: '`r format(Sys.time(), "%B %d, %Y @ %I:%M %p")`'
+output: 
+  ioslides_presentation:
+    logo: images/logoASU.jpg
+---
+
+```{r global_options, include=FALSE}
+knitr::opts_chunk$set(message = FALSE, warning = FALSE, comment = NA)
+library(tidyverse)
+```
+
+
+## Before We Begin...
+
+These slides are not meant to be standalone information. You should take notes to flesh out the contents. I recommend that you create an R Markdown document where you can combine information and code from the slides and your own additional notes and explorations to make connections.
+
+**Related Materials**
+
+* Ch 2 of *Mathematical Statistics with Resampling and R, 2^nd^ Ed.*
+* Ch 2 of [*Modern Dive*](https://moderndive.com/2-viz.html)
+* Ch 3 of [*Modern Dive*](https://moderndive.com/3-wrangling.html)
+* Ch 4 of [*Modern Dive*](https://moderndive.com/4-tidy.html)
+* DataCamp [Introduction to the Tidyverse](https://www.datacamp.com/courses/introduction-to-the-tidyverse)
+
+
+## 
+
+```{r, echo = FALSE, fig.align="center"}
+knitr::include_graphics("images/Fisher.jpeg", dpi = 100)
+```
+
+"...the object of statistical methods is the reduction of data. A quantity of data, which usually by its mere bulk is incapable of entering the mind, is to be replaced by relatively few quantities which shall adequately represent the whole, or...shall contain as much as possible, ideally the whole, of the relevant information contained in the original data." ~ R.A. Fisher, 1921
+
+
+## How We Describe Data Distributions
+
+**Categorical Variables**
+
+* frequency / relative frequency
+
+*Summaries based on counting how many times categories occur.*
+
+**Quantitative Variables**
+
+* shape
+* center
+* spread
+* outliers
+
+*Shape*, *center*, and *spread* characterize the pattern of numerical observations. *Outliers* are deviations from the pattern.
+
+
+## Exploring Categorical Data
+
+* frequency table
+* relative frequency table
+* cumulative frequency table
+* cumulative relative frequency table
+* contingency table
+* [bar chart / barplot](https://ggplot2.tidyverse.org/reference/geom_bar.html)
+* ~~pie chart~~
+
+“There is no data that can be displayed in a pie chart that cannot be displayed better in some other type of chart.” 
+
+(Some people attribute this quote to John Tukey. That cannot be verified, but it is generally a true statement.)
+
+
+## Frequency Table
+
+*Frequency* is the total *count* of the how many observational units are found in each category of a categorical variable. A table that summarizes categories and their counts is a *frequency table*.
+
+*Relative frequency* is the *fraction* of observations in each category of a particular categorical variable. Relative frequencies may be expressed as fractions, decimals, or percents. For example, 1/4 = 0.25 = 25%. We can tabulate categories and relative frequencies, with or without the categories' frequencies.
+
+The *probability* of an an event is often determined by observing relative frequency for that event.
+
+*Cumulative frequency* is the frequency of a given category plus all categories that came before it in a given order. It is the "running total" of frequencies (or relative frequencies).
+
+
+## Contingency Table
+
+A contingency table is a type of frequency table that summarizes the relationship between two (or more) categorical variables in a matrix-type format. Sometimes they are referred to as two-way table or crosstabs. The rows of the table represent categories of one variable and the columns represent categories of the other variable. Other arrangements are also possible.
+
+This kind of table may be used for several different types of data summaries, such as: 
+
+* observed counts
+* row percentages
+* column percentages
+* overall percentages
+
+
+## Berkeley Data
+
+In the early 1970s, UC Berkeley was concerned about possible sex discrimination in grad school admissions. The [berkeley.csv](https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/berkeley.csv) dataset contains fall 1973 data for the six largest departments. Click the link to get the URL for the dataset.
+
+The Berkeley dataset is an example of a statistical phenomena called [Simpson's Paradox](https://en.wikipedia.org/wiki/Simpson%27s_paradox).
+
+Load the dataset into `R` from its URL:
+
+`library(tidyverse)`
+
+`berkdata <- read_csv(file = url("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/berkeley.csv"))`
+
+```{r echo=FALSE}
+berkdata <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/berkeley.csv")
+```
+
+
+## Inspect the Dataset
+
+```{r}
+glimpse(berkdata)
+head(berkdata, n = 3)
+```
+
+
+## The Variables
+
+There are three categorical variables in the Berkeley dataset.
+
+* `sex`
+
+whether the applicant was male or female (1970s definitions)
+
+* `department`
+
+the department to which the applicant applied (A through F)
+
+* `status`
+
+whether the applicant was accepted or rejected
+
+<hr>
+
+Each *observation* in the dataset represents one applicant, with a total of `r nrow(berkdata)` observations. 
+
+
+## Frequency Tables
+
+Base `R` contains two functions to make quick summary tables. Recall that the `$` notation is how we specify which variable we want in a dataset: `datasetname$variablename`.
+
+```{r}
+table(berkdata$status) # counts 
+prop.table(table(berkdata$status))   # proportions add to 1 or 100%
+```
+
+What class of object do `table()` and `prop.table()` produce?
+
+
+## A `table()` Stored as an Object
+
+We can store the results of `table()` as an object. 
+
+```{r}
+statusTab <- table(berkdata$status)
+prop.table(statusTab)
+round(prop.table(statusTab), 4)   # note the nested functions
+```
+
+The table class of object in `R` is essentially an array where the locations have been named.
+
+
+## Using dplyr to Make a "Table"
+
+The `table()` function produces a structured vector or matrix. The method using the dplyr package produces a tibble.
+
+```{r}
+library(tidyverse)   # or library(dplyr)
+berkdata %>% count(status)
+```
+
+Some functions such as `chisq.test()` expect vector or matrix input. Consider the reason for making the summary table. How might a tibble be advantageous in other ways?
+
+
+## 
+
+Since the output created using `count()` is a tibble (i.e., dataset), the frequencies are a variable and we compute the proportions as a new variable using the `mutate()` function on column `n`.
+
+```{r}
+berkdata %>% 
+  count(status) %>% 
+  mutate(prop = prop.table(n))
+```
+
+Notice that we are still using the base `prop.table()` function to carry out the mutation of the counts to proportions. The display is rounded, but more decimals are calculated and stored.
+
+##
+
+Sometimes we want a running (cumulative) total of counts or proportions over several categories, usually ordered.
+
+```{r}
+berkdata %>% 
+  count(department) %>% 
+  arrange(desc(n)) %>%   # sorted by descending department size n
+  mutate(prop      = prop.table(n),
+         cum_count = cumsum(n),
+         cum_prop  = cumsum(prop))    # prop column we made above
+```
+
+
+## Contingency or Two-way Tables
+
+We can use two-way tables to explore the relationships between variables by looking how many cases fall in combinations of two variables' categories. In this case, we see how many female and male applicants were accepted or rejected.
+
+```{r}
+table(berkdata$sex, berkdata$status)
+```
+
+However, it is difficult to see the acceptance and rejection rates from this table. We can compute proportions similar to the way we did for a single variable.
+
+
+##
+
+```{r}
+prop.table(table(berkdata$status)) # proportion table from earlier
+```
+
+Here, we have proportions where separate rows add to 100%.
+
+```{r}
+prop.table(table(berkdata$sex, berkdata$status), 1) # rows is dim 1
+```
+
+The overall acceptable rate was about 39%. However, a closer look shows that the acceptance rate for female applicants was about 30% versus about 45% for male applicants. Bias?
+
+## Using dplyr for a “Two-Way Table”
+
+```{r}
+berkdata %>% count(sex, status)
+```
+
+Computing proportions from this format requires manipulations using dplyr functions such as `group_by()` and `mutate()`. 
+
+The package *janitor* also includes a function  [`tabyl()`](https://cran.r-project.org/web/packages/janitor/vignettes/tabyls.html) that makes nicely formatted tables when used with `adorn` functions.
+
+
+## Using dplyr for Two-Way Proportions
+
+```{r}
+berkdata %>% 
+  group_by(sex) %>%   # perform calculations within each sex
+  count(status) %>%   # count accepted and rejected students
+  mutate(prop = prop.table(n))   # calculate proportions
+```
+
+Notice that these values match the proportions we found with the `table()` and `prop.table()` functions.
+
+
+## Back to the Question of Bias
+
+Let's look at relationships of sex and status with department.
+
+```{r}
+table(berkdata$sex, berkdata$department)
+table(berkdata$status, berkdata$department)
+```
+
+
+## Department Application Rates (%)
+
+In graduate school, students apply directly to the department...
+
+What percentage of applicants to each department was female?
+
+```{r}
+# nesting functions, make table, take column props, and round off
+# in this contingency table, columns (departments) add up to 100%
+
+round(prop.table(table(berkdata$sex, berkdata$department), 2), 4)
+```
+
+Women apply at different rates to the six different apartments. The smallest percentages were Departments A and B.
+
+
+## Department Acceptance Rates (%)
+
+Did the six departments have different acceptance rates?
+
+```{r}
+# nesting functions, make table, take column props, and round off
+# in this contingency table, columns (departments) add up to 100%
+
+round(prop.table(table(berkdata$status, berkdata$department), 2), 4)
+```
+
+Some of the departments accepted a much larger percentage of applicants than others. The largest was about 64% (Department A) and the smallest was about 6% (Department F).
+
+
+## One More Way to Find Proportions
+
+In some situations, we use a logic test to calculate proportions. This is often true when the variable is not in the form of binary categories, but we are interested in yes/no. In a logical vector, `TRUE` = 1 and `FALSE` = 0, thus algebraically the `mean()` function produces the proportions of 1's.
+
+```{r}
+berkdata %>% 
+  group_by(sex) %>% 
+  summarize(prop_accept = mean(status == "accepted"))
+```
+
+
+## The Very Useful Logic Test!
+
+The code `berkdata$status == "accepted"` checks elements of the variable `status` and determines whether each is logically equal to the value `accepted`. The output is a logical vector.
+
+```{r}
+table(berkdata$status == "accepted")
+table(berkdata$sex, berkdata$status == "accepted")
+```
+
+
+## So Was There Bias?
+
+We will revisit this dataset when we talk about chi-square tests later in the semester. An [article](https://science.sciencemag.org/content/187/4175/398) published in 1975 explored and summed up some of what we observed in the tables we made. 
+
+* Women were more likely to apply to departments that were harder to get into. There were far fewer female applicants to A and B, which accept more than 60% of all applicants. What looks like an overall bias is a result of this phenomenon. The individual departments sometimes *favor* women (which you will see when we revisit this dataset).
+
+* What we can not tell from the dataset we have, but which the authors concluded, is that A and B had stronger mathematics prerequisites. Bias was likely occurring earlier in the pipeline, with women being advised into non-STEM areas. 
+
+
+## Another Example
+
+The [STT3850majors.csv](https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/stt3850majors.csv) dataset contains information regarding students in Dr. Thomley's past STT3850 classes. 
+
+`students <- read_csv(file = url("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/stt3850majors.csv"))`
+
+```{r echo=FALSE}
+students <- read_csv(file = url("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/stt3850majors.csv"))
+```
+
+* College = ASU college the student is in (e.g., Arts & sciences)
+* Year = student's class year (e.g., freshman, sophomore)
+* BannerMajor = student's major as listed in banner
+* CodedMajor = Dr. Thomley's recoded list of majors
+* Semester = the semester when the student took STT3850
+* AY = academic year (e.g., 2018-2019)
+
+
+## Which Academic Years?
+
+```{r}
+students %>% count(AY)
+```
+
+Dr. Thomley has taught different numbers of STT3850 sections in the various years. Section sizes ranged from 25 to 45 (as an FYI---you can't tell number or size directly from the dataset).
+
+
+## What Majors? Oh, so many...
+
+```{r}
+students %>% count(BannerMajor)
+```
+
+
+## What Majors? Let's be more concise...
+
+```{r}
+students %>% 
+  count(CodedMajor) %>%   # count the number of each major
+  mutate(percents = 100 * prop.table(n))   # compute percentages
+```
+
+So, it looks like the largest group overall is computer science majors. Has the % been constant across academic years?
+
+
+## 
+
+```{r}
+# since the output is a tibble, we can filter the results for CS!
+students %>% 
+  group_by(AY) %>%
+  count(CodedMajor) %>% 
+  mutate(percents = 100 * prop.table(n)) %>% 
+  filter(CodedMajor == "Computer Science")  # choose only CS rows
+```
+
+
+## Class Years
+
+```{r}
+students %>% 
+  count(Year) %>% 
+  mutate(percents = 100 * prop.table(n))
+```
+
+Notice the five `Year` categories are not in the standard order. We should probably convert the character variable to a factor. Then we can choose an order other than alphabetical.
+
+
+## Major by Class Years
+
+```{r}
+students %>% 
+  count(CodedMajor, Year) %>% 
+  filter(CodedMajor == "Computer Science") %>% 
+  arrange(desc(n))
+```
+
+Many computer science majors seem quite likely to wait until they are seniors before they take this course. Can you explore these questions for other majors?
