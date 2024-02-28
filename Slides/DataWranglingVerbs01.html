@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Intro to Data Wrangling with dplyr Verbs, Part 1</title>
+  <title>Data Wrangling, Part 1: dplyr Verbs for Columns</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -19,7 +19,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Intro to Data Wrangling<br>with dplyr Verbs, Part 1',
+                title: 'Data Wrangling, Part 1: dplyr Verbs for Columns',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -3219,7 +3219,7 @@ line-height: 1.9;
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Monday, October 09, 2023 @ 05:04 PM</p>
+            <p style="margin-top: 6px; margin-left: -2px;">Wednesday, February 28, 2024 @ 03:03 PM</p>
           </hgroup>
   </slide>
 
@@ -3234,33 +3234,7 @@ line-height: 1.9;
 <li>Modern Dive <a href='https://moderndive.com/4-tidy.html' title=''>Chapter 4: Data Importing and &ldquo;Tidy&rdquo; Data</a></li>
 <li>DataCamp <a href='https://learn.datacamp.com/courses/introduction-to-the-tidyverse' title=''>Introduction to the Tidyverse</a></li>
 <li>DataCamp <a href='https://learn.datacamp.com/courses/data-manipulation-with-dplyr' title=''>Data Manipulation with dplyr</a></li>
-<li>Intro to Data Wrangling with dplyr Verbs, Part 2 <a href='https://stat-jet-asu.github.io/STT2860DataScience1/Slides/DataWranglingVerbs02.html' title=''>slides</a></li>
-<li><a href='https://dplyr.tidyverse.org/reference/index.html' title=''>dplyr Reference</a></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Index</h2></hgroup><article  id="index">
-
-<ul>
-<li>Review: Datasets
-
-<ul>
-<li>05 — Dataset Structure</li>
-<li>08 — Example Dataset</li>
-</ul></li>
-<li>Verbs for Variables
-
-<ul>
-<li>12 — The Functions
-
-<ul>
-<li><code>mutate()</code> / <code>transmute()</code></li>
-<li><code>pull()</code></li>
-<li><code>rename()</code> / <code>relocate()</code> /</li>
-<li><code>select()</code></li>
-</ul></li>
-<li>13 — Examples</li>
-<li>20 — Challenges!</li>
-</ul></li>
+<li>Data Wrangling, Part 1: <a href='https://dplyr.tidyverse.org/reference/index.html' title=''>dplyr</a> Verbs for Rows <a href='https://stat-jet-asu.github.io/STT2860DataScience1/Slides/DataWranglingVerbs02.html' title=''>slides</a></li>
 </ul>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Review: Datasets</h2></hgroup><article  id="review-datasets">
@@ -3317,25 +3291,27 @@ Real life data is usually far messier and can require a great deal of tidying. T
 
 <ul>
 <li><p>Statistician Francis Galton (1822-1911), a cousin of Charles Darwin, studied the relationship between parents’ heights and the heights of their offspring. His pioneering <a href='https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf' title=''>1886 article</a> is the first appearance of regression analysis in print.</p></li>
-<li><p>The <code>galtonfamiliesmain</code> dataset we will be working with was <a href='http://www.medicine.mcgill.ca/epidemiology/hanley/galton/' title=''>reconstructed by Dr. James A. Hanley</a> and students using Galton’s <a href='http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/index.html' title=''>original paper notebooks</a> containing handwritten measurement data for 205 families.</p></li>
-<li><p>You can access the data file from the <a href='https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html' title=''>description</a> page, which also contains more context and variable definitions.</p></li>
-<li><p>Note Galton’s comments about how he &ldquo;transmuted&rdquo; some of the data for analysis. As with most historical data, gender is a binary variable for both parents and children.</p></li>
+<li><p>The <code>galtonfamiliesall</code> dataset we will be working with was <a href='http://www.medicine.mcgill.ca/epidemiology/hanley/galton/' title=''>partly reconstructed by Dr. James A. Hanley</a> and his students from <a href='http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/index.html' title=''>original paper notebooks</a> containing handwritten data for 205 families that was gathered by Galton.</p></li>
+<li><p>Galton’s made comments about how he &ldquo;transmuted&rdquo; some of the data for analysis. As with most historical data, gender is a binary variable for both parents and children.</p></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Read in the Data</h2></hgroup><article  id="read-in-the-data">
 
-<p><code>library(tidyverse)</code><br/><code>galtondata &lt;- read_csv(&quot;https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/galtonfamiliesmain.csv&quot;)</code></p>
+<p>You can access the Galton data file from the <a href='https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html' title=''>description</a> page, which also contains more context and variable definitions.</p>
 
-<pre class = 'prettyprint lang-r'>glimpse(galtondata)</pre>
+<pre class = 'prettyprint lang-r'>head(galtondata)</pre>
 
-<pre >Rows: 898
-Columns: 6
-$ FamilyID &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2&quot;, &quot;2&quot;, &quot;2&quot;, &quot;3&quot;, &quot;3&quot;, &quot;4&quot;, &quot;4&quot;, &quot;…
-$ Children &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6…
-$ Father   &lt;dbl&gt; 78.5, 78.5, 78.5, 78.5, 75.5, 75.5, 75.5, 75.5, 75.0, 75.0, 7…
-$ Mother   &lt;dbl&gt; 67.0, 67.0, 67.0, 67.0, 66.5, 66.5, 66.5, 66.5, 64.0, 64.0, 6…
-$ Child    &lt;chr&gt; &quot;Son&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Son&quot;, &quot;Son&quot;, &quot;Dau…
-$ Height   &lt;dbl&gt; 73.2, 69.2, 69.0, 69.0, 73.5, 72.5, 65.5, 65.5, 71.0, 68.0, 7…</pre>
+<pre ># A tibble: 6 × 6
+  FamilyID Children Father Mother Child    Height
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+1 1               4   78.5   67   Son        73.2
+2 1               4   78.5   67   Daughter   69.2
+3 1               4   78.5   67   Daughter   69  
+4 1               4   78.5   67   Daughter   69  
+5 2               4   75.5   66.5 Son        73.5
+6 2               4   75.5   66.5 Son        72.5</pre>
+
+<p>Question: Why is familyID a character variable?</p>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
 
@@ -3349,7 +3325,7 @@ $ Height   &lt;dbl&gt; 73.2, 69.2, 69.0, 69.0, 73.5, 72.5, 65.5, 65.5, 71.0, 68.
 
 <pre class = 'prettyprint lang-r'>nrow(galtondata)</pre>
 
-<pre >[1] 898</pre>
+<pre >[1] 934</pre>
 
 <p>Are there any cases with <code>NA</code> values?</p>
 
@@ -3357,7 +3333,7 @@ $ Height   &lt;dbl&gt; 73.2, 69.2, 69.0, 69.0, 73.5, 72.5, 65.5, 65.5, 71.0, 68.
 
 <pre >[1] 0</pre>
 
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Verbs for Variables<br>(Manipulating Columns)</h2></hgroup><article  id="verbs-for-variables-manipulating-columns">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>dplyr Verbs for Variables<br>(Manipulating Columns)</h2></hgroup><article  id="dplyr-verbs-for-variables-manipulating-columns">
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
 
@@ -3365,55 +3341,54 @@ $ Height   &lt;dbl&gt; 73.2, 69.2, 69.0, 69.0, 73.5, 72.5, 65.5, 65.5, 71.0, 68.
 <li><a href='https://dplyr.tidyverse.org/reference/mutate.html' title=''><code>mutate()</code></a> / <a href='https://dplyr.tidyverse.org/reference/mutate.html' title=''><code>transmute()</code></a></li>
 </ul>
 
-<p>Create, modify, and/or delete columns (variables).</p>
+<p>Use to create, modify, and/or delete columns (variables).</p>
 
 <ul>
 <li><a href='https://dplyr.tidyverse.org/reference/pull.html' title=''><code>pull()</code></a></li>
 </ul>
 
-<p>Extract a single column (variable) into a vector.</p>
+<p>Use to extract a single column (variable) into a vector.</p>
 
 <ul>
 <li><a href='https://dplyr.tidyverse.org/reference/rename.html' title=''><code>rename()</code></a></li>
 </ul>
 
-<p>Rename columns (variables).</p>
+<p>Use to rename columns (variables).</p>
 
 <ul>
 <li><a href='https://dplyr.tidyverse.org/reference/relocate.html' title=''><code>relocate()</code></a></li>
 </ul>
 
-<p>Change the order of columns.</p>
+<p>Use to change the order of columns.</p>
 
 <ul>
 <li><a href='https://dplyr.tidyverse.org/reference/select.html' title=''><code>select()</code></a></li>
 </ul>
 
-<p>Subset columns; can also change order and rename columns.</p>
+<p>Use to subset columns; can also change order or rename.</p>
 
 </article></slide><slide class=""><hgroup><h2>Mutating Mother Height</h2></hgroup><article  id="mutating-mother-height">
 
-<p>Galton &ldquo;transmuted the female statures to their corresponding male equivalents&rdquo; by multiplying them by <code>1.08</code>. We can do this for the variable <code>Mother</code> by using <code>mutate()</code> to create <code>MotherT</code>.</p>
+<p>Galton &ldquo;transmuted the female statures to their corresponding male equivalents&rdquo; by multiplying them by <code>1.08</code>. We can do this for the variable <code>Mother</code> by using <a href='https://dplyr.tidyverse.org/reference/mutate.html' title=''><code>mutate()</code></a> to create <code>MotherT</code>.</p>
 
-<pre class = 'prettyprint lang-r'>galtondataA &lt;- galtondata %&gt;% 
+<pre class = 'prettyprint lang-r'>galtondataA &lt;- galtondata %&gt;%
   mutate(MotherT = 1.08 * Mother)
-head(galtondataA)</pre>
+head(galtondataA, n = 5)</pre>
 
-<pre ># A tibble: 6 × 7
+<pre ># A tibble: 5 × 7
   FamilyID Children Father Mother Child    Height MotherT
   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;
 1 1               4   78.5   67   Son        73.2    72.4
 2 1               4   78.5   67   Daughter   69.2    72.4
 3 1               4   78.5   67   Daughter   69      72.4
 4 1               4   78.5   67   Daughter   69      72.4
-5 2               4   75.5   66.5 Son        73.5    71.8
-6 2               4   75.5   66.5 Son        72.5    71.8</pre>
+5 2               4   75.5   66.5 Son        73.5    71.8</pre>
 
 </article></slide><slide class=""><hgroup><h2>Mutating Daughter Height</h2></hgroup><article  id="mutating-daughter-height">
 
 <p>Both daughters’ and sons’ heights are stored in <code>Height</code>. We can <code>mutate()</code> conditionally for daughters using <a href='https://dplyr.tidyverse.org/reference/if_else.html' title=''><code>if_else()</code></a>.</p>
 
-<pre class = 'prettyprint lang-r'>galtondataA &lt;- galtondataA %&gt;% 
+<pre class = 'prettyprint lang-r'>galtondataA &lt;- galtondataA %&gt;%
   mutate(HeightT = if_else(Child == &quot;Daughter&quot;, 1.08 * Height, Height))
 head(galtondataA)</pre>
 
@@ -3431,98 +3406,234 @@ head(galtondataA)</pre>
 
 <p>Galton also calculated the midpoint of the parents’ heights.</p>
 
-<pre class = 'prettyprint lang-r'>galtondataA &lt;- galtondataA %&gt;% 
+<pre class = 'prettyprint lang-r'>galtondataA &lt;- galtondataA %&gt;%
   mutate(Midparent = (Father + MotherT) / 2)
-head(galtondataA)</pre>
+head(galtondataA, n = 5)</pre>
 
-<pre ># A tibble: 6 × 9
+<pre ># A tibble: 5 × 9
   FamilyID Children Father Mother Child    Height MotherT HeightT Midparent
   &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
 1 1               4   78.5   67   Son        73.2    72.4    73.2      75.4
 2 1               4   78.5   67   Daughter   69.2    72.4    74.7      75.4
 3 1               4   78.5   67   Daughter   69      72.4    74.5      75.4
 4 1               4   78.5   67   Daughter   69      72.4    74.5      75.4
-5 2               4   75.5   66.5 Son        73.5    71.8    73.5      73.7
-6 2               4   75.5   66.5 Son        72.5    71.8    72.5      73.7</pre>
+5 2               4   75.5   66.5 Son        73.5    71.8    73.5      73.7</pre>
 
 </article></slide><slide class=""><hgroup><h2>All Variables in One <code>mutate()</code></h2></hgroup><article  id="all-variables-in-one-mutate">
 
-<p>You can create all three variables in one <code>mutate()</code> statement. This is the preferred way to do it.</p>
+<p>You can create all three variables in one <code>mutate()</code> statement.</p>
 
-<pre class = 'prettyprint lang-r'>galtondataA &lt;- galtondata %&gt;% 
-  mutate(MotherT = 1.08 * Mother,
-         HeightT = if_else(Child == &quot;Daughter&quot;, 1.08 * Height, Height),
-         Midparent = (Father + MotherT) / 2)</pre>
+<pre class = 'prettyprint lang-r'>galtondataB &lt;- galtondata %&gt;%
+  mutate(
+    MotherT = 1.08 * Mother,
+    HeightT = if_else(Child == &quot;Daughter&quot;, 1.08 * Height, Height),
+    Midparent = (Father + MotherT) / 2
+  )</pre>
 
-<p>Next you could pipe (<code>%&gt;%</code>) this into a <code>select()</code> step to reduce the number of variables in the dataset, or perform some other other operation.</p>
+<p>Next you could pipe (<code>%&gt;%</code>) this into a <code>select()</code> step to reduce the number of variables in the dataset, or perform some other other operation. The output is always a tibble.</p>
 
 <p>In general, our data manipulations may contain several steps, depending on the format of the original data and our goals in terms of any research questions and data analyses.</p>
 
+</article></slide><slide class=""><hgroup><h2>Are They The Same?</h2></hgroup><article  id="are-they-the-same">
+
+<pre class = 'prettyprint lang-r'>identical(galtondataA, galtondataB)</pre>
+
+<pre >[1] TRUE</pre>
+
+<pre class = 'prettyprint lang-r'>all.equal(galtondataA, galtondataB)</pre>
+
+<pre >[1] TRUE</pre>
+
+<p>In this case, our choice of manipulation(s) produced the exact same final dataset structure.</p>
+
+<p>First develop code that works for your goals, one step at a time, then you can rearrange and condense to make your code more readable, reproducible, and efficient.</p>
+
 </article></slide><slide class=""><hgroup><h2>What if we use <code>transmute()</code>?</h2></hgroup><article  id="what-if-we-use-transmute">
 
-<p>The <code>transmute()</code> function deletes all columns (variables) <em>except</em> those that are included in the <code>transmute()</code>.</p>
+<p>The <a href='https://dplyr.tidyverse.org/reference/transmute.html' title=''><code>transmute()</code></a> function deletes all columns <em>except</em> for those included in <code>transmute()</code>. (<strong>note:</strong> this function is <em>superseded</em>)</p>
 
-<pre class = 'prettyprint lang-r'>galtondataB &lt;- galtondata %&gt;% 
-  transmute(Father,
-            MotherT = 1.08 * Mother,
-            Midparent = (Father + MotherT) / 2,
-            HeightT = if_else(Child == &quot;Daughter&quot;, 1.08 * Height, Height))
-glimpse(galtondataB)</pre>
+<pre class = 'prettyprint lang-r'>galtondataC &lt;- galtondata %&gt;%
+  transmute(
+    Father,
+    MotherT = 1.08 * Mother,
+    Midparent = (Father + MotherT) / 2,
+    HeightT = if_else(Child == &quot;Daughter&quot;, 1.08 * Height, Height)
+  )
+head(galtondataC, n = 1)</pre>
 
-<pre >Rows: 898
-Columns: 4
-$ Father    &lt;dbl&gt; 78.5, 78.5, 78.5, 78.5, 75.5, 75.5, 75.5, 75.5, 75.0, 75.0, …
-$ MotherT   &lt;dbl&gt; 72.36, 72.36, 72.36, 72.36, 71.82, 71.82, 71.82, 71.82, 69.1…
-$ Midparent &lt;dbl&gt; 75.43, 75.43, 75.43, 75.43, 73.66, 73.66, 73.66, 73.66, 72.0…
-$ HeightT   &lt;dbl&gt; 73.200, 74.736, 74.520, 74.520, 73.500, 72.500, 70.740, 70.7…</pre>
+<pre ># A tibble: 1 × 4
+  Father MotherT Midparent HeightT
+   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt;
+1   78.5    72.4      75.4    73.2</pre>
+
+</article></slide><slide class=""><hgroup><h2>Using <code>select()</code></h2></hgroup><article  id="using-select">
+
+<p>We can use <a href='https://dplyr.tidyverse.org/reference/select.html' title=''><code>select()</code></a> to choose a subset of our columns. For example, the variables <code>Midparent</code> and <code>HeightT</code> would help us recreate Galton’s original work.</p>
+
+<pre class = 'prettyprint lang-r'>galtondataD &lt;- galtondataA %&gt;%
+  select(
+    FamilyID,
+    Midparent,
+    HeightT
+  )
+head(galtondataD, n = 1)</pre>
+
+<pre ># A tibble: 1 × 3
+  FamilyID Midparent HeightT
+  &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+1 1             75.4    73.2</pre>
 
 </article></slide><slide class=""><hgroup><h2>Multipurpose <code>select()</code></h2></hgroup><article  id="multipurpose-select">
 
-<p>The <code>select()</code> function can be used to select columns, but also to reorder and rename columns. The order in which columns are selected will be their order in the new dataset. We rename them by assigning <code>newname = oldname</code>.</p>
+<p>We can choose columns, reorder, and rename at the same time with <code>select()</code>. The order in which columns are selected will be their new order. Rename by assigning <code>newname = oldname</code>.</p>
 
-<pre class = 'prettyprint lang-r'>galtondataC &lt;- galtondataA %&gt;% 
-  select(family_id = FamilyID,
-         ht_parent = Midparent,
-         ht_child  = HeightT)
-glimpse(galtondataC)</pre>
+<pre class = 'prettyprint lang-r'>galtondataD &lt;- galtondataA %&gt;%
+  select(
+    family_id = FamilyID,    # change to lowercase and _ name
+    ht_parent = Midparent,   # change to more consistent name
+    ht_child = HeightT       # change to more consistent name
+  )
+head(galtondataD, n = 1)</pre>
 
-<pre >Rows: 898
-Columns: 3
-$ family_id &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2&quot;, &quot;2&quot;, &quot;2&quot;, &quot;3&quot;, &quot;3&quot;, &quot;4&quot;, &quot;4&quot;, …
-$ ht_parent &lt;dbl&gt; 75.43, 75.43, 75.43, 75.43, 73.66, 73.66, 73.66, 73.66, 72.0…
-$ ht_child  &lt;dbl&gt; 73.200, 74.736, 74.520, 74.520, 73.500, 72.500, 70.740, 70.7…</pre>
+<pre ># A tibble: 1 × 3
+  family_id ht_parent ht_child
+  &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+1 1              75.4     73.2</pre>
 
-</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
+</article></slide><slide class=""><hgroup><h2>UN-<code>select()</code></h2></hgroup><article  id="un-select">
 
-<p>Note: All the datasets include the same number of rows (898).</p>
+<p>Sometimes the list of variables to get rid of is shorter than the list to keep. We can use <code>select()</code> to delete unwanted columns instead of listing columns to keep by using <code>-</code>.</p>
+
+<pre class = 'prettyprint lang-r'>galtondataE &lt;- galtondataA %&gt;%
+  select(
+    -Mother,   # delete Mother, since we have the mutated MotherT
+    -Height    # delete Height, since we have the mutated HeightT
+  )
+head(galtondataE, n = 1)</pre>
+
+<pre ># A tibble: 1 × 7
+  FamilyID Children Father Child MotherT HeightT Midparent
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;   &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+1 1               4   78.5 Son      72.4    73.2      75.4</pre>
+
+</article></slide><slide class=""><hgroup><h2>Using <code>relocate()</code></h2></hgroup><article  id="using-relocate">
+
+<p>The <a href='https://dplyr.tidyverse.org/reference/relocate.html' title=''><code>relocate()</code></a> function moves columns, using syntax similar to <code>select()</code>. Recall that in <code>galtondataA</code>, the new variables we made with <code>mutate()</code> were placed after the existing variables.</p>
+
+<pre class = 'prettyprint lang-r'>galtondataF &lt;- galtondataA %&gt;% 
+  relocate(MotherT, .after = Mother) %&gt;% 
+  relocate(Midparent, .after = MotherT)
+head(galtondataF, n = 1)</pre>
+
+<pre ># A tibble: 1 × 9
+  FamilyID Children Father Mother MotherT Midparent Child Height HeightT
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 1               4   78.5     67    72.4      75.4 Son     73.2    73.2</pre>
+
+<p>Sometimes we move columns to take advantage of block/group functions, like specifying a range of columns.</p>
+
+</article></slide><slide class=""><hgroup><h2><code>relocate()</code> Multiple Columns</h2></hgroup><article  id="relocate-multiple-columns">
+
+<p>You can also <code>select()</code> or <code>relocate()</code> a block or set of columns together, using some common criteria they all share.</p>
+
+<p>For example, I can move all the numeric variables to the front of the dataset using <a href='https://tidyselect.r-lib.org/reference/where.html' title=''><code>where()</code></a>. You can also use a function such as <a href='https://tidyselect.r-lib.org/reference/starts_with.html' title=''><code>starts_with()</code></a> or <code>contains()</code> to choose variables by name(s).</p>
+
+<pre class = 'prettyprint lang-r'>galtondataG &lt;- galtondata %&gt;% 
+  relocate(where(is.numeric))
+head(galtondataG, n = 1)</pre>
+
+<pre ># A tibble: 1 × 6
+  Children Father Mother Height FamilyID Child
+     &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;
+1        4   78.5     67   73.2 1        Son  </pre>
+
+</article></slide><slide class=""><hgroup><h2>Another <code>relocate()</code> Example</h2></hgroup><article  id="another-relocate-example">
+
+<pre class = 'prettyprint lang-r'>head(galtondataD, n = 1)</pre>
+
+<pre ># A tibble: 1 × 3
+  family_id ht_parent ht_child
+  &lt;chr&gt;         &lt;dbl&gt;    &lt;dbl&gt;
+1 1              75.4     73.2</pre>
+
+<pre class = 'prettyprint lang-r'>galtondataH &lt;- galtondataD %&gt;% 
+  relocate(starts_with(&quot;ht&quot;))   # variables with ht moved to front
+head(galtondataH, n = 1)</pre>
+
+<pre ># A tibble: 1 × 3
+  ht_parent ht_child family_id
+      &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;    
+1      75.4     73.2 1        </pre>
+
+</article></slide><slide class=""><hgroup><h2>Another <code>relocate()</code> Example</h2></hgroup><article  id="another-relocate-example-1">
+
+<pre class = 'prettyprint lang-r'>head(galtondataF, n = 1)</pre>
+
+<pre ># A tibble: 1 × 9
+  FamilyID Children Father Mother MotherT Midparent Child Height HeightT
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt; &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt;
+1 1               4   78.5     67    72.4      75.4 Son     73.2    73.2</pre>
+
+<pre class = 'prettyprint lang-r'>galtondataJ &lt;- galtondataF %&gt;% 
+  relocate(Child:HeightT)   # columns Child through HeightT to front
+head(galtondataJ, n = 1)</pre>
+
+<pre ># A tibble: 1 × 9
+  Child Height HeightT FamilyID Children Father Mother MotherT Midparent
+  &lt;chr&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;
+1 Son     73.2    73.2 1               4   78.5     67    72.4      75.4</pre>
+
+</article></slide><slide class=""><hgroup><h2>Note: Functions Altered Only Columns</h2></hgroup><article  id="note-functions-altered-only-columns">
+
+<p>Note: All the datasets include the same number of rows (934).</p>
 
 <pre class = 'prettyprint lang-r'>dim(galtondata) # original data, 6 variables total</pre>
 
-<pre >[1] 898   6</pre>
+<pre >[1] 934   6</pre>
 
-<pre class = 'prettyprint lang-r'>dim(galtondataA) # using mutate to make new variables</pre>
+<pre class = 'prettyprint lang-r'>dim(galtondataA) # used mutate to add 3 new variables to original</pre>
 
-<pre >[1] 898   9</pre>
+<pre >[1] 934   9</pre>
 
-<pre class = 'prettyprint lang-r'>dim(galtondataB) # using transmute to make new variables</pre>
+<pre class = 'prettyprint lang-r'>dim(galtondataB) # used mutate to add 3 new variables to original</pre>
 
-<pre >[1] 898   4</pre>
+<pre >[1] 934   9</pre>
 
-<pre class = 'prettyprint lang-r'>dim(galtondataC) # using select to reduce number of columns</pre>
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-2">
 
-<pre >[1] 898   3</pre>
+<pre class = 'prettyprint lang-r'>dim(galtondataC) # used transmute to add variables / delete some old</pre>
 
-</article></slide><slide class=""><hgroup><h2>Challenges!</h2></hgroup><article  id="challenges">
+<pre >[1] 934   4</pre>
 
-<ul>
-<li><p>Remove only the variable <code>Children</code> from the dataset.</p></li>
-<li><p>Extract the <code>HeightT</code> column from the dataset into a vector.</p></li>
-<li><p>Convert all height measurements from inches to centimeters.</p></li>
-<li><p>Create <code>MotherT</code> and move it so that it is located after <code>Mother</code>.</p></li>
-<li><p>Start with the original data and create a dataset that contains the following variables: <code>FamilyID</code>, <code>Father</code>, <code>MotherT</code>, <code>HeightT</code>, <code>Child</code> (in that order).</p></li>
-<li><p>Start with the original data and rename all the variables with names of your choice.</p></li>
-<li><p>Explore another use for one of these functions that we have not yet discussed.</p></li>
-</ul></article></slide>
+<pre class = 'prettyprint lang-r'>dim(galtondataD) # used select to choose 3 variables to keep</pre>
+
+<pre >[1] 934   3</pre>
+
+<pre class = 'prettyprint lang-r'>dim(galtondataE) # used select to remove 2 of 9 variables </pre>
+
+<pre >[1] 934   7</pre>
+
+<pre class = 'prettyprint lang-r'>dim(galtondataF) # using relocate to reorder 9 variables</pre>
+
+<pre >[1] 934   9</pre>
+
+</article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-3">
+
+<pre class = 'prettyprint lang-r'>dim(galtondataG) # using relocate to reorder 6 variables</pre>
+
+<pre >[1] 934   6</pre>
+
+<pre class = 'prettyprint lang-r'>dim(galtondataH) # using relocate to reorder 3 variables</pre>
+
+<pre >[1] 934   3</pre>
+
+<pre class = 'prettyprint lang-r'>dim(galtondataJ) # using relocate to reorder 9 variables</pre>
+
+<pre >[1] 934   9</pre>
+
+<hr>
+
+<p>Overall, make a plan for the variables you need, then consider how to get them from the variables you have.</p></article></slide>
 
 
   <slide class="backdrop"></slide>
