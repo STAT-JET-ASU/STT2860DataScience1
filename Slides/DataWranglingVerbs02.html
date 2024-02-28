@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Intro to Data Wrangling with dplyr Verbs, Part 2</title>
+  <title>Data Wrangling, Part 2: dplyr Verbs for Rows</title>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="chrome=1">
@@ -19,7 +19,7 @@
     var SLIDE_CONFIG = {
       // Slide settings
       settings: {
-                title: 'Intro to Data Wrangling<br>with dplyr Verbs, Part 2',
+                title: 'Data Wrangling, Part 2: dplyr Verbs for Rows',
                         useBuilds: true,
         usePrettify: true,
         enableSlideAreas: true,
@@ -3219,7 +3219,7 @@ line-height: 1.9;
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Monday, October 09, 2023 @ 05:03 PM</p>
+            <p style="margin-top: 6px; margin-left: -2px;">Wednesday, February 28, 2024 @ 03:34 PM</p>
           </hgroup>
   </slide>
 
@@ -3234,33 +3234,7 @@ line-height: 1.9;
 <li>Modern Dive <a href='https://moderndive.com/4-tidy.html' title=''>Chapter 4: Data Importing and &ldquo;Tidy&rdquo; Data</a></li>
 <li>DataCamp <a href='https://learn.datacamp.com/courses/introduction-to-the-tidyverse' title=''>Introduction to the Tidyverse</a></li>
 <li>DataCamp <a href='https://learn.datacamp.com/courses/data-manipulation-with-dplyr' title=''>Data Manipulation with dplyr</a></li>
-<li>Intro to Data Wrangling with dplyr Verbs, Part 1 <a href='https://stat-jet-asu.github.io/STT2860DataScience1/Slides//DataWranglingVerbs01.html' title=''>slides</a></li>
-<li><a href='https://dplyr.tidyverse.org/reference/index.html' title=''>dplyr Reference</a></li>
-</ul>
-
-</article></slide><slide class=""><hgroup><h2>Index</h2></hgroup><article  id="index">
-
-<ul>
-<li>Review: Datasets
-
-<ul>
-<li>05 — Dataset Structure</li>
-<li>08 — Example Dataset</li>
-</ul></li>
-<li>Verbs for Observations
-
-<ul>
-<li>22 — The Functions
-
-<ul>
-<li><code>arrange()</code></li>
-<li><code>filter()</code> / <code>slice()</code> / <code>distinct()</code></li>
-<li><code>count()</code> / <code>summarize()</code></li>
-<li><code>group_by()</code></li>
-</ul></li>
-<li>24 — Examples</li>
-<li>30 — Challenges!</li>
-</ul></li>
+<li>Data Wrangling, Part 2: <a href='https://dplyr.tidyverse.org/reference/index.html' title=''>dplyr</a> Verbs for Columns <a href='https://stat-jet-asu.github.io/STT2860DataScience1/Slides/DataWranglingVerbs01.html' title=''>slides</a></li>
 </ul>
 
 </article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Review: Datasets</h2></hgroup><article  id="review-datasets">
@@ -3317,25 +3291,27 @@ Real life data is usually far messier and can require a great deal of tidying. T
 
 <ul>
 <li><p>Statistician Francis Galton (1822-1911), a cousin of Charles Darwin, studied the relationship between parents’ heights and the heights of their offspring. His pioneering <a href='https://galton.org/essays/1880-1889/galton-1886-jaigi-regression-stature.pdf' title=''>1886 article</a> is the first appearance of regression analysis in print.</p></li>
-<li><p>The <code>galtonfamiliesmain</code> dataset we will be working with was <a href='http://www.medicine.mcgill.ca/epidemiology/hanley/galton/' title=''>reconstructed by Dr. James A. Hanley</a> and students using Galton’s <a href='http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/index.html' title=''>original paper notebooks</a> containing handwritten measurement data for 205 families.</p></li>
-<li><p>You can access the data file from the <a href='https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html' title=''>description</a> page, which also contains more context and variable definitions.</p></li>
-<li><p>Note Galton’s comments about how he &ldquo;transmuted&rdquo; some of the data for analysis. As with most historical data, gender is a binary variable for both parents and children.</p></li>
+<li><p>The <code>galtonfamiliesall</code> dataset we will be working with was <a href='http://www.medicine.mcgill.ca/epidemiology/hanley/galton/' title=''>partly reconstructed by Dr. James A. Hanley</a> and his students from <a href='http://www.medicine.mcgill.ca/epidemiology/hanley/galton/notebook/index.html' title=''>original paper notebooks</a> containing handwritten data for 205 families that was gathered by Galton.</p></li>
+<li><p>Galton’s made comments about how he &ldquo;transmuted&rdquo; some of the data for analysis. As with most historical data, gender is a binary variable for both parents and children.</p></li>
 </ul>
 
 </article></slide><slide class=""><hgroup><h2>Read in the Data</h2></hgroup><article  id="read-in-the-data">
 
-<p><code>library(tidyverse)</code><br/><code>galtondata &lt;- read_csv(&quot;https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/galtonfamiliesmain.csv&quot;)</code></p>
+<p>You can access the Galton data file from the <a href='https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/galtonheightdata.html' title=''>description</a> page, which also contains more context and variable definitions.</p>
 
-<pre class = 'prettyprint lang-r'>glimpse(galtondata)</pre>
+<pre class = 'prettyprint lang-r'>head(galtondata)</pre>
 
-<pre >Rows: 898
-Columns: 6
-$ FamilyID &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2&quot;, &quot;2&quot;, &quot;2&quot;, &quot;3&quot;, &quot;3&quot;, &quot;4&quot;, &quot;4&quot;, &quot;…
-$ Children &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 2, 2, 5, 5, 5, 5, 5, 6, 6, 6, 6, 6, 6…
-$ Father   &lt;dbl&gt; 78.5, 78.5, 78.5, 78.5, 75.5, 75.5, 75.5, 75.5, 75.0, 75.0, 7…
-$ Mother   &lt;dbl&gt; 67.0, 67.0, 67.0, 67.0, 66.5, 66.5, 66.5, 66.5, 64.0, 64.0, 6…
-$ Child    &lt;chr&gt; &quot;Son&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Son&quot;, &quot;Son&quot;, &quot;Dau…
-$ Height   &lt;dbl&gt; 73.2, 69.2, 69.0, 69.0, 73.5, 72.5, 65.5, 65.5, 71.0, 68.0, 7…</pre>
+<pre ># A tibble: 6 × 6
+  FamilyID Children Father Mother Child    Height
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+1 1               4   78.5   67   Son        73.2
+2 1               4   78.5   67   Daughter   69.2
+3 1               4   78.5   67   Daughter   69  
+4 1               4   78.5   67   Daughter   69  
+5 2               4   75.5   66.5 Son        73.5
+6 2               4   75.5   66.5 Son        72.5</pre>
+
+<p>Question: Why is familyID a character variable?</p>
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
 
@@ -3349,7 +3325,7 @@ $ Height   &lt;dbl&gt; 73.2, 69.2, 69.0, 69.0, 73.5, 72.5, 65.5, 65.5, 71.0, 68.
 
 <pre class = 'prettyprint lang-r'>nrow(galtondata)</pre>
 
-<pre >[1] 898</pre>
+<pre >[1] 934</pre>
 
 <p>Are there any cases with <code>NA</code> values?</p>
 
@@ -3357,7 +3333,7 @@ $ Height   &lt;dbl&gt; 73.2, 69.2, 69.0, 69.0, 73.5, 72.5, 65.5, 65.5, 71.0, 68.
 
 <pre >[1] 0</pre>
 
-</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>Verbs for Observations<br>(Manipulating Rows)</h2></hgroup><article  id="verbs-for-observations-manipulating-rows">
+</article></slide><slide class="segue dark nobackground level1"><hgroup class = 'auto-fadein'><h2>dplyr Verbs for Observ.<br>(Manipulating Rows)</h2></hgroup><article  id="dplyr-verbs-for-observ.-manipulating-rows">
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section-1">
 
@@ -3409,20 +3385,20 @@ $ Height   &lt;dbl&gt; 73.2, 69.2, 69.0, 69.0, 73.5, 72.5, 65.5, 65.5, 71.0, 68.
 
 </article></slide><slide class=""><hgroup><h2>Categorical <code>filter()</code></h2></hgroup><article  id="categorical-filter">
 
-<p>Reduce the dataset’s rows so it only contains observations for daughters. Note the use of the logical equals <code>==</code> and category name in quotes.</p>
+<p>Reduce the dataset’s rows so it only contains observations for daughters. Note the use of the logical equals <code>==</code> and category name in quotes within <a href='https://dplyr.tidyverse.org/reference/filter.html' title=''><code>filter()</code></a>.</p>
 
 <pre class = 'prettyprint lang-r'>galton_daughters &lt;- galtondata %&gt;% 
   filter(Child == &quot;Daughter&quot;)
-glimpse(galton_daughters)</pre>
+head(galton_daughters, n = 5)</pre>
 
-<pre >Rows: 433
-Columns: 6
-$ FamilyID &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2&quot;, &quot;3&quot;, &quot;4&quot;, &quot;4&quot;, &quot;4&quot;, &quot;5&quot;, &quot;5&quot;, &quot;5&quot;, &quot;…
-$ Children &lt;dbl&gt; 4, 4, 4, 4, 4, 2, 5, 5, 5, 6, 6, 6, 1, 6, 6, 3, 3, 3, 1, 1, 8…
-$ Father   &lt;dbl&gt; 78.5, 78.5, 78.5, 75.5, 75.5, 75.0, 75.0, 75.0, 75.0, 75.0, 7…
-$ Mother   &lt;dbl&gt; 67.0, 67.0, 67.0, 66.5, 66.5, 64.0, 64.0, 64.0, 64.0, 58.5, 5…
-$ Child    &lt;chr&gt; &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;…
-$ Height   &lt;dbl&gt; 69.2, 69.0, 69.0, 65.5, 65.5, 68.0, 67.0, 64.5, 63.0, 66.5, 6…</pre>
+<pre ># A tibble: 5 × 6
+  FamilyID Children Father Mother Child    Height
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+1 1               4   78.5   67   Daughter   69.2
+2 1               4   78.5   67   Daughter   69  
+3 1               4   78.5   67   Daughter   69  
+4 2               4   75.5   66.5 Daughter   65.5
+5 2               4   75.5   66.5 Daughter   65.5</pre>
 
 </article></slide><slide class=""><hgroup><h2>Quantitative <code>filter()</code></h2></hgroup><article  id="quantitative-filter">
 
@@ -3430,33 +3406,32 @@ $ Height   &lt;dbl&gt; 69.2, 69.0, 69.0, 65.5, 65.5, 68.0, 67.0, 64.5, 63.0, 66.
 
 <pre class = 'prettyprint lang-r'>galton_shortermoms &lt;- galtondata %&gt;% 
   filter(Mother &lt; 60)
-glimpse(galton_shortermoms)</pre>
+head(galton_shortermoms, n = 5)</pre>
 
-<pre >Rows: 42
-Columns: 6
-$ FamilyID &lt;chr&gt; &quot;5&quot;, &quot;5&quot;, &quot;5&quot;, &quot;5&quot;, &quot;5&quot;, &quot;5&quot;, &quot;60&quot;, &quot;60&quot;, &quot;95&quot;, &quot;95&quot;, &quot;95&quot;, &quot;…
-$ Children &lt;dbl&gt; 6, 6, 6, 6, 6, 6, 2, 2, 3, 3, 3, 5, 5, 5, 5, 5, 1, 10, 10, 10…
-$ Father   &lt;dbl&gt; 75.0, 75.0, 75.0, 75.0, 75.0, 75.0, 71.0, 71.0, 70.0, 70.0, 7…
-$ Mother   &lt;dbl&gt; 58.5, 58.5, 58.5, 58.5, 58.5, 58.5, 58.0, 58.0, 58.5, 58.5, 5…
-$ Child    &lt;chr&gt; &quot;Son&quot;, &quot;Son&quot;, &quot;Son&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Son…
-$ Height   &lt;dbl&gt; 72.0, 69.0, 68.0, 66.5, 62.5, 62.5, 71.5, 69.0, 71.5, 64.5, 6…</pre>
+<pre ># A tibble: 5 × 6
+  FamilyID Children Father Mother Child    Height
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+1 5               6     75   58.5 Son        72  
+2 5               6     75   58.5 Son        69  
+3 5               6     75   58.5 Son        68  
+4 5               6     75   58.5 Daughter   66.5
+5 5               6     75   58.5 Daughter   62.5</pre>
 
 </article></slide><slide class=""><hgroup><h2>Using Two Filters</h2></hgroup><article  id="using-two-filters">
 
 <p>Reduce the dataset so it contains only daughters with mothers less than 5 feet tall. The logical <code>&amp;</code> (and) is implied by the comma in <code>filter()</code>. For <em>or</em> we can use a <code>|</code> between statements.</p>
 
-<pre class = 'prettyprint lang-r'>galton_daughters_with_shorter_moms &lt;- galtondata %&gt;% 
-  filter(Child == &quot;Daughter&quot;, Mother &lt; 60)
-glimpse(galton_daughters_with_shorter_moms)</pre>
+<pre class = 'prettyprint lang-r'>galton_daughters_with_shorter_moms &lt;- galtondata %&gt;%
+  filter(
+    Child == &quot;Daughter&quot;,
+    Mother &lt; 60
+  )
+head(galton_daughters_with_shorter_moms, n = 1)</pre>
 
-<pre >Rows: 19
-Columns: 6
-$ FamilyID &lt;chr&gt; &quot;5&quot;, &quot;5&quot;, &quot;5&quot;, &quot;95&quot;, &quot;96&quot;, &quot;96&quot;, &quot;96&quot;, &quot;158&quot;, &quot;158&quot;, &quot;158&quot;, &quot;…
-$ Children &lt;dbl&gt; 6, 6, 6, 3, 5, 5, 5, 10, 10, 10, 10, 15, 15, 15, 15, 15, 15, …
-$ Father   &lt;dbl&gt; 75, 75, 75, 70, 70, 70, 70, 68, 68, 68, 68, 66, 66, 66, 66, 6…
-$ Mother   &lt;dbl&gt; 58.5, 58.5, 58.5, 58.5, 58.0, 58.0, 58.0, 59.0, 59.0, 59.0, 5…
-$ Child    &lt;chr&gt; &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;…
-$ Height   &lt;dbl&gt; 66.5, 62.5, 62.5, 63.0, 66.0, 65.0, 63.0, 65.0, 65.0, 62.0, 6…</pre>
+<pre ># A tibble: 1 × 6
+  FamilyID Children Father Mother Child    Height
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+1 5               6     75   58.5 Daughter   66.5</pre>
 
 </article></slide><slide class=""><hgroup><h2>The <code>%in%</code> Operator</h2></hgroup><article  id="the-in-operator">
 
@@ -3464,58 +3439,55 @@ $ Height   &lt;dbl&gt; 66.5, 62.5, 62.5, 63.0, 66.0, 65.0, 63.0, 65.0, 65.0, 62.
 
 <pre class = 'prettyprint lang-r'>families_1_2_136A &lt;- galtondata %&gt;% 
   filter(FamilyID %in% c(&quot;1&quot;, &quot;2&quot;, &quot;136A&quot;))
-glimpse(families_1_2_136A)</pre>
+head(families_1_2_136A)</pre>
 
-<pre >Rows: 16
-Columns: 6
-$ FamilyID &lt;chr&gt; &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;1&quot;, &quot;2&quot;, &quot;2&quot;, &quot;2&quot;, &quot;2&quot;, &quot;136A&quot;, &quot;136A&quot;, &quot;136A…
-$ Children &lt;dbl&gt; 4, 4, 4, 4, 4, 4, 4, 4, 8, 8, 8, 8, 8, 8, 8, 8
-$ Father   &lt;dbl&gt; 78.5, 78.5, 78.5, 78.5, 75.5, 75.5, 75.5, 75.5, 68.5, 68.5, 6…
-$ Mother   &lt;dbl&gt; 67.0, 67.0, 67.0, 67.0, 66.5, 66.5, 66.5, 66.5, 65.0, 65.0, 6…
-$ Child    &lt;chr&gt; &quot;Son&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Daughter&quot;, &quot;Son&quot;, &quot;Son&quot;, &quot;Dau…
-$ Height   &lt;dbl&gt; 73.2, 69.2, 69.0, 69.0, 73.5, 72.5, 65.5, 65.5, 72.0, 70.5, 6…</pre>
+<pre ># A tibble: 6 × 6
+  FamilyID Children Father Mother Child    Height
+  &lt;chr&gt;       &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;     &lt;dbl&gt;
+1 1               4   78.5   67   Son        73.2
+2 1               4   78.5   67   Daughter   69.2
+3 1               4   78.5   67   Daughter   69  
+4 1               4   78.5   67   Daughter   69  
+5 2               4   75.5   66.5 Son        73.5
+6 2               4   75.5   66.5 Son        72.5</pre>
 
 </article></slide><slide class=""><hgroup><h2>Variable Summaries</h2></hgroup><article  id="variable-summaries">
 
-<p>We use <code>summarize()</code> to compute different kinds of quantitative summaries of variables, such as <code>mean()</code>. The output is a smaller dataset, which can be further operated on by dplyr verbs.</p>
+<p>We use <a href='https://dplyr.tidyverse.org/reference/summarise.html' title=''><code>summarize()</code></a> to compute different kinds of quantitative summaries of variables, such as <code>mean()</code>. The output is a smaller dataset, which can be further operated on by dplyr verbs.</p>
 
 <p>Each summary is a column in the output dataset, and there is only a single row—we have summarized <em>all</em> observations in the original dataset into one set of informative values.</p>
 
 <pre class = 'prettyprint lang-r'>galtondata %&gt;% 
-  summarize(mean_ht = mean(Height),
-            sd_ht   = sd(Height))</pre>
+  summarize(mean_ht = mean(Height), sd_ht = sd(Height))</pre>
 
 <pre ># A tibble: 1 × 2
   mean_ht sd_ht
     &lt;dbl&gt; &lt;dbl&gt;
-1    66.8  3.58</pre>
+1    66.7  3.58</pre>
 
 </article></slide><slide class=""><hgroup><h2>Grouped Variable Summaries</h2></hgroup><article  id="grouped-variable-summaries">
 
-<p>If we use <code>group_by()</code> before <code>summarize()</code>, the summaries will be calculated separately for different sub-groupings (groups of rows) in the dataset. Here we have separate summaries for the observations (rows) representing daughters versus sons. Each of the subgroups becomes a row in the output dataset.</p>
+<p>If we use <a href='https://dplyr.tidyverse.org/reference/group_by.html' title=''><code>group_by()</code></a> before <code>summarize()</code>, the summaries will be calculated separately for different sub-groupings (groups of rows) in the dataset. Here we have separate summaries for the observations (rows) representing daughters versus sons. Each of the subgroups becomes a row in the output dataset.</p>
 
 <pre class = 'prettyprint lang-r'>galtondata %&gt;% 
   group_by(Child) %&gt;% 
-  summarize(mean_ht = mean(Height),
-            sd_ht   = sd(Height))</pre>
+  summarize(mean_ht = mean(Height), sd_ht = sd(Height))</pre>
 
 <pre ># A tibble: 2 × 3
   Child    mean_ht sd_ht
   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt;
-1 Daughter    64.1  2.37
-2 Son         69.2  2.63</pre>
+1 Daughter    64.1  2.35
+2 Son         69.2  2.62</pre>
 
-</article></slide><slide class=""><hgroup><h2>Challenges!</h2></hgroup><article  id="challenges">
+</article></slide><slide class=""><hgroup><h2>The rest of the functions…</h2></hgroup><article  id="the-rest-of-the-functions">
+
+<p>More content TBA!</p>
 
 <ul>
-<li><p>Create a subset of families with only one child.</p></li>
-<li><p>Extract all the unique <code>FamilyID</code>s in the dataset.</p></li>
-<li><p>Sort the dataset from the shortest to the tallest child.</p></li>
-<li><p>Sort the dataset from the tallest to the shortest child.</p></li>
-<li><p>Choose a random sample of observations from the dataset.</p></li>
-<li><p>Find all observations where sons are taller than their fathers.</p></li>
-<li><p>Subset the data to <em>include</em> all observations where the heights of the parents are different by more than 6 inches.</p></li>
-<li><p>Subset the data to <em>exclude</em> all observations where the heights of the parents are different by more than 6 inches.</p></li>
+<li><code>arrange()</code></li>
+<li><code>count()</code></li>
+<li><code>distinct()</code></li>
+<li><code>slice()</code></li>
 </ul></article></slide>
 
 
