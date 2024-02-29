@@ -25,7 +25,7 @@ These slides are not meant to be standalone information. You should take notes t
 * Modern Dive [Chapter 4: Data Importing and “Tidy” Data](https://moderndive.com/4-tidy.html)
 * DataCamp [Introduction to the Tidyverse](https://learn.datacamp.com/courses/introduction-to-the-tidyverse)
 * DataCamp [Data Manipulation with dplyr](https://learn.datacamp.com/courses/data-manipulation-with-dplyr)
-* Data Wrangling, Part 1: [dplyr](https://dplyr.tidyverse.org/reference/index.html) Verbs for Rows [slides](https://stat-jet-asu.github.io/STT2860DataScience1/Slides/DataWranglingVerbs02.html)
+* Data Wrangling, Part 2: [dplyr](https://dplyr.tidyverse.org/reference/index.html) Verbs for Rows [slides](https://stat-jet-asu.github.io/STT2860DataScience1/Slides/DataWranglingVerbs02.html)
 
 # Review: Datasets
 
