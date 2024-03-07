@@ -1,0 +1,94 @@
+---
+title: "Worksheet: Annotation and Themes"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+### Packages Used
+
+```{r}
+# load all packages used here
+library(tidyverse)
+library(skimr)
+```
+
+### The `atlantichurricanes18512023.csv` dataset
+
+https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/atlantichurricanes18512023.html
+
+#### Load the dataset
+
+```{r}
+storms <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/atlantichurricanes18512023.csv")
+```
+
+```{r}
+skim(storms)
+```
+
+### Elements of `annotate()`
+
+https://ggplot2.tidyverse.org/index.html
+https://ggplot2.tidyverse.org/reference/annotate.html
+
+```{r}
+storms %>% 
+  filter(Year >= 1950) %>% 
+ggplot(aes(x = Year, y = Hurricanes)) +
+  geom_line() +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  scale_x_continuous(breaks = seq(1950, 2023, 10)) +
+  scale_y_continuous(breaks = seq(0, 16, 2), limits = c(0, 16)) +
+  labs(
+    title = "Atlantic Ocean Hurricanes Per Year 1950 to 2023",
+    subtitle = "Hurricane season is approximately June through November",
+    x = "year",
+    y = "number of hurricanes"
+  ) +
+  theme_minimal()
+```
+
+
+### Elements of `theme()`
+
+https://ggplot2.tidyverse.org/index.html
+https://ggplot2.tidyverse.org/reference/theme.html
+https://www.statology.org/rotate-axis-labels-ggplot2/
+
+```{r}
+storms %>% 
+  filter(Year >= 2000) %>% 
+ggplot(aes(x = Year, y = Hurricanes)) +
+  geom_col(width = 0.5) +
+  scale_x_continuous(breaks = seq(2000, 2023, 1)) +
+  scale_y_continuous(breaks = seq(0, 15, 1)) +
+  labs(
+    title = "Atlantic Ocean Hurricanes Per Year 2000 to 2023",
+    subtitle = "Hurricane season is approximately June through November",
+    x = "year",
+    y = "number of hurricanes"
+  )
+```
+
+
+***
+```{r}
+sessionInfo()
+```
+
