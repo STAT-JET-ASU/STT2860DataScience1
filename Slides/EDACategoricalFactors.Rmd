@@ -103,18 +103,19 @@ Now year is stored as a factor (`<fct>`) vector.
 
 ## 
 
-The `tidyverse` lets us change multiple variables at once.
-
 ```{r}
-students <- students %>%
+# tidyverse lets us mutate() multiple variables in one statement
+studentsA <- students %>%
   mutate(
-    Year = factor(Year, levels = c(
-      "Freshman",
-      "Sophomore",
-      "Junior",
-      "Senior",
-      "Graduate Certificate Program"
-    )),
+    Year = factor(Year,
+      levels = c(
+        "Freshman",
+        "Sophomore",
+        "Junior",
+        "Senior",
+        "Graduate Certificate Program"
+      )
+    ),
     CodedMajor = factor(CodedMajor,
       levels = c(
         "Computer Science",
@@ -132,7 +133,7 @@ students <- students %>%
 The class years are now in the customary order, as determined by the imposed factor structure. 
 
 ```{r}
-students %>% 
+studentsA %>% 
   count(Year)
 ```
 
@@ -142,18 +143,47 @@ students %>%
 Now the catch-all `Other` category is last, as is typically seen in summaries, because of the imposed structure. There are also *ordered factors* that have additional structure for higher level analyses. We do not need those for EDA.
 
 ```{r}
-students %>% 
+studentsA %>% 
   count(CodedMajor) %>% 
   mutate(percents = 100 * prop.table(n))
 ```
 
 
-## Recoding Factors
+## Renaming Using the `labels =` Option
+
+You can use the `labels =` parameter in `factor()` to create alternate names that will be displayed for the various factor levels in plots, etc. The `level` and `label` orders must match.
+
+```{r}
+studentsB <- students %>% 
+  mutate(Year = factor(Year, 
+                       levels = c("Freshman",
+                                  "Sophomore",
+                                  "Junior",
+                                  "Senior",
+                                  "Graduate Certificate Program"),
+                       labels = c("FR", 
+                                  "SO", 
+                                  "JR", 
+                                  "SR", 
+                                  "GR")))
+```
+
+
+## The Years Table One More Time
+
+```{r}
+levels(studentsB$Year)
+studentsB %>% 
+  count(Year)
+```
+
+
+## Alternative: Recoding Factors
 
 Sometimes we want to rename or combine some factor levels. The `fct_recode` function from the `forcats` package allows us to do this. The function `fct_collapse()` is another alternative. This time we will create a new variable `Year2`.
 
 ```{r}
-students <- students %>%
+studentsC <- studentsA %>%
   mutate(Year2 = fct_recode(Year,
     FR = "Freshman",
     SO = "Sophomore",
@@ -161,7 +191,7 @@ students <- students %>%
     SR = "Senior",
     GR = "Graduate Certificate Program"
   ))
-glimpse(students$Year2)   # glimpse just one variable using $
+glimpse(studentsC$Year2)   # glimpse just one variable using $
 ```
 
 
@@ -171,21 +201,21 @@ Assigning more than one level to the same new level name will combine the levels
 
 ```{r}
 library(tidyverse) # or library(forcats)
-students <- students %>%
+studentsD <- studentsA %>%
   mutate(CodedMajor2 = fct_recode(CodedMajor,
     "Math" = "Mathematical Sciences",
     "Not Math" = "Computer Science",
     "Not Math" = "Other Sciences",
     "Not Math" = "Other"
   ))
-glimpse(students$CodedMajor2)   # glimpse just one variable using $
+glimpse(studentsD$CodedMajor2)   # glimpse just one variable using $
 ```
 
 
 ## Recoded Variable Table
 
 ```{r}
-students %>% 
+studentsD %>% 
   count(CodedMajor2) %>% 
   mutate(proportion = prop.table(n))
 ```
@@ -197,19 +227,41 @@ How could we fix this so that `Math` is the first row in the table?
 
 ## Use a Single `mutate()` Statement
 
-In these examples, you could combine both the `fact_recode()` functions in the same `mutate()` statement you used to create your factors. That is another advantage of the `tidyverse` way. This example has  just `Year` due to limited slide space.
+You can combine different functions in one `mutate()` statement.
 
 ```{r}
-students <- students %>% 
-  mutate(Year = factor(Year, levels = c("Freshman",
-                                        "Sophomore",
-                                        "Junior",
-                                        "Senior",
-                                        "Graduate Certificate Program")),
+studentsE <- students %>% 
+  mutate(Year = factor(Year, 
+                       levels = c("Freshman",
+                                   "Sophomore",
+                                   "Junior",
+                                   "Senior",
+                                   "Graduate Certificate Program")),
          Year2 = fct_recode(Year,
                             FR = "Freshman",
                             SO = "Sophomore",
                             JR = "Junior",
                             SR = "Senior",
-                            GR = "Graduate Certificate Program"))
+                            GR = "Graduate Certificate Program")
+  )
 ```
+
+
+## Documentation Links
+
+* [forcats](https://forcats.tidyverse.org/)
+
+* [`fct_recode()`](https://forcats.tidyverse.org/reference/index.html)
+
+* [`fct_collapse()`](https://forcats.tidyverse.org/reference/fct_collapse.html)
+
+* [`factor()`](https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/factor), or see a [quick DataCamp tutorial](https://www.datacamp.com/tutorial/factors-in-r)
+
+* [`count()`](https://dplyr.tidyverse.org/reference/count.html)
+
+* [`distinct()`](https://dplyr.tidyverse.org/reference/distinct.html)
+
+* [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)
+
+* `prop.table()` is a base `R` function we are using with `count()` to calculate proportions from the column of counts
+

@@ -3219,7 +3219,7 @@ line-height: 1.9;
       <h1 data-config-title><!-- populated from slide_config.json --></h1>
       
       <p data-config-presenter><!-- populated from slide_config.json --></p>
-            <p style="margin-top: 6px; margin-left: -2px;">Monday, February 26, 2024 @ 06:37 PM</p>
+            <p style="margin-top: 6px; margin-left: -2px;">Wednesday, March 13, 2024 @ 11:11 PM</p>
           </hgroup>
   </slide>
 
@@ -3325,17 +3325,18 @@ $ AY          &lt;chr&gt; &quot;2014-2015&quot;, &quot;2014-2015&quot;, &quot;20
 
 </article></slide><slide class=""><hgroup><h2></h2></hgroup><article  id="section">
 
-<p>The <code>tidyverse</code> lets us change multiple variables at once.</p>
-
-<pre class = 'prettyprint lang-r'>students &lt;- students %&gt;%
+<pre class = 'prettyprint lang-r'># tidyverse lets us mutate() multiple variables in one statement
+studentsA &lt;- students %&gt;%
   mutate(
-    Year = factor(Year, levels = c(
-      &quot;Freshman&quot;,
-      &quot;Sophomore&quot;,
-      &quot;Junior&quot;,
-      &quot;Senior&quot;,
-      &quot;Graduate Certificate Program&quot;
-    )),
+    Year = factor(Year,
+      levels = c(
+        &quot;Freshman&quot;,
+        &quot;Sophomore&quot;,
+        &quot;Junior&quot;,
+        &quot;Senior&quot;,
+        &quot;Graduate Certificate Program&quot;
+      )
+    ),
     CodedMajor = factor(CodedMajor,
       levels = c(
         &quot;Computer Science&quot;,
@@ -3350,7 +3351,7 @@ $ AY          &lt;chr&gt; &quot;2014-2015&quot;, &quot;2014-2015&quot;, &quot;20
 
 <p>The class years are now in the customary order, as determined by the imposed factor structure.</p>
 
-<pre class = 'prettyprint lang-r'>students %&gt;% 
+<pre class = 'prettyprint lang-r'>studentsA %&gt;% 
   count(Year)</pre>
 
 <pre ># A tibble: 5 × 2
@@ -3366,7 +3367,7 @@ $ AY          &lt;chr&gt; &quot;2014-2015&quot;, &quot;2014-2015&quot;, &quot;20
 
 <p>Now the catch-all <code>Other</code> category is last, as is typically seen in summaries, because of the imposed structure. There are also <em>ordered factors</em> that have additional structure for higher level analyses. We do not need those for EDA.</p>
 
-<pre class = 'prettyprint lang-r'>students %&gt;% 
+<pre class = 'prettyprint lang-r'>studentsA %&gt;% 
   count(CodedMajor) %&gt;% 
   mutate(percents = 100 * prop.table(n))</pre>
 
@@ -3378,11 +3379,46 @@ $ AY          &lt;chr&gt; &quot;2014-2015&quot;, &quot;2014-2015&quot;, &quot;20
 3 Other Sciences          138    18.1 
 4 Other                    25     3.27</pre>
 
-</article></slide><slide class=""><hgroup><h2>Recoding Factors</h2></hgroup><article  id="recoding-factors">
+</article></slide><slide class=""><hgroup><h2>Renaming Using the <code>labels =</code> Option</h2></hgroup><article  id="renaming-using-the-labels-option">
+
+<p>You can use the <code>labels =</code> parameter in <code>factor()</code> to create alternate names that will be displayed for the various factor levels in plots, etc. The <code>level</code> and <code>label</code> orders must match.</p>
+
+<pre class = 'prettyprint lang-r'>studentsB &lt;- students %&gt;% 
+  mutate(Year = factor(Year, 
+                       levels = c(&quot;Freshman&quot;,
+                                  &quot;Sophomore&quot;,
+                                  &quot;Junior&quot;,
+                                  &quot;Senior&quot;,
+                                  &quot;Graduate Certificate Program&quot;),
+                       labels = c(&quot;FR&quot;, 
+                                  &quot;SO&quot;, 
+                                  &quot;JR&quot;, 
+                                  &quot;SR&quot;, 
+                                  &quot;GR&quot;)))</pre>
+
+</article></slide><slide class=""><hgroup><h2>The Years Table One More Time</h2></hgroup><article  id="the-years-table-one-more-time">
+
+<pre class = 'prettyprint lang-r'>levels(studentsB$Year)</pre>
+
+<pre >[1] &quot;FR&quot; &quot;SO&quot; &quot;JR&quot; &quot;SR&quot; &quot;GR&quot;</pre>
+
+<pre class = 'prettyprint lang-r'>studentsB %&gt;% 
+  count(Year)</pre>
+
+<pre ># A tibble: 5 × 2
+  Year      n
+  &lt;fct&gt; &lt;int&gt;
+1 FR       15
+2 SO      140
+3 JR      295
+4 SR      313
+5 GR        1</pre>
+
+</article></slide><slide class=""><hgroup><h2>Alternative: Recoding Factors</h2></hgroup><article  id="alternative-recoding-factors">
 
 <p>Sometimes we want to rename or combine some factor levels. The <code>fct_recode</code> function from the <code>forcats</code> package allows us to do this. The function <code>fct_collapse()</code> is another alternative. This time we will create a new variable <code>Year2</code>.</p>
 
-<pre class = 'prettyprint lang-r'>students &lt;- students %&gt;%
+<pre class = 'prettyprint lang-r'>studentsC &lt;- studentsA %&gt;%
   mutate(Year2 = fct_recode(Year,
     FR = &quot;Freshman&quot;,
     SO = &quot;Sophomore&quot;,
@@ -3390,7 +3426,7 @@ $ AY          &lt;chr&gt; &quot;2014-2015&quot;, &quot;2014-2015&quot;, &quot;20
     SR = &quot;Senior&quot;,
     GR = &quot;Graduate Certificate Program&quot;
   ))
-glimpse(students$Year2)   # glimpse just one variable using $</pre>
+glimpse(studentsC$Year2)   # glimpse just one variable using $</pre>
 
 <pre > Factor w/ 5 levels &quot;FR&quot;,&quot;SO&quot;,&quot;JR&quot;,..: 3 3 4 3 4 2 3 4 4 4 ...</pre>
 
@@ -3399,20 +3435,20 @@ glimpse(students$Year2)   # glimpse just one variable using $</pre>
 <p>Assigning more than one level to the same new level name will combine the levels. Here all the majors besides <code>Mathematical Sciences</code> become one group.</p>
 
 <pre class = 'prettyprint lang-r'>library(tidyverse) # or library(forcats)
-students &lt;- students %&gt;%
+studentsD &lt;- studentsA %&gt;%
   mutate(CodedMajor2 = fct_recode(CodedMajor,
     &quot;Math&quot; = &quot;Mathematical Sciences&quot;,
     &quot;Not Math&quot; = &quot;Computer Science&quot;,
     &quot;Not Math&quot; = &quot;Other Sciences&quot;,
     &quot;Not Math&quot; = &quot;Other&quot;
   ))
-glimpse(students$CodedMajor2)   # glimpse just one variable using $</pre>
+glimpse(studentsD$CodedMajor2)   # glimpse just one variable using $</pre>
 
 <pre > Factor w/ 2 levels &quot;Not Math&quot;,&quot;Math&quot;: 1 2 1 2 1 1 2 1 1 1 ...</pre>
 
 </article></slide><slide class=""><hgroup><h2>Recoded Variable Table</h2></hgroup><article  id="recoded-variable-table">
 
-<pre class = 'prettyprint lang-r'>students %&gt;% 
+<pre class = 'prettyprint lang-r'>studentsD %&gt;% 
   count(CodedMajor2) %&gt;% 
   mutate(proportion = prop.table(n))</pre>
 
@@ -3428,20 +3464,35 @@ glimpse(students$CodedMajor2)   # glimpse just one variable using $</pre>
 
 </article></slide><slide class=""><hgroup><h2>Use a Single <code>mutate()</code> Statement</h2></hgroup><article  id="use-a-single-mutate-statement">
 
-<p>In these examples, you could combine both the <code>fact_recode()</code> functions in the same <code>mutate()</code> statement you used to create your factors. That is another advantage of the <code>tidyverse</code> way. This example has just <code>Year</code> due to limited slide space.</p>
+<p>You can combine different functions in one <code>mutate()</code> statement.</p>
 
-<pre class = 'prettyprint lang-r'>students &lt;- students %&gt;% 
-  mutate(Year = factor(Year, levels = c(&quot;Freshman&quot;,
-                                        &quot;Sophomore&quot;,
-                                        &quot;Junior&quot;,
-                                        &quot;Senior&quot;,
-                                        &quot;Graduate Certificate Program&quot;)),
+<pre class = 'prettyprint lang-r'>studentsE &lt;- students %&gt;% 
+  mutate(Year = factor(Year, 
+                       levels = c(&quot;Freshman&quot;,
+                                   &quot;Sophomore&quot;,
+                                   &quot;Junior&quot;,
+                                   &quot;Senior&quot;,
+                                   &quot;Graduate Certificate Program&quot;)),
          Year2 = fct_recode(Year,
                             FR = &quot;Freshman&quot;,
                             SO = &quot;Sophomore&quot;,
                             JR = &quot;Junior&quot;,
                             SR = &quot;Senior&quot;,
-                            GR = &quot;Graduate Certificate Program&quot;))</pre></article></slide>
+                            GR = &quot;Graduate Certificate Program&quot;)
+  )</pre>
+
+</article></slide><slide class=""><hgroup><h2>Documentation Links</h2></hgroup><article  id="documentation-links">
+
+<ul>
+<li><p><a href='https://forcats.tidyverse.org/' title=''>forcats</a></p></li>
+<li><p><a href='https://forcats.tidyverse.org/reference/index.html' title=''><code>fct_recode()</code></a></p></li>
+<li><p><a href='https://forcats.tidyverse.org/reference/fct_collapse.html' title=''><code>fct_collapse()</code></a></p></li>
+<li><p><a href='https://www.rdocumentation.org/packages/base/versions/3.6.2/topics/factor' title=''><code>factor()</code></a>, or see a <a href='https://www.datacamp.com/tutorial/factors-in-r' title=''>quick DataCamp tutorial</a></p></li>
+<li><p><a href='https://dplyr.tidyverse.org/reference/count.html' title=''><code>count()</code></a></p></li>
+<li><p><a href='https://dplyr.tidyverse.org/reference/distinct.html' title=''><code>distinct()</code></a></p></li>
+<li><p><a href='https://dplyr.tidyverse.org/reference/mutate.html' title=''><code>mutate()</code></a></p></li>
+<li><p><code>prop.table()</code> is a base <code>R</code> function we are using with <code>count()</code> to calculate proportions from the column of counts</p></li>
+</ul></article></slide>
 
 
   <slide class="backdrop"></slide>
