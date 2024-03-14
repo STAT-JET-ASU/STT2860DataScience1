@@ -28,7 +28,7 @@ knitr::opts_chunk$set(
 
 ### NFL Players 2016 Dataset
 
-You can read description of the dataset [HERE](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html).
+Go to the [description](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html) of Dr. Thomley's NFL Players 2016 Dataset and read the brief description and variable definitions. Click on the `NFLplayers2016.csv` link at the top and use the URL to read the data into `R`. Save the dataset as an object named `nfl2016`.
 
 ```{r nfl2016}
 dataURL <- "https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/NFLplayers2016.csv"

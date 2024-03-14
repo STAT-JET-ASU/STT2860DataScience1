@@ -1,5 +1,5 @@
 ---
-title: "Worksheet: Introduction to ggplot2"
+title: "Worksheet: Introduction to ggplot2 #2"
 subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
 author: "PUT YOUR NAME HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
@@ -7,8 +7,6 @@ output:
   html_document: 
     theme: yeti
     highlight: textmate
-    toc: true
-    toc_depth: 4 
 ---
 
 ```{r globaloptions, include = FALSE}
@@ -21,36 +19,30 @@ knitr::opts_chunk$set(
 
 ***
 
-Dr. Thomley's data files: https://stat-jet-asu.github.io/Datasets/DatasetList.html
-
-The tidyverse ggplot2 site: https://ggplot2.tidyverse.org/
-
-***
-
 ### Packages Used
 
 ```{r}
 # load all packages used here
-
+library(tidyverse)
+library(nycflights13)
+library(skimr)
 ```
 
+### The `flights` dataset from nycflights13
 
-### Anthropometric Dataset
-
-Description: https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/anthropometric.html 
+This dataset is in the nycflights13 package, so we have access once we load the package.
 
 #### Load the dataset
 
 ```{r}
-
+flights <- flights
 ```
 
-#### Explore the structure
+#### Explore the structure with `skim()`
 
 ```{r}
-
+skim(flights)
 ```
-
 
 ### NFL PLayers 2016 Dataset
 
@@ -59,93 +51,151 @@ Description: https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLp
 #### Load the dataset
 
 ```{r}
-
+NFL <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/NFLplayers2016.csv")
 ```
 
-#### Explore the structure
+#### Explore the structure with `skim()`
 
 ```{r}
-
+skim(NFL)
 ```
 
+### Barplots with `geom_bar()`
 
-### Scatterplots
-
-`geom_point()` help page: https://ggplot2.tidyverse.org/reference/geom_point.html
-
-*add some notes here*
-
-#### Minimal Scatterplot
+For `geom_bar()`, we input an `x` variable and the geometry counts how many of each value occurs in that variable, and that become the "y" value for the height of the bars.
 
 ```{r}
-
+ggplot(flights, aes(x = origin)) +
+  geom_bar()
 ```
-
-#### Additional Aesthetics
-
-shape
 
 ```{r}
-
+ggplot(flights, aes(x = origin)) +
+  geom_bar(color = "black", fill = "orange", width = 0.5) +
+  labs(
+    title = "Origins of Flights from the New York Metro Area in 2013",
+    x = "originating airport by 3-letter code"
+  ) +
+  theme_minimal()
 ```
 
-size
+The default order for bars in a plot is alphabetical by category name. Also, sometimes long category names overlap.
 
 ```{r}
-
+ggplot(NFL, aes(x = PositionGrp)) +
+  geom_bar()
 ```
 
-color
+Options for fixing category names include:
+
+* change them to make them shorter
+
+    * make it a factor var to change the names
+    * use `scale_x_discrete()` to change labels
+    
+* rotate or slant the text
+
+    * typically with a `theme()` element
+    * also with the use `scale_x_discrete()` (I believe)
+
+* flip the plot sideways
+
+    * map `PositionGrp` to the y aesthetic
+    * we could use `coord_flip()` to flip `x` and `y`
 
 ```{r}
-
+ggplot(NFL, aes(y = PositionGrp)) +
+  geom_bar() +
+  scale_x_continuous(breaks = seq(from = 0, to = 800, by = 100))
 ```
-
-fill
 
 ```{r}
-
+ggplot(NFL, aes(x = PositionGrp)) +
+  geom_bar() +
+  scale_y_continuous(breaks = seq(from = 0, to = 800, by = 100)) +
+  coord_flip()
 ```
 
-#### Non-Aesthetic Formatting
-
-shape
+Where do flights from the three airports go?
 
 ```{r}
-
+ggplot(flights, aes(x = origin, fill = dest)) +
+  geom_bar()
 ```
-
-size
 
 ```{r}
-
+ggplot(NFL, aes(x = PositionGrp, fill = Side)) +
+  geom_bar() +
+  coord_flip()
 ```
-
-color
 
 ```{r}
-
+ggplot(NFL, aes(x = Side, fill = PositionGrp)) +
+  geom_bar(position = "dodge", color = "black")
 ```
-
-fill
 
 ```{r}
-
+ggplot(NFL, aes(x = Side, fill = PositionGrp)) +
+  geom_bar(position = "fill", color = "black") +
+  labs(y = "proportion")
 ```
 
-#### Labeling
+### Barplots with `geom_col()`
+
+For `geom_col()`, we input an `x` variable and we input a `y` variable that specifies the heights of the bars. The data is already summarized somehow.
+
+I can count the categories up myself to generate a smaller dataset with categories and counts. I get a dataset with two variables: the variable I counted, and one called `n`
+that is the counts.
 
 ```{r}
+NFL_PosGrp_Counts <- NFL %>% 
+  count(PositionGrp)
 
+NFL_PosGrp_Counts
 ```
-
-#### Scaling Axes
 
 ```{r}
-
+ggplot(NFL_PosGrp_Counts, aes(x = PositionGrp, y = n)) +
+  geom_col()
 ```
 
-WE WILL ADD MORE HERE AS WE GO ALONG!
+If I make the plot this way, I can rearrange the bars in order using the `reorder()` function. Here, I want to change the order of the categories according to their counts.
+
+```{r}
+ggplot(NFL_PosGrp_Counts, aes(x = reorder(PositionGrp, n), y = n)) +
+  geom_col() 
+```
+
+```{r}
+ggplot(NFL_PosGrp_Counts, aes(x = reorder(PositionGrp, n), y = n)) +
+  geom_col() +
+  coord_flip()
+```
+
+```{r}
+ggplot(NFL_PosGrp_Counts, aes(x = reorder(PositionGrp, -n), y = n)) +
+  geom_col() 
+```
+
+```{r}
+ggplot(NFL_PosGrp_Counts, aes(x = reorder(PositionGrp, -n), y = n)) +
+  geom_col() +
+  coord_flip()
+```
+
+```{r}
+NFL_wts <- NFL %>% 
+  group_by(Side) %>% 
+  summarize(mean_wt = mean(Weight))
+
+NFL_wts
+
+ggplot(NFL_wts, aes(x = Side, y = mean_wt)) +
+  geom_col(width = 0.5)
+```
+
+### The `annotate()` function
+
 
 
 ***

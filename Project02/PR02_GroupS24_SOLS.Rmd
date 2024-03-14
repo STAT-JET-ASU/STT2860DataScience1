@@ -1,0 +1,48 @@
+---
+title: "Project 02: Group Coding & Analysis"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
+author: "PUT EVERYONE'S NAMES HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+    code_folding: hide
+---
+
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Packages Used
+
+```{r packages}
+
+```
+
+### Datasets Used
+
+#### NFL PLayers 2016
+
+Go to the [description](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html) of Dr. Thomley's NFL Players 2016 Dataset and read the brief summary and variable definitions. Click on the `NFLplayers2016.csv` link at the top and use the URL to read the data into `R`. Save the dataset as an object named `nfl2016`.
+
+```{r}
+
+```
+
+
+
+
+***
+```{r}
+sessionInfo()
+```
+

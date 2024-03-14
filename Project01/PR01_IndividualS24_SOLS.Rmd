@@ -1,0 +1,270 @@
+---
+title: "Project 01: Individual Coding & Analysis"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
+author: "SOLUTIONS // Jill E. Thomley"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Gambling Winnings from *Introduction to R*
+
+In the second chapter of DataCamp's *Introduction to R* course, you created and manipulated vectors representing winnings for one week in poker and roulette. In some cases you performed operations more than once using different methods, to learn how to be more compact/efficient. You will adapt some of that work here. Be as neat and efficient as you can in your coding.
+
+#### (a) winnings vectors
+
+A person plays poker and roulette on weekdays for two weeks. Winnings (in US dollars) are tabulated below. Negative values are, of course, losses. Create named vectors of winnings for each game where the names are the days of the week. 
+
+| Day Number | Day of the Week | Poker Winnings | Roulette Winnings |
+|:----------:|:---------------:|:--------------:|:-----------------:|
+|      1     |       Mon       |       140      |        -25        | 
+|      2     |       Tue       |       -50      |        -50        |
+|      3     |       Wed       |        20      |        100        |
+|      4     |       Thu       |      -120      |       -350        |
+|      5     |       Fri       |       240      |        105        |
+|      6     |       Mon       |       100      |          5        |
+|      7     |       Tue       |       -30      |        -85        |
+|      8     |       Wed       |       305      |        210        |
+|      9     |       Thu       |       -90      |        175        |
+|     10     |       Fri       |      1000      |       -105        |
+
+```{r}
+# use the rep() function for the pattern
+
+daynames <- c(rep(c("Mon", "Tue", "Wed", "Thu", "Fri"), times = 2))
+
+# create the poker vector from the values
+
+poker <- c(140, -50, 20, -120, 240, 100, -30, 305, -90, 1000)
+
+# assign day names to the values vector
+
+names(poker) <- daynames
+
+# visualize the vector you have created
+
+poker
+
+# repeat for the roulette winnings vector
+
+roulette <- c(-25, -50, 100, -350, 105, 5, -85, 210, 175, -105)
+
+names(roulette) <- daynames
+
+roulette
+```
+
+#### (b) daily totals
+
+Combine your vectors from (a) to create one vector that contains the total win/loss amount for each of the 10 days.
+
+```{r}
+daytotals <- poker + roulette
+
+daytotals
+```
+
+#### (c) overall totals
+
+Use your vectors from (a) and (b) to find (i) total poker winnings, (ii) total roulette winnings, and (iii) total overall winnings.
+
+```{r}
+poker_winnings <- sum(poker)
+
+poker_winnings
+
+roulette_winnings <- sum(roulette)
+
+roulette_winnings
+
+# 1st way to get the daily totals
+
+overall_winnings <- sum(daytotals)
+
+overall_winnings
+
+# 2nd way to get the daily totals
+
+overall_winnings_alt <- poker_winnings + roulette_winnings
+
+overall_winnings_alt
+```
+
+#### (d) winning days
+
+On which days did the person lose money playing poker? On which days did they lose money playing roulette? What about each day overall? In each of the three cases, select only those days and print them out.
+
+```{r}
+# find which days have negative values (logic vector)
+# negative values / losses will be TRUE, others FALSE
+
+index_poker <- poker < 0
+
+index_poker
+
+# use the logic vector to select the days with losses
+# only days that are TRUE (i.e., 1) will be selected
+
+poker[index_poker]
+
+# alternatively, you can do the selection in one step
+# select all vector elements where the values are < 0
+
+poker[poker < 0]
+
+index_roulette <- roulette < 0
+
+roulette[index_roulette]
+
+index_daytotals <- daytotals < 0
+
+daytotals[index_daytotals]
+```
+
+#### (e) one weekday
+
+Choose one weekday (Monday through Friday). Create a vector that contains only those two days from the poker winnings vector. Do the same for roulette winnings vector and your vector of daily totals from (b).
+
+```{r}
+# this is similar to the way we found losing days
+# however, this situation uses a character vector
+# we can use the daynames vector to index the days
+
+index_day <- daynames == "Mon"
+
+# both occurrences of the day we chose will be TRUE
+
+index_day
+
+poker[index_day]
+
+roulette[index_day]
+
+daytotals[index_day]
+
+# alternatively, nest the index in the [] selection
+
+poker[daynames == "Tue"]
+poker[daynames == "Wed"]
+poker[daynames == "Thu"]
+poker[daynames == "Fri"]
+
+# one other option that combines the previous
+# this lets us change one option for all three
+# the user only changes the day that they want 
+
+
+daychoice <- "Mon" 
+
+poker[daynames == daychoice]
+roulette[daynames == daychoice]
+daytotals[daynames == daychoice]
+
+# this version will also work for multiple days
+# we use the %in% logical operator instead of ==
+
+daychoice <- c("Mon", "Fri") 
+
+poker[daynames %in% daychoice]
+roulette[daynames %in% daychoice]
+daytotals[daynames %in% daychoice]
+```
+
+#### (f) wins summary
+
+Does the person tend to make money or lose money playing each game? What about overall? Can you detect any patterns from just the analyses you have done above? What else might help you make sense of these data?
+
+**ANSWER:** During the two weeks that were analyzed, the person had a net win of \$`r poker_winnings` at poker and a net loss of \$`r abs(roulette_winnings)` at roulette, for an overall net win of \$`r overall_winnings`. Any other patterns are difficult to detect. Plotting might help.
+
+<hr>
+
+**An Example Plot**
+
+```{r}
+# make a dataset out of your vectors to plot
+
+library(tidyverse)
+gambling <- tibble(
+  daynumber = 1:10,
+  daynames,
+  poker,
+  roulette,
+) %>%
+  mutate(daytotal = poker + roulette)
+
+# one possible example of plotting the winnings
+# pivoting the data would help create a legend
+# I used annotate to identify the lines instead
+# pivoting would also cut down on the plot code
+# what does each part of the code below create?
+
+ggplot(gambling, aes(x = daynumber)) +
+  geom_line(aes(y = poker),
+    color = "darkblue",
+    size = 1
+  ) +
+  geom_point(aes(y = poker),
+    size = 2
+  ) +
+  geom_line(aes(y = roulette),
+    color = "orangered",
+    size = 1
+  ) +
+  geom_point(aes(y = roulette),
+    size = 2
+  ) +
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed"
+  ) +
+  scale_x_continuous(
+    breaks = 1:10,
+    labels = daynames
+  ) +
+  scale_y_continuous(breaks = seq(-1000, 1000, by = 100)) +
+  annotate("label",
+    x = 8,
+    y = -250,
+    label = "blue is poker and orange is roulette"
+  ) +
+  annotate("segment",
+    x = 9.1,
+    y = 900,
+    xend = 9.8,
+    yend = 990,
+    arrow = arrow(length = unit(.3, "cm"))
+  ) +
+  annotate("text",
+    x = 8,
+    y = 900,
+    label = "exceptional day!"
+  ) +
+  labs(
+    title = "Gambling Wins and Losses Over a Two-Week Span",
+    subtitle = "example plot for exploring patterns in the win/loss amounts",
+    x = "day of the week",
+    y = "winnings ($)"
+  ) +
+  theme_minimal()
+```
+
+In general, the pattern of wins and losses by day is similar (roughly rising and falling together) except for the second Friday, which has a marked difference---the person had a hot day at poker, it seems.
+
+
+***
+```{r}
+sessionInfo()
+```
+

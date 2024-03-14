@@ -1,0 +1,23 @@
+---
+title: "Self and Peer Assessment"
+subtitle: "STT2860 Project 02 Fall 2022"
+author: "YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+<hr>
+
+This is a free-form reflection about the process of completing and submitting Project 1. I want to see your honest self-assessment of your own performance in the context of completing the project, as well as your assessment of your partners. For example, did you: (1) do the work you committed to do in a timely manner; (2) communicate well and quickly; (3) attend class work periods and any other scheduled meetings; (4) consult as needed with your partners and/or Dr. Thomley? Refer back to your original work plan to provide context for your assessments. Tell me the good and the bad.
+
+**SELF ASSESSMENT:**
+
+<erase this and type your answer here>
+
+**PEER ASSESSMENT:**
+
+<erase this and type your answer here>
+
+<hr>

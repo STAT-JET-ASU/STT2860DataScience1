@@ -1,0 +1,31 @@
+---
+title: "Personal Final Assessment"
+subtitle: "STT2860 F22 Project 03"
+author: "Authors: YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+---
+***
+
+This is a free-form reflection about your experience in the course. Pleased wait to complete these questions until after you finish (or mostly finish) Project #3.
+
+**Question 1:** Reflect back on your experience in this course. What accomplishment(s) are you most proud of?
+
+ANSWER:
+
+**Question 2:** What topic(s) do you still find yourself struggling with? What materials, resources, or help do you feel you would need to help clear up this topic?
+
+ANSWER:
+
+**Question 3:** If you could go back to the start of the semester and do things over, what (if anything) would you change about your approach to this course?
+
+ANSWER:
+
+**Question 4:** Consider the "Becoming a Data Scientist" interviews you watched for the first two projects. Do you consider *yourself* a data scientist? Please explain.
+
+ANSWER:
+
+***
