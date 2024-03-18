@@ -57,26 +57,6 @@ ANSWER:
 
 <hr>
 
-#### Take the DataCamp assessment [Data Manipulation with R](https://assessment-v2.datacamp.com/exploratory-analysis-r). 
-
-**What score did you achieve on Data Manipulation with R last time?**
-
-ANSWER:
-
-**What score did you achieve on Data Manipulation with R this time?**
-
-ANSWER:
-
-**You performed better than what percent of other people this time?**
-
-ANSWER:
-
-**What courses did DataCamp recommend for you to improve this time?**
-
-ANSWER:
-
-<hr>
-
 #### Reflect on Your DataCamp Assessment Results
 
 Recall, STT 2860 Introduction to Data Management & Visualization has no course prerequisites, so we assume no knowledge of R programming for anyone coming into the course (though some students may have some experience). 
@@ -86,10 +66,6 @@ Did your scores improve since you took these assessments for Project 1? Why do y
 ANSWER:
 
 Do you feel like the assessments reflect your knowledge here at the end of the semester? Explain. 
-
-ANSWER:
-
-What can you do to further improve your current skills and keep on learning new skills? Explain. 
 
 ANSWER:
 
