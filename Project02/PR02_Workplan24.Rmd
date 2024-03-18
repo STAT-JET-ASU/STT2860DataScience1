@@ -1,7 +1,7 @@
 ---
 title: "Project 02: Group Work Plan"
 subtitle: "STT 2860 Intro to Data Management & Visualization" 
-author: "PUT THE NAMES OF EVERYONE IN YOUR GROUP HERE"
+author: "PUT THE NAMES OF CONTRIBUTING GROUP MEMBERS HERE"
 date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
 output: 
   html_document: 
