@@ -1,0 +1,44 @@
+---
+title: "Project 02: Group Work Plan"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
+author: "PUT THE NAMES OF EVERYONE IN YOUR GROUP HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+***
+
+**Work Plan & Completion Timeline**
+
+Create a timeline for completing the group component of Project 01. It is okay if you do not end up exactly meeting the timeline; things happen. However, your group should give it some realistic thought.
+
+* What will you do or work on during each of the two class workdays? 
+
+* What will you work on outside of class? When will that work happen?
+
+* Who will be responsible for uploading group components to AsULearn?
+
+* Will one person be in charge of some aspects of the project (e.g., proofreading code)? If so, who has responsibility for what? 
+
+ANSWER:
+
+**Group Communication Mode & Plan**
+
+Determine and explain how your group members will communicate with each other outside of class. Decide and be clear about group expectations for communication and limits to your availability.
+
+* What will be the primary mode of communication for your group outside of class?
+
+* What are the expectations for how quickly someone will reply to communications?
+
+* What is the plan if someone does not respond in your agreed-upon time frame? 
+
+* Are there any times when you know one or more members will not be available?
+
+ANSWER:
+
+***
+END!
