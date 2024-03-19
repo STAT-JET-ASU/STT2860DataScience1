@@ -25,12 +25,161 @@ knitr::opts_chunk$set(
 ### Packages Used
 
 ```{r packages}
+library(tidyverse)
+```
+
+
+### Semmelweis Hand Washing Data
+
+Postpartum infections, known puerperal fever or “childbed fever,” are caused by bacteria invading the female reproductive tract. Historically, this has been a major cause of maternal mortality. Data suggest that the long-term rate has been about one maternal death for every 100 births. Vienna General Hospital served a large volume of pregnant women in the early 1800s, so they added a second maternity clinic in 1833. Clinic 1 was staffed by doctors and medical students, while midwives and their students served at Clinic 2. Midwives only tended to birthing women, but medical students also spent time in the autopsy rooms examining cadavers. No one thought to wash their hands when going from the morgue to the delivery room, or between patients. Yikes! 
+
+Dr. Ignaz Semmelweis (1818–1965) developed a theory: the medical students were transferring some kind of “morbid poison” from cadavers to maternity patients. The two clinics used the same techniques and Semmelweis had already worked to eliminate most other differences that could contribute to this very serious issue. In June 1847, he introduced a new hand washing protocol using chlorinated lime, which we now know is a disinfectant. Louis Pasteur’s formal experiments on the relationship between germs and disease would not be carried out until the early 1860s, so this was a truly novel idea, though not well-received by all.
+
+Spoiler: The hand washing protocol was a success! Sadly, Semmelweis was not really very good at publishing or sharing his results in a clear way, so he was ridiculed rather than praised. Eventually he lost his job and died in an asylum---ironically, of an infection. If Dr. Ignaz Semmelweis had been able to consult with students in STT 2860, he could have had help making superb visualizations to effectively "wow" his colleagues and show the impact of his protocol! This is where you come in.
+
+```{r readsemmdata}
+semmdata01 <- 
+  read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/semmelweisannualbyclinic.csv")
+
+semmdata02 <- 
+  read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/semmelweismonthly.csv") %>% 
+  mutate(handwashing = ifelse(date < as.Date("1847-06-01"), "dirty", "washed"))
+```
+
+
+#### Explore the Datasets
+
+Use `glimpse()` to explore the structure of both datasets that were loaded above.
+
+```{r glimpsesemm01}
+
+```
+
+```{r glimpsesemm02}
+
+```
+
+Explain what modification was made to the `semmelweismonthly` dataset in the process of reading it in. 
+
+**ANSWER:**
+
+
+#### Compute the Mortality Rates
+
+Each row in `semmdata01` represents one year of births for Clinic 1 or Clinic 2, prior to Dr. Semmelweis's hand washing intervention. There are different numbers of births for each year, which makes the raw counts of deaths difficult to compare. We need to create a new variable in the dataset called `mortalityrate` by dividing the number of `deaths` by the number of `births`. 
+
+```{r annualrate}
+
+```
+
+Each row in `semmdata02` represents one month of births for Clinic 1. Like we saw for years, there are a different numbers of births for each month, so we need to create a `mortalityrate` variable in this dataset as well. 
+
+```{r monthlyrate}
 
 ```
 
 
+#### Bar Plot for Clinics 1 and 2
 
-***
+Create a bar plot to compare the mortality rates for Clinic 1 and Clinic 2 for each year (i.e., the x-axis should be `year`). Remember that we already have `mortalityrate` as a variable, and that `clinic` is also a variable. Use the `position =` parameter within your geometry to make the bars appear side by side rather than stacked. Use `labs()` to add a title and better axis labels. Use any other features or formatting you think will help clarify the meaning of the data and make your plot more effective, such as scaling axes, adding annotations, changing colors, using `theme()` elements, etc.
+
+```{r clinicbarplot}
+
+```
+
+
+#### Plot of Mortality Over Time
+
+Create a line plot of `mortalityrate` over time. Add points to the line so it is clear that the actual data is from each month. Use the `handwashing` variable in some way to help the viewer identify which rates are from before Semmelweis' intervention ("dirty") and which are from after ("washed"). Indicate in some way on your plot the date (June 1847) when the hand washing protocol began. Use `labs()` to add a title and better axis labels. Use any other features or formatting you think will help get the message across that handwashing is a very good thing. Make the data pop!
+
+```{r timeseriesplot}
+
+```
+
+
+#### Brief Summary of Results
+
+Help Dr. Semmelweis explain why hand washing is a good thing! Write a few sentences highlighting some of the important points a reader should take away from your plots. 
+
+**ANSWER:** (erase this text and put your answer here)  
+
+
+### Fatty Fatty Fast Food Burger Data
+
+Nutritionists recommend against eating fast food because it is high in sodium, saturated fat, trans fat, and cholesterol. Eating too much over a long period of time can lead to health problems such as high blood pressure, heart disease, and obesity. Many fast-food meals contain more than an entire day's worth of recommended calories! A person eating the average 2000 calorie per day diet typically should have at most 65g of total fat and 22g of saturated fat per day. 
+
+The dataset below contains a sample of fast food burgers. Read a description [HERE](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/fastfood2017.html).
+
+```{r readffdata}
+ffdata <- 
+  read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/fastfood2017.csv") %>% 
+  filter(type == "Burger") %>% 
+  select(-type)
+```
+
+
+#### Explore the Dataset
+
+Use `glimpse()` to explore the structure of the dataset that was loaded above. 
+
+```{r glimpseffdata}
+
+```
+
+Explain what modifications were made to the `fastfood2017` dataset in the process of reading it in. 
+
+**ANSWER:** (erase this text and put your answer here) 
+
+
+#### Compute New Fat Variables
+
+Create a new variable in the dataset called `totfat65` that indicates whether or not a burger has more than 65g of total fat, with categories "exceeds 65g" and "does not exceed 65g".
+
+```{r createtotfat65}
+
+```
+
+Create a new variable in the dataset called `satfat22` that indicates whether or not a burger has more than 22g of saturated fat, with categories "exceeds 22g" and "does not exceed 22g".
+
+```{r createsatfat22}
+
+```
+
+
+#### Bar Plot for Total Fat
+
+Create a barplot that shows how many of the sampled fast food burgers do and do not exceed 65g of total fat. Use `satfat22`as a fill aesthetic. As always, be sure to add a meaningful title and axis labels (with units of measure, where applicable), as well as other formatting (e.g., color, bar width, axis scaling, informative legend title) to enhance the meaning and readability of your plot. 
+
+```{r fatbarplot}
+
+```
+
+
+#### Histogram for Total Fat
+
+Create a histogram using 8 bins for `totalfat`. Use `satfat22` as a fill aesthetic. Choose formatting for this plot so that it looks consistent with your bar plot (e.g., similar colors, styling, theme, legend title, axis labels, plot title, etc.). 
+
+```{r fathistogram}
+
+```
+
+
+#### Scatterplot for Protein and SatFat
+
+Create a scatterplot with `protein` on the x-axis and `saturated fat` on the y-axis. Use `satfat22` as a color aesthetic. Increase the point size to 5 and adjust the transparency to enhance visibility where the points overlap. Add a dashed horizontal line to indicate 22 grams of saturated fat. Choose formatting for this plot so that it looks consistent with your bar plot (e.g., similar colors, styling, theme, legend title, axis labels, plot title, etc.). Somewhere on the plot, include the information that 50g of protein is the minimum recommended amount for an average 2000 calorie per day diet.
+
+```{r fatscatterplot}
+
+```
+
+
+#### Three Things You Learned
+
+Describe one thing you learned about fat in fast food burgers from each of the plots you made.
+
+**ANSWER:** (erase this text and put your answer here) 
+
+
 ```{r}
 sessionInfo()
 ```
