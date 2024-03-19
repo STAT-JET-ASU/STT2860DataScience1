@@ -28,17 +28,217 @@ knitr::opts_chunk$set(
 
 ```
 
-### Datasets Used
 
-#### NFL PLayers 2016
+### NFL Players 2016 Dataset
 
-Go to the [description](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html) of Dr. Thomley's NFL Players 2016 Dataset and read the brief summary and variable definitions. Click on the `NFLplayers2016.csv` link at the top and use the URL to read the data into `R`. Save the dataset as an object named `nfl2016`.
+#### Load the Dataset
 
-```{r}
+Go to the [description](https://stat-jet-asu.github.io/Datasets/InstructorDescriptions/NFLplayers2016.html) of Dr. Thomley's NFL Players 2016 Dataset and read the brief summary and variable definitions. Click on the `NFLplayers2016.csv` link at the top and use the URL to read the data into `R`. Save the dataset as an object named `NFL`.
+
+```{r readdata}
 
 ```
 
 
+#### Explore Dataset Structure
+
+Use `glimpse()` to explore the structure of the NFL dataset.
+
+```{r glimpsedata}
+
+```
+
+
+#### Create/Add BMI Variable
+
+Body mass index (BMI) is a measure of body fat based on height and weight. The formula for calculating BMI for adults age 20 and older is BMI = kg/m^2^, where *kg* is the person's weight in kilograms and *m* is their height in meters. 
+
+We want the BMI score for each player. Calculate and add a `BMI` variable to the `NFL` dataset.
+
+```{r BMIcalculation}
+
+```
+
+
+#### Convert Playtime Variable
+
+Use the `count()` or `distinct()` function to discover the names of all the categories included in the variable `Playtime`. 
+
+```{r playtimecats}
+
+```
+
+The default order for categories in `R` is alphanumeric order. However, the categories of `Playtime` are an ordered set representing intervals of time and they are more meaningful if they are displayed in time order. Convert the categorical variable `Playtime` into a factor variable. Make sure all of the categories are organized in the correct time order (i.e., `Rookie` should be the first category). Use the `labels =` option within `factor()` so the categories that contain `Yrs` will display `Years` (i.e., 1-4 Years).
+
+```{r factorconvert}
+
+```
+
+
+#### Explore the New Structure
+
+Use `skim()` to explore the new structure of the NFL dataset with the added/reformatted variables.
+
+```{r skimdata}
+
+```
+
+
+### Heights Visualization
+
+#### Player Heights Histogram
+ 
+The table below shows descriptive summaries for heights of men in the U.S. population. 
+
+| Percentile |   1%  |   5%  |  10%  |  25%  |  50%  |  75%  |  90%  |  95%  |  99%  |	
+|:----------:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|
+| Height     | 61.5" | 64.0" | 65.2" | 67.0" | 69.2" | 71.0" | 72.6" | 73.5" | 75.6" |
+
+How did NFL players in 2016 compare to all men in the U.S.? Create a histogram of `Height` that includes the following components to visualize and explore this question.
+
+* Use the `breaks =` parameter within `geom_histogram()` to indicate where the bins for the data should be. The first bin should begin at 60.5 inches, the last bin should end at 85.5 inches, and every bin should be one inch wide. 
+
+* Outline each histogram bar in black and fill the histogram bars in a color of your choice. You may choose colors you want for the other elements below, such as the rectangles. Make sure all colors work together to enhance the display.
+
+* Use `annotate()` to create a rectangle whose height extends from the x-axis to 400 and whose width spans the area from the 5th percentile to the 95th percentile (the middle 90% of U.S. men). Add a descriptive label or text.
+
+* Use `annotate()` to create a rectangle whose height extends from the x-axis to 400 and whose width spans the area from the 25th percentile to the 75th percentile (the middle 50% of U.S. men). Add a descriptive label or text.
+
+* Create a vertical dashed line that shows the value of the 50th percentile (median) for U.S. men. Add a descriptive label/text.
+
+* Scale the x-axis so that there is a tick mark at each whole inch (e.g., 70, 71, 73, etc.). Scale the y-axis in a way that you feel is appropriate and effective for your visualization.
+
+* Add an informative title and better axis labels, including any measurement units. Using a subtitle and/or caption is optional.
+
+* Use theme `minimal()` to reduce the clutter in the frame. Optionally, make other `theme()` changes to enhance your plot.
+
+```{r heighthistogram}
+
+```
+
+
+#### Height Analysis & Discussion
+
+Based on your plot, what can you say about how the height of NFL players in 2016 compared to all men in the U.S.? What other plots or data analyses might help support your exploration of this question? Discuss.
+
+**ANSWER:** (erase this text and put your answer here) 
+
+
+### BMI Score Visualization
+
+#### Player BMI Score Density Plot
+
+Updated BMI categories that are often used for diagnostic screening and statistical summaries (per the [CDC](https://www.cdc.gov/healthyweight/assessing/index.html)) are shown below. 
+
+* If your BMI score is less than 18.5, it falls in the underweight range.
+* If your BMI score is 18.5 to < 25, it falls in the healthy weight range.
+* If your BMI score is 25.0 to < 30, it falls in the overweight range.
+* If your BMI score is 30.0 or higher, it falls in the obese range.
+
+The [Cleveland Clinic](https://my.clevelandclinic.org/health/articles/9464-body-mass-index-bmi) provides additional information in which the obese range is further divided into three sub-categories.
+
+* Class I obesity is the BMI score range 30 to < 35.
+* Class II obesity is the BMI score range 35 to < 40.
+* Class III obesity is the 40+ range (formerly "morbidly obese").
+
+What does the distribution of BMI scores look like for NFL players in 2016? Are they generally a "healthy" weight? Create a density plot of `BMI` that includes the following components to visualize and explore this question.
+
+* Fill the density plot in a color of your choice, and adjust the `alpha =` setting as needed. You may choose colors you want for the other elements below. Make sure all colors work together to enhance the display.
+
+* Choose and implement a method to clearly display and label the BMI categories/ranges on your density plot, except for the underweight category --- none of the NFL players in 2016 would be classified as "underweight".
+
+* Scale the x-axis so that there is a tick mark at each whole BMI score (e.g., 20, 21, 22, etc.). Scale the y-axis in a way that you feel is effective for your visualization. Turn off minor gridlines on the y-axis.
+
+* Add an informative title and better axis labels, including any measurement units. Using a subtitle and/or caption is optional.
+
+* Use theme `minimal()` to reduce the clutter in the frame. Optionally, make other `theme()` changes to enhance your plot.
+
+```{r BMIdensity}
+
+```
+
+
+#### Player BMI by Position Group
+
+* Use faceting to compare BMI densities for the 8 position groups. 
+* The 8 facets should all appear "stacked" on top of one another.
+* Do not include BMI categories, as the plot will be too crowded.
+* Fill by `PositionGrp` so that all of the plots are different colors. 
+* Get rid of the redundant legends that results from using fill.
+* Rotate the "strip text" for the facets so they are all horizontal.
+* Remove all of the ticks, gridlines, labels, etc. from the y-axis.
+* Be sure you have an informative title and good x-axis label.
+* Add any other formatting you feel will enhance meaning.
+* Once again, use `theme_minimal()` to reduce plot clutter.
+
+```{r BMIfaceted}
+
+```
+
+
+#### BMI Analysis & Discussion
+
+Many people suggest that BMI is a poor measure for athletes, who often have a high body weight due to muscle mass versus fat. What do your plots suggest about this? Discuss.
+
+**ANSWER:** (erase this text and put your answer here) 
+
+
+### Age & Playtime Visualizations
+
+#### Playtime Bar Plot
+
+* Create a bar plot for the variable `Playtime`. 
+* Change the bar colors from gray to some other color/colors.
+* Scale the y-axis so it has major tick marks every 100 units.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Add the built-in `theme_light()` from ggplot2 to your plot.
+* Add any other formatting you feel will enhance meaning.
+* Your final plot should *not* have a legend on it.
+
+```{r playtimeboxplot}
+
+```
+
+
+#### Age Violin/Boxplots
+
+* We want to compare `Age` among the three `Side` groups. 
+* Make `Age` the horizontal axis and `Side` the vertical axis.
+* Use `geom_violin()` as the first geometry layer of your plot.
+* Add `geom_boxplot()` as the second geometry layer of your plot.
+* Adjust the boxplot widths so they are completely inside the violins.
+* Fill the boxplots with a color to visually contrast with the violins.
+* Increase the size of the boxplot outliers for enhanced visibility.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Be sure to include any units of measure in the axis labels.
+* Add any other formatting you feel will enhance meaning.
+
+```{r ageviolins}
+
+```
+
+
+#### Career Years Beeswarms
+
+* Create a beeswarm to compare the variable `Years` by `Side`.
+* Recall, you will need another package to make a beeswarm plot!
+* Use `Playtime` as a fill variable to assist in your time visualization.
+* Adjust the `cex =` parameter so the three groups do not overlap.
+* Adjust the point size to something other than the default value.
+* Add an informative title and appropriate labels for both axes.
+* You may optionally add a subtitle or caption for more clarity.
+* Be sure to include any units of measure in the axis labels.
+* Add any other formatting you feel will enhance meaning.
+
+```{r yearsbeeswarm}
+
+``` 
+
+Assuming these data are representative, does it seem as if most NFL players can look forward to having a long career in the sport? How do your three plots above inform you about that question? What do they *not* tell you? Discuss.
+
+**ANSWER:** (erase this text and put your answer here) 
 
 
 ***
