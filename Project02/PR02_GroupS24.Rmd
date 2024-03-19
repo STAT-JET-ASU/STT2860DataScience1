@@ -229,6 +229,8 @@ Many people suggest that BMI is a poor measure for athletes, who often have a hi
 * Adjust the point size to something other than the default value.
 * Add an informative title and appropriate labels for both axes.
 * You may optionally add a subtitle or caption for more clarity.
+* Modify the legend title to be more informative to the viewer.
+* You might want to move your legend to a different position.
 * Be sure to include any units of measure in the axis labels.
 * Add any other formatting you feel will enhance meaning.
 
