@@ -61,11 +61,11 @@ ANSWER:
 
 Recall, STT 2860 Introduction to Data Management & Visualization has no course prerequisites, so we assume no knowledge of R programming for anyone coming into the course (though some students may have some experience). 
 
-Did your scores improve since you took these assessments for Project 1? Why do you think that is?
+Did your scores improve since you completed these two assessments for Project 1? Why do you think that is?
 
 ANSWER:
 
-Do you feel like the assessments reflect your knowledge here at the end of the semester? Explain. 
+Do you feel like the assessments reflect your knowledge here at roughly the middle of the semester? Explain. 
 
 ANSWER:
 
