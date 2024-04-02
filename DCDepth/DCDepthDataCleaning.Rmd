@@ -31,15 +31,15 @@ Introduction to the Tidyverse
 
 Missing data is part of any real world data analysis. It can crop up in unexpected places, making analyses challenging to understand. In this course, you will learn how to use tidyverse tools and the naniar R package to visualize missing values. You'll tidy missing values so they can be used in analysis and explore missing values to find bias in the data. Lastly, you'll reveal other underlying patterns of missingness. You will also learn how to "fill in the blanks" of missing values with imputation models, and how to visualize, assess, and make decisions based on these imputed datasets.
 
-### **2nd Course: [Reshaping Data with tidyr](https://app.datacamp.com/learn/courses/reshaping-data-with-tidyr)**
+### **2nd Course: [Introduction to Text Analysis in R](https://app.datacamp.com/learn/courses/introduction-to-text-analysis-in-r)**
 
 #### **Suggested Prerequisite**
 
-Data Manipulation with dplyr
+Introduction to the Tidyverse
 
 #### **DC Course Description**
 
-Data in the wild can be scary—when confronted with a complicated and messy dataset you may find yourself wondering, where do I even start? The tidyr package allows you to wrangle such beasts into nice and tidy datasets. Inaccessible values stored in column names will be put into rows, JSON files will become data frames, and missing values will never go missing again. You'll practice these techniques on a wide range of messy datasets, learning along the way how many dogs the Soviet Union sent into space and what bird is most popular in New Zealand. With the tidyr package in your tidyverse toolkit, you'll be able to transform almost any dataset in a tidy format which will pay-off during the rest of your analysis.
+From social media to product reviews, text is an increasingly important type of data across applications, including marketing analytics. In many instances, text is replacing other forms of unstructured data due to how inexpensive and current it is. However, to take advantage of everything that text has to offer, you need to know how to think about, clean, summarize, and model text. In this course, you will use the latest tidy tools to quickly and easily get started with text. You will learn how to wrangle and visualize text, perform sentiment analysis, and run and interpret topic models.
 
 ### **3rd Course: [Cleaning Data in R](https://app.datacamp.com/learn/courses/cleaning-data-in-r)**
 
@@ -49,17 +49,13 @@ Joining Data with dplyr
 
 #### **DC Course Description**
 
-Overcome Common Data Problems Like Removing Duplicates in R
+*Overcome Common Data Problems Like Removing Duplicates in R*: It's commonly said that data scientists spend 80% of their time cleaning and manipulating data and only 20% of their time analyzing it. The time spent cleaning is vital since analyzing dirty data can lead you to draw inaccurate conclusions. In this course, you’ll learn a variety of techniques to help you clean dirty data using R. You’ll start by converting data types, applying range constraints, and dealing with full and partial duplicates to avoid double-counting.
 
-It's commonly said that data scientists spend 80% of their time cleaning and manipulating data and only 20% of their time analyzing it. The time spent cleaning is vital since analyzing dirty data can lead you to draw inaccurate conclusions. In this course, you’ll learn a variety of techniques to help you clean dirty data using R. You’ll start by converting data types, applying range constraints, and dealing with full and partial duplicates to avoid double-counting.
+*Delve into Advanced Data Challenges*: Once you’ve practiced working on common data issues, you’ll move on to more advanced challenges such as ensuring consistency in measurements and dealing with missing data. After every new concept, you’ll have the chance to complete a hands-on exercise to cement your knowledge and build your experience.
 
-Delve into Advanced Data Challenges
+*Learn to Use Record Linkage During Data Cleaning*: Record Linkage is used to merge datasets together when the values have issues such as typos or different spellings. You’ll explore this useful technique in the final chapter and practice the application by using it to join two restaurant review datasets together into a single dataset.
 
-Once you’ve practiced working on common data issues, you’ll move on to more advanced challenges such as ensuring consistency in measurements and dealing with missing data. After every new concept, you’ll have the chance to complete a hands-on exercise to cement your knowledge and build your experience.
 
-Learn to Use Record Linkage During Data Cleaning
-
-Record Linkage is used to merge datasets together when the values have issues such as typos or different spellings. You’ll explore this useful technique in the final chapter and practice the application by using it to join two restaurant review datasets together into a single dataset.
 
 <hr>
 
