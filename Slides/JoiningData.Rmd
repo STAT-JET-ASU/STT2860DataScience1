@@ -68,7 +68,7 @@ How do these align with dplyr's join functions?
 
 ## Mutating Joins
 
-[Mutating joins](https://dplyr.tidyverse.org/reference/mutate-joins.html) *combine* variables from two data frames / tibbles. Since they **add** variables, they act like a `mutate()` statement. In all cases you get all columns in both sets.
+[Mutating joins](https://dplyr.tidyverse.org/reference/mutate-joins.html) *combine* variables from two data frames / tibbles. Since they **add** variables, they act similar to a `mutate()`. In all cases you get all columns in both sets. Some rows may be lost.
 
 * `inner_join(x, y, by = )`
 
@@ -85,7 +85,7 @@ returns all rows from both datasets (may get many `NA` values)
 
 ## Filtering Joins
 
-[Filtering joins](https://dplyr.tidyverse.org/reference/filter-joins.html) keep cases from the left-hand data frame / tibble based information in the right-hand dataset. Thus, the join acts like `filter()` on the left-hand dataset. 
+[Filtering joins](https://dplyr.tidyverse.org/reference/filter-joins.html) keep cases from the left-hand data frame / tibble based on information available in the right-hand dataset. Thus, the join acts like `filter()` on the left-hand dataset. 
 
 * `semi-join(x, y, by = )` 
 
