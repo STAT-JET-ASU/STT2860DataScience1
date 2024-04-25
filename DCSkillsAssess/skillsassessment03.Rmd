@@ -79,6 +79,10 @@ What is one piece of advice you would give to a future STT 2860 student? Why do 
 
 ANSWER:
 
+Do you consider yourself a data scientist? Why or why not?
+
+ANSWER:
+
 <hr>
 
 END!
