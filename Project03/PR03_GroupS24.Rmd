@@ -22,9 +22,9 @@ knitr::opts_chunk$set(
 )
 ```
 
-### STT 2860 Student
+### STT 2860 Student Analysis
 
-For this project, you will read, assemble, format, and analyze a dataset of Dr. Thomley's past and present STT 2860 class sections. Questions of interest include how many students have taken the class, what their majors have been, what their class years have been, and if there have been changes over time. It also would be interesting to discover any other interesting patterns that might exist. You will use data summaries and visualizations.
+For this project, you will read, assemble, format, and analyze a dataset of Dr. Thomley's past and present STT 2860 class sections. Questions of interest include how many students have taken the class, what their majors have been, what their class years have been, and if there have been changes over time. It also would be interesting to discover any other interesting patterns that might exist. You will use data summaries and visualizations. The data are found in the Excel file **DataScienceRosters.xlsx**, with separate worksheets for each semester's roster and additional sheets with information about the course title (the course was first offered as a special topics course) and full college names corresponding to the abbreviations in the rosters.
 
 
 ### Packages Used
@@ -33,8 +33,157 @@ For this project, you will read, assemble, format, and analyze a dataset of Dr. 
 
 ```
 
+### Build the Student Dataset
 
-### STT 2860 Student Dataset
+#### Explore the Excel Worksheet Names
+
+Use the `excel_sheets()` function to discover the names of the sheets in the workbook.
+
+```{r}
+
+```
+
+#### Read the Excel Worksheets into `R`
+
+Read each Excel sheet into its own dataset. The files use "N/A" to represent missing data, primarily email addresses for graduated students. Set the `na =` parameter in the `read_xlsx()` function to recognize this value so that `R` will convert them to `NA`. For the sheets containing student data, add a variable the indicates the semester the students were enrolled in the course (e.g., "Spring 2018" for all students in the Spring 2018 roster). 
+
+```{r}
+
+```
+
+#### Bind All Student Datasets Together
+
+Bind all of the individual semester datasets into a single master data file of students.
+
+```{r}
+
+```
+
+Use `glimpse()` to explore the structure of your combined dataset.
+
+```{r}
+
+```
+
+#### Do Additional Data Manipulations
+
+Perform these additional manipulations on the student dataset. Try to be as efficient as possible. You do not need to perform the actions in exactly the listed order.
+
+* Rename all variables in the dataset to `R`-friendly formats and use all lower-case letters and/or snake_case.  
+* Separate the student name variable into three separate variables: last name, first name, and middle initial. 
+* Separate the major/concentration variable into two separate variables: major and concentration.
+* Use the colleges dataset to add in the full college names. Keep the original abbreviations.
+* Move the full name of the college so that it is located right after the abbreviation.
+* Filter to remove the one student whose `Class` is "Non Degree Undergraduate".
+* Convert `Class` into a factor variable so that classes are in proper order.
+* Convert semester into a factor variable so they are in the proper order.
+* Create a variable to indicate whether `Major` is Mathematics or not.
+* Move the Mathematics/not Math variable after concentration.
+* Use the course name dataset to add the course name.
+* Arrange (order) the dataset by student last name.
+
+```{r}
+
+```
+
+Use `skim()` to explore the structure of your new dataset.
+
+```{r}
+
+```
+
+#### Now Save Your Formatted Dataset !
+
+Save your dataset in `.rds` format. (*You will submit this with your HTML file.*)
+
+```{r}
+
+```
+
+### Explore the Student Dataset
+
+#### Number of Students Per Semester
+
+Create a count of the number of students enrolled in the course each semester. Save this as an object to use in the next question. Be sure to display the results.
+
+```{r}
+
+```
+
+Using the count information you found above, summarize the average number of students in the class, as well as the minimum and maximum class sizes.
+
+```{r}
+
+```
+
+#### Majors of Students in the Course 
+
+Use the `distinct()` function to create a list of all the different majors who have enrolled in the course. Arrange it in alphabetical order and `print()` the result.
+
+```{r}
+
+```
+
+Create a count of the number of students in each major that have taken the course. Arrange it in order from the most to the least students and print the top ten majors.
+
+```{r}
+
+```
+
+#### Mathematics vs. Not Math Majors
+
+Create a bar plot to show the proportion or percentage of mathematics versus other (*not math*) majors. Include appropriate labels and other formatting of your choice to to help clarify the information conveyed by your plot.
+
+```{r}
+
+```
+
+#### Math vs. Not Math by Course Name
+
+Create a bar plot to show the number of mathematics versus other (*not math*) majors. Facet by course name. Include appropriate labels and other formatting of your choice to to help clarify the information conveyed by your plot.
+
+```{r}
+
+```
+
+
+#### Math vs. Not Math Across Semesters
+
+Create a bar plot with the main bars representing semesters, using mathematics versus other (*not math*) majors as the fill variable. Use the `position =` parameter to make a proportional (or percent) stacked bar plot. This will show the proportion of mathematics versus other (*not math*) majors within each semester. Include appropriate labels and other formatting of your choice to help clarify the information conveyed by your plot.
+
+```{r}
+
+```
+
+#### Concentrations of Mathematics Majors
+
+Filter the dataset to include only mathematics majors. Make a [tree map](https://r-charts.com/part-whole/treemapify/) of their concentrations. Make the version that labels each square with the concentration name and the number of students. The best way to get the values (`n`) and groups (`concentration`) you need is to `count()` the concentrations and save the output as your dataset to use for the plot.
+
+```{r}
+
+```
+
+#### Plot of Choice for Student Class Years
+
+Make a plot of your choice to investigate the distribution of class years for students in the course.
+
+```{r}
+
+```
+
+### Summarize Your Findings
+
+State five things you learned from your analysis of STT 2860 majors that would be of interest to faculty who teach the course or those who are interested in the evolution and/or success of the course.
+
+1) 
+
+2)
+
+3)
+
+4)
+
+5)
 
 
 
@@ -42,4 +191,3 @@ For this project, you will read, assemble, format, and analyze a dataset of Dr. 
 ```{r}
 sessionInfo()
 ```
-
