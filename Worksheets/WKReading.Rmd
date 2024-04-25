@@ -1,0 +1,206 @@
+---
+title: "Worksheet: Reading Data"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+### Packages Used
+
+```{r}
+library(tidyverse)
+library(readxl)
+library(writexl)
+```
+
+### Read the Mauna Loa Data from the Web
+
+```{r}
+read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  col_names = TRUE,           # use the first line as names
+  col_types = NULL,           # let R determine column types
+  na = "NA",                  # NA symbolized missing data
+  skip = 0,                   # do not skip any rows of data
+  n_max = 2,                  # stop reading after two rows
+  comment = "#",              # ignore all lines starting # 
+)                             # uh-oh, something is wrong here...
+```
+
+Add column names!
+
+```{r}
+read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  comment = "#",                      # ignore all lines starting # 
+  col_names = c(  # look, we are using vector creation skills here!
+    "year",
+    "month",
+    "dec_date",
+    "co2",
+    "co2_deseason",
+    "num_days",
+    "sd_days",
+    "uncertainty"
+  )
+) 
+```
+
+Recognize `NA` values
+
+```{r}
+read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  comment = "#",                      # ignore all lines starting # 
+  col_names = c(  # look, we are using vector creation skills here!
+    "year",
+    "month",
+    "dec_date",
+    "co2",
+    "co2_deseason",
+    "num_days",
+    "sd_days",
+    "uncertainty"
+  ),
+  na = c("-1", "-9.99", "-0.99"),   # missing values in this dataset
+  n_max = 5 # test to make sure it works first on a limited # lines!
+) 
+```
+
+Specify column types
+
+```{r}
+MLCO2 <- read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  comment = "#",                      # ignore all lines starting # 
+  col_names = c(  # look, we are using vector creation skills here!
+    "year",
+    "month",
+    "dec_date",
+    "co2",
+    "co2_deseason",
+    "num_days",
+    "sd_days",
+    "uncertainty"
+  ),
+  na = c("-1", "-9.99", "-0.99"),   # missing values in this dataset
+  col_types = c("iddddddc")
+) 
+```
+
+```{r}
+read_table(
+  file = "https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt",
+  comment = "#",                      # ignore all lines starting # 
+  col_names = c(  # look, we are using vector creation skills here!
+    "year",
+    "month",
+    "dec_date",
+    "co2",
+    "co2_deseason",
+    "num_days",
+    "sd_days",
+    "uncertainty"
+  ),
+  na = c("-1", "-9.99", "-0.99"),   # missing values in this dataset
+  col_types = c("iddddddc")
+) %>% 
+  select(year:co2_deseason)
+```
+
+### Read Tab-Separated Data
+
+```{r}
+gapminder <- read_tsv(
+  file = "https://assets.datacamp.com/production/repositories/1323/datasets/578a87c7d1e46b61ec2cfc0aaa1e42acb3d03a11/gapminder.tsv"
+)
+```
+
+```{r}
+read_delim(
+  file = "https://assets.datacamp.com/production/repositories/1323/datasets/578a87c7d1e46b61ec2cfc0aaa1e42acb3d03a11/gapminder.tsv",              delim = "\t"
+)
+```
+
+### Write Files
+
+```{r}
+write_csv(
+  gapminder,
+  file = "gapminder.csv"
+)
+```
+
+```{r}
+write_csv(
+  gapminder,
+  file = "../gapminder.csv"
+)
+```
+
+```{r}
+write_csv(
+  gapminder,
+  file = "../Archive/gapminder.csv"
+)
+```
+
+### R data formats
+
+```{r}
+saveRDS(MLCO2, file = "maunaloa2024-04-18.rds")
+```
+
+```{r}
+save(gapminder, MLCO2, sky, sky3, file = "../examplesave.RData")
+```
+
+```{r}
+load("../examplesave.RData")
+```
+
+### Excel File
+
+```{r}
+excel_format("../GaltonFamiliesAll.xlsx")
+```
+
+```{r}
+excel_sheets("../GaltonFamiliesAll.xlsx")
+```
+
+```{r}
+read_xlsx(
+  path = "../GaltonFamiliesAll.xlsx",
+  sheet = 1
+)
+```
+
+```{r}
+gfs <- read_xlsx(
+  path = "../GaltonFamiliesAll.xlsx",
+  sheet = "galtonfamiliessub"
+)
+```
+
+***
+```{r}
+sessionInfo()
+```
+

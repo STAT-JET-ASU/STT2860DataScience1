@@ -1,0 +1,342 @@
+---
+title: "Worksheet: Pivoting!"
+subtitle: "STT 2860 Intro to Data Mgmt & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+***
+
+### Packages Used
+
+```{r}
+library(tidyverse)
+library(nycflights13)
+library(fivethirtyeight)
+```
+
+### Democracy Score Data
+
+```{r}
+dem_score <- read_csv("https://moderndive.com/data/dem_score.csv")
+dem_score
+```
+
+### Drinks & Drinks Smaller Data
+
+```{r}
+drinks <- drinks
+drinks
+```
+
+```{r}
+drinks_smaller <- drinks %>% 
+  filter(country %in% c("USA", "China", "Italy", "Saudi Arabia")) %>% 
+  select(-total_litres_of_pure_alcohol) %>% 
+  rename(beer = beer_servings, spirit = spirit_servings, wine = wine_servings)
+drinks_smaller
+```
+
+### Airline Safety Dataset
+
+```{r}
+airline_safety <- airline_safety
+glimpse(airline_safety)
+```
+
+### Pivoting to a Longer Form
+
+#### Smaller Drinks Dataset
+
+```{r}
+drinks_smaller_tidy <- pivot_longer(
+  drinks_smaller,
+  cols = beer:wine,
+  names_to = "type",
+  values_to = "servings"
+)
+drinks_smaller_tidy
+```
+
+#### Full Drinks Dataset
+
+```{r}
+drinks_tidy <- drinks %>% 
+  rename(beer = beer_servings, spirit = spirit_servings, wine = wine_servings) %>% 
+  select(-total_litres_of_pure_alcohol) %>%   
+  pivot_longer(
+    cols = beer:wine,
+    names_to = "type",
+    values_to = "servings"
+)
+glimpse(drinks_tidy)
+```
+
+#### Democracy Score Dataset
+
+```{r}
+# dem_score %>% 
+#   pivot_longer(
+#     cols = `1952`:`1992`,
+#     names_to = "year",
+#     values_to = "score"
+#   )
+
+dem_score_tidy <- dem_score %>% 
+  pivot_longer(
+    cols = !country,
+    names_to = "year",
+    values_to = "score"
+  ) %>% 
+  mutate(year = as.numeric(year))
+
+glimpse(dem_score_tidy)
+```
+
+I would like to change as little code as possible when switching from country to country.
+
+```{r}
+# input choice of country here
+# then I don't need to change
+# the name in any code below
+countrychoice <- "Russia"
+
+# filter country data to plot
+# my dataset is names country
+# it contains only the country I want
+country <- dem_score_tidy %>%
+  filter(country == countrychoice)
+
+# pull out the vector of years
+# we will use this in the plot
+year_vec <- country %>%
+  pull(year)
+
+# pull out the vector of scores
+# we will use this in the plot
+score_vec <- country %>%
+  pull(score)
+
+# create fill vector for labels
+# different colors for pos/neg
+# we will use this in the plot
+score_fill_vec <- country %>%
+  mutate(score_fill = ifelse(score < 0, "pink", "lightgreen")) %>%
+  pull(score_fill)
+
+# pull out chosen country name
+# we will use this in the plot
+countryname <- country %>% 
+  distinct(country) %>% 
+  pull(country)
+
+# create the plot from inputs above!
+country %>%
+  ggplot(aes(x = year, y = score)) +
+  geom_hline(
+    yintercept = 0,
+    linetype = "dashed",
+    size = 0.25
+  ) +
+  geom_line() +
+  scale_x_continuous(
+    breaks = seq(1950, 1995, 5),
+    limits = c(1949.5, 1997),
+    expand = c(0, 0)
+  ) +
+  scale_y_continuous(
+    breaks = seq(-10, 10, 2),
+    limits = c(-12.5, 12.5)
+  ) +
+  annotate(
+    "label",
+    x = year_vec,
+    y = score_vec,
+    label = score_vec,
+    fill = score_fill_vec,
+  ) +
+  annotate(
+    "label",
+    x = 1950,
+    y = c(-12, +12),
+    hjust = 0,
+    label = c("highly autocratic", "highly democratic"),
+    fill = c("pink", "lightgreen"),
+    alpha = 0.25
+  ) +
+  labs(
+    title = paste("Changes in Democracy Score Over Time for", countryname),
+    y = "democracy score"
+  ) +
+  theme_minimal() +
+  theme(panel.grid.minor = element_blank())
+```
+
+#### Airline Datset Manips
+
+```{r}
+airline_safety_smaller <- airline_safety %>% 
+  select(airline, starts_with("fatalities"))
+airline_safety_smaller
+```
+
+```{r}
+airline_safety_smaller %>% 
+  pivot_longer(
+    cols = starts_with("fatalities"),
+    names_to = "time_period",
+    names_prefix = "fatalities_",
+    values_to = "num_fatalities",
+    
+  )
+```
+
+### Watauga County Weather Days
+
+```{r}
+WCS <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/wcsweatherdays.csv") %>% 
+  select(-total_days, -fall)
+
+glimpse(WCS)
+```
+
+```{r}
+head(WCS)
+```
+
+```{r}
+WCS %>% 
+  separate_wider_delim(
+    year,
+    delim = "-",
+    names = c("start_year", "end_year"),
+    cols_remove = FALSE
+  ) 
+```
+
+```{r}
+WCS2 <- WCS %>% 
+  separate_wider_delim(
+    year,
+    delim = "-",
+    names = c("start_year", "end_year")
+  ) %>% 
+  pivot_longer(
+    cols = ends_with("days"),
+    names_to = "month",
+    values_to = "num_days"
+  )
+```
+
+```{r}
+WCS2 %>% 
+  unite(
+    "academic_year", 
+    start_year:end_year, 
+    sep = " to ",
+    remove = FALSE)
+```
+
+### Skyscrapers Data
+
+```{r}
+sky <- read_csv("https://raw.githubusercontent.com/STAT-JET-ASU/Datasets/master/Instructor/USskyscrapers.csv")
+
+glimpse(sky)
+head(sky)
+```
+
+```{r}
+library(skimr)
+skim(sky)
+```
+
+```{r}
+sky %>% 
+  count(Use)
+```
+
+```{r}
+sky2 <- sky %>% 
+  separate_wider_delim(
+    Use,
+    delim = " / ",
+    names = c("Use01", "Use02", "Use03", "Use04"),
+    too_few = "align_start",
+    cols_remove = TRUE
+  ) 
+```
+
+```{r}
+glimpse(sky2)
+```
+
+```{r}
+sky2 %>% 
+  count(Use04)
+```
+
+```{r}
+sky3 <- sky2 %>% 
+  pivot_longer(
+    cols = Use01:Use04,
+    names_to = "UseNum",
+    values_to = "Use"
+  ) %>% 
+  filter(!is.na(Use)) %>% 
+  select(-UseNum)
+```
+
+```{r}
+sky3
+```
+
+```{r}
+sky %>% 
+  separate_longer_delim(
+    Use,
+    delim = " / "
+  ) 
+```
+
+### Joining `flights` dataset
+
+Are there any cases in `flights` that do not have a match in `airlines`?
+
+```{r}
+flights %>% 
+  anti_join(airlines, by = "carrier")
+```
+
+```{r}
+flights2 <- flights %>% 
+  left_join(airlines, by = "carrier") %>% 
+  relocate(name, .after = carrier) %>% 
+  rename(carrier_name = name)
+```
+
+```{r}
+flights3 <- flights2 %>%
+  left_join(airports, by = c("origin" = "faa"))
+```
+
+
+***
+```{r}
+sessionInfo()
+```
+

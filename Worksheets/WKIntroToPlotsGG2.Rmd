@@ -88,4 +88,3 @@ The `flights` dataset is from the nycflights13 package, which is installed on th
 ```{r}
 sessionInfo()
 ```
-
