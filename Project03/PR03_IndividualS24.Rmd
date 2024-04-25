@@ -1,0 +1,101 @@
+---
+title: "Project 03: Individual Coding & Analysis"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+    code_folding: hide
+---
+
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### Packages Used
+
+```{r}
+
+```
+
+
+### Read the Dataset
+
+In class we discussed the monthly carbon dioxide data gathered by NOAA's Mauna Loa observatory. NOAA offers several regularly updated [datasets for download](https://gml.noaa.gov/ccgg/trends/data.html) on their website. Read in the Mauna Loa CO2 monthly mean data from its [online (text) page](https://gml.noaa.gov/webdata/ccgg/trends/co2/co2_mm_mlo.txt). You can refer to *Dr. Thomley's Reading and Writing Data Slides* for some help with the necessary code, though you may want to change some of the variable names to match NOAA's updated names---read the description of the data! Give the dataset a sensible name. Be sure to program in the values for missing data so that `R` knows to replace them with `NA` values.
+
+```{r}
+
+```
+
+Use `glimpse()` to explore the structure of your dataset.
+
+```{r}
+
+```
+
+### Pivot the Dataset
+
+Pivot the data so that the values for both of the CO2 measurement variables (called `monthly average` and `deseasonalized` in the online dataset) are stacked into a single column (with a second column containing the variables names). 
+
+```{r}
+
+```
+
+
+
+### Plot the CO2 Data
+
+Create scatterplots similar to the two displayed on NOAA's [trends page](https://gml.noaa.gov/ccgg/trends/). The cyclic "up and down" red line you see on each plot is the `monthly average` CO2 values and the straighter black line is the `de-seasonalized` CO2 values. When you plot the CO2 values, you will need to use `color =` in the aesthetics to indicate CO2 type to get the two separate lines. 
+
+A level of 400 ppm was dubbed by some scientists as the "point of no return" for CO2. Concentrations this high are disruptive to the climate. Add a horizontal line with a label indicating this value to the 1958 to present scatterplot.
+
+The variable `decimal date` is a way of representing year and month together so that the data can be plotted in the correct order over time. The decimal portion added to the year represents the middle of the appropriate month.
+
+Notice that the two plots are essentially the same. The primary difference between them is that one uses the full span of the data and one "zooms in" on the last five complete years plus the current year. Your plots should have legends so that we can tell what each line represents. Choose colors other than red and black, which are not colorblind friendly.
+
+In addition to your scatterplots, create comparative boxplots for `monthly average` (not including `de-seasonalized` values) grouped by year (not `decimaldate`) for your own birth year to 2023. Make CO2 the y-axis on your plot.
+
+You do not need to add the vertical black bars on the left-hand graph that show the uncertainty of each monthly mean. You may choose formatting that you feel best displays the data. As always, be sure to use informative labels!
+
+#### CO2 from 1958 to Present (full data span)
+
+```{r}
+
+```
+
+#### CO2 from 2020 to Present (last 5+ years)
+
+```{r}
+
+```
+
+#### Comparitive Boxplots (birth year to 2023)
+
+```{r}
+
+```
+
+### Summarize Your Findings
+
+State three things you learned about atmospheric CO2 from your plots.
+
+1) 
+
+2)
+
+3)
+
+***
+```{r}
+sessionInfo()
+```
