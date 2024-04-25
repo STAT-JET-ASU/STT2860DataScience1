@@ -1,0 +1,81 @@
+---
+title: "Project 03: Peer & Self Assessment"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
+author: "PUT YOUR NAME HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+---
+***
+
+**Group Member Evaluations**
+
+1). What is your full name?
+
+ANSWER:
+
+
+2). On a scale of 0% (no participation) to 100% (full participation), rate your own effort with respect to the group component of Project 02. Explain your rating.
+
+ANSWER:
+
+
+3). What is your first partner's full name?
+
+ANSWER:
+
+
+4). On a scale of 0% (no participation) to 100% (full participation), rate your partner's effort with respect to the group component of Project 02. Explain your rating.
+
+ANSWER:
+
+
+5). What is your second partner's full name?
+
+ANSWER:
+
+
+6). On a scale of 0% (no participation) to 100% (full participation), rate your partner's effort with respect to the group component of Project 02. Explain your rating.
+
+ANSWER:
+
+7). What is your third partner's full name, if you had one? (*skip if no third partner*)
+
+ANSWER:
+
+
+8). On a scale of 0% (no participation) to 100% (full participation), rate your partner's effort with respect to the group component of Project 02. Explain your rating. (*skip if no third partner*)
+
+ANSWER:
+
+
+**Group Component/Feedback**
+
+9). Did you create a group work plan. Was your group able to work effectively together? Would you change anything about the way you or your group actually worked on the group component of the project (e.g., work assignments, timeline, the way in which your group communicated, etc.)? Are there additional resources you feel might have been helpful for the group components?
+
+ANSWER:
+
+
+10). If you had 10 extra credit points to divide among your group members, including yourself, how would you assign them? Explain.
+
+ANSWER:
+
+
+**Individual Component/Feedback**
+
+11). Did you feel as if you got more adept at working on the individual project components as you proceeded through the course? Why or why not?
+
+ANSWER:
+
+
+12). What part of Project 03 did you find most useful? What part did you find least useful? Explain in a way that helps Dr. Thomley understand why.
+
+ANSWER:
+
+
+***
+END!
