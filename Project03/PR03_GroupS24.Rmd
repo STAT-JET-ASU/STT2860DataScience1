@@ -1,0 +1,45 @@
+---
+title: "Project 03: Group Coding & Analysis"
+subtitle: "STT 2860 Intro to Data Management & Visualization" 
+author: "PUT EVERYONE'S NAMES HERE"
+date: "`r format(Sys.time(), '%A, %B %d, %Y @ %I:%M %p')`"
+output: 
+  html_document: 
+    theme: yeti
+    highlight: textmate
+    toc: true
+    toc_depth: 4 
+    code_folding: hide
+---
+
+<hr>
+
+```{r globaloptions, include = FALSE}
+knitr::opts_chunk$set(
+  message = FALSE,
+  warning = FALSE,
+  comment = NA
+)
+```
+
+### STT 2860 Student
+
+For this project, you will read, assemble, format, and analyze a dataset of Dr. Thomley's past and present STT 2860 class sections. Questions of interest include how many students have taken the class, what their majors have been, what their class years have been, and if there have been changes over time. It also would be interesting to discover any other interesting patterns that might exist. You will use data summaries and visualizations.
+
+
+### Packages Used
+
+```{r packages}
+
+```
+
+
+### STT 2860 Student Dataset
+
+
+
+***
+```{r}
+sessionInfo()
+```
+
