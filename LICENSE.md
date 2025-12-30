@@ -1,3 +1,3 @@
-Attribution-NonCommercial-ShareAlike 3.0 United States (CC BY-NC-SA 3.0 US)
+Attribution-NonCommercial-ShareAlike 4.0 International
 
-LINK: [https://creativecommons.org/licenses/by-nc-sa/3.0/us/](https://creativecommons.org/licenses/by-nc-sa/3.0/us/)
+Canonical URL: https://creativecommons.org/licenses/by-nc-sa/4.0/
